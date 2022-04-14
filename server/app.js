@@ -2,14 +2,18 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors = require('cors')
 
 // db connection
 const db = require('./configs/db.config');
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const morgan = require('morgan');
 
 const app = express();
+app.use(cors())
+app.use(morgan('dev'))
 
 app.use(logger('dev'));
 app.use(express.json());
