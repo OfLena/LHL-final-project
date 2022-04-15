@@ -5,7 +5,7 @@ module.exports = (db) => {
   router.get('/', (req, res) => {
    
     const comments = "SELECT * FROM comments";
-    
+
     db.query(comments).then(data => {
      
       res.json(data.rows);
