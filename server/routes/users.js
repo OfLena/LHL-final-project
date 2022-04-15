@@ -9,7 +9,7 @@ module.exports = (db) => {
     const command_3 = "SELECT * FROM categories";
     const command_4 = "SELECT * FROM favs";
     const command_5 = "SELECT * FROM recipe_tags";
-    db.query(command_1).then(data => {
+    db.query(command_0).then(data => {
      
       res.json(data.rows);
     })
