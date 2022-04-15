@@ -1,6 +1,20 @@
 import './App.scss';
-import {useState, useEffect} from 'react';
+
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from "react-router-dom";
+import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+
+
+import Nav from './components /Nav';
+import Footer from './components /Footer';
+import RecipeList from './components /RecipeList';
+import Profile from './components /Profile';
+import RecipeListItem from './components /RecipeListItem';
 
 function App() {
   
@@ -16,9 +30,20 @@ function App() {
 
   return (
     <div className="App">
-      
-        {users.map(user => <h1 key={user.id}>{user.email}</h1>)}
-      
+      <Router>
+        <Nav />
+        <div>
+          <Routes>
+            
+            <Route path="/recipes" element={<RecipeList />}/>
+                 
+            <Route path="/profile" element={<Profile users={users}/>}/>
+
+            <Route path="/recipe_list_item" element={<RecipeListItem />}/>
+
+          </Routes>
+        </div>
+      </Router>
     </div>
   );
 }
