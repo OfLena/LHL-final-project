@@ -8,10 +8,15 @@ export default function Nav(props) {
       <ul>
         <li>
           <Link to="/recipes">Recipes</Link>
+        </li>
+        <li>
           <Link to="/profile">Profile</Link>
+        </li>
+        <li>
           <Link to="/recipe_list_item">RecipeListItem</Link>
         </li>
       </ul>
     </nav>
+    
   );
 }
