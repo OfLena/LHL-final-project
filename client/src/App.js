@@ -1,5 +1,7 @@
+// ------------CSS FILES---------- //
 import './App.scss';
 
+// ------------DEPENDENCIES---------- //
 import {
   BrowserRouter as Router,
   Routes,
@@ -8,38 +10,54 @@ import {
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 
-
+// ------------COMPONENT IMPORT---------- //
 import Nav from './components /Nav';
 import Footer from './components /Footer';
 import RecipeList from './components /RecipeList';
 import Profile from './components /Profile';
 import RecipeListItem from './components /RecipeListItem';
+import RecipeForm from './components /RecipeForm';
+
+
 
 function App() {
   
-  const [users, setUsers] = useState([]) 
+  const [state, setState] = useState({
+    users: [],
+    recipes: []
+  });
+   
 
   useEffect(() => {
-    // for demo purposes, hardcoded URL
-    axios.get('/users').then(res => {
-      console.log(res.data);
-      setUsers(res.data)
-    })
-  }, [])
+    Promise.all([
+      axios.get("/users"),
+      axios.get("/recipes"),
+      
+    ]).then((all) => {
+      setState((prev) => ({
+        ...prev,
+        users: all[0].data,
+        recipes: all[1].data
+      }));
+    });
+  }, []);
 
+  
   return (
     <div className="App">
       <Router>
         <Nav />
         <div>
+        
           <Routes>
-            
-            <Route path="/recipes" element={<RecipeList />}/>
+        
+            <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
                  
-            <Route path="/profile" element={<Profile users={users}/>}/>
+            <Route path="/profile" element={<Profile users={state.users}/>}/>
 
             <Route path="/recipe_list_item" element={<RecipeListItem />}/>
 
+            <Route path="/recipe_form" element={<RecipeForm />}/>
           </Routes>
         </div>
       </Router>

@@ -1,9 +1,16 @@
 
 
+
+
 export default function RecipeList (props) {
+
+  const { recipes } = props;
+ 
   return (
     <div>
-      Recipe List
+      <ul>
+      {recipes.map(recipe => <li>{recipe.title}</li>)}
+       </ul>
     </div>
   )
 }
