@@ -22,6 +22,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const recipesRouter = require('./routes/recipes');
+const favsRouter = require('./routes/favs');
+const commentsRouter = require('./routes/comments');
+const recipeTagsRouter = require('./routes/recipe_tags');
+const categoriesRouter = require('./routes/categories');
+const tagsRouter = require('./routes/tags')
+
 
 
 
@@ -30,5 +36,10 @@ const recipesRouter = require('./routes/recipes');
 app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
 app.use('/recipes', recipesRouter(db));
+app.use('/recipe_tags', recipeTagsRouter(db));
+app.use('/favs', favsRouter(db));
+app.use('/comments', commentsRouter(db));
+app.use('/categories', categoriesRouter(db));
+app.use('/tags', tagsRouter(db));
 
 module.exports = app;

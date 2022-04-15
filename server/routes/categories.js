@@ -4,9 +4,9 @@ module.exports = (db) => {
   // all routes will go here 
   router.get('/', (req, res) => {
    
-    const recipes = "SELECT * FROM recipes";
+    const categories = "SELECT * FROM categories";
     
-    db.query(recipes).then(data => {
+    db.query(categories).then(data => {
      
       res.json(data.rows);
     })

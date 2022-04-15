@@ -1,6 +1,0 @@
--- INSERT INTO tags (tag_1, tag_2, tag_3, tag_4, tag_5)
--- VALUES (TRUE, TRUE, FALSE, FALSE, TRUE),
--- (TRUE, TRUE, TRUE, FALSE, TRUE),
--- (TRUE, TRUE, TRUE, TRUE, TRUE),
--- (FALSE, TRUE, FALSE, FALSE, TRUE),
--- (TRUE, TRUE, FALSE, FALSE, TRUE);
