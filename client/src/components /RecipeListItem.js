@@ -1,9 +1,12 @@
 
 
 export default function RecipeListItem (props) {
+
+  
+  const { title }  = props
   return (
     <div>
-      RecipeListItem
+      {title}
     </div>
   )
 }

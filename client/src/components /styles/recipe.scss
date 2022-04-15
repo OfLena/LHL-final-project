@@ -1,0 +1,11 @@
+.recipe-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+}
+
+.recipe-card-list {
+  width: 100px;
+  height: 100px;
+}

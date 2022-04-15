@@ -17,7 +17,7 @@ import RecipeList from './components /RecipeList';
 import Profile from './components /Profile';
 import RecipeListItem from './components /RecipeListItem';
 import RecipeForm from './components /RecipeForm';
-
+import Home from './components /Home';
 
 
 function App() {
@@ -46,22 +46,20 @@ function App() {
   return (
     <div className="App">
       <Router>
+        
         <Nav />
+        {/* <Home recipes={state.recipes}/> */}
+
         <div>
-        
           <Routes>
-        
             <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
-                 
             <Route path="/profile" element={<Profile users={state.users}/>}/>
-
-            <Route path="/recipe_list_item" element={<RecipeListItem />}/>
-
-            <Route path="/recipe_form" element={<RecipeForm />}/>
+            <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
           </Routes>
         </div>
+
       </Router>
-      <Footer/>
+      
     </div>
   );
 }
