@@ -1,7 +1,16 @@
 
 export default function SearchBar (props) {
 
+  function onClickSearch() {
+
+  }
+
   return (
-    <li><input type="text" placeholder="Search Recipes..."></input></li>
+    <div>
+      <form>
+        <input type="text" placeholder="E.g. Vegetarian"></input>
+        <button>Search</button>
+      </form>
+    </div>
   )
 }

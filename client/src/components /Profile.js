@@ -13,7 +13,9 @@ function getFavRecipes() {
   //reset the user recipes state to empty string at the beginning (onClick)
   setShowUserRecipes("")
   return(
-    setShowFavs(<li>{favs.map(fav => fav.recipe_id)}</li>) 
+    setShowFavs(
+    <li>{favs.map(fav => fav.recipe_id)}</li>
+    ) 
   )
 }
 
@@ -21,7 +23,9 @@ function getUserRecipes() {
   //reset the fav recipes state to empty string at the beginning (onClick)
   setShowFavs("")
   return(
-    setShowUserRecipes(<li>{recipes.map(recipe => recipe.title)}</li>) 
+    setShowUserRecipes(
+    <li>{recipes.map(recipe => recipe.title)}</li>
+    ) 
   )
 }
   
