@@ -9,7 +9,7 @@ const { user, recipes, favs } = props
 const [showFavs, setShowFavs] = useState("")
 const [showUserRecipes, setShowUserRecipes] = useState("")
 
-console.log(user)
+console.log('FAVS ---> ',favs)
 
 function getFavRecipes() {
   //reset the user recipes state to empty string at the beginning (onClick)

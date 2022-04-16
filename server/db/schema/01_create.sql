@@ -109,3 +109,4 @@ CREATE TABLE favs (
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   recipe_id integer REFERENCES recipes(id) ON DELETE CASCADE NOT NULL
 );
+
