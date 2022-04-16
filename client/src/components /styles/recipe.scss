@@ -1,11 +1,50 @@
 .recipe-container {
   display: flex;
   flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: space-around;
+  background-color: white;
+  height: 100vh;
 }
 
-.recipe-card-list {
-  width: 100px;
-  height: 100px;
+.recipe-card-list-item {
+  display: flex;
+  justify-content: space-evenly;
+  text-align: center;
+  font-size: 18px;
+  margin: 40px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
+}
+
+.recipe-img {
+  height: 20em;
+  width: 20em;
+  margin: 20px 0px 20px 0px;
+}
+
+.cover-img {
+ width: 100%;
+}
+
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3em;
+  font-weight: bolder;
+}
+
+.search-bar {
+  position: absolute;
+  top: 12.5%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  font-size: 3em;
+  font-weight: bolder;
+}
+
+.search-bar input {
+  height: 2em;
+  width: 20em;
 }

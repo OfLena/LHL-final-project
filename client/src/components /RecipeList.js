@@ -15,11 +15,7 @@ const recipes = props.recipes.map(recipe => {
 });
 
   return (
-    <div class="recipe-container">
-      <ul class="recipe-card-list">
-        {recipes}
-      </ul>
-    </div>
+    <div>hello</div>
   )
 }
 

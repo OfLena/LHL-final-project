@@ -48,10 +48,11 @@ function App() {
       <Router>
         
         <Nav />
-        {/* <Home recipes={state.recipes}/> */}
+        
 
         <div>
           <Routes>
+            <Route path="/" element={<Home recipes={state.recipes}/>}/>
             <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
             <Route path="/profile" element={<Profile users={state.users}/>}/>
             <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
