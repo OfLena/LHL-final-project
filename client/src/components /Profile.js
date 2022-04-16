@@ -5,9 +5,11 @@ import SearchBar from './SearchBar';
 
 export default function Profile (props) {
 
-const { users, recipes, favs } = props
+const { user, recipes, favs } = props
 const [showFavs, setShowFavs] = useState("")
 const [showUserRecipes, setShowUserRecipes] = useState("")
+
+console.log(user)
 
 function getFavRecipes() {
   //reset the user recipes state to empty string at the beginning (onClick)
@@ -35,9 +37,9 @@ function getUserRecipes() {
       {/* Need to add logic here to populate first name, last name and user name where it matches the id of the user */}
 
       <ul>
-      <li>{users.map(user => user.first_name)}</li>
-      <li>{users.map(user => user.last_name)}</li>
-      <li>{users.map(user => user.user_name)}</li>
+      <li>{user.first_name}</li>
+      <li>{user.last_name}</li>
+      <li>{user.id}</li>
       </ul>
 
       <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>

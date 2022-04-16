@@ -2,12 +2,11 @@ const router = require('express').Router();
 
 module.exports = (db) => {
   // all routes will go here 
-  router.get('/', (req, res) => {
-    const users = "SELECT * FROM users";
+  router.get('/:id', (req, res) => {
+    const users = "SELECT * FROM users WHERE id = $1";
     
-    db.query(users).then(data => {
-     
-      res.json(data.rows);
+    db.query(users, [req.params.id]).then(data => {
+      res.json(data.rows[0]);
     })
   });
 

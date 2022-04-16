@@ -27,6 +27,7 @@ const commentsRouter = require('./routes/comments');
 const recipeTagsRouter = require('./routes/recipe_tags');
 const categoriesRouter = require('./routes/categories');
 const tagsRouter = require('./routes/tags')
+const loginRouter = require('./routes/login')
 
 
 
@@ -41,5 +42,6 @@ app.use('/favs', favsRouter(db));
 app.use('/comments', commentsRouter(db));
 app.use('/categories', categoriesRouter(db));
 app.use('/tags', tagsRouter(db));
+app.use('/login', loginRouter(db));
 
 module.exports = app;
