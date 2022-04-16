@@ -4,9 +4,10 @@ import axios from 'axios';
 
 export default function RecipeForm() {
 
-  
+
   const [recipe, setRecipe] = useState({});
   const [tag, setTag] = useState({});
+  // const [checked, setChecked] = useState({});
 
   
   function postRecipeAndTags() {
@@ -17,6 +18,7 @@ export default function RecipeForm() {
     .then(all => {console.log(all)})
     .catch(err => {console.log("ERR", err)})
   }
+
 
    return (
 
@@ -84,35 +86,35 @@ export default function RecipeForm() {
           type="radio" 
           value="vegan" 
           name="tag" 
-          value={() => setTag((prev) => ({...prev, vegan: true}))}
+          onChange={() => setTag((prev) => ({...prev, vegan: true}))}
         /> Vegan
         
         <input 
           type="radio" 
           value="gluten_free" 
           name="tag" 
-          value={() => setTag((prev) => ({...prev, gluten_free: true}))}
+          onChange={() => setTag((prev) => ({...prev, gluten_free: true}))}
         /> Gluten-Free
 
         <input 
           type="radio" 
           value="dairy_free" 
           name="tag" 
-          value={() => setTag((prev) => ({...prev, dairy_free: true}))} 
+          onChange={() => setTag((prev) => ({...prev, dairy_free: true}))} 
         /> Dairy-Free
 
         <input 
           type="radio" 
           value="vegetarian" 
           name="tag" 
-          value={() => setTag((prev) => ({...prev, vegetarian: true}))}
+          onChange={() => setTag((prev) => ({...prev, vegetarian: true}))}
         /> Vegetarian
 
         <input 
           type="radio" 
           value="keto" 
           name="tag" 
-          value={() => setTag((prev) => ({...prev, keto: true}))} 
+          onChange={() => setTag((prev) => ({...prev, keto: true}))} 
         /> Keto 
 
 

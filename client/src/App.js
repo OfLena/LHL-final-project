@@ -24,7 +24,8 @@ function App() {
   
   const [state, setState] = useState({
     users: [],
-    recipes: []
+    recipes: [],
+    favs: []
   });
    
 
@@ -32,12 +33,13 @@ function App() {
     Promise.all([
       axios.get("/users"),
       axios.get("/recipes"),
-      
+      axios.get("/favs")
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
         users: all[0].data,
-        recipes: all[1].data
+        recipes: all[1].data,
+        favs: all[2].data
       }));
     });
   }, []);
@@ -47,14 +49,14 @@ function App() {
     <div className="App">
       <Router>
         
-        <Nav />
+        {/* <Nav /> */}
         
 
         <div>
           <Routes>
             <Route path="/" element={<Home recipes={state.recipes}/>}/>
             <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
-            <Route path="/profile" element={<Profile users={state.users}/>}/>
+            <Route path="/profile" element={<Profile users={state.users} recipes={state.recipes} favs={state.favs}/>}/>
             <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
           </Routes>
         </div>
