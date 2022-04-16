@@ -8,6 +8,7 @@
 .recipe-card-list-item {
   display: flex;
   justify-content: space-evenly;
+  flex-direction: column;
   text-align: center;
   font-size: 18px;
   margin: 40px 0px 20px 0px;
