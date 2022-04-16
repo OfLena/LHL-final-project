@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 
 
@@ -7,10 +7,37 @@ export default function RecipeForm() {
 
   const [recipe, setRecipe] = useState({});
   const [tag, setTag] = useState({});
-  const [rows, setRows] = useState([{}]);
+  const [ingredientRows, setIngredientRows] = useState([{}]);
+  const [instructionRows, setInstructionRows] = useState([{}]);
   
   
-  
+
+  // ======== USE EFFECTS ===== //
+
+
+  useEffect(() => {
+    const instructionArr = instructionRows.map(instruction => instruction.instruction) ;
+    instructionArr.forEach((message ,index) => 
+    setRecipe((prev) => ({...prev, [`instruction_${index+1}`]: `${message}`})));
+    console.log(recipe);
+  }, [instructionRows])
+
+  useEffect(() => {
+    const ingredientArr = ingredientRows.map(ingredient=> ingredient.ingredient) ;
+    ingredientArr.forEach((message ,index) => 
+    setRecipe((prev) => ({...prev, [`ingredient_${index+1}`]: `${message}`})));
+    console.log(recipe);
+  }, [ingredientRows])
+
+  useEffect(() => {
+    const measurementArr = ingredientRows.map(measurement=> measurement.measurement) ;
+    measurementArr.forEach((message ,index) => 
+    setRecipe((prev) => ({...prev, [`measurement_${index+1}`]: `${message}`})));
+    console.log(recipe);
+  }, [ingredientRows])
+
+   
+// ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
     if (evt.target.checked === false) {
@@ -23,34 +50,54 @@ export default function RecipeForm() {
     }
   }
 
-
-  const handleRowChange = idx => e => {
-    
-    console.log('Target', e.target);
-    
+// ================= INGREDIENT ROW HANDLERS =================//
+  const handleIngredientRowChange = idx => e => {
     const { name, value } = e.target;
-    const newRow = [...rows];
+    const newRow = [...ingredientRows];
     newRow[idx][name] = value
-    setRows(newRow);
+    setIngredientRows(newRow);
   };
 
-  const handleAddRow = () => {
-    
+  const handleIngredientAddRow = () => {
       const item = {
         ingredient: "",
         measurement: ""
       };
-      setRows([...rows, item]
+      setIngredientRows([...ingredientRows, item]
+      );
+    };
+
+  const handleIngredientRemoveRow = () => {
+      setIngredientRows([...ingredientRows].slice(0, -1));
+    };
+
+  // ================= INSTRUCTION ROW HANDLERS ================//
+  const handleInstructionRowChange = idx => e => {
+  
+    const { name, value } = e.target;
+    const newInstructionRow = [...instructionRows];
+    newInstructionRow[idx][name] = value
+    setInstructionRows(newInstructionRow);
+  };
+
+  const handleInstructionAddRow = () => {
+    
+      const item = {
+        instruction: ""
+      };
+      setInstructionRows([...instructionRows, item]
       );
 
       
     };
 
-  const handleRemoveRow = () => {
-      setRows([...rows].slice(0, -1));
+  const handleInstructionRemoveRow = () => {
+    setInstructionRows([...instructionRows].slice(0, -1));
     };
 
     
+// ==================AXIOS CALLS =================//
+
   function postRecipeAndTags() {
     Promise.all([
       axios.post("/recipes", recipe),
@@ -61,49 +108,79 @@ export default function RecipeForm() {
   }
 
 
+
+
+
    return (
     <section>
+
+      <h1>Upload your Recipe!</h1>
+
+
       <form 
        onSubmit={e => e.preventDefault()}
        autoComplete="off"
-      >
-        <input 
-          name="image_url"
-          placeholder="Upload Photo" 
-          onChange={e => setRecipe((prev) => ({...prev, img_url: e.target.value}))}
-        />
-        <input 
-          name="title"
-          placeholder="Title" 
-          onChange={e => setRecipe((prev) => ({...prev, title: e.target.value}))}
-        />
-        <input 
-          name="prep_time" 
-          placeholder="Cook Time" 
-          onChange={e => setRecipe((prev) => ({...prev, prep_time: e.target.value}))}
-        />
-        <input 
-          name="serves"
-          placeholder="serving size" 
-          onChange={e => setRecipe((prev) => ({...prev, serving_size: e.target.value}))}
-        />
+       >
+        <table class="table table-recipe-details">
+          <thead>
+        <tr>
+          <td>Recipe Details</td>
+        </tr>
+         </thead>
+         <tbody>
+            <tr>
+              <td>Image</td>
+              <input 
+                name="image_url"
+                placeholder="Upload Photo Url" 
+                onChange={e => setRecipe((prev) => ({...prev, img_url: e.target.value}))}
+                />
+            </tr>
+            <tr>
+            <td>Title</td>
+              <input 
+                name="title"
+                placeholder="Title" 
+                onChange={e => setRecipe((prev) => ({...prev, title: e.target.value}))}
+                />
+            </tr>
+            <tr>
+            <td>Prep Time</td>
+              <input 
+                name="prep_time" 
+                placeholder="Cook Time" 
+                onChange={e => setRecipe((prev) => ({...prev, prep_time: e.target.value}))}
+                />
+            </tr>
+            <tr>
+            <td>Serving Size</td>
+              <input 
+                name="serves"
+                placeholder="serving size" 
+                onChange={e => setRecipe((prev) => ({...prev, serving_size: e.target.value}))}
+                />
+            </tr>
+
+         </tbody>
+        </table>
         
-      <table> 
+      <table class="table table-ingredients"> 
         <thead>
           <tr>
             <td>Ingredients</td>
           </tr>
         </thead>
         <tbody>
-        {rows.map((item, idx) => (
+        {ingredientRows.map((item, idx) => (
           <tr id="addr0" key={idx}>
             <td>{idx+1}</td>
             <td>
               <input
                 type="text"
                 name="ingredient"
-                value={rows[idx].ingredient}
-                onChange={handleRowChange(idx)}
+                placeholder="Item"
+                value={ingredientRows[idx].ingredient}
+                onChange={handleIngredientRowChange(idx)}
                 className="form-control"
               />
             </td>
@@ -111,8 +188,9 @@ export default function RecipeForm() {
               <input
                 type="text"
                 name="measurement"
-                value={rows[idx].measurement}
-                onChange={handleRowChange(idx)}
+                placeholder="Measurement"
+                value={ingredientRows[idx].measurement}
+                onChange={handleIngredientRowChange(idx)}
                 className="form-control"
               />
             </td>
@@ -122,32 +200,55 @@ export default function RecipeForm() {
       </table>
       
       <button 
-        disabled={rows.length >= 20}
-        onClick={handleAddRow}
+        disabled={ingredientRows.length >= 20}
+        onClick={handleIngredientAddRow}
         className="btn btn-default pull-left"
       >
         Add Row
       </button>
       <button
-        onClick={handleRemoveRow}
+        onClick={handleIngredientRemoveRow}
         className="pull-right btn btn-default"
       >
         Delete Row
       </button>
 
-        <h1>Instructions</h1>
+        <table class="table table-instructions"> 
+        <thead>
+          <tr>
+            <td>Instructions</td>
+          </tr>
+        </thead>
+        <tbody>
+        {instructionRows.map((item, idx) => (
+          <tr id="addr0" key={idx}>
+            <td>Step {idx+1}</td>
+            <td>
+              <input
+                type="text"
+                name="instruction"
+                value={instructionRows[idx].name}
+                onChange={handleInstructionRowChange(idx)}
+                className="form-control"
+              />
+            </td>
+          </tr>
+        ))}
+        </tbody>
+      </table>
+      <button 
+          disabled={instructionRows.length >= 5}
+          onClick={handleInstructionAddRow}
+          className="btn btn-default pull-left">
+        Add Row
+      </button>
+      <button
+          onClick={handleInstructionRemoveRow}
+          className="pull-right btn btn-default">
+        Delete Row
+      </button>
+      <h1>Tags</h1>
 
-        <input 
-          name="instruction_1" 
-          placeholder="Step 1" 
-          onChange={e => setRecipe((prev) => ({...prev, instruction_1: e.target.value}))}
-        />
-        <button>Add Step</button>
-
-
-        <h1>Tags</h1>
-
-      
         <input 
           type="checkbox" 
           value="vegan" 
@@ -183,10 +284,11 @@ export default function RecipeForm() {
           onChange={handleCheckboxChange}
         /> Keto 
 
-
-        <input type= "button" value="Submit" onClick={postRecipeAndTags}/>
+        <br/>
+        <br/>
+        <input type= "button" className="btn btn-default pull-left" value="Post your Recipe" onClick={postRecipeAndTags}/>
 
       </form>
     </section>
-   
+
    )}
