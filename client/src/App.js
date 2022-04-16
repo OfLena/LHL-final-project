@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Nav /> */}
+        <Nav />
         <div>
           <Routes>
             <Route path="/" element={<Home recipes={state.recipes}/>}/>
