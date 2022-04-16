@@ -1,6 +1,7 @@
 // ------------CSS FILES---------- //
 import './App.scss';
 
+
 // ------------DEPENDENCIES---------- //
 import {
   BrowserRouter as Router,
@@ -9,6 +10,7 @@ import {
 } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
+
 
 // ------------COMPONENT IMPORT---------- //
 import Nav from './components /Nav';
@@ -46,6 +48,7 @@ function App() {
   return (
     <div className="App">
       <Router>
+
         
         <Nav />
         
