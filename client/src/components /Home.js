@@ -23,7 +23,7 @@ console.log('PROPS -->', props.recipes)
       <img class="cover-img" src="https://cdn.stocksnap.io/img-thumbs/960w/pizza-wine_IJESKJTYB6.jpg"></img>
       <div class="search-bar"><input type="text" placeholder="Search.."></input></div>
       <div class="centered">Bring Out Your Inner Chef</div>
-      <div class="recipe-card-list-item">
+      <div class="recipe-card-container">
         {recipes}
       </div>
     </div>
