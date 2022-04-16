@@ -8,6 +8,7 @@ export default function RecipeListItem (props) {
 
   
   const { title, image_url, prep_time }  = props
+  
   return (
     <div>
       <div>{title}</div>
