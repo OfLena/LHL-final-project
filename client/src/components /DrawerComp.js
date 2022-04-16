@@ -7,9 +7,7 @@ import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 const Pages = [<Button component={Link} to={'/'}>Home</Button>,
                 <Button component={Link} to={'/recipe_form'}>Add Recipe</Button>,
-                <Button component={Link} to={'/profile'}>Profile</Button>,
-                 "About Us",
-                "Contact Us"];
+                <Button component={Link} to={'/profile'}>Profile</Button>];
 
 
 export default function DrawerComp() {

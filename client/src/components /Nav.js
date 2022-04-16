@@ -32,13 +32,13 @@ import { AppBar, Toolbar, Typography, Tabs, Tab, Button, useMediaQuery, useTheme
 import { Link } from "react-router-dom";
 
 
+import SearchBar from "./SearchBar";
 import DrawerComp from "./DrawerComp";
+
 
 const Pages = [<Button component={Link} to={'/'}>Home</Button>,
                 <Button component={Link} to={'/recipe_form'}>Add Recipe</Button>,
-                <Button component={Link} to={'/profile'}>Profile</Button>,
-                 "About Us",
-                "Contact Us"];
+                <Button component={Link} to={'/profile'}>Profile</Button>];
 
 export default function Nav(props) {
 
@@ -72,7 +72,7 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
                 PotLuck
               </Typography> */}
             </Tabs>
-          
+              <SearchBar/>
           <Button sx={{marginLeft: 'auto'}} variant='contained'>Login</Button>
           <Button sx={{marginLeft: '10px'}}variant='contained'>Register</Button>
           </>
