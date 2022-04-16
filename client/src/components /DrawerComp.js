@@ -1,9 +1,14 @@
 import React, { Fragment, useState } from "react";
-import { Drawer, IconButton, List, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Link } from "react-router-dom"
+
+import { Drawer, IconButton, List, ListItemButton, Button, ListItemIcon, ListItemText } from "@mui/material";
 import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 
-const Pages = ["Home", "Recipes", "Profile", "About Us", "Contact Us", "Login", "Logout"];
+const Pages = [<Button component={Link} to={'/'}>Home</Button>,
+                <Button component={Link} to={'/recipe_form'}>Add Recipe</Button>,
+                <Button component={Link} to={'/profile'}>Profile</Button>];
+
 
 export default function DrawerComp() {
 

@@ -29,11 +29,16 @@
 
 import React, { Fragment, useState } from "react";
 import { AppBar, Toolbar, Typography, Tabs, Tab, Button, useMediaQuery, useTheme } from '@mui/material'
+import { Link } from "react-router-dom";
 
 
+import SearchBar from "./SearchBar";
 import DrawerComp from "./DrawerComp";
 
-const Pages = ["Home", "Recipes", "Profile", "About Us", "Contact Us"];
+
+const Pages = [<Button component={Link} to={'/'}>Home</Button>,
+                <Button component={Link} to={'/recipe_form'}>Add Recipe</Button>,
+                <Button component={Link} to={'/profile'}>Profile</Button>];
 
 export default function Nav(props) {
 
@@ -57,7 +62,7 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
               </>
             ) : (
               <>
-            <Tabs textColor='inherit' value={value} onChange={(e, value) => setValue(value)} indicatorColor='secondary'>
+            <Tabs style={{ textDecoration: 'none' }} textColor='inherit' value={value} onChange={(e, value) => setValue(value)} indicatorColor='secondary'>
               {
                 Pages.map((page, index) => (
                   <Tab key={index} label={page}/>
@@ -67,7 +72,7 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
                 PotLuck
               </Typography> */}
             </Tabs>
-          
+              <SearchBar/>
           <Button sx={{marginLeft: 'auto'}} variant='contained'>Login</Button>
           <Button sx={{marginLeft: '10px'}}variant='contained'>Register</Button>
           </>
