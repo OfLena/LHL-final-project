@@ -10,7 +10,7 @@ import {
 } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-import { useCookies } from 'react-cookie';
+// import { useCookies } from 'react-cookie';
 
 
 
@@ -51,7 +51,7 @@ function App() {
   return (
     <div className="App">
       <Router>
-        {/* <Nav /> */}
+        <Nav />
         <div>
           <Routes>
             <Route path="/" element={<Home recipes={state.recipes}/>}/>
