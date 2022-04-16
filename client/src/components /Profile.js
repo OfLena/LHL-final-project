@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import axios from 'axios';
 
+import SearchBar from './SearchBar';
+
 export default function Profile (props) {
 
 const { users, recipes, favs } = props
@@ -8,6 +10,7 @@ const [showFavs, setShowFavs] = useState("")
 const [showUserRecipes, setShowUserRecipes] = useState("")
 
 function getFavRecipes() {
+  //reset the user recipes state to empty string at the beginning (onClick)
   setShowUserRecipes("")
   return(
     setShowFavs(<li>{favs.map(fav => fav.recipe_id)}</li>) 
@@ -15,6 +18,7 @@ function getFavRecipes() {
 }
 
 function getUserRecipes() {
+  //reset the fav recipes state to empty string at the beginning (onClick)
   setShowFavs("")
   return(
     setShowUserRecipes(<li>{recipes.map(recipe => recipe.title)}</li>) 
@@ -34,7 +38,7 @@ function getUserRecipes() {
 
       <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>
       <input type= "button" value="Your Recipes" onClick={getUserRecipes}/>
-      <li><input type="text" placeholder="Search Recipes..."></input></li>
+      <SearchBar />
       <h1>{showFavs}</h1>
       <h1>{showUserRecipes}</h1>
 
