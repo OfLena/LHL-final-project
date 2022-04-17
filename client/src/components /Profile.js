@@ -1,41 +1,69 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
-
-import SearchBar from './SearchBar';
 
 export default function Profile (props) {
 
-const { user, userRecipes, favs } = props
-const [showFavs, setShowFavs] = useState("")
-const [showUserRecipes, setShowUserRecipes] = useState("")
+  const { user, userRecipes, favs, onClick } = props
+  const [showFavs, setShowFavs] = useState("")
+  const [showUserRecipes, setShowUserRecipes] = useState("")
+  const [search, setSearch] = useState("")
 
-console.log('user recipes ---> ',userRecipes)
-console.log('favourited recipes --->', favs)
+  // console.log('user recipes ---> ',userRecipes)
+  console.log('favourited recipes --->', favs)
 
-function getFavRecipes() {
-  //reset the user recipes state to empty string at the beginning (onClick)
-  setShowUserRecipes("")
-  return(
-    setShowFavs(
-    <li>{favs.map(fav => fav.id)}</li>
-    ) 
-  )
-}
+  useEffect (() => {
+    getFavRecipes()
+    getUserRecipes()
+  }, [search])
 
-function getUserRecipes() {
-  //reset the fav recipes state to empty string at the beginning (onClick)
-  setShowFavs("")
-  return(
-    setShowUserRecipes(
-    <li>{userRecipes.map(recipe => recipe.title)}</li>
-    ) 
-  )
-}
-  
+  function getFavRecipes() {
+    //reset the user recipes state to empty string at the beginning (onClick)
+    setShowUserRecipes("")
+    // if (onClick) {
+      return(
+        setShowFavs(
+        <div>{filteredSearchForFavRecipes.map(fav => <li key={fav.id}>{fav.title}</li>)}</div>
+        ) 
+      )
+    // }
+  }
+
+  function getUserRecipes() {
+    //reset the fav recipes state to empty string at the beginning (onClick)
+    setShowFavs("")
+    // if (onClick) {
+      return(
+        setShowUserRecipes(
+        <div>{filteredSearchForUserRecipes.map(recipe => <li key={recipe.id}>{recipe.title}</li>)}</div>
+        ) 
+      )
+    // }
+  }
+
+  function handleSearch(event) {
+    setSearch(event.target.value)
+  }
+
+  let filteredSearchForUserRecipes = userRecipes.filter(val => {
+    if (search === '') {
+      return val
+    } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
+      console.log('FILTERED RECIPE', val)
+      return val
+    }
+  })
+
+  let filteredSearchForFavRecipes = favs.filter(val => {
+    if (search === '') {
+      return val
+    } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
+      console.log('FILTERED RECIPE', val)
+      return val
+    }
+  })
+
   return (
     <div>
-      {/* // photo here  */}
-      {/* Need to add logic here to populate first name, last name and user name where it matches the id of the user */}
 
       <ul>
       <li>{user.first_name}</li>
@@ -45,11 +73,17 @@ function getUserRecipes() {
 
       <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>
       <input type= "button" value="Your Recipes" onClick={getUserRecipes}/>
-      <SearchBar />
-      <h1>{showFavs}</h1>
-      <h1>{showUserRecipes}</h1>
-
-      {/* // area to populate either saved recipes or your recipes */}
+      <div>
+        <input 
+          type="text" 
+          onChange={handleSearch}
+          value={search}
+          placeholder="Search..."
+        />
+      </div>
+      <ul>{showFavs}</ul>
+      <ul>{showUserRecipes}</ul>
     </div>
   )
 }
+
