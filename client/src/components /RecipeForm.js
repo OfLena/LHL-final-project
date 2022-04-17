@@ -283,8 +283,8 @@ export default function RecipeForm() {
           </Button>
           </Grid>
               {instructionRows.map((item, idx) => (
-                <Grid item spacing={0} id="Step" key={idx}>
-                  
+                <Grid item container spacing={0} id="Step" key={idx}>
+
                     <TextField
                     InputProps={{
                       startAdornment: <InputAdornment position="start">Step {idx + 1}</InputAdornment>,
@@ -303,7 +303,6 @@ export default function RecipeForm() {
               ))}
           <Grid item xs={6}>
           <Button
-            add
             startIcon={<AddCircleTwoToneIcon/>}
             variant="contained"
             disabled={instructionRows.length >= 5}
@@ -324,56 +323,57 @@ export default function RecipeForm() {
           </Grid>
           <h1>Tags</h1>
           
-          <Paper>
-             
-          <FormControlLabel
-            control= {<Checkbox/>}
-            label="Vegan"
-            labelPlacement="top"
-            type="checkbox"
-            value="vegan"
-            name="tag"
-            onChange={handleCheckboxChange}
-          />
-          
-          <FormControlLabel
-            control= {<Checkbox/>}
-            label="Gluten Free"
-            labelPlacement="top"
-            value="gluten_free"
-            name="tag"
-            onChange={handleCheckboxChange}
-          />
+          <Paper elevation={3}>
+           <span className="tags">
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Vegan"
+                labelPlacement="top"
+                type="checkbox"
+                value="vegan"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+              
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Gluten Free"
+                labelPlacement="top"
+                value="gluten_free"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
 
-          <FormControlLabel
-            control= {<Checkbox/>}
-            label="Dairy-Free"
-            labelPlacement="top"
-            type="checkbox"
-            value="dairy_free"
-            name="tag"
-            onChange={handleCheckboxChange}
-          />
-      
-          <FormControlLabel
-            control= {<Checkbox  />}
-            label="Vegetarian"
-            labelPlacement="top"
-            type="checkbox"
-            value="vegetarian"
-            name="tag"
-            onChange={handleCheckboxChange}
-          />
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Dairy-Free"
+                labelPlacement="top"
+                type="checkbox"
+                value="dairy_free"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
           
-          <FormControlLabel
-            control= {<Checkbox/>}
-            label="Keto"
-            labelPlacement="top"
-            type="checkbox"
-            value="keto"
-            name="tag"
-            onChange={handleCheckboxChange}
-          />
+              <FormControlLabel
+                control= {<Checkbox  />}
+                label="Vegetarian"
+                labelPlacement="top"
+                type="checkbox"
+                value="vegetarian"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+              
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Keto"
+                labelPlacement="top"
+                type="checkbox"
+                value="keto"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+            </span>
           </Paper>         
       
           <br />
