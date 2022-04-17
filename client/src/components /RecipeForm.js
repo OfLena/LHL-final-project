@@ -138,7 +138,7 @@ export default function RecipeForm() {
           <Typography>
             Create Recipe
           </Typography>
-          <Grid container spacing={1}>
+          <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               
                 {/* <InputLabel>Title</InputLabel> */}
@@ -212,12 +212,15 @@ export default function RecipeForm() {
                 />
               
             </Grid>
+            
           
           {/* <Typography>Ingredients</Typography> */}
-          <Grid xs={6}>
+          
           {ingredientRows.map((item, idx) => (
-            <Container id="addr0" key={idx}>
             
+            <Grid container spacing={0} id="addr0" key={idx}>
+            
+            <Grid item xs={6}> 
                 <TextField
                 
                 fullWidth
@@ -230,25 +233,32 @@ export default function RecipeForm() {
                   onChange={handleIngredientRowChange(idx)}
                   className="form-control"
                 />
+            </Grid>
+
+
+            <Grid item xs={6}>
+              <TextField
               
-                <TextField
-                
-                fullWidth
-                InputProps={{
-                  startAdornment: <InputAdornment position="start"> <ScaleIcon/> </InputAdornment>,
-                }}
-                  type="text"
-                  name="measurement"
-                  placeholder="Measurement"
-                  value={ingredientRows[idx].measurement}
-                  onChange={handleIngredientRowChange(idx)}
-                  className="form-control"
-                />
-            
-            </Container>
+              fullWidth
+              InputProps={{
+                startAdornment: <InputAdornment position="start"> <ScaleIcon/> </InputAdornment>,
+              }}
+                type="text"
+                name="measurement"
+                placeholder="Measurement"
+                value={ingredientRows[idx].measurement}
+                onChange={handleIngredientRowChange(idx)}
+                className="form-control"
+              />
+              
+            </Grid>
+          </Grid>
           ))}
+          
+
           </Grid>
-          </Grid>
+
+         
           <Button
             variant="contained"
             disabled={ingredientRows.length >= 20}
@@ -264,32 +274,27 @@ export default function RecipeForm() {
           >
             Delete Row
           </Button>
-          <table class="table table-instructions">
-            <thead>
-              <tr>
-                <td>Instructions</td>
-              </tr>
-            </thead>
-            <tbody>
+      
               {instructionRows.map((item, idx) => (
-                <tr id="Step" key={idx}>
-                  <td>
+                <Grid item spacing={0} id="Step" key={idx}>
+                  
                     <TextField
                     InputProps={{
                       startAdornment: <InputAdornment position="start">Step {idx + 1}</InputAdornment>,
                     }}
+                      id="filled-multiline-flexable"
+                      multiline
+                      fullWidth
+                      label="Instructions"
                       type="text"
                       name="instruction"
-                      placeholder="instruction"
                       value={instructionRows[idx].name}
                       onChange={handleInstructionRowChange(idx)}
                       className="form-control"
                     />
-                  </td>
-                </tr>
+                </Grid>
               ))}
-            </tbody>
-          </table>
+       
           <Button
             variant="contained"
             disabled={instructionRows.length >= 5}
