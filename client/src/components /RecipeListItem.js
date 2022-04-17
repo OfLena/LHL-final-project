@@ -36,6 +36,7 @@ import { Button } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 // import "./styles/recipe.scss";
 
@@ -53,7 +54,10 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user} = props;
+
+  console.log("LOGGED IN", user)
+  // console.log("ID", recipe_id)
 
   const [expanded, setExpanded] = React.useState(false);
 
@@ -75,15 +79,24 @@ export default function RecipeListItem(props) {
 
   /* HELPERS FOR FAVOURITING FEATURE */
 
-  const [favourite, setFavourite] = useState(false);
-
-  function addFavourite () {
-
-  }
+  const [favourite, setFavourite] = useState({});
 
   function handleOnClick () {
-    setFavourite(true)
+    setFavourite((prev) => ({
+      ...prev,
+      [`recipe_id`]: `${recipe_id}`,
+    }))
+    // axios.post("/favs", favourite)
+    // .then((all) => {
+    //   console.log(all);
+    // })
+    // .catch((err) => {
+    //   console.log("ERR", err);
+    // });
   }
+
+  console.log(favourite)
+
   // create function to handle the onClick of the heart
   // 1 change it to red
   // 2 change the state 

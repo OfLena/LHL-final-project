@@ -3,13 +3,18 @@ import "./styles/recipe.scss";
 import RecipeListItem from "./RecipeListItem";
 
 export default function Home(props) {
-  
-  console.log('Recipes--->', props)
+
+  console.log('RECIPES --->', props)
+
+  const loggedInID = props.user
+
+  console.log('USER---->', loggedInID)
 
   const recipes = props.recipes.map(recipe => {
     return (
       <RecipeListItem
       key={recipe.id}
+      recipe_id={recipe.id}
       title={recipe.title}
       image_url={recipe.image_url}
       prep_time={recipe.prep_time}
@@ -60,7 +65,6 @@ export default function Home(props) {
       instruction_5={recipe.instruction_5}
       link={recipe.link}
       serving_size={recipe.serving_size}
-
       />
     );
   });
@@ -72,6 +76,7 @@ export default function Home(props) {
       <div className="centered">Bring Out Your Inner Chef</div>
       <div className="recipe-card-container">
         {recipes}
+        {loggedInID}
       </div>
     </div>
     
