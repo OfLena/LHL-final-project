@@ -33,7 +33,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Popover from "@mui/material/Popover";
 import { Button } from "@mui/material";
-import MenuBookIcon from '@mui/icons-material/MenuBook';
+import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 // import "./styles/recipe.scss";
 
@@ -96,7 +96,7 @@ export default function RecipeListItem(props) {
             the mussels, if you like.
           </Typography>
         </CardContent>
-        <CardActions sx={{paddingLeft: '17.5%', marginLeft: 'auto'}}>
+        <CardActions sx={{ paddingLeft: "17.5%", marginLeft: "auto" }}>
           <IconButton aria-label="add to favorites">
             <FavoriteIcon />
           </IconButton>
@@ -111,7 +111,7 @@ export default function RecipeListItem(props) {
             variant="contained"
             onClick={handleClick}
           >
-            <MenuBookIcon/>
+            <MenuBookIcon />
           </Button>
           <Popover
             id={id}
@@ -130,8 +130,8 @@ export default function RecipeListItem(props) {
             <Typography sx={{ p: 5 }}>{title}</Typography>
           </Popover>
 
-           {/* END POPOVER */}
-        
+          {/* END POPOVER */}
+
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}

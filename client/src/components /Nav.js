@@ -43,7 +43,7 @@ const Pages = [<Button component={Link} to={'/'}>Home</Button>,
 export default function Nav(props) {
 
 
-const [value, setValue] = useState();
+const [value, setValue] = useState(0);
 const theme = useTheme()
 // console.log(theme)
 const isMatch = useMediaQuery(theme.breakpoints.down('md'))
