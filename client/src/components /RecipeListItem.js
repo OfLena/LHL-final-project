@@ -35,6 +35,8 @@ import Popover from "@mui/material/Popover";
 import { Button } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
+import { useState, useEffect } from "react";
+
 // import "./styles/recipe.scss";
 
 const ExpandMore = styled((props) => {
@@ -50,8 +52,6 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
-
-  
 
   const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5} = props;
 
@@ -72,6 +72,24 @@ export default function RecipeListItem(props) {
   };
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
+
+  /* HELPERS FOR FAVOURITING FEATURE */
+
+  const [favourite, setFavourite] = useState(false);
+
+  function addFavourite () {
+
+  }
+
+  function handleOnClick () {
+    setFavourite(true)
+  }
+  // create function to handle the onClick of the heart
+  // 1 change it to red
+  // 2 change the state 
+  // 3 axios post to server 
+
+  // when it is not in set state ? it should delete the recipe from the database
 
   return (
     <div class="recipe-card">
@@ -96,11 +114,14 @@ export default function RecipeListItem(props) {
             This impressive paella is a perfect party dish and a fun meal to
             cook together with your guests. Add 1 cup of frozen peas along with
             the mussels, if you like.
-          </Typography>
+          </Typography >
         </CardContent>
         <CardActions sx={{ paddingLeft: "17.5%", marginLeft: "auto" }}>
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon />
+            <FavoriteIcon 
+              onClick={handleOnClick} 
+              color={favourite ? "error" : "grey0"}
+            />
           </IconButton>
           <IconButton aria-label="share">
             <ShareIcon />
