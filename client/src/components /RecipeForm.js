@@ -9,13 +9,7 @@ import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
-const Item = styled(Paper)(({ theme }) => ({
-  backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-  ...theme.typography.body2,
-  padding: theme.spacing(1),
-  textAlign: "center",
-  color: theme.palette.text.secondary,
-}));
+
 
 export default function RecipeForm() {
 
@@ -173,7 +167,7 @@ export default function RecipeForm() {
                   name="image_url"
                   placeholder="Upload Photo Url"
                   onChange={(e) =>
-                    setRecipe((prev) => ({ ...prev, img_url: e.target.value }))
+                    setRecipe((prev) => ({ ...prev, image_url: e.target.value }))
                   }
                 />
               
