@@ -3,41 +3,40 @@ import axios from 'axios';
 
 export default function Profile (props) {
 
-  const { user, userRecipes, favs, onClick } = props
+  const { user, userRecipes, favs } = props
   const [showFavs, setShowFavs] = useState("")
   const [showUserRecipes, setShowUserRecipes] = useState("")
   const [search, setSearch] = useState("")
 
   // console.log('user recipes ---> ',userRecipes)
-  console.log('favourited recipes --->', favs)
+  // console.log('favourited recipes --->', favs)
 
   useEffect (() => {
+    if (showFavs) {
     getFavRecipes()
+    } else if (showUserRecipes) {
     getUserRecipes()
+    }
   }, [search])
 
   function getFavRecipes() {
     //reset the user recipes state to empty string at the beginning (onClick)
     setShowUserRecipes("")
-    // if (onClick) {
       return(
         setShowFavs(
         <div>{filteredSearchForFavRecipes.map(fav => <li key={fav.id}>{fav.title}</li>)}</div>
         ) 
       )
-    // }
   }
 
   function getUserRecipes() {
     //reset the fav recipes state to empty string at the beginning (onClick)
     setShowFavs("")
-    // if (onClick) {
       return(
         setShowUserRecipes(
         <div>{filteredSearchForUserRecipes.map(recipe => <li key={recipe.id}>{recipe.title}</li>)}</div>
         ) 
       )
-    // }
   }
 
   function handleSearch(event) {
