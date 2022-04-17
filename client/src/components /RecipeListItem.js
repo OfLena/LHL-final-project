@@ -74,7 +74,7 @@ export default function RecipeListItem(props) {
   const id = open ? "simple-popover" : undefined;
 
   return (
-    <div class="recipe-card">
+    <div className="recipe-card">
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={

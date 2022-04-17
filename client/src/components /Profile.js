@@ -1,9 +1,11 @@
+
+
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import RecipeListItem from "./RecipeListItem";
 
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Grid, Button, Container } from "@mui/material";
 
 export default function Profile(props) {
   const { user, userRecipes, favs } = props;
@@ -98,9 +100,20 @@ export default function Profile(props) {
         {user.first_name} {user.last_name}
       </Typography>
       <Typography>@{user.user_name}</Typography>
-
-      <input type="button" value="Fav Recipes" onClick={getUserRecipes} />
-      <input type="button" value="Your Recipes" onClick={getFavRecipes} />
+      
+        <div className="button-container">
+      <Button variant="contained" onClick={getFavRecipes}>
+        Fav Recipes
+      </Button>
+      
+      
+      <Button variant="contained" onClick={getUserRecipes}>
+        Your Recipes
+      </Button>
+      
+      </div>
+      {/* <input type="button" value="Fav Recipes" onClick={getUserRecipes} />
+      <input type="button" value="Your Recipes" onClick={getFavRecipes} /> */}
 
       <div>
         <input
@@ -111,9 +124,10 @@ export default function Profile(props) {
         />
       </div>
       <Typography>Recipes</Typography>
-
-      {showFavs}
-      {showUserRecipes}
+      <div className="recipe-card-container">
+        {showFavs}
+        {showUserRecipes}
+      </div>
     </Box>
   );
 }
