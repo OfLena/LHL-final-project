@@ -14,6 +14,7 @@ import Checkbox from "@mui/material/Checkbox";
 import Grid from "@mui/material/Grid";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
+import { Container, Typography } from "@mui/material";
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -142,16 +143,22 @@ export default function RecipeForm() {
       noValidate
       autoComplete="off"
     >
-      <section class="section section-recipe ">
+      <Container>
         <h1>Upload your Recipe!</h1>
 
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
-          <td>Recipe Details</td>
+          <Typography variant="h3" align="center">
+            Recipe Details
+          </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <Paper>
-                <InputLabel>Title</InputLabel>
+                {/* <InputLabel>Title</InputLabel> */}
                 <TextField
+                  fullWidth
+                  required
+                  id="title"
+                  label="Title"
                   name="title"
                   placeholder="Title"
                   onChange={(e) =>
@@ -163,8 +170,12 @@ export default function RecipeForm() {
 
             <Grid item xs={12} sm={6}>
               <Paper>
-                <InputLabel>Image</InputLabel>
+                {/* <InputLabel>Image</InputLabel> */}
                 <TextField
+                  fullWidth
+                  required
+                  id="image_url"
+                  label="Image URL"
                   name="image_url"
                   placeholder="Upload Photo Url"
                   onChange={(e) =>
@@ -176,8 +187,12 @@ export default function RecipeForm() {
 
             <Grid item xs={12} sm={6}>
               <Paper>
-                <InputLabel>Prep Time</InputLabel>
+                {/* <InputLabel>Prep Time</InputLabel> */}
                 <TextField
+                  fullWidth
+                  required
+                  id="prep_time"
+                  label="Prep Time"
                   name="prep_time"
                   placeholder="Cook Time"
                   onChange={(e) =>
@@ -192,8 +207,12 @@ export default function RecipeForm() {
 
             <Grid item xs={12} sm={6}>
               <Paper>
-                <InputLabel>Serving Size</InputLabel>
+                {/* <InputLabel>Serving Size</InputLabel> */}
                 <TextField
+                  fullWidth
+                  required
+                  id="serves"
+                  label="Serves"
                   name="serves"
                   placeholder="serving size"
                   onChange={(e) =>
@@ -333,7 +352,7 @@ export default function RecipeForm() {
             Post your Recipe
           </Button>
         </form>
-      </section>
+      </Container>
     </Box>
   );
 }
