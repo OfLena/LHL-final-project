@@ -8,8 +8,8 @@ export default function Profile (props) {
   const [showUserRecipes, setShowUserRecipes] = useState("")
   const [search, setSearch] = useState("")
 
-  // console.log('user recipes ---> ',userRecipes)
-  // console.log('favourited recipes --->', favs)
+  console.log('user recipes ---> ',userRecipes)
+  console.log('favourited recipes --->', favs)
 
   useEffect (() => {
     if (showFavs) {
@@ -64,12 +64,13 @@ export default function Profile (props) {
   return (
     <div>
 
-      <ul>
-      <li>{user.first_name}</li>
-      <li>{user.last_name}</li>
-      <li>{user.id}</li>
-      </ul>
+      <h2> THIS IS WHERE THE PHOTO WILL GO </h2>
 
+      <div>{user.first_name} {user.last_name}</div>
+      <div>@{user.user_name}</div>
+
+
+      <h3>Recipes</h3>
       <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>
       <input type= "button" value="Your Recipes" onClick={getUserRecipes}/>
       <div>
