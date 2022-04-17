@@ -42,6 +42,7 @@ const Pages = [<Button component={Link} to={'/'}>Home</Button>,
 
 export default function Nav(props) {
 
+
 const [value, setValue] = useState();
 const theme = useTheme()
 // console.log(theme)
@@ -58,6 +59,7 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
               <Typography sx={{fontSize:'1.5rem', paddingLeft:'7.5%'}}>
                 POTLUCK
               </Typography>
+              <SearchBar/>
               <DrawerComp/>
               </>
             ) : (
