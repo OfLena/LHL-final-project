@@ -3,41 +3,40 @@ import axios from 'axios';
 
 export default function Profile (props) {
 
-  const { user, userRecipes, favs, onClick } = props
+  const { user, userRecipes, favs } = props
   const [showFavs, setShowFavs] = useState("")
   const [showUserRecipes, setShowUserRecipes] = useState("")
   const [search, setSearch] = useState("")
 
-  // console.log('user recipes ---> ',userRecipes)
+  console.log('user recipes ---> ',userRecipes)
   console.log('favourited recipes --->', favs)
 
   useEffect (() => {
+    if (showFavs) {
     getFavRecipes()
+    } else if (showUserRecipes) {
     getUserRecipes()
+    }
   }, [search])
 
   function getFavRecipes() {
     //reset the user recipes state to empty string at the beginning (onClick)
     setShowUserRecipes("")
-    // if (onClick) {
       return(
         setShowFavs(
         <div>{filteredSearchForFavRecipes.map(fav => <li key={fav.id}>{fav.title}</li>)}</div>
         ) 
       )
-    // }
   }
 
   function getUserRecipes() {
     //reset the fav recipes state to empty string at the beginning (onClick)
     setShowFavs("")
-    // if (onClick) {
       return(
         setShowUserRecipes(
         <div>{filteredSearchForUserRecipes.map(recipe => <li key={recipe.id}>{recipe.title}</li>)}</div>
         ) 
       )
-    // }
   }
 
   function handleSearch(event) {
@@ -65,12 +64,13 @@ export default function Profile (props) {
   return (
     <div>
 
-      <ul>
-      <li>{user.first_name}</li>
-      <li>{user.last_name}</li>
-      <li>{user.id}</li>
-      </ul>
+      <h2> THIS IS WHERE THE PHOTO WILL GO </h2>
 
+      <div>{user.first_name} {user.last_name}</div>
+      <div>@{user.user_name}</div>
+
+
+      <h3>Recipes</h3>
       <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>
       <input type= "button" value="Your Recipes" onClick={getUserRecipes}/>
       <div>
