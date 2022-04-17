@@ -1,5 +1,5 @@
 INSERT INTO favs (recipe_id, user_id) 
-VALUES (1 , 1),
+VALUES (3 , 1),
 (2 , 1),
 (1 , 1),
 (2 , 4),

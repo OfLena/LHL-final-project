@@ -5,11 +5,11 @@ import SearchBar from './SearchBar';
 
 export default function Profile (props) {
 
-const { user, recipes, favs } = props
+const { user, userRecipes, favs } = props
 const [showFavs, setShowFavs] = useState("")
 const [showUserRecipes, setShowUserRecipes] = useState("")
 
-console.log('FAVS ---> ',favs)
+console.log('user recipes ---> ',userRecipes)
 
 function getFavRecipes() {
   //reset the user recipes state to empty string at the beginning (onClick)
@@ -26,7 +26,7 @@ function getUserRecipes() {
   setShowFavs("")
   return(
     setShowUserRecipes(
-    <li>{recipes.map(recipe => recipe.title)}</li>
+    <li>{userRecipes.map(recipe => recipe.title)}</li>
     ) 
   )
 }

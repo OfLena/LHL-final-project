@@ -29,6 +29,7 @@ function App() {
   
   const [state, setState] = useState({
     user: {},
+    user_recipes: [],
     recipes: [],
     favs: []
   });
@@ -36,14 +37,16 @@ function App() {
   useEffect(() => {
     Promise.all([
       axios.get("/users/1"),
+      axios.get("/recipes/1"),
       axios.get("/recipes"),
       axios.get("/favs")
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
         user: all[0].data,
-        recipes: all[1].data,
-        favs: all[2].data
+        user_recipes: all[1].data,
+        recipes: all[2].data,
+        favs: all[3].data
       }));
     });
   }, []);
@@ -51,12 +54,12 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Nav />
+        {/* <Nav /> */}
         <div>
           <Routes>
             <Route path="/" element={<Home recipes={state.recipes}/>}/>
             <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
-            <Route path="/profile" element={<Profile user={state.user} recipes={state.recipes} favs={state.favs}/>}/>
+            <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
             <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
             <Route path="/login" element={<Login />}/>
           </Routes>
