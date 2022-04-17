@@ -1,20 +1,11 @@
 import "./styles/recipeform.scss";
 
-import { useFormControl } from "@mui/material/FormControl";
-import Input from "@mui/material/Input";
-
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import InputLabel from "@mui/material/InputLabel";
-import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
-import Grid from "@mui/material/Grid";
-import { styled } from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
-import { Container, Typography } from "@mui/material";
+import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment } from "@mui/material";
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
+import ScaleIcon from '@mui/icons-material/Scale';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -137,22 +128,19 @@ export default function RecipeForm() {
   return (
     <Box
       component="form"
-      sx={{
-        "& .MuiTextField-root": { m: 1, width: "25ch" },
-      }}
+      sx={{marginTop: '6rem'}}
       noValidate
       autoComplete="off"
     >
       <Container>
-        <h1>Upload your Recipe!</h1>
-
+        
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
-          <Typography variant="h3" align="center">
-            Recipe Details
+          <Typography>
+            Create Recipe
           </Typography>
-          <Grid container spacing={2}>
+          <Grid container spacing={1}>
             <Grid item xs={12} sm={6}>
-              <Paper>
+              
                 {/* <InputLabel>Title</InputLabel> */}
                 <TextField
                   fullWidth
@@ -165,11 +153,11 @@ export default function RecipeForm() {
                     setRecipe((prev) => ({ ...prev, title: e.target.value }))
                   }
                 />
-              </Paper>
+              
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Paper>
+              
                 {/* <InputLabel>Image</InputLabel> */}
                 <TextField
                   fullWidth
@@ -182,11 +170,11 @@ export default function RecipeForm() {
                     setRecipe((prev) => ({ ...prev, img_url: e.target.value }))
                   }
                 />
-              </Paper>
+              
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Paper>
+              
                 {/* <InputLabel>Prep Time</InputLabel> */}
                 <TextField
                   fullWidth
@@ -202,11 +190,11 @@ export default function RecipeForm() {
                     }))
                   }
                 />
-              </Paper>
+              
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              <Paper>
+              
                 {/* <InputLabel>Serving Size</InputLabel> */}
                 <TextField
                   fullWidth
@@ -222,25 +210,33 @@ export default function RecipeForm() {
                     }))
                   }
                 />
-              </Paper>
+              
             </Grid>
-          </Grid>
-          <td>Ingredients</td>
+          
+          {/* <Typography>Ingredients</Typography> */}
+          <Grid xs={6}>
           {ingredientRows.map((item, idx) => (
-            <tr id="addr0" key={idx}>
-              <td>{idx + 1}</td>
-              <td>
+            <Container id="addr0" key={idx}>
+            
                 <TextField
+                
+                fullWidth
+                  InputProps={{
+                    startAdornment: <InputAdornment position="start"> <DinnerDiningIcon/> </InputAdornment>,
+                  }}
                   type="text"
                   name="ingredient"
-                  placeholder="Item"
                   value={ingredientRows[idx].ingredient}
                   onChange={handleIngredientRowChange(idx)}
                   className="form-control"
                 />
-              </td>
-              <td>
+              
                 <TextField
+                
+                fullWidth
+                InputProps={{
+                  startAdornment: <InputAdornment position="start"> <ScaleIcon/> </InputAdornment>,
+                }}
                   type="text"
                   name="measurement"
                   placeholder="Measurement"
@@ -248,9 +244,11 @@ export default function RecipeForm() {
                   onChange={handleIngredientRowChange(idx)}
                   className="form-control"
                 />
-              </td>
-            </tr>
+            
+            </Container>
           ))}
+          </Grid>
+          </Grid>
           <Button
             variant="contained"
             disabled={ingredientRows.length >= 20}
@@ -274,10 +272,12 @@ export default function RecipeForm() {
             </thead>
             <tbody>
               {instructionRows.map((item, idx) => (
-                <tr id="addr0" key={idx}>
-                  <td>Step {idx + 1}</td>
+                <tr id="Step" key={idx}>
                   <td>
                     <TextField
+                    InputProps={{
+                      startAdornment: <InputAdornment position="start">Step {idx + 1}</InputAdornment>,
+                    }}
                       type="text"
                       name="instruction"
                       placeholder="instruction"
@@ -306,41 +306,56 @@ export default function RecipeForm() {
             Delete Row
           </Button>
           <h1>Tags</h1>
-          <Checkbox
+
+          <FormControlLabel
+            control= {<Checkbox/>}
+            label="Vegan"
+            labelPlacement="top"
             type="checkbox"
             value="vegan"
             name="tag"
             onChange={handleCheckboxChange}
-          />{" "}
-          Vegan
-          <Checkbox
-            type="checkbox"
+          />
+          
+          <FormControlLabel
+            control= {<Checkbox/>}
+            label="Gluten Free"
+            labelPlacement="top"
             value="gluten_free"
             name="tag"
             onChange={handleCheckboxChange}
-          />{" "}
-          Gluten-Free
-          <Checkbox
+          />
+
+          <FormControlLabel
+            control= {<Checkbox/>}
+            label="Dairy-Free"
+            labelPlacement="top"
             type="checkbox"
             value="dairy_free"
             name="tag"
             onChange={handleCheckboxChange}
-          />{" "}
-          Dairy-Free
-          <Checkbox
+          />
+      
+          <FormControlLabel
+            control= {<Checkbox  />}
+            label="Vegetarian"
+            labelPlacement="top"
             type="checkbox"
             value="vegetarian"
             name="tag"
             onChange={handleCheckboxChange}
-          />{" "}
-          Vegetarian
-          <Checkbox
+          />
+          
+          <FormControlLabel
+            control= {<Checkbox/>}
+            label="Keto"
+            labelPlacement="top"
             type="checkbox"
             value="keto"
             name="tag"
             onChange={handleCheckboxChange}
-          />{" "}
-          Keto
+          />
+      
           <br />
           <br />
           <Button
