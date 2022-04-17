@@ -6,6 +6,8 @@ import axios from "axios";
 import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment } from "@mui/material";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from '@mui/icons-material/Scale';
+import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
+import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 const Item = styled(Paper)(({ theme }) => ({
   backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -258,23 +260,28 @@ export default function RecipeForm() {
 
           </Grid>
 
-         
+          <Grid item xs={6}>
           <Button
+            startIcon={<AddCircleTwoToneIcon/>}
             variant="contained"
             disabled={ingredientRows.length >= 20}
             onClick={handleIngredientAddRow}
             className="btn btn-default pull-left"
           >
-            Add Row
+            Add
           </Button>
+        
+          
           <Button
+            startIcon={<DeleteIconTwoTone />}
+            color="error"
             variant="contained"
             onClick={handleIngredientRemoveRow}
             className="pull-right btn btn-default"
           >
-            Delete Row
+            Delete
           </Button>
-      
+          </Grid>
               {instructionRows.map((item, idx) => (
                 <Grid item spacing={0} id="Step" key={idx}>
                   
@@ -294,24 +301,31 @@ export default function RecipeForm() {
                     />
                 </Grid>
               ))}
-       
+          <Grid item xs={6}>
           <Button
+            add
+            startIcon={<AddCircleTwoToneIcon/>}
             variant="contained"
             disabled={instructionRows.length >= 5}
             onClick={handleInstructionAddRow}
-            className="btn btn-default pull-left"
+            
           >
-            Add Row
+            Add
           </Button>
           <Button
+            startIcon={<DeleteIconTwoTone />}
+            color="error"
             variant="contained"
             onClick={handleInstructionRemoveRow}
-            className="pull-right btn btn-default"
-          >
-            Delete Row
-          </Button>
-          <h1>Tags</h1>
 
+          >
+            Delete
+          </Button>
+          </Grid>
+          <h1>Tags</h1>
+          
+          <Paper>
+             
           <FormControlLabel
             control= {<Checkbox/>}
             label="Vegan"
@@ -360,17 +374,23 @@ export default function RecipeForm() {
             name="tag"
             onChange={handleCheckboxChange}
           />
+          </Paper>         
       
           <br />
           <br />
+
+          
+
           <Button
             type="button"
             variant="contained"
+            color="success"
             className="btn btn-default pull-left"
             onClick={postRecipeAndTags}
           >
             Post your Recipe
           </Button>
+         
         </form>
       </Container>
     </Box>
