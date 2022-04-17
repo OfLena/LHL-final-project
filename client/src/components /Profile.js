@@ -10,13 +10,14 @@ const [showFavs, setShowFavs] = useState("")
 const [showUserRecipes, setShowUserRecipes] = useState("")
 
 console.log('user recipes ---> ',userRecipes)
+console.log('favourited recipes --->', favs)
 
 function getFavRecipes() {
   //reset the user recipes state to empty string at the beginning (onClick)
   setShowUserRecipes("")
   return(
     setShowFavs(
-    <li>{favs.map(fav => fav.recipe_id)}</li>
+    <li>{favs.map(fav => fav.id)}</li>
     ) 
   )
 }
