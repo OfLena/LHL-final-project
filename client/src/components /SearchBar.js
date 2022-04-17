@@ -16,7 +16,12 @@ import { useState } from "react";
 export default function SearchBar(props) {
   const {} = props;
   const [search, setSearch] = useState("");
-  console.log("SEARCH--->", search);
+  
+  const MyInput = ({search, onChange}) => (
+    <div>
+      <input value={search} onChange={onChange} onKeyPress={onClickSearch}/>
+    </div>
+  );
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -60,25 +65,37 @@ export default function SearchBar(props) {
     },
   }));
 
-  function onClickSearch() {
+  function handleSearch(event) {
+    setSearch(event.target.value)
+  };
+
+  function onClickSearch(event) {
+    if (event.key === "Enter"){
+      console.log('Hello!')
+    }
     // need to query the current recipes populated (either favourites or your recipes) and find the recipes that match the text and populate those recipes
   }
 
   return (
-    // <div>
-
+    // <Box sx={{ flexGrow: 1 }}>
+    //   <Toolbar>
+        
     //   <form onSubmit ={e => e.preventDefault()}>
     //     <input
     //       type="text"
-    //       // value={}
-    //       onChange={(event) => setSearch(event.target.value)}
+    //       onChange={handleSearch}
+            
+    //       onKeyPress={onClickSearch}
+          
     //       value={search}
     //       placeholder="E.g. Vegetarian"
     //     />
-    //     <button>Search</button>
     //   </form>
-    // </div>
+      
+    //   </Toolbar>
+    // </Box>
     <Box sx={{ flexGrow: 1 }}>
+      <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
       <Toolbar>
         <IconButton
           size="large"
@@ -87,21 +104,28 @@ export default function SearchBar(props) {
           aria-label="open drawer"
           sx={{ mr: 2 }}
         />
-        <Search
-        onChange ={e => e.preventDefault()}>
+        <Search>
           <SearchIconWrapper>
             <SearchIcon />
           </SearchIconWrapper>
           <StyledInputBase
+          inputProps={{ "aria-label": "search" }}>
+            <MyInput
             
-            inputProps={{ "aria-label": "search" }}
-            type="text"
-            onChange={(event) => setSearch(event.target.value)}
+            
+            // type="text"
+            // name="recipe"
+            // placeholder="Search..."
+            
+            onChange={event => setSearch(event.target.value)}
             value={search}
-            placeholder="Search..."
-          />
+       
+            
+           />
+            </StyledInputBase>
         </Search>
       </Toolbar>
+      </form>
     </Box>
   );
 }
