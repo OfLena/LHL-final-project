@@ -55,6 +55,7 @@ export default function RecipeListItem(props) {
 
   const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5} = props;
 
+  
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

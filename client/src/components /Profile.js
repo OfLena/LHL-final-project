@@ -8,8 +8,6 @@ export default function Profile (props) {
   const [showUserRecipes, setShowUserRecipes] = useState("")
   const [search, setSearch] = useState("")
 
-  console.log('user recipes ---> ',userRecipes)
-  console.log('favourited recipes --->', favs)
 
   useEffect (() => {
     if (showFavs) {

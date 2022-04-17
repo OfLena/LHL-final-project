@@ -3,8 +3,8 @@ import "./styles/recipe.scss";
 import RecipeListItem from "./RecipeListItem";
 
 export default function Home(props) {
-  
-  console.log('Recipes--->', props)
+
+
 
   const recipes = props.recipes.map(recipe => {
     return (

@@ -6,12 +6,14 @@ import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SearchBar(props) {
   
-  const {} = props;
-  const [search, setSearch] = useState("");
+  const { setSearch, search } = props;
+  // const [search, setSearch] = useState("");
+  
+  
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -56,16 +58,10 @@ export default function SearchBar(props) {
   }));
 
   function handleSearch(event) {
-    setSearch(event.target.value);
-    console.log(search);
+    setSearch(event.target.value)
   }
 
-  function onClickSearch(event) {
-    if (event.key === "Enter") {
-      console.log("Hello!");
-    }
-    // need to query the current recipes populated (either favourites or your recipes) and find the recipes that match the text and populate those recipes
-  }
+  
 
   return (
     <Box sx={{ flexGrow: 1 }}>
@@ -85,7 +81,6 @@ export default function SearchBar(props) {
             <StyledInputBase
               inputRef={(input) => input && input.focus()}
               onChange={handleSearch}
-              onKeyPress={onClickSearch}
               value={search}
             ></StyledInputBase>
           </Search>
