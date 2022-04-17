@@ -3,7 +3,7 @@ import "./styles/recipeform.scss";
 import React, { useState, useEffect, Fragment } from "react";
 import axios from "axios";
 
-import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment } from "@mui/material";
+import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment, Menu, MenuItem } from "@mui/material";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
@@ -18,10 +18,12 @@ const Item = styled(Paper)(({ theme }) => ({
 }));
 
 export default function RecipeForm() {
+
+  // =========== STATES ========== //
   const [recipe, setRecipe] = useState({});
-  const [tag, setTag] = useState({});
   const [ingredientRows, setIngredientRows] = useState([{}]);
-  const [instructionRows, setInstructionRows] = useState([{}]);
+  const [instructionRows, setInstructionRows] = useState([{}])
+  
 
   // ======== USE EFFECTS ===== //
 
@@ -69,10 +71,10 @@ export default function RecipeForm() {
   function handleCheckboxChange(evt) {
     if (evt.target.checked === false) {
       const checkboxVal = evt.target.value;
-      setTag((prev) => ({ ...prev, [checkboxVal]: false }));
+      setRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
     } else {
       const checkboxVal = evt.target.value;
-      setTag((prev) => ({ ...prev, [checkboxVal]: true }));
+      setRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
     }
   }
 
@@ -118,7 +120,9 @@ export default function RecipeForm() {
   // ==================AXIOS CALLS =================//
 
   function postRecipeAndTags() {
-    Promise.all([axios.post("/recipes", recipe), axios.post("/tags", tag)])
+    Promise.all([
+      axios.post("/recipes", recipe)
+    ])
       .then((all) => {
         console.log(all);
       })
@@ -321,6 +325,8 @@ export default function RecipeForm() {
             Delete
           </Button>
           </Grid>
+    
+    
           <h1>Tags</h1>
           
           <Paper elevation={3}>
@@ -370,6 +376,35 @@ export default function RecipeForm() {
                 labelPlacement="top"
                 type="checkbox"
                 value="keto"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Breakfast"
+                labelPlacement="top"
+                type="checkbox"
+                value="breakfast"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+          
+              <FormControlLabel
+                control= {<Checkbox  />}
+                label="Lunch"
+                labelPlacement="top"
+                type="checkbox"
+                value="lunch"
+                name="tag"
+                onChange={handleCheckboxChange}
+              />
+              
+              <FormControlLabel
+                control= {<Checkbox/>}
+                label="Dinner"
+                labelPlacement="top"
+                type="checkbox"
+                value="dinner"
                 name="tag"
                 onChange={handleCheckboxChange}
               />

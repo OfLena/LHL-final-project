@@ -25,8 +25,15 @@ module.exports = (db) => {
   });
 
   router.post('/', (req, res) => {
-   
-    console.log(req.body)
+    // Object.keys(obj)
+     // Object.values(obj)
+    // Object.entries(obj)
+
+    // insert (...keys) into recipes VALUES (...values)
+
+    console.log(Object.entries(req.body), )
+    console.log('HERE');
+    
   
   });
 
