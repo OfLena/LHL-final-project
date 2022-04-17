@@ -1,89 +1,119 @@
 import React, { useState, useEffect } from "react";
-import axios from 'axios';
+import axios from "axios";
 
-export default function Profile (props) {
+import RecipeListItem from "./RecipeListItem";
 
-  const { user, userRecipes, favs } = props
-  const [showFavs, setShowFavs] = useState("")
-  const [showUserRecipes, setShowUserRecipes] = useState("")
-  const [search, setSearch] = useState("")
+import { Box, Typography } from "@mui/material";
 
-  console.log('user recipes ---> ',userRecipes)
-  console.log('favourited recipes --->', favs)
+export default function Profile(props) {
+  const { user, userRecipes, favs } = props;
+  const [showFavs, setShowFavs] = useState("");
+  const [showUserRecipes, setShowUserRecipes] = useState("");
+  const [search, setSearch] = useState("");
 
-  useEffect (() => {
+  useEffect(() => {
     if (showFavs) {
-    getFavRecipes()
+      getFavRecipes();
     } else if (showUserRecipes) {
-    getUserRecipes()
+      getUserRecipes();
     }
-  }, [search])
+  }, [search]);
 
   function getFavRecipes() {
-    //reset the user recipes state to empty string at the beginning (onClick)
-    setShowUserRecipes("")
-      return(
-        setShowFavs(
-        <div>{filteredSearchForFavRecipes.map(fav => <li key={fav.id}>{fav.title}</li>)}</div>
-        ) 
-      )
+    setShowUserRecipes("");
+    return setShowFavs(userFavRecipes);
   }
 
   function getUserRecipes() {
-    //reset the fav recipes state to empty string at the beginning (onClick)
-    setShowFavs("")
-      return(
-        setShowUserRecipes(
-        <div>{filteredSearchForUserRecipes.map(recipe => <li key={recipe.id}>{recipe.title}</li>)}</div>
-        ) 
-      )
+    setShowFavs("");
+    return setShowUserRecipes(recipesFromUser);
   }
 
   function handleSearch(event) {
-    setSearch(event.target.value)
+    setSearch(event.target.value);
   }
 
-  let filteredSearchForUserRecipes = userRecipes.filter(val => {
-    if (search === '') {
-      return val
+  let filteredSearchForUserRecipes = userRecipes.filter((val) => {
+    if (search === "") {
+      return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
-      console.log('FILTERED RECIPE', val)
-      return val
+      return val;
     }
-  })
+  });
 
-  let filteredSearchForFavRecipes = favs.filter(val => {
-    if (search === '') {
-      return val
+  let filteredSearchForFavRecipes = favs.filter((val) => {
+    if (search === "") {
+      return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
-      console.log('FILTERED RECIPE', val)
-      return val
+      return val;
     }
-  })
+  });
+
+  const recipesFromUser = props.userRecipes.map((recipe) => {
+    return (
+      <RecipeListItem
+        key={recipe.id}
+        title={recipe.title}
+        image_url={recipe.image_url}
+        prep_time={recipe.prep_time}
+        instruction_1={recipe.instruction_1}
+        instruction_2={recipe.instruction_2}
+        instruction_3={recipe.instruction_3}
+        instruction_4={recipe.instruction_4}
+        instruction_5={recipe.instruction_5}
+        link={recipe.link}
+        serving_size={recipe.serving_size}
+      />
+    );
+  });
+
+  const userFavRecipes = props.favs.map((recipe) => {
+    return (
+      <RecipeListItem
+        key={recipe.id}
+        title={recipe.title}
+        image_url={recipe.image_url}
+        prep_time={recipe.prep_time}
+        instruction_1={recipe.instruction_1}
+        instruction_2={recipe.instruction_2}
+        instruction_3={recipe.instruction_3}
+        instruction_4={recipe.instruction_4}
+        instruction_5={recipe.instruction_5}
+        link={recipe.link}
+        serving_size={recipe.serving_size}
+      />
+    );
+  });
 
   return (
-    <div>
+    <Box
+      component="form"
+      sx={{ marginTop: "6rem" }}
+      noValidate
+      autoComplete="off"
+    >
+      <Typography> THIS IS WHERE THE PHOTO WILL GO </Typography>
 
-      <h2> THIS IS WHERE THE PHOTO WILL GO </h2>
+      <Typography>
+        {user.first_name} {user.last_name}
+      </Typography>
+      <Typography>@{user.user_name}</Typography>
 
-      <div>{user.first_name} {user.last_name}</div>
-      <div>@{user.user_name}</div>
+      <input type="button" value="Fav Recipes" onClick={getUserRecipes} />
+      <input type="button" value="Your Recipes" onClick={getFavRecipes} />
 
-
-      <h3>Recipes</h3>
-      <input type= "button" value="Fav Recipes" onClick={getFavRecipes}/>
-      <input type= "button" value="Your Recipes" onClick={getUserRecipes}/>
       <div>
-        <input 
-          type="text" 
+        <input
+          type="text"
           onChange={handleSearch}
           value={search}
           placeholder="Search..."
         />
       </div>
-      <ul>{showFavs}</ul>
-      <ul>{showUserRecipes}</ul>
-    </div>
-  )
-}
+      <Typography>Recipes</Typography>
 
+      {showFavs}
+      {showUserRecipes}
+    </Box>
+  );
+}
