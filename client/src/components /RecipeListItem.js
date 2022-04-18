@@ -59,6 +59,7 @@ export default function RecipeListItem(props) {
   console.log("LOGGED IN", user)
   // console.log("ID", recipe_id)
 
+  
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {

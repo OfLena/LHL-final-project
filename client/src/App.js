@@ -31,8 +31,25 @@ function App() {
     user: [],
     user_recipes: [],
     recipes: [],
+    filtered_recipes: [],
     favs: []
   });
+
+  const [search, setSearch] = useState('')
+
+
+  useEffect(() => {
+  
+    setState((prev) => ({...prev, filtered_recipes: [...state.recipes.filter((val) =>{
+      if (search === '') {
+        return val
+      } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
+        return val 
+      }
+    })]
+    }))}, [search])
+  
+  
 
   useEffect(() => {
     Promise.all([
@@ -46,6 +63,7 @@ function App() {
         user: all[0].data,
         user_recipes: all[1].data,
         recipes: all[2].data,
+        filtered_recipes: all[2].data,
         favs: all[3].data
       }));
     });
@@ -54,11 +72,15 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Nav />
+        <Nav
+        search={search}
+        setSearch={setSearch} 
+        recipes={state.recipes}
+        />
         <div>
           <Routes>
-            <Route path="/" element={<Home recipes={state.recipes} user={state.user}/>}/>
-            <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
+            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user}/>}/>
+            <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/>
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
             <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
             <Route path="/login" element={<Login />}/>

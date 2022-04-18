@@ -4,11 +4,6 @@ import RecipeListItem from "./RecipeListItem";
 
 export default function Home(props) {
 
-  console.log('RECIPES --->', props)
-
-  const loggedInID = props.user
-
-  console.log('USER---->', loggedInID)
 
   const recipes = props.recipes.map(recipe => {
     return (

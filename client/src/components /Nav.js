@@ -42,6 +42,8 @@ const Pages = [<Button component={Link} to={'/'}>Home</Button>,
 
 export default function Nav(props) {
 
+  const { setSearch, search } = props
+
 
 const [value, setValue] = useState(0);
 const theme = useTheme()
@@ -59,7 +61,11 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
               <Typography sx={{fontSize:'1.5rem', paddingLeft:'7.5%'}}>
                 POTLUCK
               </Typography>
-              <SearchBar/>
+              <SearchBar
+              search={search}
+              
+              setSearch={setSearch}
+              />
               <DrawerComp/>
               </>
             ) : (
@@ -74,7 +80,11 @@ const isMatch = useMediaQuery(theme.breakpoints.down('md'))
                 PotLuck
               </Typography> */}
             </Tabs>
-              <SearchBar/>
+              <SearchBar 
+              search={search}
+              setSearch={setSearch}
+    
+              />
           <Button sx={{marginLeft: 'auto'}} variant='contained'>Login</Button>
           <Button sx={{marginLeft: '10px'}}variant='contained'>Register</Button>
           </>
