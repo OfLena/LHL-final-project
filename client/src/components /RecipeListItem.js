@@ -80,6 +80,15 @@ export default function RecipeListItem(props) {
   const [favourite, setFavourite] = useState({});
   const [heart, setHeart] = useState('grey0');
 
+  // Have red color persist on refresh
+  // useEffect(() => {
+  //   setHeart(JSON.parse(window.localStorage.getItem('heart')))
+  // }, [])
+
+  // useEffect(() => {
+  //   window.localStorage.getItem('heart', heart)
+  // }, [heart])
+
   function handleOnClick () {
     // if heart is grey, send post request to insert fav and set heart to red
    if (heart === 'grey0') {
@@ -122,13 +131,6 @@ export default function RecipeListItem(props) {
   }
 
   console.log(heart)
-
-  /* 
-    onClick we want to:
-    - if heart colour is grey -
-    1. set heart to red   
-    2. 
-  */
   
   function sendRecipeID () {
     setCurrentPage(recipe_id)
