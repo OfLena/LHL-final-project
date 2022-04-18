@@ -4,6 +4,7 @@ import RecipeListItem from "./RecipeListItem";
 
 export default function Home(props) {
 
+  const {user} = props;
 
   const recipes = props.recipes.map(recipe => {
     return (
@@ -11,6 +12,7 @@ export default function Home(props) {
       key={recipe.id}
       recipe_id={recipe.id}
       title={recipe.title}
+      user_id={user.id}
       image_url={recipe.image_url}
       prep_time={recipe.prep_time}
       ingredient_1={recipe.ingredient_1}
@@ -71,7 +73,6 @@ export default function Home(props) {
       <div className="centered">Bring Out Your Inner Chef</div>
       <div className="recipe-card-container">
         {recipes}
-        {loggedInID}
       </div>
     </div>
     
