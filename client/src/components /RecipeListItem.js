@@ -55,13 +55,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage} = props;
-
-  // console.log("LOGGED IN", user)
-  // console.log("ID", recipe_id)
-
-  // console.log('CURRENT PAGE', currentPage)
-
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color} = props;
   
   const [expanded, setExpanded] = React.useState(false);
 
@@ -86,51 +80,62 @@ export default function RecipeListItem(props) {
   const [favourite, setFavourite] = useState({});
   const [heart, setHeart] = useState('grey0');
 
-  useEffect(() => {
-    
-  })
+  // Have red color persist on refresh
+  // useEffect(() => {
+  //   setHeart(JSON.parse(window.localStorage.getItem('heart')))
+  // }, [])
 
-  
+  // useEffect(() => {
+  //   window.localStorage.getItem('heart', heart)
+  // }, [heart])
 
   function handleOnClick () {
-   return Promise.all([
-     axios.post("/favs", {
-        [`recipe_id`]: `${recipe_id}`,
-        [`user_id`]: `${user_id}`
+    // if heart is grey, send post request to insert fav and set heart to red
+   if (heart === 'grey0') {
+    return Promise.all([
+      setHeart('error'),
+      axios.post("/favs", {
+          [`recipe_id`]: `${recipe_id}`,
+          [`user_id`]: `${user_id}`
+        })
+      ]).then((all) => {
+        setFavourite(() => ({
+          [`recipe_id`]: `${recipe_id}`,
+          [`user_id`]: `${user_id}`
+        }))
       })
-    ]).then((all) => {
-      setFavourite(() => ({
-        [`recipe_id`]: `${recipe_id}`,
-        [`user_id`]: `${user_id}`
-      }))
-    })
-    .catch((err) => {
-      console.log("ERR", err);
-    });
+      .catch((err) => {
+        console.log("ERR", err);
+      });
+      // if heart is red, send post request to delete fav and set heart back to grey
+    } 
+    else {
+      setHeart('grey0')
+      //axios post to delete
+      return Promise.all([
+        axios.post("/favs/delete", {
+            [`recipe_id`]: `${recipe_id}`,
+            [`user_id`]: `${user_id}`
+          })
+        ]).then((all) => {
+          setFavourite(() => ({
+            [`recipe_id`]: `${recipe_id}`,
+            [`user_id`]: `${user_id}`
+          }))
+          console.log(all)
+        })
+        .catch((err) => {
+          console.log("ERR", err);
+      });
+    }
   }
 
-  // function postFav () {
-  //   axios.post("/favs", favourite)
-  //   .then((all) => {
-  //     console.log(all);
-  //   })
-  //   .catch((err) => {
-  //     console.log("ERR", err);
-  //   });
-  // }
+  console.log(heart)
+  
   function sendRecipeID () {
     setCurrentPage(recipe_id)
     // console.log(currentPage)
   };
-
-  // console.log(favourite)
-
-  // create function to handle the onClick of the heart
-  // 1 change it to red
-  // 2 change the state 
-  // 3 axios post to server 
-
-  // when it is not in set state ? it should delete the recipe from the database
 
   return (
     <div className="recipe-card">
@@ -161,7 +166,7 @@ export default function RecipeListItem(props) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon 
               onClick={handleOnClick} 
-              color={'grey0'}
+              color={heart === 'grey0' ? 'grey0': 'error'}
             />
           </IconButton>
           <IconButton aria-label="share">
