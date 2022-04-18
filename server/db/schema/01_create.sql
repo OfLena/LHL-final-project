@@ -93,5 +93,6 @@ CREATE TABLE favs (
   id SERIAL PRIMARY KEY,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   recipe_id integer REFERENCES recipes(id) ON DELETE CASCADE NOT NULL
+  -- UNIQUE (recipe_id, user_id)
 );
 

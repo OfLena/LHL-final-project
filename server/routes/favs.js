@@ -18,10 +18,10 @@ module.exports = (db) => {
     const favKey = Object.keys(req.body)
     const favValue = Object.values(req.body)
     const insertFav = `INSERT INTO favs (${favKey}) VALUES (${favValue})`
-    console.log("IN POST ROUTE", req.body)
-    console.log("KEYS", favKey)
-    console.log("VALUES", favValue)
-    console.log("insertFav", insertFav)
+    // console.log("IN POST ROUTE", req.body)
+    // console.log("KEYS", favKey)
+    // console.log("VALUES", favValue)
+    // console.log("insertFav", insertFav)
 
     db.query(insertFav).then(data => {
       res.json(data.rows);
