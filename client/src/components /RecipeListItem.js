@@ -100,20 +100,19 @@ export default function RecipeListItem(props) {
       });
       // if heart is red, send post request to delete fav and set heart back to grey
     } 
-    else if (heart === 'error') {
+    else {
       setHeart('grey0')
       //axios post to delete
       return Promise.all([
-        setHeart('error'),
         axios.post("/favs/delete", {
             [`recipe_id`]: `${recipe_id}`,
             [`user_id`]: `${user_id}`
           })
         ]).then((all) => {
-          // setFavourite(() => ({
-          //   [`recipe_id`]: `${recipe_id}`,
-          //   [`user_id`]: `${user_id}`
-          // }))
+          setFavourite(() => ({
+            [`recipe_id`]: `${recipe_id}`,
+            [`user_id`]: `${user_id}`
+          }))
           console.log(all)
         })
         .catch((err) => {
@@ -124,15 +123,13 @@ export default function RecipeListItem(props) {
 
   console.log(heart)
 
-  // function postFav () {
-  //   axios.post("/favs", favourite)
-  //   .then((all) => {
-  //     console.log(all);
-  //   })
-  //   .catch((err) => {
-  //     console.log("ERR", err);
-  //   });
-  // }
+  /* 
+    onClick we want to:
+    - if heart colour is grey -
+    1. set heart to red   
+    2. 
+  */
+  
   function sendRecipeID () {
     setCurrentPage(recipe_id)
     // console.log(currentPage)
@@ -167,7 +164,7 @@ export default function RecipeListItem(props) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon 
               onClick={handleOnClick} 
-              color={'grey0'}
+              color={heart === 'grey0' ? 'grey0': 'error'}
             />
           </IconButton>
           <IconButton aria-label="share">
