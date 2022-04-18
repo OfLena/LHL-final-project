@@ -54,7 +54,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id} = props;
 
   // console.log("LOGGED IN", user)
   // console.log("ID", recipe_id)
@@ -86,14 +86,15 @@ export default function RecipeListItem(props) {
     setFavourite((prev) => ({
       ...prev,
       [`recipe_id`]: `${recipe_id}`,
+      [`user_id`]: `${user_id}`
     }))
-    // axios.post("/favs", favourite)
-    // .then((all) => {
-    //   console.log(all);
-    // })
-    // .catch((err) => {
-    //   console.log("ERR", err);
-    // });
+    axios.post("/favs", favourite)
+    .then((all) => {
+      console.log(all);
+    })
+    .catch((err) => {
+      console.log("ERR", err);
+    });
   }
 
   // console.log(favourite)

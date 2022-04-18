@@ -14,5 +14,17 @@ module.exports = (db) => {
     })
   });
 
+  router.post('/', (req, res) => {
+    const favKey = Object.keys(req.body)
+    const favValue = Object.values(req.body)
+    const insertFav = `INSERT INTO favs (${favKey}) VALUES (${favValue})`
+    console.log(req.body)
+    // console.log(favValue)
+
+    db.query(insertFav).then(data => {
+      res.json(data.rows);
+    })
+  });
+
   return router;
 }
