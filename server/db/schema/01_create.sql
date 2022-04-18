@@ -1,8 +1,6 @@
 -- DROP ALL TABLES
 
 DROP TABLE IF EXISTS users CASCADE;
-DROP TABLE IF EXISTS categories CASCADE;
-DROP TABLE IF EXISTS recipe_tags CASCADE;
 DROP TABLE IF EXISTS recipes CASCADE;
 DROP TABLE IF EXISTS tags CASCADE;
 DROP TABLE IF EXISTS favs CASCADE;
@@ -19,17 +17,10 @@ CREATE TABLE users (
   password VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE categories (
-  id SERIAL PRIMARY KEY NOT NULL,
-  title VARCHAR(225)
-);
-
 
 CREATE TABLE recipes (
   id SERIAL PRIMARY KEY,
   user_id integer REFERENCES users(id) ON DELETE CASCADE,
-  category_id integer REFERENCES categories(id) ON DELETE CASCADE,
-  link VARCHAR(225), 
   prep_time VARCHAR(225), 
   serving_size VARCHAR(225), 
   image_url VARCHAR(225) NOT NULL, 

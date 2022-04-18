@@ -1,9 +1,11 @@
 import "./styles/recipeform.scss";
 
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
 import axios from "axios";
 
-import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment, Menu, MenuItem } from "@mui/material";
+import { Container, Typography, FormControlLabel,Paper, Grid, Checkbox, Button, TextField, Box,  InputAdornment } from "@mui/material";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
@@ -11,16 +13,26 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 
 
-export default function RecipeForm() {
+
+export default function RecipeForm(props) {
+
+
+
+  const { user, recipes, setState, state } = props
+  
+  
+  let navigate = useNavigate();
+ 
+  console.log(state)
 
   // =========== STATES ========== //
-  const [recipe, setRecipe] = useState({});
+  const [recipe, setRecipe] = useState({user_id: user.id});
   const [ingredientRows, setIngredientRows] = useState([{}]);
   const [instructionRows, setInstructionRows] = useState([{}])
   
 
   // ======== USE EFFECTS ===== //
-
+ 
   useEffect(() => {
     const instructionArr = instructionRows.map(
       (instruction) => instruction.instruction
@@ -31,7 +43,6 @@ export default function RecipeForm() {
         [`instruction_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [instructionRows]);
 
   useEffect(() => {
@@ -44,7 +55,6 @@ export default function RecipeForm() {
         [`ingredient_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [ingredientRows]);
 
   useEffect(() => {
@@ -57,7 +67,6 @@ export default function RecipeForm() {
         [`measurement_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [ingredientRows]);
 
   // ==================CHECKBOX HANDLERS =================//
@@ -115,10 +124,11 @@ export default function RecipeForm() {
 
   function postRecipeAndTags() {
     Promise.all([
-      axios.post("/recipes", recipe)
+      axios.post("/recipes", recipe),
     ])
-      .then((all) => {
-        console.log(all);
+      .then((all) => {   
+        setState((prev) => ({...prev, filtered_recipes: [...recipes, recipe]}))
+        navigate(`/`)
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -126,12 +136,15 @@ export default function RecipeForm() {
   }
 
   return (
+
     <Box
       component="form"
       sx={{marginTop: '6rem'}}
       noValidate
       autoComplete="off"
     >
+
+
       <Container>
         
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
