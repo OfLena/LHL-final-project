@@ -28,7 +28,7 @@ import Login from './components /Login';
 function App() {
   
   const [state, setState] = useState({
-    user: {},
+    user: [],
     user_recipes: [],
     recipes: [],
     favs: []
@@ -57,7 +57,7 @@ function App() {
         <Nav />
         <div>
           <Routes>
-            <Route path="/" element={<Home recipes={state.recipes}/>}/>
+            <Route path="/" element={<Home recipes={state.recipes} user={state.user}/>}/>
             <Route path="/recipes" element={<RecipeList recipes={state.recipes}/>}/>
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
             <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
