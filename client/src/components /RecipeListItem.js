@@ -37,6 +37,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 // import "./styles/recipe.scss";
 
@@ -54,10 +55,12 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, color} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage} = props;
 
   // console.log("LOGGED IN", user)
   // console.log("ID", recipe_id)
+
+  // console.log('CURRENT PAGE', currentPage)
 
   
   const [expanded, setExpanded] = React.useState(false);
@@ -87,6 +90,8 @@ export default function RecipeListItem(props) {
     
   })
 
+  
+
   function handleOnClick () {
    return Promise.all([
      axios.post("/favs", {
@@ -113,6 +118,19 @@ export default function RecipeListItem(props) {
   //     console.log("ERR", err);
   //   });
   // }
+  function sendRecipeID () {
+    setCurrentPage(recipe_id)
+    // console.log(currentPage)
+  };
+
+  // console.log(favourite)
+
+  // create function to handle the onClick of the heart
+  // 1 change it to red
+  // 2 change the state 
+  // 3 axios post to server 
+
+  // when it is not in set state ? it should delete the recipe from the database
 
   return (
     <div className="recipe-card">
@@ -155,11 +173,15 @@ export default function RecipeListItem(props) {
           <Button
             aria-describedby={id}
             variant="contained"
-            onClick={handleClick}
+            // onClick={handleClick}
+            component={Link} to={'/recipes'}
+            onClick={sendRecipeID}
           >
-            <MenuBookIcon />
+            <MenuBookIcon
+         
+            />
           </Button>
-          <Popover
+          {/* <Popover
             id={id}
             open={open}
             anchorEl={anchorEl}
@@ -174,7 +196,7 @@ export default function RecipeListItem(props) {
             }}
           >
             <Typography sx={{ p: 5 }}>{title}</Typography>
-          </Popover>
+          </Popover> */}
 
           {/* END POPOVER */}
 
