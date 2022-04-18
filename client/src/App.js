@@ -37,18 +37,24 @@ function App() {
 
   const [search, setSearch] = useState('')
 
-  console.log('state app',  state);
+  const filterRecipes = function() {
+  
+    let searchTerm = search;
+
+    let searchArray = searchTerm.trim().split(" ");
+    
+    let re = new RegExp(searchArray.join("|"), "i");
+    
+    let resultsObj = [...state.recipes.filter(recipe =>
+    re.test(recipe.title))
+    ]
+  
+    return resultsObj
+  }
   
   useEffect(() => {
-  
-    setState((prev) => ({...prev, filtered_recipes: [...state.recipes.filter((val) =>{
-      if (search === '') {
-        return val
-      } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
-        return val 
-      }
-    })]
-    }))}, [search])
+    setState((prev) => ({...prev, filtered_recipes: filterRecipes()}))
+  }, [search])
   
   
 
