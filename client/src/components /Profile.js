@@ -1,11 +1,16 @@
-
-
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 import RecipeListItem from "./RecipeListItem";
 
-import { Box, Typography, Grid, Button, Container } from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid,
+  Button,
+  Container,
+  TextField,
+} from "@mui/material";
 
 export default function Profile(props) {
   const { user, userRecipes, favs } = props;
@@ -13,7 +18,7 @@ export default function Profile(props) {
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
 
-  const {  } = props
+  const {} = props;
 
   useEffect(() => {
     if (showFavs) {
@@ -36,7 +41,6 @@ export default function Profile(props) {
   function handleSearch(event) {
     setSearch(event.target.value);
   }
-
 
   let filteredSearchForUserRecipes = userRecipes.filter((val) => {
     if (search === "") {
@@ -103,27 +107,28 @@ export default function Profile(props) {
         {user.first_name} {user.last_name}
       </Typography>
       <Typography>@{user.user_name}</Typography>
-      
-        <div className="button-container">
-      <Button variant="contained" onClick={getFavRecipes}>
-        Fav Recipes
-      </Button>
-      
-      
-      <Button variant="contained" onClick={getUserRecipes}>
-        Your Recipes
-      </Button>
-      
-      </div>
 
-      <div>
-        <input
-          type="text"
-          onChange={handleSearch}
-          value={search}
-          placeholder="Search..."
-        />
-      </div>
+      <Grid container spacing={1}>
+        <Grid item xs={12} align='center'>
+          <Button  style = {{width: '20rem', padding:'16px'}} variant="contained" onClick={getFavRecipes}>
+            Fav Recipes
+          </Button>
+          <Button  style = {{width: '20rem', padding:'16px'}} variant="contained" onClick={getUserRecipes}>
+            Your Recipes
+          </Button>
+        </Grid>
+
+        <Grid item xs={12} align='center'>
+          <TextField
+            type="text"
+            style = {{width: '20rem'}}
+            onChange={handleSearch}
+            value={search}
+            placeholder="Search..."
+          />
+        </Grid>
+      </Grid>
+
       <Typography>Recipes</Typography>
       <div className="recipe-card-container">
         {showFavs}
