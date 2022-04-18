@@ -19,15 +19,29 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Popover from "@mui/material/Popover";
 import { Button } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { Container } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
+import { ClassNames } from "@emotion/react";
 
 export default function RecipeCard(props) {
   const { recipes, currentPage, setCurrentPage } = props;
 
   const findRecipe = props.recipes.map((recipe) => {
+    const recipePairs = Object.entries(recipe);
+
     if (recipe.id === currentPage) {
+      recipePairs.map((pair) => {
+        // console.log('PAIR', pair)
+        console.log("PAIR0", pair[0]);
+        console.log("PAIR1", pair[1]);
+      });
+
+      // {console.log('VALUES',Object.values(recipe))}
+      // {console.log('ENTRIES',Object.entries(recipe))}
+
+      // console.log('PAIR', pair[0], pair[1])
+
       return (
-        <div className="card-container">
+        <div>
           <Card>
             <CardHeader
               title={recipe.title}
@@ -37,62 +51,100 @@ export default function RecipeCard(props) {
                 </Avatar>
               }
             />
-            <CardMedia
-              component="img"
-              sx={{ maxWidth: 600 }}
-              height="300"
-              image={recipe.image_url}
-              alt={recipe.title}
-            />
+            <Grid alignItems="center">
+              <CardMedia
+                component="img"
+                sx={{ maxWidth: 600 }}
+                height="300"
+                image={recipe.image_url}
+                alt={recipe.title}
+              />
+            </Grid>
           </Card>
-          {/* // <Typography>{recipe.prep_time}</Typography>
-    // {recipe.ingredient_1}
-    // {recipe.ingredient_2}
-    // {recipe.ingredient_3}
-    // {recipe.ingredient_4}
-    // {recipe.ingredient_5}
-    // {recipe.ingredient_6}
-    // {recipe.ingredient_7}
-    // {recipe.ingredient_8}
-    // {recipe.ingredient_9}
-    // {recipe.ingredient_10}
-    // {recipe.ingredient_11}
-    // {recipe.ingredient_12}
-    // {recipe.ingredient_13}
-    // {recipe.ingredient_14}
-    // {recipe.ingredient_15}
-    // {recipe.ingredient_16}
-    // {recipe.ingredient_17}
-    // {recipe.ingredient_18}
-    // {recipe.ingredient_19}
-    // {recipe.ingredient_20}
-    // {recipe.measurement_1}
-    // {recipe.measurement_2}
-    // {recipe.measurement_3}
-    // {recipe.measurement_4}
-    // {recipe.measurement_5}
-    // {recipe.measurement_6}
-    // {recipe.measurement_7}
-    // {recipe.measurement_8}
-    // {recipe.measurement_9}
-    // {recipe.measurement_10}
-    // {recipe.measurement_11}
-    // {recipe.measurement_12}
-    // {recipe.measurement_13}
-    // {recipe.measurement_14}
-    // {recipe.measurement_15}
-    // {recipe.measurement_16}
-    // {recipe.measurement_17}
-    // {recipe.measurement_18}
-    // {recipe.measurement_19}
-    // {recipe.measurement_20}
-    // {recipe.instruction_1}
-    // {recipe.instruction_2}
-    // {recipe.instruction_3}
-    // {recipe.instruction_4}
-    // {recipe.instruction_5}
-    // {recipe.link}
-    // {recipe.serving_size} */}
+          <Typography>{recipe.prep_time}</Typography>
+
+         
+            {recipePairs.map((pair, idx) => {
+              return (
+               <Grid container justifyContent="space-evenly" alignItems="center" key={idx}>
+      
+                <Grid item xs={6}>
+                  <Paper>{pair[0]}</Paper>
+                </Grid>
+                <Grid item xs={6}>
+                  <Paper>{pair[1]}</Paper>
+                </Grid>
+              </Grid>
+              )
+              
+            })}
+{/* 
+            <Grid>
+              {recipe.ingredient_2} {recipe.measurement_2}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_3} {recipe.measurement_3}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_4} {recipe.measurement_4}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_5} {recipe.measurement_5}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_6} {recipe.measurement_6}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_7} {recipe.measurement_7}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_8} {recipe.measurement_8}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_9} {recipe.measurement_9}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_10} {recipe.measurement_10}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_11} {recipe.measurement_11}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_12} {recipe.measurement_12}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_13} {recipe.measurement_13}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_14} {recipe.measurement_14}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_15} {recipe.measurement_15}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_16} {recipe.measurement_16}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_17} {recipe.measurement_17}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_18} {recipe.measurement_18}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_19} {recipe.measurement_19}
+            </Grid>
+            <Grid item xs={6}>
+              {recipe.ingredient_20} {recipe.measurement_20}
+            </Grid>
+          </Grid>
+
+          {recipe.instruction_1}
+          {recipe.instruction_2}
+          {recipe.instruction_3}
+          {recipe.instruction_4}
+          {recipe.instruction_5}
+          {recipe.link}
+          {recipe.serving_size} */}
         </div>
       );
     }
