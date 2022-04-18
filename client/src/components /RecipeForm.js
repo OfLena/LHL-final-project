@@ -1,7 +1,7 @@
 import "./styles/recipeform.scss";
 
 import React, { useState, useEffect } from "react";
-import { Redirect } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
@@ -13,23 +13,26 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 
 
+
 export default function RecipeForm(props) {
 
 
 
-  const { user } = props
+  const { user, recipes, setState, state } = props
+  
+  
+  let navigate = useNavigate();
  
+  console.log(state)
 
   // =========== STATES ========== //
   const [recipe, setRecipe] = useState({user_id: user.id});
-  const [redirect, setRedirect] = useState({home: null});
   const [ingredientRows, setIngredientRows] = useState([{}]);
   const [instructionRows, setInstructionRows] = useState([{}])
   
 
   // ======== USE EFFECTS ===== //
  
-
   useEffect(() => {
     const instructionArr = instructionRows.map(
       (instruction) => instruction.instruction
@@ -40,7 +43,6 @@ export default function RecipeForm(props) {
         [`instruction_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [instructionRows]);
 
   useEffect(() => {
@@ -53,7 +55,6 @@ export default function RecipeForm(props) {
         [`ingredient_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [ingredientRows]);
 
   useEffect(() => {
@@ -66,7 +67,6 @@ export default function RecipeForm(props) {
         [`measurement_${index + 1}`]: `${message}`,
       }))
     );
-    console.log(recipe);
   }, [ingredientRows]);
 
   // ==================CHECKBOX HANDLERS =================//
@@ -124,11 +124,11 @@ export default function RecipeForm(props) {
 
   function postRecipeAndTags() {
     Promise.all([
-      axios.post("/recipes", recipe)
+      axios.post("/recipes", recipe),
     ])
-      .then((all) => {
-    
-        console.log(all);
+      .then((all) => {   
+        setState((prev) => ({...prev, filtered_recipes: [...recipes, recipe]}))
+        navigate(`/`)
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -136,7 +136,7 @@ export default function RecipeForm(props) {
   }
 
   return (
-   
+
     <Box
       component="form"
       sx={{marginTop: '6rem'}}
@@ -144,9 +144,7 @@ export default function RecipeForm(props) {
       autoComplete="off"
     >
 
-        if (home) {
-             <Redirect to={home} />
-          }
+
       <Container>
         
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
