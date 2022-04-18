@@ -55,13 +55,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage} = props;
-
-  // console.log("LOGGED IN", user)
-  // console.log("ID", recipe_id)
-
-  // console.log('CURRENT PAGE', currentPage)
-
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color} = props;
   
   const [expanded, setExpanded] = React.useState(false);
 
@@ -86,28 +80,49 @@ export default function RecipeListItem(props) {
   const [favourite, setFavourite] = useState({});
   const [heart, setHeart] = useState('grey0');
 
-  useEffect(() => {
-    
-  })
-
-  
-
   function handleOnClick () {
-   return Promise.all([
-     axios.post("/favs", {
-        [`recipe_id`]: `${recipe_id}`,
-        [`user_id`]: `${user_id}`
+    // if heart is grey, send post request to insert fav and set heart to red
+   if (heart === 'grey0') {
+    return Promise.all([
+      setHeart('error'),
+      axios.post("/favs", {
+          [`recipe_id`]: `${recipe_id}`,
+          [`user_id`]: `${user_id}`
+        })
+      ]).then((all) => {
+        setFavourite(() => ({
+          [`recipe_id`]: `${recipe_id}`,
+          [`user_id`]: `${user_id}`
+        }))
       })
-    ]).then((all) => {
-      setFavourite(() => ({
-        [`recipe_id`]: `${recipe_id}`,
-        [`user_id`]: `${user_id}`
-      }))
-    })
-    .catch((err) => {
-      console.log("ERR", err);
-    });
+      .catch((err) => {
+        console.log("ERR", err);
+      });
+      // if heart is red, send post request to delete fav and set heart back to grey
+    } 
+    else if (heart === 'error') {
+      setHeart('grey0')
+      //axios post to delete
+      return Promise.all([
+        setHeart('error'),
+        axios.post("/favs/delete", {
+            [`recipe_id`]: `${recipe_id}`,
+            [`user_id`]: `${user_id}`
+          })
+        ]).then((all) => {
+          // setFavourite(() => ({
+          //   [`recipe_id`]: `${recipe_id}`,
+          //   [`user_id`]: `${user_id}`
+          // }))
+          console.log(all)
+        })
+        .catch((err) => {
+          console.log("ERR", err);
+      });
+    }
   }
+
+  console.log(heart)
 
   // function postFav () {
   //   axios.post("/favs", favourite)
@@ -122,15 +137,6 @@ export default function RecipeListItem(props) {
     setCurrentPage(recipe_id)
     // console.log(currentPage)
   };
-
-  // console.log(favourite)
-
-  // create function to handle the onClick of the heart
-  // 1 change it to red
-  // 2 change the state 
-  // 3 axios post to server 
-
-  // when it is not in set state ? it should delete the recipe from the database
 
   return (
     <div className="recipe-card">
