@@ -13,6 +13,8 @@ export default function Profile(props) {
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
 
+  const {  } = props
+
   useEffect(() => {
     if (showFavs) {
       getFavRecipes();
@@ -35,6 +37,7 @@ export default function Profile(props) {
     setSearch(event.target.value);
   }
 
+
   let filteredSearchForUserRecipes = userRecipes.filter((val) => {
     if (search === "") {
       return val;
@@ -51,7 +54,7 @@ export default function Profile(props) {
     }
   });
 
-  const recipesFromUser = props.userRecipes.map((recipe) => {
+  const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
     return (
       <RecipeListItem
         key={recipe.id}
@@ -69,7 +72,7 @@ export default function Profile(props) {
     );
   });
 
-  const userFavRecipes = props.favs.map((recipe) => {
+  const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
     return (
       <RecipeListItem
         key={recipe.id}
@@ -112,8 +115,6 @@ export default function Profile(props) {
       </Button>
       
       </div>
-      {/* <input type="button" value="Fav Recipes" onClick={getUserRecipes} />
-      <input type="button" value="Your Recipes" onClick={getFavRecipes} /> */}
 
       <div>
         <input

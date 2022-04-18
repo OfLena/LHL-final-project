@@ -56,7 +56,7 @@ export default function RecipeListItem(props) {
 
   const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user} = props;
 
-  console.log("LOGGED IN", user)
+  // console.log("LOGGED IN", user)
   // console.log("ID", recipe_id)
 
   
@@ -96,7 +96,7 @@ export default function RecipeListItem(props) {
     // });
   }
 
-  console.log(favourite)
+  // console.log(favourite)
 
   // create function to handle the onClick of the heart
   // 1 change it to red

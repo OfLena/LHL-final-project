@@ -71,7 +71,6 @@ export default function Home(props) {
       <div className="centered">Bring Out Your Inner Chef</div>
       <div className="recipe-card-container">
         {recipes}
-        {loggedInID}
       </div>
     </div>
     
