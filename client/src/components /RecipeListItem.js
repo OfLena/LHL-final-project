@@ -88,13 +88,13 @@ export default function RecipeListItem(props) {
       [`recipe_id`]: `${recipe_id}`,
       [`user_id`]: `${user_id}`
     }))
-    // axios.post("/favs", favourite)
-    // .then((all) => {
-    //   console.log(all);
-    // })
-    // .catch((err) => {
-    //   console.log("ERR", err);
-    // });
+    axios.post("/favs", favourite)
+    .then((all) => {
+      console.log(all);
+    })
+    .catch((err) => {
+      console.log("ERR", err);
+    });
   }
 
   console.log(favourite)
