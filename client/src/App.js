@@ -82,7 +82,7 @@ function App() {
             <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user}/>}/>
             <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/>
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
-            <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} />}/>
+            <Route path="/recipe_form" element={<RecipeForm recipes={state.recipes} user={state.user}/>}/>
             <Route path="/login" element={<Login />}/>
           </Routes>
         </div>

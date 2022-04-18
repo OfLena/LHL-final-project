@@ -1,9 +1,11 @@
 import "./styles/recipeform.scss";
 
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useState, useEffect } from "react";
+import { Redirect } from 'react-router-dom';
+
 import axios from "axios";
 
-import { Container, Typography, FormControlLabel, styled,Paper, Grid, Checkbox, Button, InputLabel, TextField, Box, useFormControl, InputAdornment, Menu, MenuItem } from "@mui/material";
+import { Container, Typography, FormControlLabel,Paper, Grid, Checkbox, Button, TextField, Box,  InputAdornment } from "@mui/material";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
@@ -11,15 +13,22 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 
 
-export default function RecipeForm() {
+export default function RecipeForm(props) {
+
+
+
+  const { user } = props
+ 
 
   // =========== STATES ========== //
-  const [recipe, setRecipe] = useState({});
+  const [recipe, setRecipe] = useState({user_id: user.id});
+  const [redirect, setRedirect] = useState({home: null});
   const [ingredientRows, setIngredientRows] = useState([{}]);
   const [instructionRows, setInstructionRows] = useState([{}])
   
 
   // ======== USE EFFECTS ===== //
+ 
 
   useEffect(() => {
     const instructionArr = instructionRows.map(
@@ -118,6 +127,7 @@ export default function RecipeForm() {
       axios.post("/recipes", recipe)
     ])
       .then((all) => {
+    
         console.log(all);
       })
       .catch((err) => {
@@ -126,12 +136,17 @@ export default function RecipeForm() {
   }
 
   return (
+   
     <Box
       component="form"
       sx={{marginTop: '6rem'}}
       noValidate
       autoComplete="off"
     >
+
+        if (home) {
+             <Redirect to={home} />
+          }
       <Container>
         
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
