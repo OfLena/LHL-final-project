@@ -11,6 +11,8 @@ import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
+import Footer from "./Footer";
+
 
 
 
@@ -435,6 +437,7 @@ export default function RecipeForm(props) {
          
         </form>
       </Container>
+      <Footer/>
     </Box>
   );
 }

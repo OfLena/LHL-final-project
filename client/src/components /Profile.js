@@ -11,6 +11,7 @@ import {
   Container,
   TextField,
 } from "@mui/material";
+import Footer from "./Footer";
 
 export default function Profile(props) {
   const { user, userRecipes, favs } = props;
@@ -134,6 +135,7 @@ export default function Profile(props) {
         {showFavs}
         {showUserRecipes}
       </div>
+      <Footer/>
     </Box>
   );
 }

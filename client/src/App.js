@@ -112,14 +112,14 @@ function App() {
                user={state.user}
                setState={setState}
                state={state}
+          
                />}
             />
             <Route path="/login" element={<Login />}/>
           </Routes>
         </div>
-
+      {/* <Footer/> */}
       </Router>
-      
     </div>
   );
 }

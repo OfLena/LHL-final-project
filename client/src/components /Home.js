@@ -1,6 +1,7 @@
 import "./styles/recipe.scss";
 
 import RecipeListItem from "./RecipeListItem";
+import Footer from "./Footer";
 
 export default function Home(props) {
 
@@ -76,6 +77,7 @@ export default function Home(props) {
       <div className="recipe-card-container">
         {recipes}
       </div>
+      <Footer/>
     </div>
     
   );
