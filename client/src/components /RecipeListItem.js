@@ -37,6 +37,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from 'react-router-dom'
 
 // import "./styles/recipe.scss";
 
@@ -54,10 +55,12 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage} = props;
 
   // console.log("LOGGED IN", user)
   // console.log("ID", recipe_id)
+
+  // console.log('CURRENT PAGE', currentPage)
 
   
   const [expanded, setExpanded] = React.useState(false);
@@ -82,6 +85,8 @@ export default function RecipeListItem(props) {
 
   const [favourite, setFavourite] = useState({});
 
+  
+
   function handleOnClick () {
     setFavourite((prev) => ({
       ...prev,
@@ -96,6 +101,11 @@ export default function RecipeListItem(props) {
       console.log("ERR", err);
     });
   }
+
+  function sendRecipeID () {
+    setCurrentPage(recipe_id)
+    // console.log(currentPage)
+  };
 
   // console.log(favourite)
 
@@ -147,11 +157,15 @@ export default function RecipeListItem(props) {
           <Button
             aria-describedby={id}
             variant="contained"
-            onClick={handleClick}
+            // onClick={handleClick}
+            component={Link} to={'/recipes'}
+            onClick={sendRecipeID}
           >
-            <MenuBookIcon />
+            <MenuBookIcon
+         
+            />
           </Button>
-          <Popover
+          {/* <Popover
             id={id}
             open={open}
             anchorEl={anchorEl}
@@ -166,7 +180,7 @@ export default function RecipeListItem(props) {
             }}
           >
             <Typography sx={{ p: 5 }}>{title}</Typography>
-          </Popover>
+          </Popover> */}
 
           {/* END POPOVER */}
 

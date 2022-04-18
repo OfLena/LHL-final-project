@@ -23,6 +23,7 @@ import RecipeListItem from './components /RecipeListItem';
 import RecipeForm from './components /RecipeForm';
 import Home from './components /Home';
 import Login from './components /Login';
+import RecipeCard from './components /RecipeCard';
 
 
 function App() {
@@ -35,9 +36,15 @@ function App() {
     favs: []
   });
 
+
+
   const [search, setSearch] = useState('')
 
-  console.log('state app',  state);
+  const [currentPage, setCurrentPage] = useState('')
+  
+  // console.log('CURRENT PAGE', currentPage)
+
+  // console.log('state app',  state);
   
   useEffect(() => {
   
@@ -80,9 +87,15 @@ function App() {
         />
         <div>
           <Routes>
-            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user}/>}/>
-            <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/>
+            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user} currentPage={currentPage} setCurrentPage={setCurrentPage} />}/>
+            {/* <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/> */}
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
+            <Route path="/recipes"
+             element={<RecipeCard
+            recipes={state.recipes}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            />}/>
 
             <Route path="/recipe_form" 
              element={<RecipeForm 

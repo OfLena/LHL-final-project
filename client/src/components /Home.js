@@ -4,11 +4,13 @@ import RecipeListItem from "./RecipeListItem";
 
 export default function Home(props) {
 
-  const {user} = props;
+  const {user, currentPage, setCurrentPage} = props;
 
   const recipes = props.recipes.map(recipe => {
     return (
       <RecipeListItem
+      currentPage={currentPage}
+      setCurrentPage={setCurrentPage}
       key={recipe.id}
       recipe_id={recipe.id}
       title={recipe.title}
