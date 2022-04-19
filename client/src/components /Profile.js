@@ -19,7 +19,7 @@ export default function Profile(props) {
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
 
-  const {} = props;
+  
 
   useEffect(() => {
     if (showFavs) {
@@ -58,6 +58,8 @@ export default function Profile(props) {
       return val;
     }
   });
+
+  // console.log("FAVS", favs)
 
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
     return (
