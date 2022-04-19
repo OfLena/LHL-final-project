@@ -7,7 +7,7 @@
  'Grate Parmesan over the top then finish under the grill till nicely golden.',
  'serve with chicken and bacon, peas and spinach.',
  'Potatoes', 'Onions', 'Olive oil', 'Chicken stock', 'Creme Fraiche', 'Topping Parmesan', 'Chicken Breasts', 'Bacon', 'Topping Spinach', null, null, null, null, null, null, null, null, null, null, null,
-  '800g', '3', '2 tbsp', '100ml', '1 pot', '2 tbsp', '4', '4', '1/4 cup', '1 cup', null, null, null, null, null, null, null, null, null, null, TRUE),
+  '800g', '3', '2 tbsp', '100ml', '1 pot', '2 tbsp', '4', '4', '1/4 cup', null, null, null, null, null, null, null, null, null, null, null, TRUE),
  
 
  (2, '30 minutes', 4, 'https://www.themealdb.com/images/media/meals/rvxxuy1468312893.jpg', 

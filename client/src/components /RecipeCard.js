@@ -1,185 +1,241 @@
 import "./styles/recipecard.scss";
 
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
+
 import { red } from "@mui/material/colors";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
-import Popover from "@mui/material/Popover";
-import { Button } from "@mui/material";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import { Container, Grid, Paper } from "@mui/material";
-import { ClassNames } from "@emotion/react";
+
+import { Container, Grid, Typography, Paper, Avatar, Box, TextField, CardMedia, CardHeader, Card } from "@mui/material";
+
+
 
 export default function RecipeCard(props) {
   const { recipes, currentPage, setCurrentPage } = props;
 
   const findRecipe = recipes.map((recipe) => {
-    // const recipePairs = Object.entries(recipe);
-    // console.log('recipes pairs--->', recipePairs)
-
     const recipePairs = Object.fromEntries(
-      Object.entries(recipe).filter(([_, v]) => v != null)
+      Object.entries(recipe).filter(([_, v]) => v)
     );
 
-    const validRecipePairs = Object.entries(recipePairs);
+    console.log('recipe', recipePairs)
 
-    if (recipe.id === currentPage) {
+    if (recipePairs.id === currentPage) {
       return (
-        <div>
-          <Card>
+        <Box 
+          marginTop={'8rem'}
+          marginBottom={'8rem'}
+         sx={{ p: 2, border: '1px dashed grey', backgroundColor: 'pink'}}>
+
+            
+          <Card
+          sx={{ paddingBottom: '2rem' }}
+          >
             <CardHeader
-              title={recipe.title}
+              title={recipePairs.title}
               avatar={
                 <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
                   R
                 </Avatar>
               }
             />
-            <Grid alignItems="center">
+            <div style={{ display:'flex', justifyContent:'center' }}
+>
               <CardMedia
                 component="img"
                 sx={{ maxWidth: 600 }}
                 height="300"
-                image={recipe.image_url}
-                alt={recipe.title}
-              />
-            </Grid>
-          </Card>
-          <Typography>{recipe.prep_time}</Typography>
+                image={recipePairs.image_url}
+                alt={recipePairs.title}
+                
 
-          {validRecipePairs.map((pair, idx) => {
-            console.log("validRecipePairs", validRecipePairs);
-            let ingredient;
-            if (pair[0].includes("ingredient")) {
-              ingredient = pair[1];
-            }
-            return (
-              
-              <Grid item xs={6} key={idx}>
-                <Paper>{ingredient}</Paper>
-              </Grid>
-              
-            );
-          })}
+              />
+              </div>
+          </Card>
           
-        </div>
+          
+          <Typography>Prep Time {recipePairs.prep_time}</Typography>
+          <Typography>Serves {recipePairs.serving_size}</Typography>
+
+          <Grid container spacing={0}>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.ingredient_1}
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.measurement_1}
+            </Grid>
+
+            <Grid item xs={6}>
+              
+              <TextField
+          disabled
+          id="outlined-disabled"
+          
+          defaultValue={recipePairs.ingredient_2}
+        />
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_2}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_3}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_3}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_4}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_4}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_5}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_5}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_6}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_6}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_7}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_7}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_8}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_8}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_9}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_9}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_10}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_10}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_11}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_11}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_12}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_12}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_12}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_12}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_13}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_13}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_14}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_14}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_15}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_15}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_16}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_16}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_17}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_17}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_18}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_18}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_19}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_19}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_20}</Paper>
+            </Grid>
+            <Grid item xs={6}>
+              <Paper>{recipePairs.measurement_20}</Paper>
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.instruction_1}
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.instruction_2}
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.instruction_3}
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.instruction_4}
+            </Grid>
+            <Grid item xs={6} style={{background: 'pink'}}>
+              {recipePairs.instruction_5}
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.keto}</Paper>
+            </Grid>
+
+            <Grid item xs={6}>
+              <Paper>{recipePairs.ingredient_20}</Paper>
+            </Grid>
+          </Grid>
+        </Box>
       );
     }
   });
 
   return <Container>{findRecipe}</Container>;
 }
-
-// return (
-//   <Container>
-//     <Card>
-//       <CardHeader
-//         title={recipe.title}
-//         avatar={
-//           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-//             R
-//           </Avatar>
-//         }
-//       />
-//       <Grid alignItems="center">
-//         <CardMedia
-//           component="img"
-//           sx={{ maxWidth: 600 }}
-//           height="300"
-//           image={recipe.image_url}
-//           alt={recipe.title}
-//         />
-//       </Grid>
-//     </Card>
-//     <Typography>{recipe.prep_time}</Typography>
-
-// <Grid item xs={6}>
-// {recipe.ingredient_1} {recipe.measurement_1}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_2} {recipe.measurement_2}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_3} {recipe.measurement_3}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_4} {recipe.measurement_4}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_5} {recipe.measurement_5}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_6} {recipe.measurement_6}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_7} {recipe.measurement_7}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_8} {recipe.measurement_8}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_9} {recipe.measurement_9}
-// </Grid>
-// <Grid item>
-// {recipe.ingredient_10} {recipe.measurement_10}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_11} {recipe.measurement_11}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_12} {recipe.measurement_12}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_13} {recipe.measurement_13}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_14} {recipe.measurement_14}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_15} {recipe.measurement_15}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_16} {recipe.measurement_16}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_17} {recipe.measurement_17}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_18} {recipe.measurement_18}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_19} {recipe.measurement_19}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.ingredient_20} {recipe.measurement_20}
-// </Grid>
-// {/* <Grid item xs={6}>
-// {recipe.instruction_1}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.instruction_2}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.instruction_3}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.instruction_4}
-// </Grid>
-// <Grid item xs={6}>
-// {recipe.instruction_5}
-// </Grid>
-
-// {recipe.link}
-// {recipe.serving_size} */}
