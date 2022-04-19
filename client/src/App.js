@@ -10,16 +10,12 @@ import {
 } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-// import { useCookies } from 'react-cookie';
 
 
 
 // ------------COMPONENT IMPORT---------- //
 import Nav from './components /Nav';
-import Footer from './components /Footer';
-import RecipeList from './components /RecipeList';
 import Profile from './components /Profile';
-import RecipeListItem from './components /RecipeListItem';
 import RecipeForm from './components /RecipeForm';
 import Home from './components /Home';
 import Login from './components /Login';
@@ -62,6 +58,8 @@ function App() {
     return resultsObj
   }
   
+
+
   useEffect(() => {
     setState((prev) => ({...prev, filtered_recipes: filterRecipes()}))
   }, [search])
@@ -96,8 +94,17 @@ function App() {
         />
         <div>
           <Routes>
-            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user} currentPage={currentPage} setCurrentPage={setCurrentPage} favs={state.favs} setState={setState}
-               state={state}/>}/>
+            <Route path="/" 
+              element={
+                <Home 
+                  recipes={state.filtered_recipes}
+                  user={state.user}
+                  currentPage={currentPage}
+                  setCurrentPage={setCurrentPage}
+                  setState={setState}
+                  state={state}
+                 />}
+             />
             {/* <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/> */}
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
             <Route path="/recipes"
