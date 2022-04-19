@@ -38,50 +38,57 @@ const ExpandMore = styled((props) => {
 
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
-
+  
   const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color, state, setState} = props;
   
-  const [expanded, setExpanded] = React.useState(false);
+  
+  
+  const [expanded, setExpanded] = useState(false);
+  const [favourite, setFavourite] = useState({});
+  const [heart, setHeart] = useState('grey0');
+
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
 
-  /* POP OVER */
-
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
-  const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
 
   /* HELPERS FOR FAVOURITING FEATURE */
 
-  const [favourite, setFavourite] = useState({});
-  const [heart, setHeart] = useState('grey0');
+
+  // if  current user_id == favs_user_id
+
+  // setHeart to error
+
+  // else grey
 
 
+  // console.log('FAVS =======> ',  state.favs)
+
+
+
+
+  const removeFav = function () {
+    const newFavsARR = state.favs
+
+    console.log('ARR STATE', newFavsARR)
+
+    const removeFavRecipe = newFavsARR.filter((fav) => (
+      Number(fav.recipe_id) !== recipe_id ? fav : null))
+
+    // const removeFavRecipe = newFavsARR.filter((fav) => (console.log(typeof fav.recipe_id)))
+
+    console.log("REMOVE", removeFavRecipe)
+        
+
+  }
 
   useEffect(() => { 
-    console.log(recipe_id);
-    
-    const grey = JSON.parse(localStorage.getItem('grey0'))
-    const error = JSON.parse(localStorage.getItem('error'))
-    if (grey) {
-      setHeart(grey);
-    } 
-    if (error) {
-      setHeart(error)
-    }
+
   }, []);
 
   useEffect(() => {
-    window.localStorage.setItem(recipe_id, heart);
-  }, [heart]);
+  },[]);
 
   function handleOnClick () {
     // if heart is grey, send post request to insert fav and set heart to red
@@ -93,10 +100,12 @@ export default function RecipeListItem(props) {
           [`user_id`]: `${user_id}`
         })
       ]).then((all) => {
-        setFavourite(() => ({
+        setState((prev) => ({ ...prev, favs: [...state.favs, {
           [`recipe_id`]: `${recipe_id}`,
-          [`user_id`]: `${user_id}`
-        }))
+          [`user_id`]: `${user_id}`,
+          [`title`]: `${title}`
+         
+        }]}))
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -112,11 +121,8 @@ export default function RecipeListItem(props) {
             [`user_id`]: `${user_id}`
           })
         ]).then((all) => {
-          setFavourite(() => ({
-            [`recipe_id`]: `${recipe_id}`,
-            [`user_id`]: `${user_id}`
-          }))
-          console.log(all)
+          removeFav()
+         
         })
         .catch((err) => {
           console.log("ERR", err);
@@ -124,11 +130,10 @@ export default function RecipeListItem(props) {
     }
   }
 
-  // console.log(heart)
   
   function sendRecipeID () {
     setCurrentPage(recipe_id)
-    // console.log(currentPage)
+   
   };
 
   return (
@@ -170,9 +175,8 @@ export default function RecipeListItem(props) {
           {/* POPOVER */}
 
           <Button
-            aria-describedby={id}
+            // aria-describedby={id}
             variant="contained"
-            // onClick={handleClick}
             component={Link} to={'/recipes'}
             onClick={sendRecipeID}
           >
@@ -180,25 +184,7 @@ export default function RecipeListItem(props) {
          
             />
           </Button>
-          {/* <Popover
-            id={id}
-            open={open}
-            anchorEl={anchorEl}
-            onClose={handleClose}
-            anchorOrigin={{
-              vertical: "top",
-              horizontal: "center",
-            }}
-            transformOrigin={{
-              vertical: "bottom",
-              horizontal: "center",
-            }}
-          >
-            <Typography sx={{ p: 5 }}>{title}</Typography>
-          </Popover> */}
-
-          {/* END POPOVER */}
-
+         
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
