@@ -17,6 +17,9 @@ import {
   Card,
 } from "@mui/material";
 
+import KitchenIcon from '@mui/icons-material/Kitchen';
+import ScaleIcon from '@mui/icons-material/Scale';
+
 
 
 
@@ -30,6 +33,8 @@ export default function RecipeCard(props) {
     );
 
     const recipePairs = Object.entries(filteredRecipes);
+
+      
 
     if (filteredRecipes.id === currentPage) {
       return (
@@ -62,36 +67,43 @@ export default function RecipeCard(props) {
           <Typography variant='h6' >Serves {filteredRecipes.serving_size}</Typography>
           
           <div className="map-container">
+            
           <div>
+             
               {recipePairs.map((value, index) => {
                 let ingredient;
                 if (value[0].includes("ingredient")) {
                   ingredient = value[1];
+                  return <div key={index} className='value-container'><KitchenIcon/>{ingredient}</div>
                 }
-                return <div key={index}  >{ingredient}</div>
               })}
+
+              
+
             </div>
               <div>
               {recipePairs.map((value, index) => {
                 let measurement;
                 if (value[0].includes("measurement")) {
                   measurement = value[1];
+                  return <div key={index} alignSelf='left' className="value-container"><ScaleIcon/>{measurement}</div>
                 }
-                return <div key={index} alignSelf='left'>{measurement}</div>;
+                
               })}
             </div>
             </div>
      
-
-          
-            {recipePairs.map((value, index) => {
+              <Typography>Instructions</Typography>
+              <div className="instruction-container">
+              {recipePairs.map((value, index) => {
               let instruction;
               if (value[0].includes("instruction")) {
                 instruction = value[1];
+                return <div key={index}>{instruction}</div>;
               }
-              return <div key={index}>{instruction}</div>;
+              
             })}
-          
+          </div>
         </Box>
       );
     }
