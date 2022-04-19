@@ -14,12 +14,10 @@ import {
 import Footer from "./Footer";
 
 export default function Profile(props) {
-  const { user, userRecipes, favs } = props;
+  const { user, userRecipes, favs, state, setState } = props;
   const [showFavs, setShowFavs] = useState("");
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
-
-  
 
   useEffect(() => {
     if (showFavs) {
@@ -51,7 +49,9 @@ export default function Profile(props) {
     }
   });
 
-  let filteredSearchForFavRecipes = favs.filter((val) => {
+  console.log("STATE.FAV", state.favs)
+
+  let filteredSearchForFavRecipes = state.favs.filter((val) => {
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
@@ -59,12 +59,12 @@ export default function Profile(props) {
     }
   });
 
-  // console.log("FAVS", favs)
-
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
     return (
       <RecipeListItem
         key={recipe.id}
+        // setState={setState}
+        state={state}
         title={recipe.title}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
@@ -83,6 +83,7 @@ export default function Profile(props) {
     return (
       <RecipeListItem
         key={recipe.id}
+        state={state}
         title={recipe.title}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}

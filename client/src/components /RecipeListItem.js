@@ -63,9 +63,9 @@ export default function RecipeListItem(props) {
 
         setFavourite(!!fav)
 
-      }, [] );
+  }, [] );
       
-      console.log("FAVS", favourite)
+      // console.log("FAVS", favourite)
 
 
   const removeFav = function () {
