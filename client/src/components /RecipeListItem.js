@@ -16,7 +16,7 @@ import ShareIcon from "@mui/icons-material/Share";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Popover from "@mui/material/Popover";
-import { Button } from "@mui/material";
+import { Button, ButtonGroup } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
 import { useState, useEffect } from "react";
@@ -39,13 +39,12 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
   
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, state, setState} = props;
+  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState} = props;
   
-  
-  
+
   const [expanded, setExpanded] = useState(false);
-  const [favourite, setFavourite] = useState({});
-  const [heart, setHeart] = useState('grey0');
+  const [favourite, setFavourite] = useState();
+
 
 
   const handleExpandClick = () => {
@@ -56,49 +55,42 @@ export default function RecipeListItem(props) {
   /* HELPERS FOR FAVOURITING FEATURE */
 
 
- 
-  const setHeartByFavState = function () {
-
+  useEffect(() => { 
+  
     const favsArr = state.favs
-    const favourited = favsArr.map((fav) => (
+     const fav = favsArr.find((fav) => (
+        fav.favs_user_id === user_id  && recipe_id === fav.recipe_id))
 
-        fav.favs_user_id === user_id  && recipe_id === fav.recipe_id) ? setFavourite(true) : setFavourite(false))
+        setFavourite(!!fav)
 
-    }
-
-  // console.log('HERE===>',setHeartByFavState())
+      }, [] );
+      
+      console.log("FAVS", favourite)
 
 
   const removeFav = function () {
     const newFavsARR = state.favs
 
     const removeFavRecipe = newFavsARR.filter((fav) => (
-     Number(fav.recipe_id) !== recipe_id ? fav : null))
+     (fav.recipe_id) !== recipe_id ? fav : null))
 
   return removeFavRecipe
 
   }
 
-  useEffect(() => { 
-
-  }, []);
-
-  useEffect(() => {
-  },[]);
-
   function handleOnClick () {
     // if heart is grey, send post request to insert fav and set heart to red
-   if (heart === 'grey0') {
-    return Promise.all([
-      setHeart('error'),
+   if (!favourite) {
+     setFavourite(true)
+     return Promise.all([
       axios.post("/favs", {
-          [`recipe_id`]: `${recipe_id}`,
-          [`user_id`]: `${user_id}`
+          [`recipe_id`]: recipe_id,
+          [`user_id`]: user_id
         })
       ]).then((all) => {
         setState((prev) => ({ ...prev, favs: [...state.favs, {
-          [`recipe_id`]: `${recipe_id}`,
-          [`user_id`]: `${user_id}`,
+          [`recipe_id`]: recipe_id,
+          [`favs_user_id`]: user_id,
           [`title`]: `${title}`
         }]}))
       })
@@ -108,8 +100,8 @@ export default function RecipeListItem(props) {
       // if heart is red, send post request to delete fav and set heart back to grey
     } 
     else {
-      setHeart('grey0')
       //axios post to delete
+      setFavourite(false)
       return Promise.all([
         axios.post("/favs/delete", {
             [`recipe_id`]: `${recipe_id}`,
@@ -159,7 +151,7 @@ export default function RecipeListItem(props) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon 
               onClick={handleOnClick} 
-              // color={setHeartByFavState()}
+              color={favourite === true ? 'error' : 'grey0'}
             />
           </IconButton>
           <IconButton aria-label="share">

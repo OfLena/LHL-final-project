@@ -16,7 +16,6 @@ export default function RecipeCard(props) {
       Object.entries(recipe).filter(([_, v]) => v)
     );
 
-    console.log('recipe', recipePairs)
 
     if (recipePairs.id === currentPage) {
       return (
