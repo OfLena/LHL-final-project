@@ -25,13 +25,20 @@ import { ClassNames } from "@emotion/react";
 export default function RecipeCard(props) {
   const { recipes, currentPage, setCurrentPage } = props;
 
-  const findRecipe = props.recipes.map((recipe, idx) => {
-    const recipePairs = Object.entries(recipe);
-
+  const findRecipe = recipes.map((recipe) => {
     
+    // const recipePairs = Object.entries(recipe);
+    // console.log('recipes pairs--->', recipePairs)
+
+    const recipePairs = Object.fromEntries(Object.entries(recipe).filter(([_, v]) => v != null));
+
+    const validRecipePairs = Object.entries(recipePairs)
+
+
+
     if (recipe.id === currentPage) {
       return (
-        <Container>
+        <div>
           <Card>
             <CardHeader
               title={recipe.title}
@@ -52,41 +59,26 @@ export default function RecipeCard(props) {
             </Grid>
           </Card>
           <Typography>{recipe.prep_time}</Typography>
-          
-          {recipePairs.map((pair, idx) => {
-            if (!pair[1]) {
-              return;
-            
-            } else if (pair[1]) {
 
-              console.log('PAIR => ', pair[1]);
-              
-              let ingredient;
-              if (pair[0].includes("ingredient")) {
-                ingredient = pair[1];
-              }
-              let measurement;
-              if (pair[0].includes("measurement")) {
-                measurement = pair[1];
-              }
-
-              return (
-              <Grid container  spacing={0} key={idx} >
-
-                  <Grid item xs={6}>
-                  <Paper>{ingredient}</Paper>
-                </Grid>
-
-                <Grid  item xs={6}>
-                  <Paper>{measurement}</Paper>
-                </Grid>
-           
-              </Grid>
-              )
+          {validRecipePairs.map((pair, idx) => {
+            console.log('validRecipePairs', validRecipePairs)
+            let ingredient
+            if (pair[0].includes('ingredient')) {
+               ingredient = pair[1]
             }
-          })}
+            let measurement
+            if (pair[0].includes('measurement')) {
+              measurement = pair[1]
+            }
+              return (
 
-        </Container>
+                  <Grid item xs={6} key={idx}>
+                    {ingredient}
+                  </Grid>
+              );
+              }  
+          )}
+        </div>
       );
     }
   });
@@ -94,8 +86,28 @@ export default function RecipeCard(props) {
   return <Container>{findRecipe}</Container>;
 }
 
-
-
+// return (
+//   <Container>
+//     <Card>
+//       <CardHeader
+//         title={recipe.title}
+//         avatar={
+//           <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+//             R
+//           </Avatar>
+//         }
+//       />
+//       <Grid alignItems="center">
+//         <CardMedia
+//           component="img"
+//           sx={{ maxWidth: 600 }}
+//           height="300"
+//           image={recipe.image_url}
+//           alt={recipe.title}
+//         />
+//       </Grid>
+//     </Card>
+//     <Typography>{recipe.prep_time}</Typography>
 
 // <Grid item xs={6}>
 // {recipe.ingredient_1} {recipe.measurement_1}
