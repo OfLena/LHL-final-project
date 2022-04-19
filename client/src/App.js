@@ -96,7 +96,8 @@ function App() {
         />
         <div>
           <Routes>
-            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user} currentPage={currentPage} setCurrentPage={setCurrentPage} />}/>
+            <Route path="/" element={<Home recipes={state.filtered_recipes} user={state.user} currentPage={currentPage} setCurrentPage={setCurrentPage} favs={state.favs} setState={setState}
+               state={state}/>}/>
             {/* <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/> */}
             <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
             <Route path="/recipes"

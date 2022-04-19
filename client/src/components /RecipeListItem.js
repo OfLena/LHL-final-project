@@ -1,19 +1,3 @@
-// import React from 'react';
-
-// import "./styles/recipe.scss";
-
-// export default function RecipeListItem (props) {
-
-//   const { title, image_url, prep_time }  = props
-
-//   return (
-//     <div>
-//       <div>{title}</div>
-//       <div><img class="recipe-img" src={image_url} alt={title} /></div>
-//       <div>{prep_time}</div>
-//     </div>
-//   )
-// }
 
 import * as React from "react";
 import { styled } from "@mui/material/styles";
@@ -55,7 +39,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
 
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color, state, setState} = props;
   
   const [expanded, setExpanded] = React.useState(false);
 
@@ -80,14 +64,24 @@ export default function RecipeListItem(props) {
   const [favourite, setFavourite] = useState({});
   const [heart, setHeart] = useState('grey0');
 
-  // Have red color persist on refresh
-  // useEffect(() => {
-  //   setHeart(JSON.parse(window.localStorage.getItem('heart')))
-  // }, [])
 
-  // useEffect(() => {
-  //   window.localStorage.getItem('heart', heart)
-  // }, [heart])
+
+  useEffect(() => { 
+    console.log(recipe_id);
+    
+    const grey = JSON.parse(localStorage.getItem('grey0'))
+    const error = JSON.parse(localStorage.getItem('error'))
+    if (grey) {
+      setHeart(grey);
+    } 
+    if (error) {
+      setHeart(error)
+    }
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(recipe_id, heart);
+  }, [heart]);
 
   function handleOnClick () {
     // if heart is grey, send post request to insert fav and set heart to red
@@ -130,7 +124,7 @@ export default function RecipeListItem(props) {
     }
   }
 
-  console.log(heart)
+  // console.log(heart)
   
   function sendRecipeID () {
     setCurrentPage(recipe_id)
@@ -166,7 +160,7 @@ export default function RecipeListItem(props) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon 
               onClick={handleOnClick} 
-              color={heart === 'grey0' ? 'grey0': 'error'}
+              color={heart}
             />
           </IconButton>
           <IconButton aria-label="share">

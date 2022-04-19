@@ -5,11 +5,13 @@ import Footer from "./Footer";
 
 export default function Home(props) {
 
-  const {user, currentPage, setCurrentPage} = props;
+  const {user, currentPage, setCurrentPage, favs, state, setState} = props;
 
   const recipes = props.recipes.map(recipe => {
     return (
       <RecipeListItem
+      setState={setState}
+      state={state}
       currentPage={currentPage}
       setCurrentPage={setCurrentPage}
       key={recipe.id}
