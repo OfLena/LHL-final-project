@@ -3,7 +3,7 @@ const router = require('express').Router();
 module.exports = (db) => {
   // all routes will go here 
   router.get('/', (req, res) => {
-    const favs = `SELECT users.id AS favs_user_id, recipes.id AS recipe_id, recipes.title AS title
+    const favs = `SELECT users.id AS favs_user_id, recipes.id AS recipe_id, recipes.title AS title, recipes.image_url, users.user_name
     FROM recipes 
     JOIN favs ON recipes.id = favs.recipe_id 
     JOIN users ON users.id = favs.user_id 

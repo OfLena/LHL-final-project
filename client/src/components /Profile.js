@@ -14,12 +14,10 @@ import {
 import Footer from "./Footer";
 
 export default function Profile(props) {
-  const { user, userRecipes, favs } = props;
+  const { user, userRecipes, favs, state, setState, user_name } = props;
   const [showFavs, setShowFavs] = useState("");
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
-
-  
 
   useEffect(() => {
     if (showFavs) {
@@ -28,6 +26,7 @@ export default function Profile(props) {
       getUserRecipes();
     }
   }, [search]);
+
 
   function getFavRecipes() {
     setShowUserRecipes("");
@@ -51,7 +50,9 @@ export default function Profile(props) {
     }
   });
 
-  let filteredSearchForFavRecipes = favs.filter((val) => {
+  console.log("STATE.FAV", state.favs)
+
+  let filteredSearchForFavRecipes = state.favs.filter((val) => {
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
@@ -59,13 +60,13 @@ export default function Profile(props) {
     }
   });
 
-  // console.log("FAVS", favs)
-
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
     return (
       <RecipeListItem
         key={recipe.id}
+        state={state}
         title={recipe.title}
+        user_name={user.user_name}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
         instruction_1={recipe.instruction_1}
@@ -83,7 +84,9 @@ export default function Profile(props) {
     return (
       <RecipeListItem
         key={recipe.id}
+        state={state}
         title={recipe.title}
+        user_name={user.user_name}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
         instruction_1={recipe.instruction_1}

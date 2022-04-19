@@ -106,7 +106,15 @@ function App() {
                  />}
              />
             {/* <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/> */}
-            <Route path="/profile" element={<Profile user={state.user} userRecipes={state.user_recipes} favs={state.favs}/>}/>
+            <Route path="/profile" 
+            element={<Profile 
+              user={state.user} 
+              userRecipes={state.user_recipes} 
+              // favs={state.favs}
+              state={state}
+              setState={setState}
+              />}
+            />
             <Route path="/recipes"
              element={<RecipeCard
             recipes={state.recipes}
