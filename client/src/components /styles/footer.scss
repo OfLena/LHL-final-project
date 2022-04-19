@@ -4,9 +4,9 @@
 footer { 
     margin-top: 1.5rem;
     width: 100%;
-    background-color: #063970;
+    background-color: #CCA01D;
     box-sizing: border-box;
-    color:#d9d9d9;
+    color:#000000;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -44,7 +44,7 @@ footer {
     content: '';
     height: 2px;
     width: 15%;
-    background-color: #9c27b0;
+    background-color: #000000;
     top: -10px;
 }
 
@@ -70,7 +70,7 @@ footer {
 
 
 .left .content .social a span:hover{
-    background: #9c27b0;
+    background: #000000;
 }
 
 .center .content .fas{
@@ -87,8 +87,8 @@ footer {
 }
 
 .center .content .fas:hover{
-    background: #9c27b0;
-    border:1px solid #9c27b0;
+    background: #000000;
+    border:1px solid #000000;
 }
 
 .center .content .text{
@@ -127,7 +127,7 @@ footer {
     width: 100%;
     border:none;
     outline: none;
-    background: #9c27b0;
+    background: #000000;
     font-size: 1.0625rem;
     font-weight: 500;
     cursor: pointer;

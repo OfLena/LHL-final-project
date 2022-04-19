@@ -36,18 +36,18 @@ export default function RecipeCard(props) {
         <Box key={index}
           marginTop={"8rem"}
           marginBottom={"8rem"}
-          sx={{ p: 2, border: "1px dashed grey", backgroundColor: "pink" }}
+          sx={{ p: 2, border: "1px dashed grey", backgroundColor: "#CCA01D" }}
         >
-          <Card sx={{ paddingBottom: "2rem" }}>
+          <Card sx={{ paddingBottom: "2rem", bgcolor: "beige" }}>
             <CardHeader
               title={filteredRecipes.title}
               avatar={
-                <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                <Avatar sx={{ bgcolor: 'black' }} aria-label="recipe">
                   R
                 </Avatar>
               }
             />
-            <div style={{ display: "flex", justifyContent: "center" }}>
+            <div className="top-card"style={{ display: "flex", justifyContent: "center", }}>
               <CardMedia
                 component="img"
                 sx={{ maxWidth: 600 }}
@@ -58,8 +58,8 @@ export default function RecipeCard(props) {
             </div>
           </Card>
 
-          <Typography>Prep Time {filteredRecipes.prep_time}</Typography>
-          <Typography>Serves {filteredRecipes.serving_size}</Typography>
+          <Typography variant='h5'>Prep Time {filteredRecipes.prep_time}</Typography>
+          <Typography variant='h6' >Serves {filteredRecipes.serving_size}</Typography>
           
           <div className="map-container">
           <div>

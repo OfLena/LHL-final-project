@@ -22,6 +22,7 @@ export default function Home(props) {
       recipe_id={recipe.id}
       title={recipe.title}
       user_id={user.id}
+      user_name={user.user_name}
       image_url={recipe.image_url}
       prep_time={recipe.prep_time}
       serving_size={recipe.serving_size}
