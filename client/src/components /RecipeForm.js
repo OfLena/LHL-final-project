@@ -1,6 +1,7 @@
 import "./styles/recipeform.scss";
 
 import React, { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
@@ -14,6 +15,20 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 import Footer from "./Footer";
 
 
+const theme = createTheme({
+  palette: {
+    yellow: {
+      main: '#CCA01D',
+      contrastText: '##000000',
+    },
+    black: {
+      main: '#000000',
+      contrastText: '#CCA01D',
+    },
+  },
+});
+
+
 
 
 export default function RecipeForm(props) {
@@ -23,6 +38,8 @@ export default function RecipeForm(props) {
   const { user, recipes, setState, state } = props
   
   
+
+
   let navigate = useNavigate();
  
   console.log(state)
@@ -272,28 +289,33 @@ export default function RecipeForm(props) {
           
 
           </Grid>
-
+        
           <Grid item xs={6}>
-          <Button
-            startIcon={<AddCircleTwoToneIcon/>}
-            variant="contained"
-            disabled={ingredientRows.length >= 20}
-            onClick={handleIngredientAddRow}
-            className="btn btn-default pull-left"
-          >
-            Add
-          </Button>
+          <ThemeProvider theme={theme}>
+            <Button
+              startIcon={<AddCircleTwoToneIcon/>}
+              variant="outlined"
+              color="yellow"
+              disabled={ingredientRows.length >= 20}
+              onClick={handleIngredientAddRow}
+              className="btn btn-default pull-left"
+            >
+              Add
+            </Button>
+          </ThemeProvider>
         
           
+          <ThemeProvider theme={theme}>
           <Button
             startIcon={<DeleteIconTwoTone />}
-            color="error"
-            variant="contained"
+            color="black"
+            variant="outlined"
             onClick={handleIngredientRemoveRow}
             className="pull-right btn btn-default"
-          >
+            >
             Delete
           </Button>
+            </ThemeProvider>
           </Grid>
               {instructionRows.map((item, idx) => (
                 <Grid item container spacing={0} id="Step" key={idx}>
@@ -315,24 +337,30 @@ export default function RecipeForm(props) {
                 </Grid>
               ))}
           <Grid item xs={6}>
-          <Button
-            startIcon={<AddCircleTwoToneIcon/>}
-            variant="contained"
-            disabled={instructionRows.length >= 5}
-            onClick={handleInstructionAddRow}
+            <ThemeProvider theme={theme}>
+            <Button
             
-          >
-            Add
-          </Button>
-          <Button
-            startIcon={<DeleteIconTwoTone />}
-            color="error"
-            variant="contained"
-            onClick={handleInstructionRemoveRow}
+              startIcon={<AddCircleTwoToneIcon/>}
+              variant="outlined"
+              color='yellow'
+              disabled={instructionRows.length >= 5}
+              onClick={handleInstructionAddRow}
+              
+            >
+              Add
+            </Button>
+          </ThemeProvider>
+          <ThemeProvider theme={theme}>
+            <Button
+              startIcon={<DeleteIconTwoTone />}
+              color="black"
+              variant="outlined"
+              onClick={handleInstructionRemoveRow}
 
-          >
-            Delete
-          </Button>
+            >
+              Delete
+            </Button>
+          </ThemeProvider>
           </Grid>
     
     
@@ -340,76 +368,110 @@ export default function RecipeForm(props) {
           
           <Paper elevation={3}>
            <span className="tags">
+           
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox  sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Vegan"
                 labelPlacement="top"
                 type="checkbox"
                 value="vegan"
                 name="tag"
-                onChange={handleCheckboxChange}
-              />
+               
               
+                
+                onChange={handleCheckboxChange}
+                />
+                
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Gluten Free"
                 labelPlacement="top"
                 value="gluten_free"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
-              />
+                />
 
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Dairy-Free"
                 labelPlacement="top"
                 type="checkbox"
                 value="dairy_free"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
               />
           
               <FormControlLabel
-                control= {<Checkbox  />}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}} />}
                 label="Vegetarian"
                 labelPlacement="top"
                 type="checkbox"
                 value="vegetarian"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
               />
               
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Keto"
                 labelPlacement="top"
                 type="checkbox"
                 value="keto"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
               />
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Breakfast"
                 labelPlacement="top"
                 type="checkbox"
                 value="breakfast"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
               />
           
               <FormControlLabel
-                control= {<Checkbox  />}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}} />}
                 label="Lunch"
                 labelPlacement="top"
                 type="checkbox"
                 value="lunch"
                 name="tag"
+                color="yellow"
                 onChange={handleCheckboxChange}
               />
               
               <FormControlLabel
-                control= {<Checkbox/>}
+                control= {<Checkbox sx={{
+                  '&.Mui-checked': {
+                    color: '#CCA01D',
+                  }}}/>}
                 label="Dinner"
                 labelPlacement="top"
                 type="checkbox"
@@ -424,17 +486,17 @@ export default function RecipeForm(props) {
           <br />
 
           
-
+          <ThemeProvider theme={theme}>
           <Button
             type="button"
             variant="contained"
-            color="success"
+            color="black"
             className="btn btn-default pull-left"
             onClick={postRecipeAndTags}
           >
             Post your Recipe
           </Button>
-         
+         </ThemeProvider>
         </form>
       </Container>
       <Footer/>
