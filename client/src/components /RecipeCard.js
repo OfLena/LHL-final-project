@@ -61,26 +61,19 @@ export default function RecipeCard(props) {
 
           {validRecipePairs.map((pair, idx) => {
             console.log("validRecipePairs", validRecipePairs);
-            // let ingredient;
-            // if (pair[0].includes("ingredient")) {
-            //   ingredient = pair[1];
-            // }
-            // let measurement;
-            // if (pair[0].includes("measurement")) {
-            //   measurement = pair[1];
-            // }
-            // let instruction;
-            // if (pair[0].includes("instruction")) {
-            //   instruction = pair[1];
-            // }
+            let ingredient;
+            if (pair[0].includes("ingredient")) {
+              ingredient = pair[1];
+            }
             return (
-              <Grid container key={idx}>
-                <Grid item xs={6}>
-                  <Paper>{pair[1]}</Paper>
-                </Grid>
+              
+              <Grid item xs={6} key={idx}>
+                <Paper>{ingredient}</Paper>
               </Grid>
+              
             );
           })}
+          
         </div>
       );
     }
