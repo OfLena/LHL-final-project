@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
   
-  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, color, state, setState} = props;
+  const { title, image_url, prep_time, link, serving_size, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, recipe_id, user_id, currentPage, setCurrentPage, state, setState} = props;
   
   
   
@@ -56,30 +56,26 @@ export default function RecipeListItem(props) {
   /* HELPERS FOR FAVOURITING FEATURE */
 
 
-  // if  current user_id == favs_user_id
+ 
+  const setHeartByFavState = function () {
 
-  // setHeart to error
+    const favsArr = state.favs
+    const favourited = favsArr.map((fav) => (
 
-  // else grey
+        fav.favs_user_id === user_id  && recipe_id === fav.recipe_id) ? setFavourite(true) : setFavourite(false))
 
+    }
 
-  // console.log('FAVS =======> ',  state.favs)
-
-
+  // console.log('HERE===>',setHeartByFavState())
 
 
   const removeFav = function () {
     const newFavsARR = state.favs
 
-    console.log('ARR STATE', newFavsARR)
-
     const removeFavRecipe = newFavsARR.filter((fav) => (
-      Number(fav.recipe_id) !== recipe_id ? fav : null))
+     Number(fav.recipe_id) !== recipe_id ? fav : null))
 
-    // const removeFavRecipe = newFavsARR.filter((fav) => (console.log(typeof fav.recipe_id)))
-
-    console.log("REMOVE", removeFavRecipe)
-        
+  return removeFavRecipe
 
   }
 
@@ -104,7 +100,6 @@ export default function RecipeListItem(props) {
           [`recipe_id`]: `${recipe_id}`,
           [`user_id`]: `${user_id}`,
           [`title`]: `${title}`
-         
         }]}))
       })
       .catch((err) => {
@@ -120,9 +115,8 @@ export default function RecipeListItem(props) {
             [`recipe_id`]: `${recipe_id}`,
             [`user_id`]: `${user_id}`
           })
-        ]).then((all) => {
-          removeFav()
-         
+        ]).then(() => {
+          setState((prev) => ({...prev, favs: removeFav()}))
         })
         .catch((err) => {
           console.log("ERR", err);
@@ -165,7 +159,7 @@ export default function RecipeListItem(props) {
           <IconButton aria-label="add to favorites">
             <FavoriteIcon 
               onClick={handleOnClick} 
-              color={heart}
+              // color={setHeartByFavState()}
             />
           </IconButton>
           <IconButton aria-label="share">
