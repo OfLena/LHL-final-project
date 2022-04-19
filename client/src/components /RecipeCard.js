@@ -26,15 +26,14 @@ export default function RecipeCard(props) {
   const { recipes, currentPage, setCurrentPage } = props;
 
   const findRecipe = recipes.map((recipe) => {
-    
     // const recipePairs = Object.entries(recipe);
     // console.log('recipes pairs--->', recipePairs)
 
-    const recipePairs = Object.fromEntries(Object.entries(recipe).filter(([_, v]) => v != null));
+    const recipePairs = Object.fromEntries(
+      Object.entries(recipe).filter(([_, v]) => v != null)
+    );
 
-    const validRecipePairs = Object.entries(recipePairs)
-
-
+    const validRecipePairs = Object.entries(recipePairs);
 
     if (recipe.id === currentPage) {
       return (
@@ -61,23 +60,27 @@ export default function RecipeCard(props) {
           <Typography>{recipe.prep_time}</Typography>
 
           {validRecipePairs.map((pair, idx) => {
-            console.log('validRecipePairs', validRecipePairs)
-            let ingredient
-            if (pair[0].includes('ingredient')) {
-               ingredient = pair[1]
-            }
-            let measurement
-            if (pair[0].includes('measurement')) {
-              measurement = pair[1]
-            }
-              return (
-
-                  <Grid item xs={6} key={idx}>
-                    {ingredient}
-                  </Grid>
-              );
-              }  
-          )}
+            console.log("validRecipePairs", validRecipePairs);
+            // let ingredient;
+            // if (pair[0].includes("ingredient")) {
+            //   ingredient = pair[1];
+            // }
+            // let measurement;
+            // if (pair[0].includes("measurement")) {
+            //   measurement = pair[1];
+            // }
+            // let instruction;
+            // if (pair[0].includes("instruction")) {
+            //   instruction = pair[1];
+            // }
+            return (
+              <Grid container key={idx}>
+                <Grid item xs={6}>
+                  <Paper>{pair[1]}</Paper>
+                </Grid>
+              </Grid>
+            );
+          })}
         </div>
       );
     }
