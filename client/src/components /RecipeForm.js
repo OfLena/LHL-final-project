@@ -238,7 +238,7 @@ export default function RecipeForm(props) {
             <Grid item xs={6}> 
                 <TextField
                 
-                fullWidth
+                  fullWidth
                   InputProps={{
                     startAdornment: <InputAdornment position="start"> <DinnerDiningIcon/> </InputAdornment>,
                   }}

@@ -67,7 +67,7 @@ export default function RecipeListItem(props) {
 
 
   useEffect(() => { 
-    console.log(recipe_id);
+    // console.log(recipe_id);
     
     const grey = JSON.parse(localStorage.getItem('grey0'))
     const error = JSON.parse(localStorage.getItem('error'))
