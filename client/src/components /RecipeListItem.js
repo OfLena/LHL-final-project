@@ -45,8 +45,6 @@ export default function RecipeListItem(props) {
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
 
-
-
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
