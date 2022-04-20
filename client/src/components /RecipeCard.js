@@ -26,7 +26,10 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import Footer from "./Footer";
 
 export default function RecipeCard(props) {
+
   const { recipes, currentPage, setCurrentPage } = props;
+
+    console.log('CURRENT RECIPE_ID==> ', currentPage)
 
   // Map Over All Recipes in Database
   const findRecipe = recipes.map((recipe, index) => {
@@ -70,42 +73,11 @@ export default function RecipeCard(props) {
               />
             </div>
             <div>
-              {/* {recipePairs.map((value, index) => {
-                    let test = ['vegan', 'vegetarian', 'breakfast', 'lunch', 'dinner']
-                    let tag;
-                    test.forEach((element) => {
-                      if (value[0] === element) {
-                        tag = element;
-                        console.log('TAG--->', typeof tag)
-                        console.log('ELEMENT--->', element)
-                        console.log('VALUE --->', value[0])
-                 
-                      
-                      return   (            
-                      <FormControlLabel
-                        control= {<Checkbox sx={{
-                        '&.Mui-checked': {
-                          color: '#CCA01D',
-                        }}}
-                        defaultChecked
-                        />}
-                        
-                        label={`${tag}`}
-                        labelPlacement="top"
-                        value={`${tag}`}
-                        name="tag"
-                        color="yellow"
-                      />
-                      )
-                    }
-                  })
-                      
-                    }
-                )} */}
               {recipePairs.map((value, index) => {
-                let vegan;
-                if (value[0].includes("vegan")) {
-                  vegan = "Vegan";
+                let test = ['vegan', 'vegetarian', 'keto', 'breakfast', 'lunch', 'dinner']
+                let val;
+                if (test.includes(value[0])) {
+                  val = value[0];
                   return (
                     <FormControlLabel
                       control={
@@ -118,9 +90,9 @@ export default function RecipeCard(props) {
                           defaultChecked
                         />
                       }
-                      label={vegan}
+                      label={val}
                       labelPlacement="top"
-                      value={vegan}
+                      value={val}
                       name="tag"
                       color="yellow"
                     />
@@ -128,6 +100,7 @@ export default function RecipeCard(props) {
                 }
               })}
             </div>
+           
           </Card>
           <Card
             sx={{

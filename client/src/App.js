@@ -53,15 +53,9 @@ function App() {
     favs: []
   });
 
-
-
+  const [currentPage, setCurrentPage] = useState('')
   const [search, setSearch] = useState('')
 
-  const [currentPage, setCurrentPage] = useState('')
-  
-  // console.log('CURRENT PAGE', currentPage)
-
-  // console.log('state app',  state);
 
   const filterRecipes = function() {
 
