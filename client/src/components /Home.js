@@ -9,8 +9,6 @@ export default function Home(props) {
 
   const {user, currentPage, setCurrentPage, state, setState} = props;
 
-  
-
   const recipes = props.recipes.map(recipe => {
     return (
       <RecipeListItem
