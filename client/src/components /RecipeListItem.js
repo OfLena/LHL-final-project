@@ -18,6 +18,7 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 import Popover from "@mui/material/Popover";
 import { Button, ButtonGroup } from "@mui/material";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import { Grid } from "@mui/material";
 
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -151,7 +152,7 @@ export default function RecipeListItem(props) {
   console.log("AFTER", state.filtered_recipes)
 
   return (
-
+<Grid item xs={12} md={6} lg={4}>
     <div className="recipe-card">
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
@@ -251,5 +252,6 @@ export default function RecipeListItem(props) {
         </Collapse>
       </Card>
     </div>
+    </Grid>
   );
 }
