@@ -117,7 +117,7 @@ function App() {
             />
             <Route path="/recipes"
              element={<RecipeCard
-            recipes={state.recipes}
+            recipes={state.filtered_recipes}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
             />}/>
