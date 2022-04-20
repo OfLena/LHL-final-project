@@ -132,6 +132,7 @@ export default function RecipeForm(props) {
   // ==================AXIOS CALLS =================//
 
   function postRecipeAndTags() {
+
     recipe.id = uuidv4()
     Promise.all([
       axios.post("/recipes", recipe),
@@ -145,6 +146,22 @@ export default function RecipeForm(props) {
       });
   }
 
+
+  const postButton = function () {
+    return (
+      <Button
+              type="button"
+              variant="contained"
+              color="black"
+              className="btn btn-default pull-left"
+              onClick={postRecipeAndTags}
+            >
+              Post your Recipe
+            </Button>
+    )
+  } 
+
+
   return (
 
     <Box
@@ -157,14 +174,16 @@ export default function RecipeForm(props) {
 
 
       <Container>
-
-            <div class="m-intro">
-        <div class="e-text">
-          <h1>
-            Share Your Recipe
-          </h1>
-        </div>
-      </div>
+        <header className="burg-header">
+          <div class="m-intro">
+            <div class="e-text">
+              <h1>
+                Share Your Recipe
+              </h1>
+            </div>
+          </div>
+        </header>
+        
         
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off"
         >
@@ -490,15 +509,7 @@ export default function RecipeForm(props) {
 
           
           
-          <Button
-            type="button"
-            variant="contained"
-            color="black"
-            className="btn btn-default pull-left"
-            onClick={postRecipeAndTags}
-          >
-            Post your Recipe
-          </Button>
+          {!recipe.title ? null : postButton()}
          
         </form>
       </Container>
