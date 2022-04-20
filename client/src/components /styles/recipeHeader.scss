@@ -59,7 +59,6 @@ text-align:center;
 display: flex;
 align-items: center;
 justify-content: center;
-height: 100%;
 overflow:hidden;
 position:relative;
 
@@ -79,7 +78,9 @@ position:relative;
   @include animation('rotate 190s infinite linear');
 }
 
-
+.burg-header {
+  border: 45px solid black;
+}
 
 .e-text{
   flex-wrap: wrap;
@@ -87,7 +88,7 @@ position:relative;
   position:relative;
   z-index:100;
   border-radius: 34px;
-  background-color: #000000;
+  background-color: #ffffff;
   opacity: 95%;
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -95,7 +96,7 @@ position:relative;
 
 
   h1{
-    color:#000000; 
+   
     text-transform: uppercase;
     font-size:30px;
     line-height:100px;
@@ -105,7 +106,7 @@ position:relative;
     position:relative;
     
     @supports(-webkit-background-clip: text){
-      background: radial-gradient(ellipse at center, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%);
+      background: radial-gradient(ellipse at center, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }

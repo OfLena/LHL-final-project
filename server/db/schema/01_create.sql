@@ -23,7 +23,7 @@ CREATE TABLE recipes (
   user_id integer REFERENCES users(id) ON DELETE CASCADE,
   prep_time VARCHAR(225), 
   serving_size VARCHAR(225), 
-  image_url VARCHAR(225) NOT NULL, 
+  image_url VARCHAR(225), 
   title VARCHAR(225) NOT NULL,
   instruction_1 VARCHAR(225) DEFAULT NULL,
   instruction_2 VARCHAR(225) DEFAULT NULL,
