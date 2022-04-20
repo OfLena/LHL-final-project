@@ -140,10 +140,10 @@ function App() {
             />
             <Route path="/recipes"
              element={<RecipeCard
-              recipes={state.recipes}
-              currentPage={currentPage}
-              setCurrentPage={setCurrentPage}
-              />}/>
+            recipes={state.filtered_recipes}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+            />}/>
 
             <Route path="/recipe_form" 
              element={<RecipeForm 
