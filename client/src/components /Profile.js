@@ -14,7 +14,7 @@ import {
 import Footer from "./Footer";
 
 export default function Profile(props) {
-  const { user, state } = props;
+  const { user, state, recipe_id } = props;
   const [showFavs, setShowFavs] = useState("");
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
@@ -68,6 +68,8 @@ export default function Profile(props) {
     return (
       <RecipeListItem
         key={recipe.id}
+        recipe_id={recipe.id}
+        user_id={user.id}
         state={state}
         title={recipe.title}
         user_name={user.user_name}
@@ -80,7 +82,7 @@ export default function Profile(props) {
         instruction_5={recipe.instruction_5}
         link={recipe.link}
         serving_size={recipe.serving_size}
-        editable
+        forProfileUser
       />
     );
   });

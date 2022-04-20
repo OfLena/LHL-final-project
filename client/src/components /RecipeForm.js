@@ -158,10 +158,9 @@ export default function RecipeForm(props) {
 
             <div class="m-intro">
         <div class="e-text">
-          <h1>Share Your Recipe</h1>
-          <p class="preamble">
-            Lets Eat!
-          </p>
+          <h1>
+            Share Your Recipe
+          </h1>
         </div>
       </div>
         
@@ -258,6 +257,7 @@ export default function RecipeForm(props) {
                   }}
                   type="text"
                   name="ingredient"
+                  placeholder={`Ingredient ${idx+1}`}
                   value={ingredientRows[idx].ingredient}
                   onChange={handleIngredientRowChange(idx)}
                   className="form-control"
@@ -274,7 +274,7 @@ export default function RecipeForm(props) {
               }}
                 type="text"
                 name="measurement"
-                placeholder="Measurement"
+                placeholder={`Measurement ${idx+1}`}
                 value={ingredientRows[idx].measurement}
                 onChange={handleIngredientRowChange(idx)}
                 className="form-control"
@@ -359,7 +359,7 @@ export default function RecipeForm(props) {
           </Grid>
     
     
-          <h1>Tags</h1>
+          <h2>Tags</h2>
           
           <Paper elevation={3}>
            <span className="tags">
