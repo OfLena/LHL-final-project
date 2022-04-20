@@ -40,7 +40,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
   
-  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name, forProfileUser} = props;
+  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name, forProfileUser, alwaysRed} = props;
 
    // add editable in props
   
@@ -100,6 +100,8 @@ export default function RecipeListItem(props) {
       //axios post to delete
       setFavourite(false)
       return Promise.all([
+        console.log('USERID', user_id),
+        console.log("RECIPE ID", recipe_id),
         axios.post("/favs/delete", {
             [`recipe_id`]: `${recipe_id}`,
             [`user_id`]: `${user_id}`
@@ -121,21 +123,19 @@ export default function RecipeListItem(props) {
   const removeRecipe = function () {
     const newRecipeARR = state.filtered_recipes
 
-    console.log("1", newRecipeARR)
+    // console.log("1", newRecipeARR)
 
     const removeRecipeArr = newRecipeARR.filter((recipe) => (
      (recipe.id) !== recipe_id && (recipe.user_id) !== user_id ? recipe : null))
 
-    console.log("2", removeRecipeArr)
+    // console.log("2", removeRecipeArr)
     return removeRecipeArr
   }
 
-  // console.log("2", state.filtered_recipes)
-
   // onclick for delete button
   function handleClickDelete () {
-    console.log("RECIPE ID", recipe_id)
-    console.log("USER ID", user_id)
+    // console.log("RECIPE ID", recipe_id)
+    // console.log("USER ID", user_id)
 
     return Promise.all([
       axios.post("/recipes/delete", {
@@ -182,7 +182,7 @@ export default function RecipeListItem(props) {
             : 
               <FavoriteIcon 
                 onClick={handleOnClick} 
-                color={favourite === true ? 'error' : 'grey0'}
+                color={favourite === true ? 'error' : 'grey0' && alwaysRed ? 'error' : 'grey0'}
               />
             }
           </IconButton>

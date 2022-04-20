@@ -48,12 +48,13 @@ export default function Profile(props) {
     (val) => {
       if (val.user_id === user.id ) {
       console.log("INSIDE USERFILTER" , val)
-      console.log('CUURENT USER', user.id)
+      // console.log('CUURENT USER', user.id)
       return val;
     }
   })
 
   let filteredSearchForUserRecipes = userFilteredRecipes.filter((val) => {
+    console.log("INSIDE FILTEREDSEARCHUSER", val)
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
@@ -61,13 +62,16 @@ export default function Profile(props) {
     }
   });
 
-  let filteredSearchForFavRecipes = state.favs.filter((val) => {
+  let filteredSearchForFavRecipes = state.favs.filter((val) => 
+  {
+    console.log("VAL ---->", val)
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
       return val;
     }
   });
+
 
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
 
@@ -95,11 +99,15 @@ export default function Profile(props) {
   });
 
   const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
+    console.log("FAV RECIPE INSIDE USERFAVRECIPE ===>", recipe)
     return (
       <RecipeListItem
         key={recipe.id}
         state={state}
+        setState={setState}
         title={recipe.title}
+        user_id={user.id}
+        recipe_id={recipe.recipe_id}
         user_name={user.user_name}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
@@ -110,6 +118,7 @@ export default function Profile(props) {
         instruction_5={recipe.instruction_5}
         link={recipe.link}
         serving_size={recipe.serving_size}
+        alwaysRed
       />
     );
   });
