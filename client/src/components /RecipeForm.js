@@ -33,7 +33,7 @@ export default function RecipeForm(props) {
 
   let navigate = useNavigate();
  
-  console.log(state)
+  // console.log(state)
 
   // =========== STATES ========== //
   const [recipe, setRecipe] = useState({user_id: user.id});

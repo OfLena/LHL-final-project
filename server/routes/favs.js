@@ -18,10 +18,6 @@ module.exports = (db) => {
     const favKey = Object.keys(req.body)
     const favValue = Object.values(req.body)
     const insertFav = `INSERT INTO favs (${favKey}) VALUES (${favValue})`
-    // console.log("IN POST ROUTE", req.body)
-    // console.log("KEYS", favKey)
-    // console.log("VALUES", favValue)
-    // console.log("insertFav", insertFav)
 
     db.query(insertFav).then(data => {
       res.json(data.rows);
@@ -31,10 +27,6 @@ module.exports = (db) => {
   router.post('/delete', (req, res) => {
     const favValue = Object.values(req.body)
     const deleteFav = `DELETE FROM favs WHERE recipe_id = (${favValue[0]}) AND user_id = (${favValue[1]})`
-    // console.log("IN POST ROUTE", req.body)
-    // console.log("KEYS", favKey)
-    // console.log("VALUES", favValue)
-    // console.log("insertFav", insertFav)
 
     db.query(deleteFav).then(data => {
       res.json(data.rows);

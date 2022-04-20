@@ -14,7 +14,7 @@ import {
 import Footer from "./Footer";
 
 export default function Profile(props) {
-  const { user, state, recipe_id } = props;
+  const { user, state, setState } = props;
   const [showFavs, setShowFavs] = useState("");
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
@@ -71,6 +71,7 @@ export default function Profile(props) {
         recipe_id={recipe.id}
         user_id={user.id}
         state={state}
+        setState={setState}
         title={recipe.title}
         user_name={user.user_name}
         image_url={recipe.image_url}
