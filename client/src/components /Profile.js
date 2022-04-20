@@ -110,6 +110,7 @@ export default function Profile(props) {
         instruction_5={recipe.instruction_5}
         link={recipe.link}
         serving_size={recipe.serving_size}
+        alwaysRed
       />
     );
   });
