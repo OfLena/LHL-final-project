@@ -19,7 +19,7 @@ export default function Profile(props) {
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
 
-  // console.log('PROFILE PAGE', state.filtered_recipes)
+  console.log('PROFILE PAGE', state.filtered_recipes)
 
   useEffect(() => {
     if (showFavs) {
@@ -47,13 +47,14 @@ export default function Profile(props) {
   const userFilteredRecipes = state.filtered_recipes.filter(
     (val) => {
       if (val.user_id === user.id ) {
-      // console.log("INSIDE USERFILTER" , val)
+      console.log("INSIDE USERFILTER" , val)
       // console.log('CUURENT USER', user.id)
       return val;
     }
   })
 
   let filteredSearchForUserRecipes = userFilteredRecipes.filter((val) => {
+    console.log("INSIDE FILTEREDSEARCHUSER", val)
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
