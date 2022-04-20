@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import React, {useState, useEffect} from 'react';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import axios from 'axios'
 
 
@@ -20,6 +21,26 @@ import RecipeForm from './components /RecipeForm';
 import Home from './components /Home';
 import Login from './components /Login';
 import RecipeCard from './components /RecipeCard';
+
+
+
+const theme = createTheme({
+  palette: {
+
+    primary:{
+      main: '#000000',
+    
+    },
+    yellow: {
+      main: '#CCA01D',
+      contrastText: '##000000',
+    },
+    black: {
+      main: '#000000',
+      contrastText: '#CCA01D',
+    },
+  },
+});
 
 
 function App() {
@@ -86,6 +107,8 @@ function App() {
 
   return (
     <div className="App">
+      <ThemeProvider theme={theme}>
+
       <Router>
         <Nav
         search={search}
@@ -117,10 +140,10 @@ function App() {
             />
             <Route path="/recipes"
              element={<RecipeCard
-            recipes={state.recipes}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            />}/>
+              recipes={state.recipes}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              />}/>
 
             <Route path="/recipe_form" 
              element={<RecipeForm 
@@ -136,6 +159,7 @@ function App() {
         </div>
       {/* <Footer/> */}
       </Router>
+              </ThemeProvider>
     </div>
   );
 }

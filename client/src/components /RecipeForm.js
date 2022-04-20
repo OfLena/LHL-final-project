@@ -1,4 +1,5 @@
 import "./styles/recipeform.scss";
+import "./styles/recipeHeader.scss";
 
 import React, { useState, useEffect } from "react";
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -12,21 +13,10 @@ import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
+
+
 import Footer from "./Footer";
 
-
-const theme = createTheme({
-  palette: {
-    yellow: {
-      main: '#CCA01D',
-      contrastText: '##000000',
-    },
-    black: {
-      main: '#000000',
-      contrastText: '#CCA01D',
-    },
-  },
-});
 
 
 
@@ -165,15 +155,22 @@ export default function RecipeForm(props) {
 
 
       <Container>
+
+            <div class="m-intro">
+        <div class="e-text">
+          <h1>Share Your Recipe</h1>
+          <p class="preamble">
+            Lets Eat!
+          </p>
+        </div>
+      </div>
         
         <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
-          <Typography>
-            Create Recipe
-          </Typography>
+      
+         
           <Grid container spacing={0}>
             <Grid item xs={12} sm={6}>
               
-                {/* <InputLabel>Title</InputLabel> */}
                 <TextField
                   fullWidth
                   required
@@ -190,7 +187,7 @@ export default function RecipeForm(props) {
 
             <Grid item xs={12} sm={6}>
               
-                {/* <InputLabel>Image</InputLabel> */}
+               
                 <TextField
                   fullWidth
                   required
@@ -207,7 +204,7 @@ export default function RecipeForm(props) {
 
             <Grid item xs={12} sm={6}>
               
-                {/* <InputLabel>Prep Time</InputLabel> */}
+                
                 <TextField
                   fullWidth
                   required
@@ -227,7 +224,7 @@ export default function RecipeForm(props) {
 
             <Grid item xs={12} sm={6}>
               
-                {/* <InputLabel>Serving Size</InputLabel> */}
+                
                 <TextField
                   fullWidth
                   required
@@ -291,7 +288,7 @@ export default function RecipeForm(props) {
           </Grid>
         
           <Grid item xs={6}>
-          <ThemeProvider theme={theme}>
+         
             <Button
               startIcon={<AddCircleTwoToneIcon/>}
               variant="outlined"
@@ -302,10 +299,10 @@ export default function RecipeForm(props) {
             >
               Add
             </Button>
-          </ThemeProvider>
+          
         
           
-          <ThemeProvider theme={theme}>
+          
           <Button
             startIcon={<DeleteIconTwoTone />}
             color="black"
@@ -315,7 +312,7 @@ export default function RecipeForm(props) {
             >
             Delete
           </Button>
-            </ThemeProvider>
+            
           </Grid>
               {instructionRows.map((item, idx) => (
                 <Grid item container spacing={0} id="Step" key={idx}>
@@ -337,7 +334,7 @@ export default function RecipeForm(props) {
                 </Grid>
               ))}
           <Grid item xs={6}>
-            <ThemeProvider theme={theme}>
+          
             <Button
             
               startIcon={<AddCircleTwoToneIcon/>}
@@ -349,8 +346,7 @@ export default function RecipeForm(props) {
             >
               Add
             </Button>
-          </ThemeProvider>
-          <ThemeProvider theme={theme}>
+         
             <Button
               startIcon={<DeleteIconTwoTone />}
               color="black"
@@ -360,7 +356,6 @@ export default function RecipeForm(props) {
             >
               Delete
             </Button>
-          </ThemeProvider>
           </Grid>
     
     
@@ -486,7 +481,7 @@ export default function RecipeForm(props) {
           <br />
 
           
-          <ThemeProvider theme={theme}>
+          
           <Button
             type="button"
             variant="contained"
@@ -496,7 +491,7 @@ export default function RecipeForm(props) {
           >
             Post your Recipe
           </Button>
-         </ThemeProvider>
+         
         </form>
       </Container>
       <Footer/>
