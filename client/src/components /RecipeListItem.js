@@ -44,6 +44,8 @@ export default function RecipeListItem(props) {
    // add editable in props
   
 
+  console.log('STARTING RECIPE ID ---->', recipe_id)
+  
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
 
@@ -118,37 +120,37 @@ export default function RecipeListItem(props) {
   };
 
   /* DELETE FEATURE FOR PROFILE */
-
   const removeRecipe = function () {
     const newRecipeARR = state.filtered_recipes
+
+    console.log("1", newRecipeARR)
 
     const removeRecipeArr = newRecipeARR.filter((recipe) => (
      (recipe.id) !== recipe_id && (recipe.user_id) !== user_id ? recipe : null))
 
+    console.log("2", removeRecipeArr)
   return removeRecipeArr
-
   }
 
-  console.log("BEFORE", state.filtered_recipes)
+  // console.log("2", state.filtered_recipes)
 
   // onclick for delete button
   function handleClickDelete () {
     console.log("RECIPE ID", recipe_id)
     console.log("USER ID", user_id)
 
-    axios.post('/recipes/delete', {
-      [`recipe_id`]: `${recipe_id}`,
-      [`user_id`]: `${user_id}`
-    })
-    .then(() => {
-      setState((prev) => ({...prev, filtered_recipes: removeRecipe()}))
-    })
-    .catch((err) => {
-      console.log("ERR", err);
-  });
+    return Promise.all([
+      axios.post("/recipes/delete", {
+          [`recipe_id`]: `${recipe_id}`,
+          [`user_id`]: `${user_id}`
+        })
+      ]).then(() => {
+        setState((prev) => ({...prev, filtered_recipes: removeRecipe()}))
+      })
+      .catch((err) => {
+        console.log("ERR", err);
+    });
   }
-
-  console.log("AFTER", state.filtered_recipes)
 
   return (
 
