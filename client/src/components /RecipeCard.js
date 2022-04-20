@@ -2,41 +2,33 @@ import "./styles/recipecard.scss";
 
 import * as React from "react";
 
-import { red } from "@mui/material/colors";
-
 import {
   Container,
   Grid,
-  Typography,
-  Paper,
   Avatar,
   Box,
-  TextField,
   CardMedia,
   CardHeader,
   Card,
   FormControlLabel,
-  Checkbox,
 } from "@mui/material";
 
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import Footer from "./Footer";
 
 export default function RecipeCard(props) {
-
   const { recipes, currentPage, setCurrentPage } = props;
-
-    console.log('CURRENT RECIPE_ID==> ', currentPage)
 
   // Map Over All Recipes in Database
   const findRecipe = recipes.map((recipe, index) => {
     // Filter Out All Key/Value Pairs where the Value is Falsey
     const filteredRecipes = Object.fromEntries(
       Object.entries(recipe).filter(([_, v]) => v)
-    ); 
+    );
 
     //Return Array of All filteredRecipes
     const recipePairs = Object.entries(filteredRecipes);
@@ -72,35 +64,46 @@ export default function RecipeCard(props) {
                 alt={filteredRecipes.title}
               />
             </div>
-            <div>
+            <Card
+              align={"center"}
+              sx={{
+                padding: "1rem 0rem 1rem 0rem",
+                marginLeft: "2rem",
+                marginRight: "2rem",
+                bgcolor: "beige",
+                marginTop: "2rem",
+              }}
+            >
               {recipePairs.map((value, index) => {
-                let test = ['vegan', 'vegetarian', 'keto', 'breakfast', 'lunch', 'dinner']
+                const test = [
+                  "vegan",
+                  "vegetarian",
+                  "keto",
+                  "breakfast",
+                  "lunch",
+                  "dinner",
+                  "dairy_free",
+                  "gluten_free",
+                ];
                 let val;
                 if (test.includes(value[0])) {
-                  val = value[0];
+                  val = value[0].replace("_", " ");
+                  const upperCaseVal =
+                    val.charAt(0).toUpperCase() + val.slice(1);
+
                   return (
                     <FormControlLabel
-                      control={
-                        <Checkbox
-                          sx={{
-                            "&.Mui-checked": {
-                              color: "#CCA01D",
-                            },
-                          }}
-                          defaultChecked
-                        />
-                      }
-                      label={val}
+                      control={<CheckCircleOutlineIcon />}
+                      label={upperCaseVal}
                       labelPlacement="top"
-                      value={val}
+                      value={upperCaseVal}
                       name="tag"
                       color="yellow"
                     />
                   );
                 }
               })}
-            </div>
-           
+            </Card>
           </Card>
           <Card
             sx={{
@@ -111,30 +114,10 @@ export default function RecipeCard(props) {
           >
             <CardHeader
               title={"Preparation Time " + filteredRecipes.prep_time}
-              subtitle={"Serves " + filteredRecipes.serving_size}
+              subheader={"Serves " + filteredRecipes.serving_size}
             />
 
             <Grid container justifyContent={"center"}>
-              <Card
-                sx={{
-                  padding: "0.5rem 4rem 2rem 4rem",
-                  bgcolor: "beige",
-                  marginTop: "2rem",
-                }}
-              >
-                <CardHeader title="Ingredients" />
-                {recipePairs.map((value, index) => {
-                  let ingredient;
-                  if (value[0].includes("ingredient")) {
-                    ingredient = value[1];
-                    return (
-                      <Grid item key={index}>
-                        <DinnerDiningIcon /> {ingredient}
-                      </Grid>
-                    );
-                  }
-                })}
-              </Card>
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
@@ -150,6 +133,27 @@ export default function RecipeCard(props) {
                     return (
                       <Grid item key={index} alignSelf="left">
                         <ScaleIcon /> {measurement}
+                      </Grid>
+                    );
+                  }
+                })}
+              </Card>
+
+              <Card
+                sx={{
+                  padding: "0.5rem 4rem 2rem 4rem",
+                  bgcolor: "beige",
+                  marginTop: "2rem",
+                }}
+              >
+                <CardHeader title="Ingredients" />
+                {recipePairs.map((value, index) => {
+                  let ingredient;
+                  if (value[0].includes("ingredient")) {
+                    ingredient = value[1];
+                    return (
+                      <Grid item key={index}>
+                        <DinnerDiningIcon /> {ingredient}
                       </Grid>
                     );
                   }
