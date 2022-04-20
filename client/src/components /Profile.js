@@ -14,7 +14,7 @@ import {
 import Footer from "./Footer";
 
 export default function Profile(props) {
-  const { user, userRecipes, favs, state, setState, user_name } = props;
+  const { user, state } = props;
   const [showFavs, setShowFavs] = useState("");
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
@@ -42,15 +42,19 @@ export default function Profile(props) {
     setSearch(event.target.value);
   }
 
-  let filteredSearchForUserRecipes = userRecipes.filter((val) => {
+  const userFilteredRecipes = state.filtered_recipes.filter((val) => {
+    if (val.user_id === user.id) {
+      return val;
+    }
+  })
+
+  let filteredSearchForUserRecipes = userFilteredRecipes.filter((val) => {
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
       return val;
     }
   });
-
-  console.log("STATE.FAV", state.favs)
 
   let filteredSearchForFavRecipes = state.favs.filter((val) => {
     if (search === "") {
