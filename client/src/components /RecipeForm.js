@@ -16,6 +16,7 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 
 import Footer from "./Footer";
+import Image from "./Potluck_logos/POTLUCK-logos_black.png"
 
 
 
@@ -151,6 +152,7 @@ export default function RecipeForm(props) {
       sx={{marginTop: '6rem'}}
       noValidate
       autoComplete="off"
+      
     >
 
 
@@ -164,10 +166,13 @@ export default function RecipeForm(props) {
         </div>
       </div>
         
-        <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
+        <form onSubmit={(e) => e.preventDefault()} autoComplete="off"
+        >
       
          
-          <Grid container spacing={0}>
+          <Grid container 
+          spacing={0}
+          >
             <Grid item xs={12} sm={6}>
               
                 <TextField
@@ -359,12 +364,13 @@ export default function RecipeForm(props) {
           </Grid>
     
     
-          <h2>Tags</h2>
+    
           
-          <Paper elevation={3}>
+          <Paper elevation={3} align={"center"}>
            <span className="tags">
            
               <FormControlLabel
+                className="checkbox-tag"
                 control= {<Checkbox  sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
@@ -373,14 +379,12 @@ export default function RecipeForm(props) {
                 labelPlacement="top"
                 type="checkbox"
                 value="vegan"
-                name="tag"
-               
-              
-                
+                name="tag"            
                 onChange={handleCheckboxChange}
                 />
                 
               <FormControlLabel
+              className="checkbox-tag"
                 control= {<Checkbox sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
@@ -408,6 +412,7 @@ export default function RecipeForm(props) {
               />
           
               <FormControlLabel
+              className="checkbox-tag"
                 control= {<Checkbox sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
@@ -435,6 +440,7 @@ export default function RecipeForm(props) {
                 onChange={handleCheckboxChange}
               />
               <FormControlLabel
+              className="checkbox-tag"
                 control= {<Checkbox sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
@@ -449,6 +455,7 @@ export default function RecipeForm(props) {
               />
           
               <FormControlLabel
+              className="checkbox-tag"
                 control= {<Checkbox sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
@@ -463,6 +470,7 @@ export default function RecipeForm(props) {
               />
               
               <FormControlLabel
+              className="checkbox-tag"
                 control= {<Checkbox sx={{
                   '&.Mui-checked': {
                     color: '#CCA01D',
