@@ -19,13 +19,15 @@ export default function Profile(props) {
   const [showUserRecipes, setShowUserRecipes] = useState("");
   const [search, setSearch] = useState("");
 
+  console.log('PROFILE PAGE', state.filtered_recipes)
+
   useEffect(() => {
     if (showFavs) {
       getFavRecipes();
     } else if (showUserRecipes) {
       getUserRecipes();
     }
-  }, [search]);
+  }, [search, state]);
 
 
   function getFavRecipes() {
@@ -42,8 +44,11 @@ export default function Profile(props) {
     setSearch(event.target.value);
   }
 
-  const userFilteredRecipes = state.filtered_recipes.filter((val) => {
-    if (val.user_id === user.id) {
+  const userFilteredRecipes = state.filtered_recipes.filter(
+    (val) => {
+      if (val.user_id === user.id ) {
+      console.log("INSIDE USERFILTER" , val)
+      console.log('CUURENT USER', user.id)
       return val;
     }
   })
@@ -65,6 +70,7 @@ export default function Profile(props) {
   });
 
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
+
     return (
       <RecipeListItem
         key={recipe.id}
