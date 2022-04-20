@@ -17,7 +17,8 @@ module.exports = (db) => {
   router.post('/', (req, res) => {
     const favKey = Object.keys(req.body)
     const favValue = Object.values(req.body)
-    const insertFav = `INSERT INTO favs (${favKey}) VALUES (${favValue})`
+    const wrappedValues = favValue.map((elem) => `'${elem}'`)
+    const insertFav = `INSERT INTO favs (${favKey}) VALUES (${wrappedValues})`
 
     db.query(insertFav).then(data => {
       res.json(data.rows);
@@ -26,7 +27,8 @@ module.exports = (db) => {
 
   router.post('/delete', (req, res) => {
     const favValue = Object.values(req.body)
-    const deleteFav = `DELETE FROM favs WHERE recipe_id = (${favValue[0]}) AND user_id = (${favValue[1]})`
+    const wrappedValues = favValue.map((elem) => `'${elem}'`)
+    const deleteFav = `DELETE FROM favs WHERE recipe_id = (${wrappedValues[0]}) AND user_id = (${wrappedValues[1]})`
 
     db.query(deleteFav).then(data => {
       res.json(data.rows);

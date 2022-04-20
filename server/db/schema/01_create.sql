@@ -19,7 +19,7 @@ CREATE TABLE users (
 
 
 CREATE TABLE recipes (
-  id SERIAL PRIMARY KEY,
+  id VARCHAR(225) PRIMARY KEY,
   user_id integer REFERENCES users(id) ON DELETE CASCADE,
   prep_time VARCHAR(225), 
   serving_size VARCHAR(225), 
@@ -83,7 +83,7 @@ CREATE TABLE recipes (
 
 CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
-  recipe_id integer REFERENCES recipes(id) ON DELETE CASCADE NOT NULL,
+  recipe_id VARCHAR(225) REFERENCES recipes(id) ON DELETE CASCADE NOT NULL,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   comment TEXT
 );
@@ -92,7 +92,7 @@ CREATE TABLE comments (
 CREATE TABLE favs (
   id SERIAL PRIMARY KEY,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-  recipe_id integer REFERENCES recipes(id) ON DELETE CASCADE NOT NULL
+  recipe_id VARCHAR(225) REFERENCES recipes(id) ON DELETE CASCADE NOT NULL
   -- UNIQUE (recipe_id, user_id)
 );
 

@@ -42,7 +42,8 @@ module.exports = (db) => {
   router.post('/delete', (req,res) => {
     
     const recipeValue = Object.values(req.body)
-    const deleteRecipe = `DELETE FROM recipes WHERE id = (${recipeValue[0]}) AND user_id = (${recipeValue[1]})`
+    const wrappedValues = recipeValue.map((elem) => `'${elem}'`)
+    const deleteRecipe = `DELETE FROM recipes WHERE id = (${wrappedValues[0]}) AND user_id = (${wrappedValues[1]})`
 
     db.query(deleteRecipe).then(data => {
       res.json(data.rows);

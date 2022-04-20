@@ -127,8 +127,6 @@ function App() {
             element={<Profile 
               user={state.user} 
               recipes={state.filtered_recipes}
-              // userRecipes={state.user_recipes} 
-              // favs={state.favs}
               state={state}
               setState={setState}
               />}

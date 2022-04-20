@@ -130,7 +130,7 @@ export default function RecipeListItem(props) {
      (recipe.id) !== recipe_id && (recipe.user_id) !== user_id ? recipe : null))
 
     console.log("2", removeRecipeArr)
-  return removeRecipeArr
+    return removeRecipeArr
   }
 
   // console.log("2", state.filtered_recipes)

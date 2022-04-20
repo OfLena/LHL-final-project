@@ -2,12 +2,12 @@ import "./styles/recipeform.scss";
 import "./styles/recipeHeader.scss";
 
 import React, { useState, useEffect } from "react";
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useNavigate } from "react-router-dom";
+import { v4 as uuidv4 } from 'uuid';
 
 import axios from "axios";
 
-import { Container, Typography, FormControlLabel,Paper, Grid, Checkbox, Button, TextField, Box,  InputAdornment } from "@mui/material";
+import { Container, FormControlLabel,Paper, Grid, Checkbox, Button, TextField, Box,  InputAdornment } from "@mui/material";
 import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
@@ -16,7 +16,7 @@ import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
 
 import Footer from "./Footer";
-import Image from "./Potluck_logos/POTLUCK-logos_black.png"
+
 
 
 
@@ -33,7 +33,6 @@ export default function RecipeForm(props) {
 
   let navigate = useNavigate();
  
-  // console.log(state)
 
   // =========== STATES ========== //
   const [recipe, setRecipe] = useState({user_id: user.id});
@@ -133,6 +132,7 @@ export default function RecipeForm(props) {
   // ==================AXIOS CALLS =================//
 
   function postRecipeAndTags() {
+    recipe.id = uuidv4()
     Promise.all([
       axios.post("/recipes", recipe),
     ])
@@ -183,7 +183,7 @@ export default function RecipeForm(props) {
                   name="title"
                   placeholder="Title"
                   onChange={(e) =>
-                    setRecipe((prev) => ({ ...prev, title: e.target.value }))
+                  setRecipe((prev) => ({ ...prev, title: e.target.value }))
                   }
                 />
               
