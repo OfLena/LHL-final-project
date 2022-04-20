@@ -39,7 +39,9 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
   
-  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name} = props;
+  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name, editable} = props;
+
+   // add editable in props
   
 
   const [expanded, setExpanded] = useState(false);
@@ -49,9 +51,7 @@ export default function RecipeListItem(props) {
     setExpanded(!expanded);
   };
 
-
   /* HELPERS FOR FAVOURITING FEATURE */
-
 
   useEffect(() => { 
   
@@ -62,10 +62,7 @@ export default function RecipeListItem(props) {
         setFavourite(!!fav)
 
   }, [] );
-      
-      // console.log("FAVS", favourite)
-
-
+    
   const removeFav = function () {
     const newFavsARR = state.favs
 
@@ -121,7 +118,9 @@ export default function RecipeListItem(props) {
   };
 
   return (
+
     <div className="recipe-card">
+      {editable && <p>edit button</p>}
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
