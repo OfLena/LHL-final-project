@@ -39,7 +39,7 @@ const ExpandMore = styled((props) => {
 export default function RecipeListItem(props) {
   /* RECIPE CARD */
   
-  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name, editable} = props;
+  const { title, image_url, recipe_id, user_id, currentPage, setCurrentPage, state, setState, user_name, forProfileUser} = props;
 
    // add editable in props
   
@@ -114,13 +114,16 @@ export default function RecipeListItem(props) {
   
   function sendRecipeID () {
     setCurrentPage(recipe_id)
-   
   };
+
+  function handleClickDelete () {
+    
+    console.log("USER ID & RECIPE ID", user_id, recipe_id)
+  }
 
   return (
 
     <div className="recipe-card">
-      {editable && <p>edit button</p>}
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
@@ -145,16 +148,37 @@ export default function RecipeListItem(props) {
         </CardContent>
         <CardActions sx={{ paddingLeft: "17.5%", marginLeft: "auto" }}>
           <IconButton aria-label="add to favorites">
-            <FavoriteIcon 
-              onClick={handleOnClick} 
-              color={favourite === true ? 'error' : 'grey0'}
-            />
+            {forProfileUser ?
+              null
+            : 
+              <FavoriteIcon 
+                onClick={handleOnClick} 
+                color={favourite === true ? 'error' : 'grey0'}
+              />
+            }
           </IconButton>
-          <IconButton aria-label="share">
-            <ShareIcon />
-          </IconButton>
+          {/* <IconButton aria-label="share">  */}
+            {/* <ShareIcon /> */}
+          {/* </IconButton> */}
 
           {/* POPOVER */}
+  
+          {forProfileUser && 
+            <Button
+              color="black"
+              variant="outlined"
+              className="pull-right btn btn-default"
+            > Edit
+          </Button>} 
+          {forProfileUser &&        
+            <Button
+              color="black"
+              variant="outlined"
+              className="pull-right btn btn-default"
+              onClick={handleClickDelete}
+              > Delete
+          </Button>} 
+         
 
           <Button
             // aria-describedby={id}
@@ -168,7 +192,7 @@ export default function RecipeListItem(props) {
             /> 
             
           </Button>
-         
+          
           <ExpandMore
             expand={expanded}
             onClick={handleExpandClick}
