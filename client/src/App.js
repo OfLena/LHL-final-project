@@ -50,7 +50,8 @@ function App() {
     user_recipes: [],
     recipes: [],
     filtered_recipes: [],
-    favs: []
+    favs: [],
+    comments: []
   });
 
   const [currentPage, setCurrentPage] = useState('')
@@ -86,7 +87,8 @@ function App() {
       axios.get("/users/1"),
       axios.get("/recipes/1"),
       axios.get("/recipes"),
-      axios.get("/favs")
+      axios.get("/favs"),
+      axios.get("/comments")
     ]).then((all) => {
       setState((prev) => ({
         ...prev,
@@ -94,7 +96,8 @@ function App() {
         user_recipes: all[1].data,
         recipes: all[2].data,
         filtered_recipes: all[2].data,
-        favs: all[3].data
+        favs: all[3].data,
+        comments: all[4].data
       }));
     });
   }, []);
@@ -136,6 +139,9 @@ function App() {
             recipes={state.filtered_recipes}
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
+            comments={state.comments}
+            state={state}
+            setState={setState}
             />}/>
 
             <Route path="/recipe_form" 

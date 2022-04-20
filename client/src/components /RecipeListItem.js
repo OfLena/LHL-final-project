@@ -44,9 +44,6 @@ export default function RecipeListItem(props) {
 
    // add editable in props
   
-
-  console.log('STARTING RECIPE ID ---->', recipe_id)
-  
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
 

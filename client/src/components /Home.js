@@ -4,16 +4,20 @@ import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
 
-import { CardMedia, Box, Grid, Card, CardHeader } from "@mui/material";
+import { CardMedia, Box, Grid, Card, CardHeader, Typography } from "@mui/material";
+
 
 const styles = {
   height: 500,
   maxWidth: 1500,
 };
 
+
 export default function Home(props) {
   
   const { user, currentPage, setCurrentPage, state, setState } = props;
+
+  
 
   const recipes = props.recipes.map((recipe) => {
     return (
@@ -36,11 +40,14 @@ export default function Home(props) {
 
   return (
     <Box>
+      
       <CardMedia
         image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
         title="greeting image"
         style={styles}
       />
+
+    
       {/* <Card>
         <CardHeader 
         title="POTLUCK"

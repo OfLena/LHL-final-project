@@ -85,7 +85,7 @@ CREATE TABLE comments (
   id SERIAL PRIMARY KEY,
   recipe_id VARCHAR(225) REFERENCES recipes(id) ON DELETE CASCADE NOT NULL,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-  comment TEXT
+  comment VARCHAR(225)
 );
 
 

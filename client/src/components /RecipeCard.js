@@ -21,6 +21,8 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import Footer from "./Footer";
+import CommentList from "./CommentList";
+
 
 
 // const styles = {
@@ -30,7 +32,7 @@ import Footer from "./Footer";
 // };
 
 export default function RecipeCard(props) {
-  const { recipes, currentPage, setCurrentPage } = props;
+  const { recipes, currentPage, setCurrentPage, comments, state, setState } = props;
 
   // Map Over All Recipes in Database
   const findRecipe = recipes.map((recipe, index) => {
@@ -195,6 +197,7 @@ export default function RecipeCard(props) {
                 })}
               </Card>
             </Grid>
+            <CommentList comments={comments} currentPage={currentPage} state={state} setState={setState} />
           </Card>
         </Box>
       );
