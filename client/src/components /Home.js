@@ -4,7 +4,7 @@ import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
 
-import { CardMedia, Box, Grid } from "@mui/material";
+import { CardMedia, Box, Grid, Card, CardHeader } from "@mui/material";
 
 const styles = {
   height: 500,
@@ -41,6 +41,12 @@ export default function Home(props) {
         title="greeting image"
         style={styles}
       />
+      {/* <Card>
+        <CardHeader 
+        title="POTLUCK"
+        subheader="Bring Your Friends"
+        />
+      </Card> */}
 
       <Grid container spacing={2}>
         {recipes}
