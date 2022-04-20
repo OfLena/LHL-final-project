@@ -45,7 +45,7 @@ export default function RecipeListItem(props) {
    // add editable in props
   
 
-  // console.log('STARTING RECIPE ID ---->', recipe_id)
+  console.log('STARTING RECIPE ID ---->', recipe_id)
   
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
@@ -103,6 +103,8 @@ export default function RecipeListItem(props) {
       //axios post to delete
       setFavourite(false)
       return Promise.all([
+        console.log('USERID', user_id),
+        console.log("RECIPE ID", recipe_id),
         axios.post("/favs/delete", {
             [`recipe_id`]: `${recipe_id}`,
             [`user_id`]: `${user_id}`
