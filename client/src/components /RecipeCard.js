@@ -17,8 +17,9 @@ import {
   Card,
 } from "@mui/material";
 
-import KitchenIcon from "@mui/icons-material/Kitchen";
+import DinnerDiningIcon from '@mui/icons-material/DinnerDining';
 import ScaleIcon from "@mui/icons-material/Scale";
+import MenuBookIcon from '@mui/icons-material/MenuBook';
 
 import Footer from "./Footer";
 
@@ -32,13 +33,15 @@ export default function RecipeCard(props) {
 
     const recipePairs = Object.entries(filteredRecipes);
 
+    console.log('RecipePairs', recipePairs)
+
     if (filteredRecipes.id === currentPage) {
       return (
         <Box
           key={index}
           marginTop={"8rem"}
           marginBottom={"2rem"}
-          sx={{ p: 2, border: "1px dashed grey", backgroundColor: "#CCA01D" }}
+          sx={{ p: 2, border: "1px solid black", backgroundColor: "#CCA01D" }}
         >
           <Card sx={{ paddingBottom: "2rem", bgcolor: "beige" }}>
             <CardHeader
@@ -62,31 +65,32 @@ export default function RecipeCard(props) {
               />
             </div>
           </Card>
+              <Card sx={{ paddingBottom: "2rem", bgcolor: "beige", marginTop: '2rem' }}>
+                <CardHeader
+                title={"Preparation Time " + filteredRecipes.prep_time}
+                subtitle={"Serves " + filteredRecipes.serving_size} />
 
-          <Typography variant="h5">
-            Prep Time {filteredRecipes.prep_time}
-          </Typography>
-          <Typography variant="h6">
-            Serves {filteredRecipes.serving_size}
-          </Typography>
 
-          <Grid container className="map-container">
-            <Grid>
-              <Typography>Ingredients</Typography>
+  
+          <Grid container justifyContent={'center'}>
+          <Card sx={{ padding: "0.5rem 4rem 2rem 4rem", bgcolor: "beige", marginTop: '2rem' }}>
+              <CardHeader title='Ingredients' />
               {recipePairs.map((value, index) => {
                 let ingredient;
                 if (value[0].includes("ingredient")) {
                   ingredient = value[1];
                   return (
                     <Grid item key={index}>
-                      <KitchenIcon /> {ingredient}
+                      <DinnerDiningIcon/> {ingredient}
                     </Grid>
                   );
                 }
               })}
-            </Grid>
-            <Grid>
-              <Typography>Measurements</Typography>
+            </Card>
+            <Card sx={{ padding: "0.5rem 4rem 2rem 4rem", bgcolor: "beige", marginTop: '2rem' }}>
+              
+              <CardHeader 
+              title="Measurements" />
               {recipePairs.map((value, index) => {
                 let measurement;
                 if (value[0].includes("measurement")) {
@@ -103,25 +107,31 @@ export default function RecipeCard(props) {
                   );
                 }
               })}
+            </Card>
             </Grid>
 
             
-
+              
             <Grid>
-            <Typography>Instructions</Typography>
+            <Card sx={{ padding: "0.5rem 4rem 2rem 4rem", bgcolor: "beige", margin: '2rem 2rem 0rem 2rem' }}>
+              <CardHeader
+              title="Instructions" />
               {recipePairs.map((value, index) => {
                 let instruction;
                 if (value[0].includes("instruction")) {
                   instruction = value[1];
                   return (
                     <Grid item key={index}>
-                      {instruction}
+                      <MenuBookIcon/> {instruction}
                     </Grid>
                   );
                 }
               })}
+              </Card>
+              
             </Grid>
-          </Grid>
+          
+          </Card>
         </Box>
       );
     }
