@@ -114,8 +114,12 @@ export default function RecipeListItem(props) {
   
   function sendRecipeID () {
     setCurrentPage(recipe_id)
-   
   };
+
+  function handleClickDelete () {
+    
+    console.log("USER ID & RECIPE ID", user_id, recipe_id)
+  }
 
   return (
 
@@ -164,16 +168,15 @@ export default function RecipeListItem(props) {
               color="black"
               variant="outlined"
               className="pull-right btn btn-default"
-            >
-          Edit
+            > Edit
           </Button>} 
           {forProfileUser &&        
             <Button
               color="black"
               variant="outlined"
               className="pull-right btn btn-default"
-              >
-              Delete
+              onClick={handleClickDelete}
+              > Delete
           </Button>} 
          
 

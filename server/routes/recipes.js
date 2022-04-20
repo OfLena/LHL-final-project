@@ -39,5 +39,10 @@ module.exports = (db) => {
   
   });
 
+  router.post('/delete', (req,res) => {
+    
+
+  })
+
   return router;
 }
