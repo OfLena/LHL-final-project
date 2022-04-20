@@ -123,17 +123,19 @@ export default function RecipeListItem(props) {
     const newRecipeARR = state.filtered_recipes
 
     const removeRecipeArr = newRecipeARR.filter((recipe) => (
-     (recipe.id) !== recipe_id ? recipe : null))
+     (recipe.id) !== recipe_id && (recipe.user_id) !== user_id ? recipe : null))
 
   return removeRecipeArr
 
   }
 
-  console.log("REMOVE RECIPE", removeRecipe())
-  // console.log(state.filtered_recipes)
+  console.log("BEFORE", state.filtered_recipes)
 
   // onclick for delete button
   function handleClickDelete () {
+    console.log("RECIPE ID", recipe_id)
+    console.log("USER ID", user_id)
+
     axios.post('/recipes/delete', {
       [`recipe_id`]: `${recipe_id}`,
       [`user_id`]: `${user_id}`
@@ -145,6 +147,8 @@ export default function RecipeListItem(props) {
       console.log("ERR", err);
   });
   }
+
+  console.log("AFTER", state.filtered_recipes)
 
   return (
 
