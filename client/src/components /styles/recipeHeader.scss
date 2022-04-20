@@ -28,16 +28,20 @@
   @keyframes #{$animationName} {
       @content;
   }
+
 }
 
 @include keyframes(rotate) {
-0%   { transform:rotate(0)}
-100% {  transform:rotate(360deg)}
+0%   { 
+  transform:rotate(0)
+}
+100% {
+    transform:rotate(360deg)
+  }
 }
 
 body{
-width:100vw;
-height:2vh;
+height:2rem;
 margin:0;
 padding:0;
 background-color:#ffffff;
@@ -56,15 +60,15 @@ display: flex;
 align-items: center;
 justify-content: center;
 height: 100%;
-margin:0 auto;
-min-width:785px;
 overflow:hidden;
 position:relative;
 
-&:before {
+
+&:before, &::after {
   display:block;
+  
   content:" ";
-  width: 1800px;
+  width: 1600px;
   height:2000px;
   position:absolute;
   transform-origin:center;
@@ -72,29 +76,32 @@ position:relative;
   background-image:url('https://i.ibb.co/z869yQd/BETTERBURGS.png');
   background-size: 20% auto;
   background-repeat: repeat;
-  @include animation('rotate 60s infinite linear');
+  @include animation('rotate 190s infinite linear');
 }
 
 
 
 .e-text{
   flex-wrap: wrap;
+  width: calc(100% - 140px);
   position:relative;
   z-index:100;
   border-radius: 34px;
   background-color: #000000;
-  opacity: 75%;
+  opacity: 95%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+  
 
 
   h1{
-    color:#000000;
-    margin:0;
-    text-transform:uppercase;
-    font-size:70px;
-    line-height:180px;
-    border :1px solid rgb(8, 7, 7);
+    color:#000000; 
+    text-transform: uppercase;
+    font-size:30px;
+    line-height:100px;
     border-radius: 34px;
-    margin:30px 0;
+    margin:0px 0;
+    padding: 0px 0px 0px 0px ;
     position:relative;
     
     @supports(-webkit-background-clip: text){
@@ -105,17 +112,7 @@ position:relative;
 
   }
 
-  .subtitle{
-    font-weight:600;
-    text-transform:uppercase;
-    color: black;
-  }
 
-  .preamble{
-    max-width:80%;
-    display:block;
-    margin:0 auto;
   }
-}
 }
 
