@@ -51,7 +51,7 @@ export default function RecipeListItem(props) {
     setExpanded(!expanded);
   };
 
-  /* HELPERS FOR FAVOURITING FEATURE */
+  /* FAVOURITING FEATURE */
 
   useEffect(() => { 
   
@@ -63,6 +63,7 @@ export default function RecipeListItem(props) {
 
   }, [] );
     
+  // helper function for removing fav for state (to be used in handleOnClick function)
   const removeFav = function () {
     const newFavsARR = state.favs
 
@@ -73,6 +74,7 @@ export default function RecipeListItem(props) {
 
   }
 
+  // helper function of heart on click
   function handleOnClick () {
     // if heart is grey, send post request to insert fav and set heart to red
    if (!favourite) {
@@ -111,14 +113,37 @@ export default function RecipeListItem(props) {
     }
   }
 
-  
   function sendRecipeID () {
     setCurrentPage(recipe_id)
   };
 
+  /* DELETE FEATURE FOR PROFILE */
+
+  const removeRecipe = function () {
+    const newRecipeARR = state.filtered_recipes
+
+    const removeRecipeArr = newRecipeARR.filter((recipe) => (
+     (recipe.id) !== recipe_id ? recipe : null))
+
+  return removeRecipeArr
+
+  }
+
+  console.log("REMOVE RECIPE", removeRecipe())
+  // console.log(state.filtered_recipes)
+
+  // onclick for delete button
   function handleClickDelete () {
-    
-    console.log("USER ID & RECIPE ID", user_id, recipe_id)
+    axios.post('/recipes/delete', {
+      [`recipe_id`]: `${recipe_id}`,
+      [`user_id`]: `${user_id}`
+    })
+    .then(() => {
+      setState((prev) => ({...prev, filtered_recipes: removeRecipe()}))
+    })
+    .catch((err) => {
+      console.log("ERR", err);
+  });
   }
 
   return (
