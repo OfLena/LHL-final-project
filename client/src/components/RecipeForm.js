@@ -24,6 +24,7 @@ export default function RecipeForm(props) {
   const [recipe, setRecipe] = useState({user_id: user.id});
   const [ingredientRows, setIngredientRows] = useState([{ingredient: '', measurement: ''}] || '');
   const [instructionRows, setInstructionRows] = useState([{instruction: ''}] || '')
+  const [image, setImage] = useState()
   
 
   // ======== USE EFFECTS ===== //
@@ -119,10 +120,17 @@ export default function RecipeForm(props) {
   // ==================AXIOS CALLS =================//
 
   function postRecipeAndTags() {
-
+    const formData = new FormData()
+    formData.append("img", image)
     recipe.id = uuidv4()
+    console.log("RECIPE", recipe)
     Promise.all([
-      axios.post("/recipes", recipe),
+      axios.post("/recipe", recipe),
+      // axios.post("/recipes/images", formData, {
+      //   onUploadProgress: ProgressEvent => {
+      //     console.log('Upload Progress: '  + Math.round(ProgressEvent.loaded / ProgressEvent.total) + "%")
+      //   }
+      // }),
     ])
       .then((all) => {   
         setState((prev) => ({...prev, filtered_recipes: [...recipes, recipe]}))
@@ -217,19 +225,19 @@ export default function RecipeForm(props) {
             <Grid item xs={12} sm={6}>
               
                
-                <TextField
-                  fullWidth
-                  required
+                <input
+                  type='file'
+                  accept="image/jpeg"
                   id="image_url"
                   label="Image URL"
                   name="image_url"
-                  placeholder="Upload Photo Url"
-                  //write handle from input helper , 2 params
                   onChange={(e) =>
-                    setRecipe((prev) => ({ ...prev, image_url: e.target.value }))
+                    setRecipe((prev) => ({ ...prev, image_url: e.target.files[0].name}), 
+                    setImage(e.target.files[0]))
+
                   }
                 />
-              
+                
             </Grid>
 
             <Grid item xs={12} sm={6}>

@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const fileUpload = require('express-fileupload');
 
 module.exports = (db) => {
   // all routes will go here 
@@ -13,20 +14,12 @@ module.exports = (db) => {
   
   });
 
-  // router.get('/:id', (req, res) => {
-
-  //   const recipes = "SELECT * FROM recipes WHERE user_id = $1";
-    
-  //   db.query(recipes, [req.params.id]).then(data => {
-     
-  //     res.json(data.rows);
-  //   })
   
-  // });
-
   router.post('/', (req, res) => {
-
+   
+   
     const recipeKeys = Object.keys(req.body)
+   
     const recipeValues = Object.values(req.body)
     const wrappedValues = recipeValues.map((elem) => `'${elem}'`)
 
@@ -51,5 +44,29 @@ module.exports = (db) => {
 
   })
 
+  router.post('/images', function(req, res) {
+    let imgFile;
+    let uploadPath;
+  
+    if (!req.files || Object.keys(req.files).length === 0) {
+      return res.status(400).send('No files were uploaded.');
+    }
+  
+    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
+    imgFile = req.files.img;
+    console.log('omg', imgFile)
+    uploadPath = __dirname + '/public/images/' + imgFile.name;
+  
+    // Use the mv() method to place the file somewhere on your server
+    imgFile.mv(uploadPath, function(err) {
+      if (err)
+        return res.status(500).send(err);
+  
+      res.send('File uploaded!');
+    });
+  });
+
   return router;
 }
+
+
