@@ -17,7 +17,7 @@ import Footer from "./Footer";
 
 export default function RecipeForm(props) {
 
-  const { user, recipes, setState, editForm, recipe_id, setCurrentPage, currentPage } = props
+  const { user, recipes, state, setState, editForm, currentPage } = props
   const navigate = useNavigate(); 
 
   // =========== STATES ========== //
@@ -25,6 +25,8 @@ export default function RecipeForm(props) {
   const [ingredientRows, setIngredientRows] = useState([{ingredient: '', measurement: ''}] || '');
   const [instructionRows, setInstructionRows] = useState([{instruction: ''}] || '')
   const [image, setImage] = useState()
+  // EDIT RECIPE STATE
+  const [editRecipe, setEditRecipe] = useState(false)
   
 
   // ======== USE EFFECTS ===== //
@@ -65,6 +67,24 @@ export default function RecipeForm(props) {
     );
   }, [ingredientRows]);
 
+  // EDIT RECIPE - set edit recipe to recipe object
+    useEffect(() => {
+      if (editForm) {
+        const thisRecipeArr = state.filtered_recipes
+        const findThisRecipe = thisRecipeArr.filter((recipe) => (
+          (recipe.id) === currentPage ? recipe : false
+        ))
+          
+        // Filter Out All Key/Value Pairs where the Value is Falsey
+        const filteredRecipes = Object.fromEntries(
+          Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
+        );
+        
+        setEditRecipe(filteredRecipes)
+      }
+    }, [editForm]);
+
+    console.log("BEGINNING ---->", editRecipe)
   // ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
@@ -157,6 +177,9 @@ export default function RecipeForm(props) {
   } 
 
   // EDIT FEATURE - UPDATE BUTTON 
+
+  // helper function to find info about recipe
+
   const updateButton = function () {
     return (
       <Button
@@ -164,8 +187,7 @@ export default function RecipeForm(props) {
               variant="contained"
               color="black"
               className="btn btn-default pull-left"
-              // setCurrentPage={setCurrentPage}
-              onClick={() => console.log("RECIPE ID", currentPage)}
+              onClick={() => console.log("THIS RECIPE")}
               // onClick put request to update recipe in the database using filtered recipes & prev
             >
               Update Recipe
@@ -174,6 +196,7 @@ export default function RecipeForm(props) {
   } 
 
   /* STARTING RETURN */
+
   return (
 
     <Box
@@ -215,6 +238,8 @@ export default function RecipeForm(props) {
                   label="Title"
                   name="title"
                   placeholder="Title"
+                  // FOR EDIT
+                  value={editForm ? editRecipe.title : null}
                   onChange={(e) =>
                   setRecipe((prev) => ({ ...prev, title: e.target.value }))
                   }
@@ -255,6 +280,8 @@ export default function RecipeForm(props) {
                   label="Prep Time"
                   name="prep_time"
                   placeholder="Cook Time"
+                  // FOR EDIT
+                  value={editForm ? editRecipe.prep_time : null}
                   onChange={(e) =>
                     setRecipe((prev) => ({
                       ...prev,
@@ -274,6 +301,8 @@ export default function RecipeForm(props) {
                   label="Serves"
                   name="serves"
                   placeholder="serving size"
+                  // FOR EDIT 
+                  value={editForm ? editRecipe.serving_size : null}
                   onChange={(e) =>
                     setRecipe((prev) => ({
                       ...prev,
@@ -283,7 +312,8 @@ export default function RecipeForm(props) {
                 />
               
             </Grid>
-          
+         
+
           {ingredientRows.map((item, idx) => (
             
             <Grid container spacing={0} id="addr0" key={idx}>
