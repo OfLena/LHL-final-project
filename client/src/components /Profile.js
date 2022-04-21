@@ -27,7 +27,7 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
-  }, [search, state]);
+  }, [search,state ]);
 
 
   function getFavRecipes() {

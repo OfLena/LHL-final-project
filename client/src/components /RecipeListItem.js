@@ -88,7 +88,8 @@ export default function RecipeListItem(props) {
         setState((prev) => ({ ...prev, favs: [...state.favs, {
           [`recipe_id`]: recipe_id,
           [`favs_user_id`]: user_id,
-          [`title`]: `${title}`
+          [`title`]: `${title}`,
+          [`image_url`]: image_url
         }]}))
       })
       .catch((err) => {
@@ -126,7 +127,7 @@ export default function RecipeListItem(props) {
     // console.log("1", newRecipeARR)
 
     const removeRecipeArr = newRecipeARR.filter((recipe) => (
-     (recipe.id) !== recipe_id && (recipe.user_id) !== user_id ? recipe : null))
+     (recipe.id !== recipe_id) ? true : false))
 
     // console.log("2", removeRecipeArr)
     return removeRecipeArr
