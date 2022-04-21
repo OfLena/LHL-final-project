@@ -70,15 +70,21 @@ export default function RecipeForm(props) {
   // EDIT RECIPE - set edit recipe to recipe object
     useEffect(() => {
       if (editForm) {
-        const thisRecipeArr = state.filtered_recipes 
-
+        const thisRecipeArr = state.filtered_recipes
         const findThisRecipe = thisRecipeArr.filter((recipe) => (
           (recipe.id) === currentPage ? recipe : false
         ))
-        setEditRecipe(findThisRecipe[0])
+          
+        // Filter Out All Key/Value Pairs where the Value is Falsey
+        const filteredRecipes = Object.fromEntries(
+          Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
+        );
+        
+        setEditRecipe(filteredRecipes)
       }
-    }, []);
+    }, [editForm]);
 
+    console.log("BEGINNING ---->", editRecipe)
   // ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
@@ -301,7 +307,8 @@ export default function RecipeForm(props) {
                 />
               
             </Grid>
-          
+         
+
           {ingredientRows.map((item, idx) => (
             
             <Grid container spacing={0} id="addr0" key={idx}>
