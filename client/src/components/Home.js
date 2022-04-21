@@ -3,21 +3,15 @@ import "./styles/recipe.scss";
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
-
 import { CardMedia, Box, Grid } from "@mui/material";
-
 
 const styles = {
   height: 500,
   maxWidth: 1500,
 };
 
-
 export default function Home(props) {
-  
   const { user, currentPage, setCurrentPage, state, setState } = props;
-
-  
 
   const recipes = props.recipes.map((recipe) => {
     return (
@@ -40,7 +34,6 @@ export default function Home(props) {
 
   return (
     <Box>
-      
       <CardMedia
         image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
         alt="Header Picture"
