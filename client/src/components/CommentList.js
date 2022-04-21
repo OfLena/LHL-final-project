@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 
 export default function CommentList(props) {
-  const { comments, currentPage, state, setState } = props;
+  const { comments, currentPage, setCurrentPage, state, setState } = props;
 
   let navigate = useNavigate();
 
@@ -23,11 +23,12 @@ export default function CommentList(props) {
     user_id: [state.user.id],
   });
 
+
   function postComment() {
     Promise.all([axios.post("/comments", comment)])
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [...comments, comment] }));
-        navigate(`/`);
+        navigate(0)
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -45,10 +46,9 @@ export default function CommentList(props) {
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
-        
-        <Card key={index} sx={{ border: "dotted 1px black", margin: '1rem' }}>
+        <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem" }}>
           <CardHeader
-          sx={{marginRight: '3.3rem'}}
+            sx={{ marginRight: "3.3rem" }}
             avatar={
               <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
                 {findUserNameByUserId}
@@ -57,7 +57,6 @@ export default function CommentList(props) {
             title={comment.comment}
           />
         </Card>
-        
       );
     }
   });
@@ -79,7 +78,6 @@ export default function CommentList(props) {
                 id="filled-multiline-flexable"
                 multiline
                 fullWidth
-                
                 type="text"
                 name="Comments"
                 // sx={{margin: '0.5rem'}}
