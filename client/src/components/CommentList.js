@@ -10,6 +10,7 @@ import {
   CardHeader,
   TextField,
   Button,
+  Avatar,
 } from "@mui/material";
 
 export default function CommentList(props) {
@@ -32,13 +33,31 @@ export default function CommentList(props) {
         console.log("ERR", err);
       });
   }
-  
+
+  const user = Object.entries(state.user);
+
+  const findUserNameByUserId = user.map((val, index) => {
+    if (val[0] === "id" && val[1] === comments[0].user_id) {
+      return state.user.user_name;
+    }
+  });
+
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
-        <Grid item xs={12} key={index}>
-          {comment.comment}
-        </Grid>
+        
+        <Card key={index} sx={{ border: "dotted 1px black", margin: '1rem' }}>
+          <CardHeader
+          sx={{marginRight: '3.3rem'}}
+            avatar={
+              <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
+                {findUserNameByUserId}
+              </Avatar>
+            }
+            title={comment.comment}
+          />
+        </Card>
+        
       );
     }
   });
@@ -48,15 +67,22 @@ export default function CommentList(props) {
       <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
         <Grid container spacing={2}>
           <Grid item xs={12}>
-            <Card>
+            <Card
+              sx={{
+                padding: "0.5rem 4rem 2rem 4rem",
+
+                margin: "2rem 1rem 0rem 2rem",
+              }}
+            >
               <CardHeader title="Post a Comment" />
               <TextField
                 id="filled-multiline-flexable"
                 multiline
                 fullWidth
-                label="Post a Comment"
+                
                 type="text"
                 name="Comments"
+                // sx={{margin: '0.5rem'}}
                 onChange={(e) =>
                   setComment((prev) => ({ ...prev, comment: e.target.value }))
                 }
@@ -67,11 +93,11 @@ export default function CommentList(props) {
                 color="black"
                 className="btn btn-default pull-left"
                 onClick={postComment}
+                sx={{ margin: "0.5rem" }}
               >
-                Submit your Comment
+                Submit
               </Button>
-
-              <CardHeader title="Comments!" />
+              <CardHeader title="Comments" />
               {findCommentByRecipeID}
             </Card>
           </Grid>
