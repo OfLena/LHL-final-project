@@ -4,7 +4,7 @@ import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
 
-import { CardMedia, Box, Grid, Card, CardHeader, Typography } from "@mui/material";
+import { CardMedia, Box, Grid } from "@mui/material";
 
 
 const styles = {
@@ -43,18 +43,9 @@ export default function Home(props) {
       
       <CardMedia
         image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
-        title="greeting image"
+        alt="Header Picture"
         style={styles}
       />
-
-    
-      {/* <Card>
-        <CardHeader 
-        title="POTLUCK"
-        subheader="Bring Your Friends"
-        />
-      </Card> */}
-
       <Grid container spacing={2}>
         {recipes}
       </Grid>

@@ -26,18 +26,13 @@ export default function RecipeForm(props) {
 
 
 
-  const { user, recipes, setState, state } = props
-  
-  
-
-
-  let navigate = useNavigate();
- 
+  const { user, recipes, setState } = props
+  const navigate = useNavigate(); 
 
   // =========== STATES ========== //
   const [recipe, setRecipe] = useState({user_id: user.id});
-  const [ingredientRows, setIngredientRows] = useState([{}]);
-  const [instructionRows, setInstructionRows] = useState([{}])
+  const [ingredientRows, setIngredientRows] = useState([{ingredient: '', measurement: ''}] || '');
+  const [instructionRows, setInstructionRows] = useState([{instruction: ''}] || '')
   
 
   // ======== USE EFFECTS ===== //
@@ -96,6 +91,7 @@ export default function RecipeForm(props) {
     const newRow = [...ingredientRows];
     newRow[idx][name] = value;
     setIngredientRows(newRow);
+    console.log(ingredientRows)
   };
 
   const handleIngredientAddRow = () => {
@@ -175,20 +171,15 @@ export default function RecipeForm(props) {
 
       <Container>
         <header className="burg-header">
-          <div class="m-intro">
-            <div class="e-text">
+          <div className="m-intro">
+            <div className="e-text">
               <h1>
                 Share Your Recipe
               </h1>
             </div>
           </div>
         </header>
-        
-        
-        <form onSubmit={(e) => e.preventDefault()} autoComplete="off"
-        >
-      
-         
+
           <Grid container 
           spacing={0}
           >
@@ -218,6 +209,7 @@ export default function RecipeForm(props) {
                   label="Image URL"
                   name="image_url"
                   placeholder="Upload Photo Url"
+                  //write handle from input helper , 2 params
                   onChange={(e) =>
                     setRecipe((prev) => ({ ...prev, image_url: e.target.value }))
                   }
@@ -246,8 +238,7 @@ export default function RecipeForm(props) {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              
-                
+  
                 <TextField
                   fullWidth
                   required
@@ -264,9 +255,6 @@ export default function RecipeForm(props) {
                 />
               
             </Grid>
-            
-          
-          {/* <Typography>Ingredients</Typography> */}
           
           {ingredientRows.map((item, idx) => (
             
@@ -274,7 +262,6 @@ export default function RecipeForm(props) {
             
             <Grid item xs={6}> 
                 <TextField
-                
                   fullWidth
                   InputProps={{
                     startAdornment: <InputAdornment position="start"> <DinnerDiningIcon/> </InputAdornment>,
@@ -287,11 +274,9 @@ export default function RecipeForm(props) {
                   className="form-control"
                 />
             </Grid>
-
-
+            
             <Grid item xs={6}>
               <TextField
-              
               fullWidth
               InputProps={{
                 startAdornment: <InputAdornment position="start"> <ScaleIcon/> </InputAdornment>,
@@ -323,19 +308,16 @@ export default function RecipeForm(props) {
             >
               Add
             </Button>
-          
-        
-          
-          
-          <Button
-            startIcon={<DeleteIconTwoTone />}
-            color="black"
-            variant="outlined"
-            onClick={handleIngredientRemoveRow}
-            className="pull-right btn btn-default"
-            >
-            Delete
-          </Button>
+
+            <Button
+              startIcon={<DeleteIconTwoTone />}
+              color="black"
+              variant="outlined"
+              onClick={handleIngredientRemoveRow}
+              className="pull-right btn btn-default"
+              >
+              Delete
+            </Button>
             
           </Grid>
               {instructionRows.map((item, idx) => (
@@ -360,7 +342,6 @@ export default function RecipeForm(props) {
           <Grid item xs={6}>
           
             <Button
-            
               startIcon={<AddCircleTwoToneIcon/>}
               variant="outlined"
               color='yellow'
@@ -376,15 +357,11 @@ export default function RecipeForm(props) {
               color="black"
               variant="outlined"
               onClick={handleInstructionRemoveRow}
-
             >
               Delete
             </Button>
           </Grid>
-    
-    
-    
-          
+
           <Paper elevation={3} align={"center"}>
            <span className="tags">
            
@@ -503,15 +480,9 @@ export default function RecipeForm(props) {
               />
             </span>
           </Paper>         
-      
           <br />
           <br />
-
-          
-          
           {!recipe.title ? null : postButton()}
-         
-        </form>
       </Container>
       <Footer/>
     </Box>

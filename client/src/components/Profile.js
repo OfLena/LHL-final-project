@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+
 
 import RecipeListItem from "./RecipeListItem";
+import Footer from "./Footer";
+
+
+
 
 import {
   Box,
   Typography,
   Grid,
   Button,
-  Container,
   TextField,
 } from "@mui/material";
-import Footer from "./Footer";
+
+
 
 export default function Profile(props) {
-  const { user, state, setState } = props;
-  const [showFavs, setShowFavs] = useState("");
+
+  const { user, state, setState, currentPage, setCurrentPage } = props;
+
   const [showUserRecipes, setShowUserRecipes] = useState("");
+  const [showFavs, setShowFavs] = useState("");
   const [search, setSearch] = useState("");
 
-  console.log('PROFILE PAGE', state.filtered_recipes)
+  
 
   useEffect(() => {
     if (showFavs) {
@@ -27,7 +33,7 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
-  }, [search,state ]);
+  }, [search, state]);
 
 
   function getFavRecipes() {
@@ -47,14 +53,11 @@ export default function Profile(props) {
   const userFilteredRecipes = state.filtered_recipes.filter(
     (val) => {
       if (val.user_id === user.id ) {
-      console.log("INSIDE USERFILTER" , val)
-      // console.log('CUURENT USER', user.id)
       return val;
     }
   })
 
   let filteredSearchForUserRecipes = userFilteredRecipes.filter((val) => {
-    console.log("INSIDE FILTEREDSEARCHUSER", val)
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
@@ -62,9 +65,7 @@ export default function Profile(props) {
     }
   });
 
-  let filteredSearchForFavRecipes = state.favs.filter((val) => 
-  {
-    console.log("VAL ---->", val)
+  let filteredSearchForFavRecipes = state.favs.filter((val) => {
     if (search === "") {
       return val;
     } else if (val.title.toLowerCase().includes(search.toLowerCase())) {
@@ -82,16 +83,14 @@ export default function Profile(props) {
         user_id={user.id}
         state={state}
         setState={setState}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
         title={recipe.title}
+        // change user_name to avatar
         user_name={user.user_name}
         image_url={recipe.image_url}
+        // preptime and serving size to drawer
         prep_time={recipe.prep_time}
-        instruction_1={recipe.instruction_1}
-        instruction_2={recipe.instruction_2}
-        instruction_3={recipe.instruction_3}
-        instruction_4={recipe.instruction_4}
-        instruction_5={recipe.instruction_5}
-        link={recipe.link}
         serving_size={recipe.serving_size}
         forProfileUser
       />
@@ -99,24 +98,21 @@ export default function Profile(props) {
   });
 
   const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
-    console.log("FAV RECIPE INSIDE USERFAVRECIPE ===>", recipe)
     return (
       <RecipeListItem
         key={recipe.id}
         state={state}
         setState={setState}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
         title={recipe.title}
         user_id={user.id}
         recipe_id={recipe.recipe_id}
+         // change user_name to avatar
         user_name={user.user_name}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
-        instruction_1={recipe.instruction_1}
-        instruction_2={recipe.instruction_2}
-        instruction_3={recipe.instruction_3}
-        instruction_4={recipe.instruction_4}
-        instruction_5={recipe.instruction_5}
-        link={recipe.link}
+      // preptime and serving size to drawer
         serving_size={recipe.serving_size}
         alwaysRed
       />
@@ -140,10 +136,10 @@ export default function Profile(props) {
       <Grid container spacing={1}>
         <Grid item xs={12} align='center'>
           <Button  style = {{width: '20rem', padding:'16px'}} variant="contained" onClick={getFavRecipes}>
-            Fav Recipes
+            My Fav Recipes
           </Button>
           <Button  style = {{width: '20rem', padding:'16px'}} variant="contained" onClick={getUserRecipes}>
-            Your Recipes
+            My Recipes
           </Button>
         </Grid>
 

@@ -1,4 +1,5 @@
 import * as React from "react";
+
 import { styled, alpha } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -6,13 +7,11 @@ import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
 import LocalDiningIcon from '@mui/icons-material/LocalDining';
 
-import { useState, useEffect } from "react";
 
 export default function SearchBar(props) {
   
   const { setSearch, search } = props;
-  // const [search, setSearch] = useState("");
-  
+ 
   
 
   const Search = styled("div")(({ theme }) => ({
@@ -60,8 +59,6 @@ export default function SearchBar(props) {
   function handleSearch(event) {
     setSearch(event.target.value)
   }
-
-  
 
   return (
     <Box sx={{ flexGrow: 1 }}>

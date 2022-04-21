@@ -13,16 +13,16 @@ module.exports = (db) => {
   
   });
 
-  router.get('/:id', (req, res) => {
+  // router.get('/:id', (req, res) => {
 
-    const recipes = "SELECT * FROM recipes WHERE user_id = $1";
+  //   const recipes = "SELECT * FROM recipes WHERE user_id = $1";
     
-    db.query(recipes, [req.params.id]).then(data => {
+  //   db.query(recipes, [req.params.id]).then(data => {
      
-      res.json(data.rows);
-    })
+  //     res.json(data.rows);
+  //   })
   
-  });
+  // });
 
   router.post('/', (req, res) => {
 

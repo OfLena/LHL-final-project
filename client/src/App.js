@@ -1,27 +1,23 @@
 // ------------CSS FILES---------- //
 import './App.scss';
 
-
 // ------------DEPENDENCIES---------- //
 import {
   BrowserRouter as Router,
   Routes,
   Route,
 } from "react-router-dom";
-import React, {useState, useEffect} from 'react';
+
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import axios from 'axios'
-
-
 
 // ------------COMPONENT IMPORT---------- //
-import Nav from './components /Nav';
-import Profile from './components /Profile';
-import RecipeForm from './components /RecipeForm';
-import Home from './components /Home';
-import Login from './components /Login';
-import RecipeCard from './components /RecipeCard';
-
+import Nav from './components/Nav';
+import Profile from './components/Profile';
+import RecipeForm from './components/RecipeForm';
+import Home from './components/Home';
+import Login from './components/Login';
+import RecipeCard from './components/RecipeCard';
+import useApplicationData from './components/hooks/AppHooks'
 
 
 const theme = createTheme({
@@ -45,62 +41,13 @@ const theme = createTheme({
 
 function App() {
   
-  const [state, setState] = useState({
-    user: [],
-    user_recipes: [],
-    recipes: [],
-    filtered_recipes: [],
-    favs: [],
-    comments: []
-  });
-
-  const [currentPage, setCurrentPage] = useState('')
-  const [search, setSearch] = useState('')
-
-
-  const filterRecipes = function() {
-
-  
-    let searchTerm = search;
-
-    let searchArray = searchTerm.trim().split(" ");
-    
-    let re = new RegExp(searchArray.join("|"), "i");
-    
-    let resultsObj = [...state.recipes.filter(recipe =>
-    re.test(recipe.title))
-    ]
-  
-    return resultsObj
-  }
-  
-
-
-  useEffect(() => {
-    setState((prev) => ({...prev, filtered_recipes: filterRecipes()}))
-  }, [search])
-  
-  
-
-  useEffect(() => {
-    Promise.all([
-      axios.get("/users/1"),
-      axios.get("/recipes/1"),
-      axios.get("/recipes"),
-      axios.get("/favs"),
-      axios.get("/comments")
-    ]).then((all) => {
-      setState((prev) => ({
-        ...prev,
-        user: all[0].data,
-        user_recipes: all[1].data,
-        recipes: all[2].data,
-        filtered_recipes: all[2].data,
-        favs: all[3].data,
-        comments: all[4].data
-      }));
-    });
-  }, []);
+  const { 
+    state,
+    setState, 
+    currentPage,
+    setCurrentPage,
+    search,
+    setSearch} = useApplicationData();
 
   return (
     <div className="App">
@@ -125,11 +72,13 @@ function App() {
                   state={state}
                  />}
              />
-            {/* <Route path="/recipes" element={<RecipeList recipes={state.filtered_recipes}/>}/> */}
+            
             <Route path="/profile" 
             element={<Profile 
               user={state.user} 
               recipes={state.filtered_recipes}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
               state={state}
               setState={setState}
               />}
@@ -156,9 +105,8 @@ function App() {
             <Route path="/login" element={<Login />}/>
           </Routes>
         </div>
-      {/* <Footer/> */}
       </Router>
-              </ThemeProvider>
+    </ThemeProvider>
     </div>
   );
 }

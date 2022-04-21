@@ -61,7 +61,7 @@
  
 
  (6, 3, '45 minutes', 2, 'https://i0.wp.com/www.wearesovegan.com/wp-content/uploads/2019/10/veganindianchickpeatikkaburrito-h1.jpg?w=1280&ssl=1', 
- 'Burritos',
+ 'BETTER BURRITOS',
  'Cube a sweet potato and place on baking sheet with cinnamom and olive oil at 350F for 40mins. Flip once at 20mins.',
  'Chop a medium yellow onion and 3 gloves of garlic and place in hot brazier at medium heat. Cook until onions are translucent. Start your desired amount of rice.',
  'Add salt, pepper, coriander, cumin, cayenne, chili powder, and tumeric and cook for another min. Add your choice of greens and pinto beans',
@@ -71,7 +71,7 @@
   '2 Medium', '1 Medium', '3', '1 can', '1 bunch', '4', '1 TBSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '3 TBSP', '1 TBSP', null, null, null, null, null, TRUE),
 
 (7, 1, '30 minutes', 4, 'https://www.themealdb.com/images/media/meals/qwrtut1468418027.jpg', 
- 'Potato Gratin with Chicken',
+ 'Potato Gratin with Duck',
  'Finely slice 3 onions and place in an oven dish with 2 tblsp of olive oil and 100ml of chicken stock.',
  'Cook till the onions are soft then drain the potatoes and pour onto the onions.',
  'Season and spoon over cream or creme fraiche till all is covered but not swimming.',
@@ -82,7 +82,7 @@
  
 
  (8, 2, '30 minutes', 4, 'https://www.themealdb.com/images/media/meals/rvxxuy1468312893.jpg', 
- 'Vegan Lasagna',
+ 'Garfields Lasagna',
  'Preheat oven to 180 degrees celcius.',
  'Boil vegetables for 5-7 minutes, until soft. Add lentils and bring to a gentle simmer, adding a stock cube if desired.
   Continue cooking and stirring until the lentils are soft, which should take about 20 minutes.',
@@ -96,7 +96,7 @@
  
 
  (9, 3,'45 minutes', 2, 'https://i0.wp.com/www.wearesovegan.com/wp-content/uploads/2019/10/veganindianchickpeatikkaburrito-h1.jpg?w=1280&ssl=1', 
- 'Burritos',
+ 'BEANS',
  'Cube a sweet potato and place on baking sheet with cinnamom and olive oil at 350F for 40mins. Flip once at 20mins.',
  'Chop a medium yellow onion and 3 gloves of garlic and place in hot brazier at medium heat. Cook until onions are translucent. Start your desired amount of rice.',
  'Add salt, pepper, coriander, cumin, cayenne, chili powder, and tumeric and cook for another min. Add your choice of greens and pinto beans',

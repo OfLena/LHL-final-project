@@ -1,7 +1,7 @@
 
 import "./styles/footer.scss"
 
-import { IconButton, Grid} from "@mui/material";
+import { IconButton} from "@mui/material";
 
 import  YouTubeIcon  from '@mui/icons-material/YouTube';
 import InstagramIcon from '@mui/icons-material/Instagram';
@@ -10,7 +10,7 @@ import FacebookIcon from '@mui/icons-material/Facebook';
 export default function Footer () {
   return (
 
-    <footer>
+<footer>
     <div className="container">
         <div className="left section">
             <h2>About Us</h2>
@@ -41,7 +41,6 @@ export default function Footer () {
                 </div>
             </div>
         </div>
-
     </div>
   </footer>
   );

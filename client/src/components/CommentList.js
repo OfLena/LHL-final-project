@@ -32,6 +32,7 @@ export default function CommentList(props) {
         console.log("ERR", err);
       });
   }
+  
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (

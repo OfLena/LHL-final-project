@@ -1,6 +1,6 @@
-import "./styles/recipecard.scss";
-
 import * as React from "react";
+
+
 
 import {
   Container,
@@ -13,26 +13,21 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-import Image from './Potluck_logos/PotLuck-logos.jpeg'
+
 
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
+
 import Footer from "./Footer";
 import CommentList from "./CommentList";
 
 
 
-// const styles = {
-//   boxContainer: {
-//       backgroundImage: `url(${Image})`
-//   }
-// };
-
 export default function RecipeCard(props) {
-  const { recipes, currentPage, setCurrentPage, comments, state, setState } = props;
+  const { recipes, currentPage, comments, state, setState } = props;
 
   // Map Over All Recipes in Database
   const findRecipe = recipes.map((recipe, index) => {
@@ -50,9 +45,7 @@ export default function RecipeCard(props) {
         <Box
           key={index}
           marginTop={"8rem"}
-          marginBottom={"2rem"}
-          // style={styles.boxContainer}
-          
+          marginBottom={"2rem"}  
           sx={{ p: 2, border: "1px solid black" }}
         >
           <Card sx={{ paddingBottom: "2rem" }}>
@@ -65,8 +58,7 @@ export default function RecipeCard(props) {
                 </Avatar>
               }
             />
-            <div
-              
+            <div              
               style={{ display: "flex", justifyContent: "center" }}
             >
               <CardMedia
@@ -108,6 +100,7 @@ export default function RecipeCard(props) {
                   return (
                     <FormControlLabel
                       control={<CheckCircleOutlineIcon />}
+                      key={index}
                       label={upperCaseVal}
                       labelPlacement="top"
                       value={upperCaseVal}
