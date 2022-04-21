@@ -56,7 +56,6 @@ export default function RecipeListItem(props) {
   };
 
   /* FAVOURITING FEATURE */
-  
   useEffect(() => { 
   
     const favsArr = state.favs
@@ -143,6 +142,17 @@ export default function RecipeListItem(props) {
     });
   }
 
+   /* EDITING FEATURE */
+
+   function handleClickEdit () {
+     console.log(recipe_id)
+   }
+
+   // redirect to recipe_form
+   // populate all the information in the fields
+   // have an "update" button
+   // update query in the database 
+
   return (
   <Grid item xs={12} md={6} lg={4}>
     <div className="recipe-card">
@@ -181,6 +191,8 @@ export default function RecipeListItem(props) {
               color="black"
               variant="outlined"
               className="pull-right btn btn-default"
+              component={Link} to={'/edit_recipe_form'}
+              onClick={handleClickEdit}
             > Edit
           </Button>} 
           {forProfileUser &&        

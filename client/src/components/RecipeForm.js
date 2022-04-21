@@ -13,20 +13,11 @@ import ScaleIcon from '@mui/icons-material/Scale';
 import DeleteIconTwoTone from '@mui/icons-material/DeleteTwoTone';
 import AddCircleTwoToneIcon from '@mui/icons-material/AddCircleTwoTone';
 
-
-
 import Footer from "./Footer";
-
-
-
-
-
 
 export default function RecipeForm(props) {
 
-
-
-  const { user, recipes, setState } = props
+  const { user, recipes, setState, editForm } = props
   const navigate = useNavigate(); 
 
   // =========== STATES ========== //
@@ -157,7 +148,24 @@ export default function RecipeForm(props) {
     )
   } 
 
+  // EDIT FEATURE - UPDATE BUTTON 
+  const updateButton = function () {
+    return (
+      <Button
+              type="button"
+              variant="contained"
+              color="black"
+              className="btn btn-default pull-left"
+              // onClick={postRecipeAndTags}
+            >
+              Update Recipe
+            </Button>
+    )
+  } 
 
+
+
+  /* STARTING RETURN */
   return (
 
     <Box
@@ -173,9 +181,16 @@ export default function RecipeForm(props) {
         <header className="burg-header">
           <div className="m-intro">
             <div className="e-text">
+              {/* EDIT PROP - CONDITIONAL TITLE RENDERING */}
+              {editForm ?
               <h1>
-                Share Your Recipe
+                Update Recipe
               </h1>
+              :
+              <h1>
+              Share Your Recipe
+            </h1>
+              }
             </div>
           </div>
         </header>
@@ -483,6 +498,8 @@ export default function RecipeForm(props) {
           <br />
           <br />
           {!recipe.title ? null : postButton()}
+          {/* EDIT PROP FOR "UPDATE BUTTON" */}
+          {editForm ? updateButton() : null}
       </Container>
       <Footer/>
     </Box>

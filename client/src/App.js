@@ -99,9 +99,20 @@ function App() {
                user={state.user}
                setState={setState}
                state={state}
-          
                />}
             />
+
+            <Route path="/edit_recipe_form" 
+             element={<RecipeForm 
+               recipes={state.filtered_recipes}
+               user={state.user}
+               setState={setState}
+               state={state}
+               editForm
+               //additional props 
+               />}
+            />
+
             <Route path="/login" element={<Login />}/>
           </Routes>
         </div>
