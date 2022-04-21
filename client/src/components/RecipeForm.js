@@ -157,13 +157,12 @@ export default function RecipeForm(props) {
               color="black"
               className="btn btn-default pull-left"
               // onClick={postRecipeAndTags}
+              // onClick put request to update recipe in the database using filtered recipes & prev
             >
               Update Recipe
             </Button>
     )
   } 
-
-
 
   /* STARTING RETURN */
   return (
