@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
+import RecipeCard from "./RecipeCard";
 
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -23,12 +25,17 @@ export default function CommentList(props) {
     user_id: [state.user.id],
   });
 
+  console.log('currentpage', currentPage)
+
+  // useEffect(() => {
+  //   setState((prev) => ({...prev, comments: [...comments, comment]}))
+  // },[comments]);
 
   function postComment() {
     Promise.all([axios.post("/comments", comment)])
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [...comments, comment] }));
-        navigate(0)
+        
       })
       .catch((err) => {
         console.log("ERR", err);

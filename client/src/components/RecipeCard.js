@@ -1,5 +1,4 @@
-import * as React from "react";
-
+import React, { useEffect } from 'react';
 
 
 import {
@@ -28,6 +27,9 @@ import CommentList from "./CommentList";
 
 export default function RecipeCard(props) {
   const { recipes, currentPage, comments, state, setState } = props;
+
+
+
 
   // Map Over All Recipes in Database
   const findRecipe = recipes.map((recipe, index) => {
