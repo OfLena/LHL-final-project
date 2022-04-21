@@ -108,10 +108,8 @@ function App() {
                user={state.user}
                setState={setState}
                state={state}
-              //  recipe_id={state.filtered_recipes.id}
                currentPage={currentPage}
                editForm
-               //additional props 
                />}
             />
 
