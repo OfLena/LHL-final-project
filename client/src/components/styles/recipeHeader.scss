@@ -61,6 +61,7 @@ align-items: center;
 justify-content: center;
 overflow:hidden;
 position:relative;
+border-radius: 100em;
 
 
 &:before, &::after {
@@ -80,6 +81,7 @@ position:relative;
 
 .burg-header {
   border: 45px solid black;
+  border-radius: 0 0 90px 90px;
 }
 
 .e-text{
@@ -100,15 +102,16 @@ position:relative;
     text-transform: uppercase;
     font-size:30px;
     line-height:100px;
-    border-radius: 34px;
+    border-radius: 50em;
     margin:0px 0;
     padding: 0px 0px 0px 0px ;
     position:relative;
-    
+   
     @supports(-webkit-background-clip: text){
       background: radial-gradient(ellipse at center, rgb(0, 0, 0) 0%, rgb(0, 0, 0) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
+     
     }
 
   }
@@ -117,4 +120,11 @@ position:relative;
   }
 
   
+}
+
+
+
+.burg-header {
+  border: 11px solid #CCA01D;
+  border-radius: 100em;
 }
