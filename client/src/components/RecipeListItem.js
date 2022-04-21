@@ -166,7 +166,7 @@ export default function RecipeListItem(props) {
           title={props.title}
           subheader={`Author: ${user_name}`}
         />
-        <CardMedia component="img" height="194" image={image_url} alt={title} />
+        <CardMedia component="img" height="194" image={'http://localhost:8080/images/'+ image_url} alt={title} />
         <CardContent>
           <Typography variant="body2" color="text.secondary"/>
         </CardContent>

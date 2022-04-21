@@ -8,7 +8,6 @@ module.exports = (db) => {
     const recipes = "SELECT * FROM recipes";
     
     db.query(recipes).then(data => {
-     
       res.json(data.rows);
     })
   
@@ -19,7 +18,6 @@ module.exports = (db) => {
    
    
     const recipeKeys = Object.keys(req.body)
-   
     const recipeValues = Object.values(req.body)
     const wrappedValues = recipeValues.map((elem) => `'${elem}'`)
 
@@ -52,13 +50,14 @@ module.exports = (db) => {
       return res.status(400).send('No files were uploaded.');
     }
   
-    // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
     imgFile = req.files.img;
-    console.log('omg', imgFile)
-    uploadPath = __dirname + '/public/images/' + imgFile.name;
+   
+    uploadPath = __dirname + '/../public/images/' + imgFile.name;
   
-    // Use the mv() method to place the file somewhere on your server
+    // Use the mv() method to place the file 
     imgFile.mv(uploadPath, function(err) {
+      console.log('uploadPath', uploadPath);
+      
       if (err)
         return res.status(500).send(err);
   

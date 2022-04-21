@@ -125,12 +125,12 @@ export default function RecipeForm(props) {
     recipe.id = uuidv4()
     console.log("RECIPE", recipe)
     Promise.all([
-      axios.post("/recipe", recipe),
-      // axios.post("/recipes/images", formData, {
-      //   onUploadProgress: ProgressEvent => {
-      //     console.log('Upload Progress: '  + Math.round(ProgressEvent.loaded / ProgressEvent.total) + "%")
-      //   }
-      // }),
+      axios.post("/recipes", recipe),
+      axios.post("/recipes/images", formData, {
+        onUploadProgress: ProgressEvent => {
+          console.log('Upload Progress: '  + Math.round(ProgressEvent.loaded / ProgressEvent.total) + "%")
+        }
+      }),
     ])
       .then((all) => {   
         setState((prev) => ({...prev, filtered_recipes: [...recipes, recipe]}))
