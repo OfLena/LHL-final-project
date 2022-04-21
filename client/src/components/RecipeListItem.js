@@ -145,7 +145,7 @@ export default function RecipeListItem(props) {
    /* EDITING FEATURE */
 
    function handleClickEdit () {
-     console.log(recipe_id)
+     setCurrentPage(recipe_id)
    }
 
    // redirect to recipe_form

@@ -17,7 +17,7 @@ import Footer from "./Footer";
 
 export default function RecipeForm(props) {
 
-  const { user, recipes, setState, editForm } = props
+  const { user, recipes, setState, editForm, recipe_id, setCurrentPage, currentPage } = props
   const navigate = useNavigate(); 
 
   // =========== STATES ========== //
@@ -156,7 +156,8 @@ export default function RecipeForm(props) {
               variant="contained"
               color="black"
               className="btn btn-default pull-left"
-              // onClick={postRecipeAndTags}
+              // setCurrentPage={setCurrentPage}
+              onClick={() => console.log("RECIPE ID", currentPage)}
               // onClick put request to update recipe in the database using filtered recipes & prev
             >
               Update Recipe
