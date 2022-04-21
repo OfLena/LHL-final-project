@@ -223,20 +223,25 @@ export default function RecipeForm(props) {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              
-               
-                <input
-                  type='file'
-                  accept="image/jpeg"
-                  id="image_url"
-                  label="Image URL"
-                  name="image_url"
-                  onChange={(e) =>
-                    setRecipe((prev) => ({ ...prev, image_url: e.target.files[0].name}), 
-                    setImage(e.target.files[0]))
 
-                  }
-                />
+              
+                <label htmlFor="btn-upload">
+                  <input
+                    type='file'
+                    id="image_url"
+                    label="Image URL"
+                    name="image_url"
+                    onChange={(e) =>
+                      setRecipe((prev) => ({ ...prev, image_url: e.target.files[0].name}), 
+                      setImage(e.target.files[0]))
+
+                    }
+                  />
+               
+                </label>
+                <div className="file-name">
+        {image && image.length > 0 ? image.name : null}
+        </div>
                 
             </Grid>
 
