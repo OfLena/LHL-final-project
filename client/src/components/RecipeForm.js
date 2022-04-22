@@ -17,14 +17,16 @@ import {
   TextField,
   Box,
   InputAdornment,
-  Typography,
+  InputLabel
 } from "@mui/material";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
 import DeleteIconTwoTone from "@mui/icons-material/DeleteTwoTone";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
+import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 import Footer from "./Footer";
+import AddPhotoAlternate from "@mui/icons-material/AddPhotoAlternate";
 
 export default function RecipeForm(props) {
   const { user, recipes, state, setState, editForm, currentPage } = props;
@@ -281,36 +283,41 @@ export default function RecipeForm(props) {
           </Grid>
 
           <Grid item xs={12} sm={12}>
-            <input
-              className="choose-file"
-              accept="image/*"
-              type="file"
-              id="image_url"
-              label="Image URL"
-              name="image_url"
-              onChange={(e) =>
-                setRecipe(
-                  (prev) => ({ ...prev, image_url: e.target.files[0].name }),
-                  imageSetter(e.target.files[0])
-                )
-              }
+            
+              <input
+                className="choose-file"
+                accept="image/*"
+                type="file"
+                id="image_url"
+                label="Image URL"
+                name="image_url"
+                onChange={(e) =>
+                  setRecipe(
+                    (prev) => ({ ...prev, image_url: e.target.files[0].name }),
+                    imageSetter(e.target.files[0])
+                  )
+                }
+                hidden
+              />
+             
               
-            />
-             {/* <Button
-            startIcon={<AddCircleTwoToneIcon />}
-            variant="outlined"
-            color="yellow"
-            onClick={(e) =>
-              setRecipe(
-                (prev) => ({ ...prev, image_url: e.target.files[0].name }),
-                imageSetter(e.target.files[0])
-              )
-            }
-            className="btn btn-default pull-left"
-          >
-            Add
-          </Button> */}
+             <label 
+             className ="upload-button"
+             htmlFor="image_url">
+                <Button component="span"
+                startIcon={<AddPhotoAlternate />}
+                variant="outlined"
+                color="yellow" >
+                Upload an Image
+                </Button>
+              </label> 
+        
+            
+             
 
+          </Grid>
+
+          <Grid item xs={12} sm={12} >
             <div className="image-preview">
               <img  id="image-prev" src={previewImage.image} alt="image-preview" className={previewImage.isTextVisible}/>{previewImage.isTextVisible === 'image-preview__image' ? 'Preview your Image' : null}
             </div>

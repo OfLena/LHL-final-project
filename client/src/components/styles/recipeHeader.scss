@@ -102,7 +102,7 @@ border-radius: 100em;
     text-transform: uppercase;
     font-size:30px;
     line-height:100px;
-    border-radius: 50em;
+    
     margin:0px 0;
     padding: 0px 0px 0px 0px ;
     position:relative;
@@ -123,21 +123,24 @@ border-radius: 100em;
 }
 
 
+.upload-button {
+  margin-bottom: 1em;
+  justify-content: center;
+}
+
 
 .burg-header {
   border: 11px solid #CCA01D;
   border-radius: 100em;
 }
 
-.choose-file {
-  margin-bottom: 1em;
-}
+
 
 .image-preview {
   width: 75%;
   min-height: 100px;
   max-height: 75%;
-  border: 2px solid black;
+  border: 2px solid rgb(172, 172, 172);
   color: rgb(111, 111, 111);
   margin-top: 1em;
   display: flex;
@@ -145,7 +148,9 @@ border-radius: 100em;
   justify-content: center;
   font-weight: bold;
   overflow: hidden;
-  margin-left: 7em;
+  margin-left: 8em;
+  border-radius: 2em;
+  box-shadow: 2.5px 3px #888888;
 }
 
 .image-preview img {
@@ -180,6 +185,10 @@ border-radius: 100em;
     align-self: center;
     max-width: 100%;
     max-height: 100%;
+  }
+
+  .upload-button {
+    margin-bottom: 1em;
   }
 }
 
