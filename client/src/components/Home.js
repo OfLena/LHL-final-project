@@ -6,8 +6,8 @@ import Footer from "./Footer";
 import { CardMedia, Box, Grid } from "@mui/material";
 
 const styles = {
-  height: 500,
-  maxWidth: 1500,
+  height: 700,
+  maxWidth: 2400,
 };
 
 export default function Home(props) {

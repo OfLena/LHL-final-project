@@ -161,7 +161,7 @@ export default function RecipeListItem(props) {
   }
 
   return (
-    <Grid item xs={12} md={6} lg={4}>
+    <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
