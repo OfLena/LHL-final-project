@@ -5,14 +5,10 @@ import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import InputBase from "@mui/material/InputBase";
-import LocalDiningIcon from '@mui/icons-material/LocalDining';
-
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 export default function SearchBar(props) {
-  
   const { setSearch, search } = props;
- 
-  
 
   const Search = styled("div")(({ theme }) => ({
     position: "relative",
@@ -57,7 +53,7 @@ export default function SearchBar(props) {
   }));
 
   function handleSearch(event) {
-    setSearch(event.target.value)
+    setSearch(event.target.value);
   }
 
   return (

@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 import {
@@ -11,29 +10,63 @@ import {
   TextField,
   Button,
   Avatar,
+  Typography,
 } from "@mui/material";
 
 export default function CommentList(props) {
   const { comments, currentPage, setCurrentPage, state, setState } = props;
 
-  let navigate = useNavigate();
-
   const [comment, setComment] = useState({
-    recipe_id: [currentPage],
-    user_id: [state.user.id],
+    recipe_id: currentPage,
+    user_id: state.user.id,
   });
 
-
-  function postComment() {
+  function handlePostComment() {
     Promise.all([axios.post("/comments", comment)])
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [...comments, comment] }));
-        navigate(0)
       })
       .catch((err) => {
         console.log("ERR", err);
       });
   }
+
+  function handleDeleteComment() {
+    Promise.all([
+      axios.post("/comments/delete", {
+        [`recipe_id`]: `${currentPage}`,
+        [`user_id`]: `${state.user.id}`,
+      }),
+    ])
+      .then((all) => {
+        setState((prev) => ({ ...prev, comments: removeComment() }));
+      })
+      .catch((err) => {
+        console.log("ERR", err);
+      });
+  }
+
+  const getCommentToDelete = function () {
+    const newCommentArray = comments;
+    const test = newCommentArray.filter((val) =>
+      currentPage === val.recipe_id ? true : false
+    );
+    const removeCommentArray = test.filter((comment) =>
+      state.user.id === comment.user_id ? true : false
+    );
+    return removeCommentArray;
+  };
+
+  const removeComment = function () {
+    const theCommentToDelete = getCommentToDelete();
+    const newCommentArray = [];
+    comments.map((comment) => {
+      if (comment.comment !== theCommentToDelete[0].comment) {
+        newCommentArray.push(comment);
+      }
+    });
+    return newCommentArray;
+  };
 
   const user = Object.entries(state.user);
 
@@ -47,15 +80,24 @@ export default function CommentList(props) {
     if (comment.recipe_id === currentPage) {
       return (
         <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem" }}>
-          <CardHeader
-            sx={{ marginRight: "3.3rem" }}
-            avatar={
-              <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
-                {findUserNameByUserId}
-              </Avatar>
-            }
-            title={comment.comment}
-          />
+          <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
+            {findUserNameByUserId}
+          </Avatar>
+
+          <Typography paragraph>{comment.comment}</Typography>
+          <Card />
+
+          {state.user.id === comment.user_id && (
+            <Button
+              type="button"
+              variant="contained"
+              color="black"
+              onClick={handleDeleteComment}
+              sx={{ margin: "0.5rem" }}
+            >
+              Delete
+            </Button>
+          )}
         </Card>
       );
     }
@@ -89,8 +131,7 @@ export default function CommentList(props) {
                 type="button"
                 variant="contained"
                 color="black"
-                className="btn btn-default pull-left"
-                onClick={postComment}
+                onClick={handlePostComment}
                 sx={{ margin: "0.5rem" }}
               >
                 Submit
