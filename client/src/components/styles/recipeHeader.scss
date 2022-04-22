@@ -128,3 +128,27 @@ border-radius: 100em;
   border: 11px solid #CCA01D;
   border-radius: 100em;
 }
+
+.image-preview {
+  width: 100%;
+  min-height: 100px;
+  border: 2px solid black;
+  color: rgb(111, 111, 111);
+  margin-top: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+
+}
+
+.image-preview__image {
+  width: 100%;
+  display: none;
+}
+
+
+.image-preview__image-filled {
+  width: 100%;
+
+}

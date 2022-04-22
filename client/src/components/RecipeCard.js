@@ -1,6 +1,4 @@
-import * as React from "react";
-
-
+import React, { useEffect } from "react";
 
 import {
   Container,
@@ -13,18 +11,13 @@ import {
   FormControlLabel,
 } from "@mui/material";
 
-
-
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-
 import Footer from "./Footer";
 import CommentList from "./CommentList";
-
-
 
 export default function RecipeCard(props) {
   const { recipes, currentPage, comments, state, setState } = props;
@@ -45,7 +38,7 @@ export default function RecipeCard(props) {
         <Box
           key={index}
           marginTop={"8rem"}
-          marginBottom={"2rem"}  
+          marginBottom={"2rem"}
           sx={{ p: 2, border: "1px solid black" }}
         >
           <Card sx={{ paddingBottom: "2rem" }}>
@@ -58,16 +51,13 @@ export default function RecipeCard(props) {
                 </Avatar>
               }
             />
-            <div              
-              style={{ display: "flex", justifyContent: "center" }}
-            >
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <CardMedia
                 component="img"
                 sx={{ maxWidth: 600, border: "1px solid black" }}
                 height="300"
                 image={filteredRecipes.image_url}
                 alt={filteredRecipes.title}
-                
               />
             </div>
             <Card
@@ -76,7 +66,7 @@ export default function RecipeCard(props) {
                 padding: "1rem 0rem 1rem 0rem",
                 marginLeft: "2rem",
                 marginRight: "2rem",
-                
+
                 marginTop: "2rem",
               }}
             >
@@ -115,7 +105,7 @@ export default function RecipeCard(props) {
           <Card
             sx={{
               padding: "2rem 0rem 2rem 0rem",
-              
+
               marginTop: "2rem",
             }}
           >
@@ -128,7 +118,7 @@ export default function RecipeCard(props) {
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-                  
+
                   marginTop: "2rem",
                 }}
               >
@@ -149,7 +139,7 @@ export default function RecipeCard(props) {
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-                  
+
                   marginTop: "2rem",
                 }}
               >
@@ -172,7 +162,7 @@ export default function RecipeCard(props) {
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-                  
+
                   margin: "2rem 2rem 0rem 2rem",
                 }}
               >
@@ -190,7 +180,12 @@ export default function RecipeCard(props) {
                 })}
               </Card>
             </Grid>
-            <CommentList comments={comments} currentPage={currentPage} state={state} setState={setState} />
+            <CommentList
+              comments={comments}
+              currentPage={currentPage}
+              state={state}
+              setState={setState}
+            />
           </Card>
         </Box>
       );
