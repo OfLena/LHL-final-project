@@ -101,8 +101,6 @@ export default function RecipeForm(props) {
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
       );
       setEditRecipe(filteredRecipe);
-
-      // console.log(recipePairs)
     }
   }, [editForm, currentPage]);
 
@@ -114,9 +112,12 @@ export default function RecipeForm(props) {
     item[0].includes("instruction") ? item : false
   ))
 
+  /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
+  
+
   // console.log("EDITRECIPE", editRecipe)
   console.log("EDITRECIPE PAIR", editRecipePair)
-  console.log("INSTRUCTIONSEDIT", instructionsEdit)
+  // console.log("INSTRUCTIONSEDIT", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
@@ -476,6 +477,7 @@ export default function RecipeForm(props) {
           ))
         } 
         {/* end of conditional for edit - instructions */}
+        
         <Grid item xs={6}>
           <Button
             startIcon={<AddCircleTwoToneIcon />}
