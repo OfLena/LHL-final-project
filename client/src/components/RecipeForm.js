@@ -44,7 +44,7 @@ export default function RecipeForm(props) {
     isTextVisible: 'image-preview__image',
   });
   // EDIT RECIPE STATE
-  const [editRecipe, setEditRecipe] = useState(false);
+  const [editRecipe, setEditRecipe] = useState('');
   let incomingImage;
  
 
@@ -90,19 +90,24 @@ export default function RecipeForm(props) {
   useEffect(() => {
     if (editForm) {
       const thisRecipeArr = state.filtered_recipes;
+
+      // find the specific recipe
       const findThisRecipe = thisRecipeArr.filter((recipe) =>
         recipe.id === currentPage ? recipe : false
       );
 
       // Filter Out All Key/Value Pairs where the Value is Falsey
-      const filteredRecipes = Object.fromEntries(
+      const filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
       );
+      setEditRecipe(filteredRecipe);
 
-      setEditRecipe(filteredRecipes);
+      // set entire recipe to individual arrays
+      const editRecipePair = Object.entries(filteredRecipe);
+
+      // console.log(recipePairs)
     }
-  }, [editForm]);
-
+  }, [editForm, currentPage]);
 
   // ==================CHECKBOX HANDLERS =================//
 
@@ -470,6 +475,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                   // EDIT - VEGAN
+                  checked={editForm && editRecipe.vegan ? true : false}
                 />
               }
               label="Vegan"
@@ -489,6 +496,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - GF
+                  checked={editForm && editRecipe.gluten_free ? true : false}
                 />
               }
               label="Gluten Free"
@@ -507,6 +516,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - DF
+                  checked={editForm && editRecipe.dairy_free ? true : false}
                 />
               }
               label="Dairy-Free"
@@ -527,6 +538,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - VEGETARIAN
+                  checked={editForm && editRecipe.vegetarian ? true : false}
                 />
               }
               label="Vegetarian"
@@ -546,6 +559,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - KETO
+                  checked={editForm && editRecipe.keto ? true : false}
                 />
               }
               label="Keto"
@@ -565,6 +580,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - BREAKFAST
+                  checked={editForm && editRecipe.breakfast ? true : false}
                 />
               }
               label="Breakfast"
@@ -585,6 +602,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - LUNCH
+                  checked={editForm && editRecipe.lunch ? true : false}
                 />
               }
               label="Lunch"
@@ -605,6 +624,8 @@ export default function RecipeForm(props) {
                       color: "#CCA01D",
                     },
                   }}
+                  // EDIT - DINNER
+                  checked={editForm && editRecipe.dinner ? true : false}
                 />
               }
               label="Dinner"
