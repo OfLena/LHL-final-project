@@ -102,12 +102,21 @@ export default function RecipeForm(props) {
       );
       setEditRecipe(filteredRecipe);
 
-      // set entire recipe to individual arrays
-      const editRecipePair = Object.entries(filteredRecipe);
-
       // console.log(recipePairs)
     }
   }, [editForm, currentPage]);
+
+  // set entire recipe to individual arrays
+  const editRecipePair = Object.entries(editRecipe);
+
+  /* FILTERING OUT ONLY INSTRUCTIONS FROM EDITRECIPEPAIR */
+  const instructionsEdit = editRecipePair.filter(item => ( 
+    item[0].includes("instruction") ? item : false
+  ))
+
+  // console.log("EDITRECIPE", editRecipe)
+  console.log("EDITRECIPE PAIR", editRecipePair)
+  console.log("INSTRUCTIONSEDIT", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
@@ -160,12 +169,7 @@ export default function RecipeForm(props) {
   const handleInstructionRemoveRow = () => {
     setInstructionRows([...instructionRows].slice(0, -1));
   };
-
-  
- console.log('user', recipe);
  
-
-
   const imageSetter = (uploadedImage) => {
       setImage(uploadedImage)  
       let reader = new FileReader();
@@ -421,8 +425,12 @@ export default function RecipeForm(props) {
             Delete
           </Button>
         </Grid>
-        {instructionRows.map((item, idx) => (
-          <Grid item container spacing={0} id="Step" key={idx}>
+        
+        {/* EDIT FEAT - INSTRUCTIONS */}
+        {editForm ?
+          // <h1>hey</h1>
+            instructionsEdit.map((item,idx) => (
+            <Grid item container spacing={0} id="Step"  key={idx}>
             <TextField
               InputProps={{
                 startAdornment: (
@@ -437,12 +445,37 @@ export default function RecipeForm(props) {
               label="Instructions"
               type="text"
               name="instruction"
-              value={instructionRows[idx].name}
-              onChange={handleInstructionRowChange(idx)}
+              value={item[1]}
+              onChange={handleInstructionRowChange  (idx)}
               className="form-control"
             />
           </Grid>
-        ))}
+        ))
+        :
+          instructionRows.map((item, idx) => (
+            <Grid item container spacing={0} id="Step"  key={idx}>
+              <TextField
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      Step {idx + 1}
+                    </InputAdornment>
+                  ),
+                }}
+                id="filled-multiline-flexable"
+                multiline
+                fullWidth
+                label="Instructions"
+                type="text"
+                name="instruction"
+                value={instructionRows[idx].name}
+                onChange={handleInstructionRowChange  (idx)}
+                className="form-control"
+              />
+            </Grid>
+          ))
+        } 
+        {/* end of conditional for edit - instructions */}
         <Grid item xs={6}>
           <Button
             startIcon={<AddCircleTwoToneIcon />}
