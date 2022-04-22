@@ -3,12 +3,21 @@ import "./styles/recipe.scss";
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
-import { CardMedia, Box, Grid } from "@mui/material";
+import { CardMedia, Box, Grid, Typography } from "@mui/material";
+
 
 const styles = {
-  height: 700,
-  maxWidth: 2400,
+  media: { height: 700,
+  maxWidth: 2400 },
+  overlay: {
+    position: 'relative',
+    top: '20px',
+    left: '20px',
+    color: 'black',
+    backgroundColor: 'white'
+ }
 };
+
 
 export default function Home(props) {
   const { user, currentPage, setCurrentPage, state, setState } = props;
@@ -33,12 +42,27 @@ export default function Home(props) {
   });
 
   return (
-    <Box>
+    <Box container>
       <CardMedia
         image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
         alt="Header Picture"
-        style={styles}
+        style={styles.media}
       />
+        <Box
+      sx={{
+        position: 'absolute',
+        bottom: '15rem',
+        left: 0,
+        width: '100%',
+        bgcolor: 'rgba(0, 0, 0, 0.54)',
+        color: 'white',
+        padding: '10px',
+      }}
+    >
+      <Typography fontFamily={'Bungee Shade'} variant="h1">POTLUCK</Typography>
+      <Typography variant="body2">Fuck your Couch</Typography>
+    </Box>
+
       <Grid container spacing={2}>
         {recipes}
       </Grid>

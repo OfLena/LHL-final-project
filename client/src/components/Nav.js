@@ -41,7 +41,7 @@ export default function Nav(props) {
         <Toolbar>
           {isMatch ? (
             <>
-              <Typography sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}>
+              <Typography fontFamily={'Bungee Shade'} sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}>
                 POTLUCK
               </Typography>
               <SearchBar search={search} setSearch={setSearch} />

@@ -29,6 +29,12 @@ const theme = createTheme({
       contrastText: "#CCA01D",
     },
   },
+  typography: {
+      fontFamily: [
+        'Bungee Shade',
+        'Signika Negative'
+      ],
+    },
 });
 
 function App() {
