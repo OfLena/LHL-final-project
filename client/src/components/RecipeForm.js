@@ -100,9 +100,14 @@ export default function RecipeForm(props) {
       const filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
       );
-      setEditRecipe(filteredRecipe);
+      // console.log("FILTERED RECIPE IMAGE", filteredRecipe.image_url)
+      Promise.all([
+        setEditRecipe(filteredRecipe),
+        setPreviewImage(() => ({image: `http://localhost:8080/images/${filteredRecipe.image_url}`}))
+      ])
     }
   }, [editForm, currentPage]);
+  console.log("IMAGE", previewImage.image)
 
   // set entire recipe to individual arrays
   const editRecipePair = Object.entries(editRecipe);
@@ -115,8 +120,8 @@ export default function RecipeForm(props) {
   /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
   
 
-  // console.log("EDITRECIPE", editRecipe)
-  console.log("EDITRECIPE PAIR", editRecipePair)
+  // console.log("EDITRECIPE", editRecipe.image_url)
+  // console.log("EDITRECIPE PAIR", editRecipePair)
   // console.log("INSTRUCTIONSEDIT", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
@@ -477,7 +482,7 @@ export default function RecipeForm(props) {
           ))
         } 
         {/* end of conditional for edit - instructions */}
-        
+
         <Grid item xs={6}>
           <Button
             startIcon={<AddCircleTwoToneIcon />}

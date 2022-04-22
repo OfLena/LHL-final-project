@@ -87,15 +87,16 @@ export default function RecipeListItem(props) {
     // changes state of fav for rendering checked heart
     if (!favourite) {
       setFavourite(true);
+      console.log('FAVOURITE INSIDE IF', favourite)
       return Promise.all([
         axios.post("/favs", {
           [`recipe_id`]: recipe_id,
           [`user_id`]: user_id,
         }),
       ])
-        .then((all) => {
-          setState((prev) => ({
-            ...prev,
+      .then((all) => {
+        setState((prev) => ({
+        ...prev,
             favs: [
               ...state.favs,
               {
@@ -113,13 +114,14 @@ export default function RecipeListItem(props) {
     } else {
       //axios post to delete
       setFavourite(false);
+      console.log('FAVOURITE', favourite)
       return Promise.all([
         axios.post("/favs/delete", {
           [`recipe_id`]: `${recipe_id}`,
           [`user_id`]: `${user_id}`,
         }),
       ])
-        .then(() => {
+      .then(() => {
           setState((prev) => ({ ...prev, favs: removeFav() }));
         })
         .catch((err) => {
@@ -193,10 +195,10 @@ export default function RecipeListItem(props) {
                 <FavoriteIcon
                   color={
                     favourite === true
-                      ? "error"
-                      : "grey0" && alwaysRed
-                      ? "error"
-                      : "grey0"
+                    ? "error"
+                    : "grey0" && alwaysRed
+                    ? "error"
+                    : "grey0"
                   }
                 />
               )}

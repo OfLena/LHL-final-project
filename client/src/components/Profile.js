@@ -95,6 +95,7 @@ export default function Profile(props) {
         prep_time={recipe.prep_time}
         // preptime and serving size to drawer
         serving_size={recipe.serving_size}
+        // favourite
         alwaysRed
       />
     );
