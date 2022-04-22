@@ -17,10 +17,7 @@ import {
   TextField,
   Box,
   InputAdornment,
-<<<<<<< HEAD
-=======
   Typography,
->>>>>>> feature/form-work-v7
 } from "@mui/material";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
@@ -42,10 +39,6 @@ export default function RecipeForm(props) {
     [{ instruction: "" }] || ""
   );
   const [image, setImage] = useState();
-<<<<<<< HEAD
-  // EDIT RECIPE STATE
-  const [editRecipe, setEditRecipe] = useState(false);
-=======
 
   const [previewImage, setPreviewImage] = useState({
     isTextVisible: 'image-preview__image',
@@ -54,7 +47,6 @@ export default function RecipeForm(props) {
   const [editRecipe, setEditRecipe] = useState(false);
   let incomingImage;
  
->>>>>>> feature/form-work-v7
 
   // ======== USE EFFECTS ===== //
 
@@ -101,19 +93,6 @@ export default function RecipeForm(props) {
       const findThisRecipe = thisRecipeArr.filter((recipe) =>
         recipe.id === currentPage ? recipe : false
       );
-<<<<<<< HEAD
-
-      // Filter Out All Key/Value Pairs where the Value is Falsey
-      const filteredRecipes = Object.fromEntries(
-        Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
-      );
-
-      setEditRecipe(filteredRecipes);
-    }
-  }, [editForm]);
-
-  console.log("BEGINNING ---->", editRecipe);
-=======
 
       // Filter Out All Key/Value Pairs where the Value is Falsey
       const filteredRecipes = Object.fromEntries(
@@ -125,7 +104,6 @@ export default function RecipeForm(props) {
   }, [editForm]);
 
 
->>>>>>> feature/form-work-v7
   // ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
@@ -280,12 +258,8 @@ export default function RecipeForm(props) {
         </header>
 
         <Grid container spacing={0}>
-<<<<<<< HEAD
-          <Grid item xs={12} sm={6}>
-=======
         
           <Grid item xs={12} sm={12}>
->>>>>>> feature/form-work-v7
             <TextField
               fullWidth
               required
@@ -301,32 +275,17 @@ export default function RecipeForm(props) {
             />
           </Grid>
 
-<<<<<<< HEAD
-          <Grid item xs={12} sm={6}>
-            <input
-              type="file"
-              accept="image/jpeg"
-=======
           <Grid item xs={12} sm={12}>
             <input
               className="choose-file"
               accept="image/*"
               type="file"
->>>>>>> feature/form-work-v7
               id="image_url"
               label="Image URL"
               name="image_url"
               onChange={(e) =>
                 setRecipe(
                   (prev) => ({ ...prev, image_url: e.target.files[0].name }),
-<<<<<<< HEAD
-                  setImage(e.target.files[0])
-                )
-              }
-            />
-          </Grid>
-
-=======
                   imageSetter(e.target.files[0])
                 )
               }
@@ -352,7 +311,6 @@ export default function RecipeForm(props) {
             </div>
           </Grid>
               
->>>>>>> feature/form-work-v7
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth

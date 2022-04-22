@@ -21,11 +21,7 @@ export default function CommentList(props) {
     user_id: state.user.id,
   });
 
-<<<<<<< HEAD
   function handlePostComment() {
-=======
-  function postComment() {
->>>>>>> feature/form-work-v7
     Promise.all([axios.post("/comments", comment)])
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [...comments, comment] }));
