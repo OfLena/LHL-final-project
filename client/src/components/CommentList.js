@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 
 import axios from "axios";
 
+import { v4 as uuidv4 } from "uuid";
+
 import {
   Box,
   Grid,
@@ -22,9 +24,10 @@ export default function CommentList(props) {
   });
 
   function handlePostComment() {
+    comment.id = uuidv4();
     Promise.all([axios.post("/comments", comment)])
       .then((all) => {
-        setState((prev) => ({ ...prev, comments: [...comments, comment] }));
+        setState((prev) => ({ ...prev, comments: [comment, ...comments] }));
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -46,6 +49,8 @@ export default function CommentList(props) {
       });
   }
 
+  /////////// FILTERS FOR THE COMMENT BRING CLICKED //////////////
+
   const getCommentToDelete = function () {
     const newCommentArray = comments;
     const test = newCommentArray.filter((val) =>
@@ -57,15 +62,17 @@ export default function CommentList(props) {
     return removeCommentArray;
   };
 
+  //////////// PUSHES COMMENTS WE WANT TO KEEP TO NEW ARRAY FOR COMMENTS STATE //////////
+
   const removeComment = function () {
+    const newCommentStateArray = [];
     const theCommentToDelete = getCommentToDelete();
-    const newCommentArray = [];
     comments.map((comment) => {
-      if (comment.comment !== theCommentToDelete[0].comment) {
-        newCommentArray.push(comment);
+      if (comment.id !== theCommentToDelete[0].id) {
+        newCommentStateArray.push(comment);
       }
     });
-    return newCommentArray;
+    return newCommentStateArray;
   };
 
   const user = Object.entries(state.user);

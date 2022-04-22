@@ -82,7 +82,7 @@ CREATE TABLE recipes (
 
 
 CREATE TABLE comments (
-  id SERIAL PRIMARY KEY,
+  id VARCHAR(225) PRIMARY KEY,
   recipe_id VARCHAR(225) REFERENCES recipes(id) ON DELETE CASCADE NOT NULL,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   comment VARCHAR(225)
