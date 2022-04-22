@@ -18,7 +18,9 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
+    console.log("STATE.FAVS", state.favs)
   }, [search, state]);
+
 
   function getFavRecipes() {
     setShowUserRecipes("");
@@ -95,6 +97,7 @@ export default function Profile(props) {
         prep_time={recipe.prep_time}
         // preptime and serving size to drawer
         serving_size={recipe.serving_size}
+        // favourite
         alwaysRed
       />
     );

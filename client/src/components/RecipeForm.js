@@ -102,14 +102,28 @@ export default function RecipeForm(props) {
       const filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
       );
-      setEditRecipe(filteredRecipe);
 
-      // set entire recipe to individual arrays
-      const editRecipePair = Object.entries(filteredRecipe);
-
-      // console.log(recipePairs)
+      Promise.all([
+        setEditRecipe(filteredRecipe),
+        setPreviewImage(() => ({image: `http://localhost:8080/images/${filteredRecipe.image_url}`}))
+      ])
     }
   }, [editForm, currentPage]);
+
+  // set entire recipe to individual arrays
+  const editRecipePair = Object.entries(editRecipe);
+
+  /* FILTERING OUT ONLY INSTRUCTIONS FROM EDITRECIPEPAIR */
+  const instructionsEdit = editRecipePair.filter(item => ( 
+    item[0].includes("instruction") ? item : false
+  ))
+
+  /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
+  
+
+  // console.log("EDITRECIPE", editRecipe.image_url)
+  // console.log("EDITRECIPE PAIR", editRecipePair)
+  // console.log("INSTRUCTIONSEDIT", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
@@ -162,12 +176,7 @@ export default function RecipeForm(props) {
   const handleInstructionRemoveRow = () => {
     setInstructionRows([...instructionRows].slice(0, -1));
   };
-
-  
- console.log('user', recipe);
  
-
-
   const imageSetter = (uploadedImage) => {
       setImage(uploadedImage)  
       let reader = new FileReader();
@@ -428,8 +437,12 @@ export default function RecipeForm(props) {
             Delete
           </Button>
         </Grid>
-        {instructionRows.map((item, idx) => (
-          <Grid item container spacing={0} id="Step" key={idx}>
+        
+        {/* EDIT FEAT - INSTRUCTIONS */}
+        {editForm ?
+          // <h1>hey</h1>
+            instructionsEdit.map((item,idx) => (
+            <Grid item container spacing={0} id="Step"  key={idx}>
             <TextField
               InputProps={{
                 startAdornment: (
@@ -444,12 +457,38 @@ export default function RecipeForm(props) {
               label="Instructions"
               type="text"
               name="instruction"
-              value={instructionRows[idx].name}
-              onChange={handleInstructionRowChange(idx)}
+              value={item[1]}
+              onChange={handleInstructionRowChange  (idx)}
               className="form-control"
             />
           </Grid>
-        ))}
+        ))
+        :
+          instructionRows.map((item, idx) => (
+            <Grid item container spacing={0} id="Step"  key={idx}>
+              <TextField
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment position="start">
+                      Step {idx + 1}
+                    </InputAdornment>
+                  ),
+                }}
+                id="filled-multiline-flexable"
+                multiline
+                fullWidth
+                label="Instructions"
+                type="text"
+                name="instruction"
+                value={instructionRows[idx].name}
+                onChange={handleInstructionRowChange  (idx)}
+                className="form-control"
+              />
+            </Grid>
+          ))
+        } 
+        {/* end of conditional for edit - instructions */}
+
         <Grid item xs={6}>
           <Button
             startIcon={<AddCircleTwoToneIcon />}
