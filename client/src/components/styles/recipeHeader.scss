@@ -129,9 +129,14 @@ border-radius: 100em;
   border-radius: 100em;
 }
 
+.choose-file {
+  margin-bottom: 1em;
+}
+
 .image-preview {
-  width: 100%;
+  width: 75%;
   min-height: 100px;
+  max-height: 75%;
   border: 2px solid black;
   color: rgb(111, 111, 111);
   margin-top: 1em;
@@ -139,9 +144,18 @@ border-radius: 100em;
   align-items: center;
   justify-content: center;
   font-weight: bold;
-
+  overflow: hidden;
+  margin-left: 7em;
 }
 
+.image-preview img {
+  object-fit: cover;
+  align-self: center;
+  margin-top: 1.5em;
+  max-width: 67%;
+  max-height: 50%;
+  
+}
 .image-preview__image {
   width: 100%;
   display: none;
@@ -152,3 +166,21 @@ border-radius: 100em;
   width: 100%;
 
 }
+@media only screen and (max-width: 850px) {
+  .image-preview {
+    width: 100%;
+    max-height: 100%;
+    border: 2px solid black;
+    margin-left: 0em;
+    margin-top: 0;
+    
+  }
+  .image-preview img {
+    object-fit: cover;
+    align-self: center;
+    max-width: 100%;
+    max-height: 100%;
+  }
+}
+
+

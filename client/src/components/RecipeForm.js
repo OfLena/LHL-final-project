@@ -258,7 +258,8 @@ export default function RecipeForm(props) {
         </header>
 
         <Grid container spacing={0}>
-          <Grid item xs={12} sm={6}>
+        
+          <Grid item xs={12} sm={12}>
             <TextField
               fullWidth
               required
@@ -274,8 +275,9 @@ export default function RecipeForm(props) {
             />
           </Grid>
 
-          <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={12}>
             <input
+              className="choose-file"
               accept="image/*"
               type="file"
               id="image_url"
@@ -287,12 +289,28 @@ export default function RecipeForm(props) {
                   imageSetter(e.target.files[0])
                 )
               }
+              
             />
+             {/* <Button
+            startIcon={<AddCircleTwoToneIcon />}
+            variant="outlined"
+            color="yellow"
+            onClick={(e) =>
+              setRecipe(
+                (prev) => ({ ...prev, image_url: e.target.files[0].name }),
+                imageSetter(e.target.files[0])
+              )
+            }
+            className="btn btn-default pull-left"
+          >
+            Add
+          </Button> */}
+
             <div className="image-preview">
-              <img id="image-prev" src={previewImage.image} alt="image-preview" className={previewImage.isTextVisible}/>{previewImage.isTextVisible === 'image-preview__image' ? 'Preview your Image' : null}
+              <img  id="image-prev" src={previewImage.image} alt="image-preview" className={previewImage.isTextVisible}/>{previewImage.isTextVisible === 'image-preview__image' ? 'Preview your Image' : null}
             </div>
           </Grid>
-
+              
           <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
