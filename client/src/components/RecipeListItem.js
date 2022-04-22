@@ -75,25 +75,29 @@ export default function RecipeListItem(props) {
   // helper function for removing fav for state (to be used in handleOnClick function)
   const removeFav = function () {
     const newFavsARR = state.favs;
-    const removeFavRecipe = newFavsARR.filter((fav) =>
-      fav.recipe_id !== recipe_id ? fav : null
-    );
+    const removeFavRecipe = newFavsARR.filter((fav) => {
+      // console.log("FAV INSIDE REMOVE", fav)
+      // console.log("RECIPE_ID", recipe_id)
+      return fav.recipe_id !== recipe_id.toString() 
+    });
 
     return removeFavRecipe;
   };
 
   // helper function of heart on click
   function handleOnClick() {
+    console.log("fav", state)
     // changes state of fav for rendering checked heart
+
+    // use fav id instead 
     if (!favourite) {
       setFavourite(true);
-      console.log('FAVOURITE INSIDE IF', favourite)
-      return Promise.all([
+      // return Promise.all([
         axios.post("/favs", {
           [`recipe_id`]: recipe_id,
           [`user_id`]: user_id,
-        }),
-      ])
+        })
+      // ])
       .then((all) => {
         setState((prev) => ({
         ...prev,
@@ -114,15 +118,13 @@ export default function RecipeListItem(props) {
     } else {
       //axios post to delete
       setFavourite(false);
-      console.log('FAVOURITE', favourite)
-      return Promise.all([
         axios.post("/favs/delete", {
-          [`recipe_id`]: `${recipe_id}`,
-          [`user_id`]: `${user_id}`,
-        }),
-      ])
+          recipe_id: `${recipe_id}`,
+          user_id: `${user_id}`,
+        })
       .then(() => {
           setState((prev) => ({ ...prev, favs: removeFav() }));
+          console.log('REMOVEFAV', removeFav())
         })
         .catch((err) => {
           console.log("ERR", err);

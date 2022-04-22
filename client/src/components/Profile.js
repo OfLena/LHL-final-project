@@ -18,7 +18,9 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
+    console.log("STATE.FAVS", state.favs)
   }, [search, state]);
+
 
   function getFavRecipes() {
     setShowUserRecipes("");

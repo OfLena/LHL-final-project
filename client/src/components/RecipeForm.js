@@ -100,14 +100,13 @@ export default function RecipeForm(props) {
       const filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
       );
-      // console.log("FILTERED RECIPE IMAGE", filteredRecipe.image_url)
+
       Promise.all([
         setEditRecipe(filteredRecipe),
         setPreviewImage(() => ({image: `http://localhost:8080/images/${filteredRecipe.image_url}`}))
       ])
     }
   }, [editForm, currentPage]);
-  console.log("IMAGE", previewImage.image)
 
   // set entire recipe to individual arrays
   const editRecipePair = Object.entries(editRecipe);
