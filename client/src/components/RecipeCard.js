@@ -19,6 +19,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import Footer from "./Footer";
 import CommentList from "./CommentList";
 
+
 export default function RecipeCard(props) {
   const { recipes, currentPage, comments, state, setState } = props;
 
@@ -31,6 +32,7 @@ export default function RecipeCard(props) {
 
     //Return Array of All filteredRecipes
     const recipePairs = Object.entries(filteredRecipes);
+    const image = `http://localhost:8080/images/${filteredRecipes.image_url}`
 
     //If the recipe ID matches the CurrentPage state (which is set to the recipe_id that the user clicks on home page)
     if (filteredRecipes.id === currentPage) {
@@ -56,7 +58,7 @@ export default function RecipeCard(props) {
                 component="img"
                 sx={{ maxWidth: 600, border: "1px solid black" }}
                 height="300"
-                image={filteredRecipes.image_url}
+                image={image}
                 alt={filteredRecipes.title}
               />
             </div>
