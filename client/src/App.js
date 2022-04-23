@@ -14,6 +14,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import RecipeCard from "./components/RecipeCard";
 import useApplicationData from "./components/hooks/AppHooks";
+import ScrollToTop from "./components/ScrollToTop";
 
 const theme = createTheme({
   palette: {
@@ -45,6 +46,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
+          <ScrollToTop />
           <Nav search={search} setSearch={setSearch} recipes={state.recipes} />
           <div>
             <Routes>
