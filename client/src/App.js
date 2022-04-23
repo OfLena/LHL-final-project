@@ -46,7 +46,7 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-          <ScrollToTop />
+        <ScrollToTop />
           <Nav search={search} setSearch={setSearch} recipes={state.recipes} />
           <div>
             <Routes>
