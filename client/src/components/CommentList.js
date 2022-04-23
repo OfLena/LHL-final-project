@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 
@@ -16,18 +16,19 @@ import {
 } from "@mui/material";
 
 export default function CommentList(props) {
-  const { comments, currentPage, setCurrentPage, state, setState, thisAvatar, recipes } = props;
+  const { comments, currentPage, state, setState } = props;
 
   const [comment, setComment] = useState({
     recipe_id: currentPage,
     user_id: state.user.id,
     author_avatar: state.user.avatar,
-    author: state.user.user_name
+    author: state.user.user_name,
   });
 
   function handlePostComment() {
     comment.id = uuidv4();
-    axios.post("/comments", comment)
+    axios
+      .post("/comments", comment)
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [comment, ...comments] }));
       })
@@ -37,7 +38,8 @@ export default function CommentList(props) {
   }
 
   function handleDeleteComment() {
-      axios.post("/comments/delete", {
+    axios
+      .post("/comments/delete", {
         [`recipe_id`]: `${currentPage}`,
         [`user_id`]: `${state.user.id}`,
       })
@@ -75,22 +77,15 @@ export default function CommentList(props) {
     return newCommentStateArray;
   };
 
-  const user = Object.entries(state.user);
-
-  const findUserNameByUserId = user.map((val, index) => {
-    if (val[0] === "id" && val[1] === comments[0].user_id) {
-      // console.log('user', user)
-      return state.user.user_name;
-    }
-  });
-  
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
         <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem" }}>
-          <Avatar src={`http://localhost:8080/images/${comment.author_avatar}`} sx={{ bgcolor: "#CCA01D" }} aria-label="recipe"/>
-            
-          
+          <Avatar
+            src={`http://localhost:8080/images/${comment.author_avatar}`}
+            sx={{ bgcolor: "#CCA01D" }}
+            aria-label="recipe"
+          />
 
           <Typography paragraph>{comment.comment}</Typography>
           <Card />
