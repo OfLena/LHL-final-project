@@ -59,6 +59,7 @@ export default function Profile(props) {
   });
 
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
+    
     return (
       <RecipeListItem
         key={recipe.id}
@@ -75,12 +76,16 @@ export default function Profile(props) {
         // preptime and serving size to drawer
         prep_time={recipe.prep_time}
         serving_size={recipe.serving_size}
+        author={recipe.recipe_user_name}
+        avatar={recipe.avatar}
         forProfileUser
       />
     );
   });
 
   const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
+    
+    
     return (
       <RecipeListItem
         key={recipe.id}
@@ -93,6 +98,8 @@ export default function Profile(props) {
         recipe_id={recipe.recipe_id}
         // change user_name to avatar
         user_name={user.user_name}
+        avatar={recipe.author_avatar}
+        author={recipe.author}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
         // preptime and serving size to drawer

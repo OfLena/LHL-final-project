@@ -45,7 +45,6 @@ export default function RecipeListItem(props) {
     setCurrentPage,
     state,
     setState,
-    user_name,
     forProfileUser,
     alwaysRed,
     prep_time,
@@ -54,6 +53,9 @@ export default function RecipeListItem(props) {
     author
     
   } = props;
+  
+  console.log('inside', avatar, author);
+  
 
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
@@ -100,6 +102,8 @@ export default function RecipeListItem(props) {
         axios.post("/favs", {
           [`recipe_id`]: recipe_id,
           [`user_id`]: user_id,
+          [`author_avatar`]: avatar,
+          [`author`]: author,
         })
       // ])
       .then((all) => {
@@ -112,6 +116,9 @@ export default function RecipeListItem(props) {
                 [`favs_user_id`]: user_id,
                 [`title`]: `${title}`,
                 [`image_url`]: image_url,
+                [`author_avatar`]: avatar,
+                [`author`]: author,
+            
               },
             ],
           }));
