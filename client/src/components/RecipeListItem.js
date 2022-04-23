@@ -54,8 +54,8 @@ export default function RecipeListItem(props) {
     
   } = props;
   
-
-console.log('HERE AUTHOR', author)
+  // console.log('inside', avatar, author);
+  
 
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();

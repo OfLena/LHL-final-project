@@ -4,7 +4,6 @@ const fileUpload = require('express-fileupload');
 module.exports = (db) => {
   // all routes will go here 
   router.get('/', (req, res) => {
-
     const recipes = "SELECT recipes.*, users.avatar AS avatar, users.user_name AS recipe_user_name FROM recipes JOIN users ON recipes.user_id = users.id";
     
     db.query(recipes).then(data => {
@@ -15,8 +14,7 @@ module.exports = (db) => {
 
   
   router.post('/', (req, res) => {
-   
-   
+
     const recipeKeys = Object.keys(req.body)
     const recipeValues = Object.values(req.body)
     const wrappedValues = recipeValues.map((elem) => `'${elem}'`)
@@ -27,7 +25,7 @@ module.exports = (db) => {
      
       res.json(data.rows);
     })
-  
+
   });
 
   router.post('/delete', (req,res) => {
@@ -37,6 +35,21 @@ module.exports = (db) => {
     const deleteRecipe = `DELETE FROM recipes WHERE id = (${wrappedValues[0]}) AND user_id = (${wrappedValues[1]})`
 
     db.query(deleteRecipe).then(data => {
+      res.json(data.rows);
+    })
+
+  })
+
+  router.post('/update', (req,res) => {
+    
+    const recipeKey = Object.keys(req.body)
+    const recipeValue = Object.values(req.body)
+    const wrappedValues = recipeValue.map((elem) => `'${elem}'`)
+    const updateRecipe = `UPDATE recipes SET ${recipeKeys}WHERE recipe.id =${wrappedValues[0]} AND recipe.user_id =${wrappedValues[1]}`
+
+    // console.log("REQ BODY", req.body)
+    // console.log("UPDATE RECIPE ===> ", updateRecipe)
+    db.query(updateRecipe).then(data => {
       res.json(data.rows);
     })
 

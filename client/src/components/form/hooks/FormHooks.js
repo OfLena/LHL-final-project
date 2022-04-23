@@ -28,7 +28,6 @@
   const [editRecipe, setEditRecipe] = useState('' || {});
   
 
-
   // ======== USE EFFECTS ===== //
 
   useEffect(() => {
@@ -107,8 +106,6 @@
     item[0].includes("measurement") ? item : false
   )) 
 
-  console.log("EDIT RECIPE PAIR", editRecipePair)
-
   // ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
@@ -119,6 +116,16 @@
       const checkboxVal = evt.target.value;
       setRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
     }
+
+    // if (editForm) {
+    //   if (evt.target.checked === false) {
+    //     const checkboxVal = evt.target.value;
+    //     setEditRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
+    //   } else {
+    //     const checkboxVal = evt.target.value;
+    //     setEditRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
+    //   }
+    // }
   }
 
   // ================= INGREDIENT ROW HANDLERS =================//
@@ -180,7 +187,7 @@
     const formData = new FormData();
     formData.append("img", image);
     recipe.id = uuidv4();
-    console.log("RECIPE", recipe);
+    // console.log("RECIPE", recipe);
     Promise.all([
       axios.post("http://localhost:8080/recipes", recipe),
       axios.post("http://localhost:8080/recipes/images", formData)
@@ -214,8 +221,27 @@
   };
 
   // EDIT FEATURE - UPDATE BUTTON
-
-  // helper function to find info about recipe
+  function updateRecipe() {
+    // const formData = new FormData();
+    // formData.append("img", image);
+    editRecipe.id = uuidv4();
+    Promise.all([
+      axios.post("http://localhost:8080/recipes/update", editRecipe),
+      // axios.post("http://localhost:8080/recipes/images", formData)
+    ])
+      .then((all) => {
+        editRecipe.avatar = user.avatar
+        editRecipe.recipe_user_name = user.user_name
+        setState((prev) => ({
+          ...prev,
+          filtered_recipes: [...recipes, editRecipe],
+        }));
+        navigate(`/profile`);
+      })
+      .catch((err) => {
+        console.log("ERR", err);
+      });
+  }
 
   const updateButton = function () {
     return (
@@ -224,8 +250,7 @@
         variant="contained"
         color="black"
         className="btn btn-default pull-left"
-        onClick={() => console.log("THIS RECIPE")}
-        // onClick put request to update recipe in the database using filtered recipes & prev
+        onClick={updateRecipe}
       >
         Update Recipe
       </Button>
@@ -234,5 +259,5 @@
 
 
 
-  return { editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit };
+  return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit };
 }

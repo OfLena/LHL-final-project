@@ -10,7 +10,6 @@ import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 export default function IngredientAndMeasurement ({ingredientRows, handleIngredientRowChange}) {
 
   return (
-
     ingredientRows.map((item, idx) => (
       <Grid container spacing={0} id="addr0" key={idx}>
         <Grid item xs={6}>

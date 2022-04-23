@@ -11,7 +11,7 @@ import FormTitleAndImage from "./FormTitleAndImage";
 
 export default function FormBody (props) {
 
-  const { editRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow } = props
+  const { editRecipe, setEditRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow } = props
 
   // NEED TO MOVE THIS TO HOOKS
   function generateObjIng (ingredients, measurements) {
@@ -37,12 +37,11 @@ export default function FormBody (props) {
               name="prep_time"
               placeholder="Cook Time"
               // FOR EDIT
-              value={editForm ? editRecipe.prep_time : null}
-              onChange={(e) =>
-                setRecipe((prev) => ({
-                  ...prev,
-                  prep_time: e.target.value,
-                }))
+              value={editForm ? editRecipe.prep_time : ''}
+              onChange={(e) => editForm ?
+                setEditRecipe((prev) => ({...prev, prep_time: e.target.value,}))
+                :
+                setRecipe((prev) => ({...prev, prep_time: e.target.value,}))
               }
             />
           </Grid>
@@ -56,12 +55,11 @@ export default function FormBody (props) {
               name="serves"
               placeholder="serving size"
               // FOR EDIT
-              value={editForm ? editRecipe.serving_size : null}
-              onChange={(e) =>
-                setRecipe((prev) => ({
-                  ...prev,
-                  serving_size: e.target.value,
-                }))
+              value={editForm ? editRecipe.serving_size : ''}
+              onChange={(e) => editForm ?
+                setEditRecipe((prev) => ({...prev, serving_size: e.target.value,}))
+                :
+                setRecipe((prev) => ({...prev, serving_size: e.target.value,}))
               }
             />
           </Grid>
