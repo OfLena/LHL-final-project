@@ -42,12 +42,13 @@ module.exports = (db) => {
 
   router.post('/update', (req,res) => {
     
+    const recipeKey = Object.keys(req.body)
     const recipeValue = Object.values(req.body)
     const wrappedValues = recipeValue.map((elem) => `'${elem}'`)
-    const updateRecipe = `UPDATE recipes WHERE id = ${wrappedValues[0]} AND user_id = ${wrappedValues[1]}`
+    const updateRecipe = `UPDATE recipes SET ${recipeKeys}WHERE recipe.id =${wrappedValues[0]} AND recipe.user_id =${wrappedValues[1]}`
 
     // console.log("REQ BODY", req.body)
-    // console.log("UPDATE RECIPE", updateRecipe)
+    // console.log("UPDATE RECIPE ===> ", updateRecipe)
     db.query(updateRecipe).then(data => {
       res.json(data.rows);
     })

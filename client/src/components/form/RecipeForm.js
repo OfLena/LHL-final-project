@@ -24,7 +24,7 @@ export default function RecipeForm(props) {
 
   const {editRecipe, setRecipe, setEditRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit } = UseFormData(props)
 
-  console.log("EDIT RECIPE ======> ", editRecipe)
+  // console.log("EDIT RECIPE ======> ", editRecipe)
 
   // =========== STATES ========== //
 
