@@ -42,22 +42,24 @@ export default function RecipeCard(props) {
           key={index}
           marginTop={"8rem"}
           marginBottom={"2rem"}
-          sx={{ p: 2, border: "1px solid black" }}
+          sx={{ p: 2, border: "1px solid black", background: "#CCA01D" }}
         >
           <Card sx={{ paddingBottom: "2rem" }}>
             <CardHeader
-              titleTypographyProps={{ variant: "h4" }}
+              titleTypographyProps={{marginRight:'4rem' ,fontSize:'4rem' , fontFamily:'Bungee Shade' }}
+    
               title={filteredRecipes.title}
               avatar={
-                <Avatar src={thisAvatar}  sx={{ bgcolor: "black" }} aria-label="recipe"/>
+                <Avatar src={thisAvatar}  sx={{ bgcolor: "black", width: '5rem', height: '5rem' }} aria-label="recipe"/>
                   
                 
               }
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
               <CardMedia
+               
                 component="img"
-                sx={{ maxWidth: 600, border: "1px solid black" }}
+                sx={{ maxWidth: 600, border: "1px solid black", boxShadow: 20 }}
                 height="300"
                 image={image}
                 alt={filteredRecipes.title}
@@ -69,7 +71,7 @@ export default function RecipeCard(props) {
                 padding: "1rem 0rem 1rem 0rem",
                 marginLeft: "2rem",
                 marginRight: "2rem",
-
+                boxShadow: 20,
                 marginTop: "2rem",
               }}
             >
@@ -108,12 +110,14 @@ export default function RecipeCard(props) {
           <Card
             sx={{
               padding: "2rem 0rem 2rem 0rem",
-
+              
               marginTop: "2rem",
             }}
           >
             <CardHeader
+           titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
               title={"Preparation Time " + filteredRecipes.prep_time}
+              subheaderTypographyProps={{fontSize:'1.5rem', fontFamily:'Signika Negative'}}
               subheader={"Serves " + filteredRecipes.serving_size}
             />
 
@@ -121,11 +125,13 @@ export default function RecipeCard(props) {
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-
+                  boxShadow: 20,
                   marginTop: "2rem",
                 }}
               >
-                <CardHeader title="Measurements" />
+                <CardHeader
+                titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+                title="Measurements" />
                 {recipePairs.map((value, index) => {
                   let measurement;
                   if (value[0].includes("measurement")) {
@@ -142,11 +148,13 @@ export default function RecipeCard(props) {
               <Card
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-
+                  boxShadow: 20,
                   marginTop: "2rem",
                 }}
               >
-                <CardHeader title="Ingredients" />
+                <CardHeader
+                 titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+                 title="Ingredients" />
                 {recipePairs.map((value, index) => {
                   let ingredient;
                   if (value[0].includes("ingredient")) {
@@ -162,14 +170,16 @@ export default function RecipeCard(props) {
             </Grid>
 
             <Grid>
-              <Card
+              <Card 
                 sx={{
                   padding: "0.5rem 4rem 2rem 4rem",
-
+                  boxShadow: 20,
                   margin: "2rem 2rem 0rem 2rem",
                 }}
               >
-                <CardHeader title="Instructions" />
+                <CardHeader
+                titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+                title="Instructions" />
                 {recipePairs.map((value, index) => {
                   let instruction;
                   if (value[0].includes("instruction")) {
@@ -188,8 +198,6 @@ export default function RecipeCard(props) {
               currentPage={currentPage}
               state={state}
               setState={setState}
-              recipes={recipes}
-              thisAvatar={thisAvatar}
             />
           </Card>
         </Box>

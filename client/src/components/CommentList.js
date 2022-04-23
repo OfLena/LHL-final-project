@@ -80,14 +80,16 @@ export default function CommentList(props) {
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
-        <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem" }}>
+        <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}>
           <Avatar
             src={`http://localhost:8080/images/${comment.author_avatar}`}
             sx={{ bgcolor: "#CCA01D" }}
+            
             aria-label="recipe"
           />
 
           <Typography paragraph>{comment.comment}</Typography>
+          <Typography>Posted By {comment.author}</Typography>
           <Card />
 
           {state.user.id === comment.user_id && (
@@ -114,11 +116,13 @@ export default function CommentList(props) {
             <Card
               sx={{
                 padding: "0.5rem 4rem 2rem 4rem",
-
+                boxShadow: 20,
                 margin: "2rem 1rem 0rem 2rem",
               }}
             >
-              <CardHeader title="Post a Comment" />
+              <CardHeader
+              titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+              title="Post a Comment" />
               <TextField
                 id="filled-multiline-flexable"
                 multiline
@@ -139,7 +143,9 @@ export default function CommentList(props) {
               >
                 Submit
               </Button>
-              <CardHeader title="Comments" />
+              <CardHeader
+              titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+              title="Comments" />
               {findCommentByRecipeID}
             </Card>
           </Grid>
