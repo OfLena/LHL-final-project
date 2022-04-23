@@ -5,15 +5,29 @@ import ScaleIcon from "@mui/icons-material/Scale";
 import DeleteIconTwoTone from "@mui/icons-material/DeleteTwoTone";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 
+import IngredientAndMeasurement from "./IngredientAndMeasurements";
+import FormTitleAndImage from "./FormTitleAndImage";
 
 
 export default function FormBody (props) {
 
   const { editRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow } = props
 
+  // NEED TO MOVE THIS TO HOOKS
+  function generateObjIng (ingredients, measurements) {
+
+    return ingredients.map((ingredient, idx) => (
+      { ingredient: ingredient[1], measurement: measurements[idx][1]}
+    ))
+
+  }
+  const ingredientsRowsEdit = generateObjIng(ingredientsEdit,measurementsEdit)
+
+
   return (
     <div>
       <Grid container>
+
         <Grid item xs={12} sm={6}>
             <TextField
               fullWidth
@@ -54,98 +68,18 @@ export default function FormBody (props) {
 
           {/* EDIT FEAT - INGREDIENTS & MEASUREMENTS */}
           {editForm ?
-          // <p>HEEEEYYYYYYYY</p>
-          ingredientsEdit.map((item, idx) => (
-            <Grid container spacing={0} id="addr0" key={idx}>
-              <Grid item xs={6}>
-                <TextField
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {" "}
-                        <DinnerDiningIcon />{" "}
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="text"
-                  name="ingredient"
-                  placeholder={`Ingredient ${idx + 1}`}
-                  value={item[1]}
-                  onChange={handleIngredientRowChange(idx)}
-                  className="form-control"
-                />
-              </Grid>
-
-              <Grid item xs={6}>
-                <TextField
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {" "}
-                        <ScaleIcon />{" "}
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="text"
-                  name="measurement"
-                  placeholder={`Measurement ${idx + 1}`}
-                  value={item[0]}
-                  onChange={handleIngredientRowChange(idx)}
-                  className="form-control"
-                />
-              </Grid>
-            </Grid>
-          ))
+            <IngredientAndMeasurement 
+              ingredientRows={ingredientsRowsEdit}
+              handleIngredientRowChange={handleIngredientRowChange}
+            />
           :
           // in "add recipe" view
-          ingredientRows.map((item, idx) => (
-            <Grid container spacing={0} id="addr0" key={idx}>
-              <Grid item xs={6}>
-                <TextField
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {" "}
-                        <DinnerDiningIcon />{" "}
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="text"
-                  name="ingredient"
-                  placeholder={`Ingredient ${idx + 1}`}
-                  value={ingredientRows[idx].ingredient}
-                  onChange={handleIngredientRowChange(idx)}
-                  className="form-control"
-                />
-              </Grid>
-
-              <Grid item xs={6}>
-                <TextField
-                  fullWidth
-                  InputProps={{
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        {" "}
-                        <ScaleIcon />{" "}
-                      </InputAdornment>
-                    ),
-                  }}
-                  type="text"
-                  name="measurement"
-                  placeholder={`Measurement ${idx + 1}`}
-                  value={ingredientRows[idx].measurement}
-                  onChange={handleIngredientRowChange(idx)}
-                  className="form-control"
-                />
-              </Grid>
-            </Grid>
-          ))
-        }
+            <IngredientAndMeasurement 
+              ingredientRows={ingredientRows}
+              handleIngredientRowChange={handleIngredientRowChange}
+            />
+          }
         </Grid>
-      
         {/* end of conditional for edit - ingredients & measurements */}
 
         <Grid item xs={6}>

@@ -107,6 +107,8 @@
     item[0].includes("measurement") ? item : false
   )) 
 
+  console.log("EDIT RECIPE PAIR", editRecipePair)
+
   // ==================CHECKBOX HANDLERS =================//
 
   function handleCheckboxChange(evt) {
