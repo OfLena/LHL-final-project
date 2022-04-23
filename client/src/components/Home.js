@@ -1,26 +1,39 @@
-import "./styles/recipe.scss";
+// import "./styles/recipe.scss";
+
 
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
 import { CardMedia, Box, Grid, Typography } from "@mui/material";
+import { useTheme } from '@mui/material/styles';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
+const bannerImage = require('./images/victoria-shes-UC0HZdUitWY-unsplash.jpg');
 
 const styles = {
   media: { height: 700,
-  maxWidth: 2400 },
+  maxWidth: 2560,
+  backgroundImage: `url(${bannerImage})`,
+  backgroundPosition: 'center',
+  backgroundSize: 'cover',
+  backgroundRepeat: 'no-repeat',
+  width: '100vw',
+  height: '100vh' },
   overlay: {
     position: 'relative',
     top: '20px',
     left: '20px',
     color: 'black',
     backgroundColor: 'white'
- }
+ },
 };
 
 
 export default function Home(props) {
   const { user, currentPage, setCurrentPage, state, setState } = props;
+
+  const theme = useTheme();
+const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   const recipes = props.recipes.map((recipe) => {
     return (
@@ -42,31 +55,28 @@ export default function Home(props) {
   });
 
   return (
-    <Box container>
-      <CardMedia
+    <Grid container >
+      <Grid item xs={12}
         image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
         alt="Header Picture"
-        style={styles.media}
-      />
-        <Box
-      sx={{
+        style={styles.media}>
+      <Grid item xs={12}
+        sx={{
         position: 'absolute',
-        bottom: '15rem',
+        bottom: '35rem',
         left: 0,
         width: '100%',
         bgcolor: 'rgba(0, 0, 0, 0.54)',
         color: 'white',
-        padding: '10px',
-      }}
-    >
-      <Typography fontFamily={'Bungee Shade'} variant="h1">POTLUCK</Typography>
-      <Typography variant="body2">Fuck your Couch</Typography>
-    </Box>
-
-      <Grid container spacing={2}>
+        padding: '10px'}}>
+      <Typography fontFamily={'Bungee Shade'} fontSize={'5rem'}>POTLUCK</Typography>
+      <Typography fontSize={'1.75rem'}>Just the Recipes</Typography>
+    </Grid>
+    </Grid>
+      <Grid container spacing={4} align='center'>
         {recipes}
       </Grid>
       <Footer />
-    </Box>
+    </Grid>
   );
 }
