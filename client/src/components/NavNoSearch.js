@@ -43,10 +43,17 @@ export default function NavNoSearch(props) {
         <Toolbar>
           {isMatch ? (
             <>
+               <Link
+                 underline='none'
+                 href='/'
+                  sx={{'&:hover': {
+                    color: 'white',
+                  }
+                 }}>
               <Typography fontFamily={'Bungee Shade'} sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}>
                 POTLUCK
               </Typography>
-              <SearchBar search={search} setSearch={setSearch} />
+              </Link>
               <DrawerComp />
             </>
           ) : (
