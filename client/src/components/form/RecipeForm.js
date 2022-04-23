@@ -22,7 +22,9 @@ export default function RecipeForm(props) {
   const { user, recipes, state, setState, editForm, currentPage } = props;
   
 
-  const {editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit } = UseFormData(props)
+  const {editRecipe, setRecipe, setEditRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit } = UseFormData(props)
+
+  console.log("EDIT RECIPE ======> ", editRecipe)
 
   // =========== STATES ========== //
 
@@ -44,6 +46,7 @@ export default function RecipeForm(props) {
            <Grid item xs={12} sm={12}>
             <FormTitleAndImage
             editForm={editForm}
+            setEditRecipe={setEditRecipe}
             editRecipe={editRecipe}
             setRecipe={setRecipe}
             imageSetter={imageSetter}
@@ -54,6 +57,7 @@ export default function RecipeForm(props) {
            <Grid item xs={12} sm={12}>
              <FormBody
              editRecipe={editRecipe}
+             setEditRecipe={setEditRecipe}
              setRecipe={setRecipe}
              imageSetter={imageSetter}
              previewImage={previewImage}

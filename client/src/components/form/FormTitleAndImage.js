@@ -8,7 +8,7 @@ import AddPhotoAlternate from "@mui/icons-material/AddPhotoAlternate";
 
 export default function FormTitleAndImage (props) {
 
-  const {editForm, imageSetter, previewImage, setRecipe, editRecipe} = props
+  const {editForm, imageSetter, previewImage, setRecipe, editRecipe, setEditRecipe} = props
 
   return (
     <div>
@@ -23,8 +23,10 @@ export default function FormTitleAndImage (props) {
       name="title"
       placeholder="Title"
       // FOR EDIT
-      value={editForm ? editRecipe.title : null}
-      onChange={(e) =>
+      value={editForm ? editRecipe.title : ''}
+      onChange={(e) => editForm?
+        setEditRecipe((prev) => ({...prev, title: e.target.value }))
+        :
         setRecipe((prev) => ({ ...prev, title: e.target.value }))
       }
     />
