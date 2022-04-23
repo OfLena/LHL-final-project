@@ -134,7 +134,29 @@
  null,
  'Apples', 'Rolled Oats', 'Almond Yogurt', 'Raw Pepita Seeds', 'Raisins', 'Dried Cranberries', null, null, null, null, null, null, null, null, null, null, null, null, null, null,
   '2 Medium', '1 Cup' ,'1 Cup' , '2 TBSP', '2 TBSP', '2 TBSP', null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE);
+TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE),
+
+(12, 4, '25 minutes', 2, 'savoryOats.jpg', 
+ 'Savory Oatmean & Lentil Bowl',
+ 'In a medium saucepan, combine the oats, lentils, broth, garlic, and shallot. Bring the mixture to a low boil over medium-high heat, then reduce the heat to medium-low and summer, uncovered, for 8 to 12 minutes, or until thickened. Season with salt and pepper to taste.',
+ 'Spoon the oatmeal into a bowl, add your desired toppings, and enjoy!',
+ 'Store any leftovers in an airtight container. They will keep in the refrigerator for 2 to 3 days. To reheat, simply combine the oatmeal and a splash of vegetable broth in a small saucepan and heat over medium-low heat until warmed through.',
+ null,
+ null,
+ 'Rolled Oats', 'Red Lentils', 'Vegetable Broth', 'Garlic Clove', 'Shallot', 'Sea Salt', 'Black Pepper', null, null, null, null, null, null, null, null, null, null, null, null, null,
+  '1/3 Cup', '1/4 Cup', '1.5 Cup', '1 Small', '1 Small', 'to Taste', 'to Taste', null, null, null, null, null, null, null, null, null, null, null, null, null,
+TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE),
+
+(13, 5, '30 minutes', 1, 'applePieOatmeal.jpg', 
+ 'Apple Pie Oatmeal',
+ 'In a medium saucepan, over medium heat, combine the oats, apple, chia seeds, applesauce, almond milk, cinnamon, ginger, and salt. Whisk well to combine. Bring the mixture to a low boil over medium heat. Simmer for 8 to 10 minutes, stirring often.',
+ 'When the mixture has thickened and the liquid has been absorbed, remove the pan from the heat and stir in the vanialla and maple syrup to taste.',
+ 'Pour the oatmeal into a bowl and top it with chopped walnuts, hemp seeds, a pinch of cinnamon, a pinch of shredded coconut, and a drizzle of maple syrup.',
+ null,
+ null,
+ 'Rolled Oats', 'Gala Apple', 'Chia Seeds', 'AppleSauce', 'Almond Milk', 'Cinnamon', 'Ground Ginger', 'Sea Salt', 'Pure Vanilla Extra', 'Maple Syrup', 'Chopped Walnuts', 'Hemp Seeds', 'Shredded Coconuts', null, null, null, null, null, null, null,
+  '1/3 Cup', '1 Medium', '1 TBSP', '1/2 Cup', '1 Cup', '1 TSP', '1/4 TSP', 'Pinch', '1/2 TSP', '1 TBSP', '1 TBSP', '1 TBSP', 'Pinch', null, null, null, null, null, null, null,
+TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE);
 
 -- (1, 2, '30 minutes', 4, '.jpg', 
 --  'title',
