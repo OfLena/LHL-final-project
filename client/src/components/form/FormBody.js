@@ -13,6 +13,7 @@ export default function FormBody (props) {
 
   const { editRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow } = props
 
+  // NEED TO MOVE THIS TO HOOKS
   function generateObjIng (ingredients, measurements) {
 
     return ingredients.map((ingredient, idx) => (
@@ -22,14 +23,10 @@ export default function FormBody (props) {
   }
   const ingredientsRowsEdit = generateObjIng(ingredientsEdit,measurementsEdit)
 
-  // console.log("INGREDIENTS", ingredientsEdit)
-  console.log("MEASUREMENTS", measurementsEdit)
-  console.log("HERE =====>", generateObjIng(ingredientsEdit, measurementsEdit))
 
   return (
     <div>
       <Grid container>
-        {/* <FormTitleAndImage editForm={editForm} editRecipe={editRecipe}/> */}
 
         <Grid item xs={12} sm={6}>
             <TextField
@@ -71,22 +68,18 @@ export default function FormBody (props) {
 
           {/* EDIT FEAT - INGREDIENTS & MEASUREMENTS */}
           {editForm ?
-          // <p>HEEEEYYYYYYYY</p>
-
             <IngredientAndMeasurement 
               ingredientRows={ingredientsRowsEdit}
               handleIngredientRowChange={handleIngredientRowChange}
             />
-
           :
           // in "add recipe" view
             <IngredientAndMeasurement 
               ingredientRows={ingredientRows}
               handleIngredientRowChange={handleIngredientRowChange}
             />
-        }
+          }
         </Grid>
-      
         {/* end of conditional for edit - ingredients & measurements */}
 
         <Grid item xs={6}>
