@@ -43,6 +43,7 @@ export default function RecipeForm(props) {
 
            <Grid item xs={12} sm={12}>
             <FormTitleAndImage
+            editForm={editForm}
             editRecipe={editRecipe}
             setRecipe={setRecipe}
             imageSetter={imageSetter}
@@ -64,6 +65,7 @@ export default function RecipeForm(props) {
             instructionsEdit={instructionsEdit}
             ingredientsEdit={ingredientsEdit}
             measurementsEdit={measurementsEdit}
+            // ingredientRowsEdit={ingredientRowsEdit}
             handleInstructionRemoveRow={handleInstructionRemoveRow} handleInstructionRowChange={handleInstructionRowChange}
             handleInstructionAddRow={handleInstructionAddRow}
              />
