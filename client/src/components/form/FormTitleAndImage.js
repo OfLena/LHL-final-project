@@ -23,7 +23,7 @@ export default function FormTitleAndImage (props) {
       name="title"
       placeholder="Title"
       // FOR EDIT
-      value={editForm ? editRecipe.title : null}
+      value={editRecipe.title}
       onChange={(e) =>
         setRecipe((prev) => ({ ...prev, title: e.target.value }))
       }

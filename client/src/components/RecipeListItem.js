@@ -87,7 +87,7 @@ export default function RecipeListItem(props) {
 
   // helper function of heart on click
   function handleOnClick() {
-    console.log("fav", state)
+    // console.log("fav", state)
     // changes state of fav for rendering checked heart
 
     // use fav id instead 

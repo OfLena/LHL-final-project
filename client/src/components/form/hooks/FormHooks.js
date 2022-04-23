@@ -8,7 +8,7 @@
 
   export default function UseFormData (props) {
 
-    const { user, recipes, state, setState, editForm, currentPage } = props;
+    const { user, recipes, state, setState, editForm, currentPage} = props;
 
   const navigate = useNavigate();
   
@@ -92,13 +92,24 @@
   // set entire recipe to individual arrays
   const editRecipePair = Object.entries(editRecipe);
 
+  /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
+  const ingredientsEdit = editRecipePair.filter(item => (
+    item[0].includes("ingredient") ? item : false
+  )) 
+
   /* FILTERING OUT ONLY INSTRUCTIONS FROM EDITRECIPEPAIR */
   const instructionsEdit = editRecipePair.filter(item => ( 
     item[0].includes("instruction") ? item : false
   ))
 
-  /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
-  
+  /* FILTERING OUT ONLY MEASUREMENTS FROM EDITRECIPEPAIR */
+  const measurementsEdit = editRecipePair.filter(item => (
+    item[0].includes("measurement") ? item : false
+  )) 
+
+  console.log("INGREDIENTS IN HOOKS", ingredientsEdit)
+  console.log("MEASUREMENTS IN HOOKS", measurementsEdit)
+  console.log("INSTRUCTIONS IN HOOKS", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
@@ -223,5 +234,5 @@
 
 
 
-  return { editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange  };
+  return { editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit };
 }
