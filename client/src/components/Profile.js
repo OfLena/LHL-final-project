@@ -4,6 +4,7 @@ import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
 import { Box, Typography, Grid, Button, TextField } from "@mui/material";
+import ProfileCard from "./ProfileCard";
 
 export default function Profile(props) {
   const { user, state, setState, currentPage, setCurrentPage } = props;
@@ -61,6 +62,7 @@ export default function Profile(props) {
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
     
     return (
+    
       <RecipeListItem
         key={recipe.id}
         recipe_id={recipe.id}
@@ -87,6 +89,7 @@ export default function Profile(props) {
     
     
     return (
+    
       <RecipeListItem
         key={recipe.id}
         state={state}
@@ -107,6 +110,7 @@ export default function Profile(props) {
         // favourite
         alwaysRed
       />
+    
     );
   });
 
@@ -117,12 +121,13 @@ export default function Profile(props) {
       noValidate
       autoComplete="off"
     >
-      <Typography> THIS IS WHERE THE PHOTO WILL GO </Typography>
-
-      <Typography>
-        {user.first_name} {user.last_name}
-      </Typography>
-      <Typography>@{user.user_name}</Typography>
+      <ProfileCard 
+      user_first={user.first_name}
+      user_last={user.last_name}
+      user_name={user.user_name}
+      email={user.email}
+      avatar={user.avatar}
+      />
 
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
@@ -153,7 +158,7 @@ export default function Profile(props) {
         </Grid>
       </Grid>
 
-      <Typography>Recipes</Typography>
+      
       <div className="recipe-card-container">
         {showFavs}
         {showUserRecipes}
