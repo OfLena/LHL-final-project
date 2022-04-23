@@ -36,6 +36,7 @@ export default function RecipeCard(props) {
 
     //If the recipe ID matches the CurrentPage state (which is set to the recipe_id that the user clicks on home page)
     if (filteredRecipes.id === currentPage) {
+      const thisAvatar = `http://localhost:8080/images/${recipe.avatar}`
       return (
         <Box
           key={index}
@@ -48,9 +49,9 @@ export default function RecipeCard(props) {
               titleTypographyProps={{ variant: "h4" }}
               title={filteredRecipes.title}
               avatar={
-                <Avatar sx={{ bgcolor: "black" }} aria-label="recipe">
-                  R
-                </Avatar>
+                <Avatar src={thisAvatar}  sx={{ bgcolor: "black" }} aria-label="recipe"/>
+                  
+                
               }
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
@@ -187,6 +188,8 @@ export default function RecipeCard(props) {
               currentPage={currentPage}
               state={state}
               setState={setState}
+              recipes={recipes}
+              thisAvatar={thisAvatar}
             />
           </Card>
         </Box>

@@ -86,7 +86,9 @@ CREATE TABLE comments (
   id VARCHAR(225) PRIMARY KEY,
   recipe_id VARCHAR(225) REFERENCES recipes(id) ON DELETE CASCADE NOT NULL,
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
-  comment VARCHAR(225)
+  comment VARCHAR(225),
+  author_avatar VARCHAR(225),
+  author VARCHAR(225) 
 );
 
 

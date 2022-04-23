@@ -16,16 +16,18 @@ import {
 } from "@mui/material";
 
 export default function CommentList(props) {
-  const { comments, currentPage, setCurrentPage, state, setState } = props;
+  const { comments, currentPage, setCurrentPage, state, setState, thisAvatar, recipes } = props;
 
   const [comment, setComment] = useState({
     recipe_id: currentPage,
     user_id: state.user.id,
+    author_avatar: state.user.avatar,
+    author: state.user.user_name
   });
 
   function handlePostComment() {
     comment.id = uuidv4();
-    Promise.all([axios.post("/comments", comment)])
+    axios.post("/comments", comment)
       .then((all) => {
         setState((prev) => ({ ...prev, comments: [comment, ...comments] }));
       })
@@ -35,12 +37,10 @@ export default function CommentList(props) {
   }
 
   function handleDeleteComment() {
-    Promise.all([
       axios.post("/comments/delete", {
         [`recipe_id`]: `${currentPage}`,
         [`user_id`]: `${state.user.id}`,
-      }),
-    ])
+      })
       .then((all) => {
         setState((prev) => ({ ...prev, comments: removeComment() }));
       })
@@ -79,17 +79,18 @@ export default function CommentList(props) {
 
   const findUserNameByUserId = user.map((val, index) => {
     if (val[0] === "id" && val[1] === comments[0].user_id) {
+      // console.log('user', user)
       return state.user.user_name;
     }
   });
-
+  
   const findCommentByRecipeID = comments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
         <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem" }}>
-          <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
-            {findUserNameByUserId}
-          </Avatar>
+          <Avatar src={`http://localhost:8080/images/${comment.author_avatar}`} sx={{ bgcolor: "#CCA01D" }} aria-label="recipe"/>
+            
+          
 
           <Typography paragraph>{comment.comment}</Typography>
           <Card />
