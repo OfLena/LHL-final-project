@@ -9,7 +9,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 // ------------COMPONENT IMPORT---------- //
 import Nav from "./components/Nav";
 import Profile from "./components/Profile";
-import RecipeForm from "./components/RecipeForm";
+import RecipeForm from "./components/form/RecipeForm";
 import Home from "./components/Home";
 import Login from "./components/Login";
 import RecipeCard from "./components/RecipeCard";
