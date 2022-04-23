@@ -123,8 +123,18 @@
  'Serve.',
  'Sweet Potato', 'Yellow Onion', 'Garlic Cloves', 'Pinto Beans', 'Red Chard', 'Tortillas', 'Salt', 'Pepper', 'Cayenne', 'Chili Powder', 'Tumeric', 'Coriander', 'Cumin', 'Mayo', 'Siraccha', null, null, null, null, null,
   '2 Medium', '1 Medium', '3', '1 can', '1 bunch', '4', '1 TBSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '1 TSP', '3 TBSP', '1 TBSP', null, null, null, null, null,
-   TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE);
+   TRUE, TRUE, FALSE, TRUE, TRUE, TRUE, FALSE, TRUE),
 
+  (11, 2, '10 minutes', 2, 'muesli.jpg', 
+ 'Spa Day Muesli',
+ 'Dice one apple and grate the other on a box grater. Place the apples in a large bowl and add the oats, yogurt, pepita seeds, raisins, and cranberries. Stir to combine.',
+ 'Cover the bowl and refrigerate the muesli overnight or for at least 2 hours, until the oats soften.',
+ 'Serve the muesli in a bowl, topped with fresh fruit, nuts, maple syrup, and a pinch of cinnanmon.',
+ 'Leftover muesli will keep in an airtight container in the refrigerator for 3 to 4 days.',
+ null,
+ 'Apples', 'Rolled Oats', 'Almond Yogurt', 'Raw Pepita Seeds', 'Raisins', 'Dried Cranberries', null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+  '2 Medium', '1 Cup' ,'1 Cup' , '2 TBSP', '2 TBSP', '2 TBSP', null, null, null, null, null, null, null, null, null, null, null, null, null, null,
+TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE);
 
 -- (1, 2, '30 minutes', 4, '.jpg', 
 --  'title',
