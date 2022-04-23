@@ -5,7 +5,7 @@ module.exports = (db) => {
   // all routes will go here 
   router.get('/', (req, res) => {
 
-    const recipes = "SELECT * FROM recipes";
+    const recipes = "SELECT recipes.*, users.avatar AS avatar, users.user_name AS recipe_user_name FROM recipes JOIN users ON recipes.user_id = users.id";
     
     db.query(recipes).then(data => {
       res.json(data.rows);

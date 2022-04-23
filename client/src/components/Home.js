@@ -47,9 +47,11 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
         title={recipe.title}
         user_id={user.id}
         user_name={user.user_name}
+        author={recipe.recipe_user_name}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
         serving_size={recipe.serving_size}
+        avatar={recipe.avatar}
       />
     );
   });

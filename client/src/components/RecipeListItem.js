@@ -50,6 +50,9 @@ export default function RecipeListItem(props) {
     alwaysRed,
     prep_time,
     serving_size,
+    avatar,
+    author
+    
   } = props;
 
   const [expanded, setExpanded] = useState(false);
@@ -171,9 +174,10 @@ export default function RecipeListItem(props) {
         <Card sx={{ maxWidth: 345 }}>
           <CardHeader
             avatar={
-              <Avatar sx={{ bgcolor: "#CCA01D" }} aria-label="recipe">
-                {user_name}
-              </Avatar>
+              <Avatar src={`http://localhost:8080/images/${avatar}`} 
+              aria-label="recipe"/>
+              
+              
             }
             action={
               <IconButton aria-label="settings">
@@ -181,7 +185,7 @@ export default function RecipeListItem(props) {
               </IconButton>
             }
             title={props.title}
-            subheader={`Author: ${user_name}`}
+            subheader={`Author: ${author}`}
           />
           <CardMedia
             component="img"

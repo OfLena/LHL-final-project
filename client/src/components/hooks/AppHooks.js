@@ -17,9 +17,9 @@ export default function useApplicationData() {
 
   useEffect(() => {
     const currentPage = JSON.parse(localStorage.getItem("currentPage"));
-    console.log("HERE", currentPage);
+ 
     if (currentPage) {
-      console.log("getItem", currentPage);
+     
       setCurrentPage(currentPage);
     }
   }, []);
@@ -27,7 +27,7 @@ export default function useApplicationData() {
   useEffect(() => {
     if (currentPage) {
       localStorage.setItem("currentPage", JSON.stringify(currentPage));
-      console.log("setItem", currentPage);
+    
     }
   }, [currentPage]);
 
