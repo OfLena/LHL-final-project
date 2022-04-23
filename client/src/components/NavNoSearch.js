@@ -30,7 +30,7 @@ const Pages = [
   </Button>,
 ];
 
-export default function Nav(props) {
+export default function NavNoSearch(props) {
   const { setSearch, search, user_id, user_name} = props;
   const [value, setValue] = useState(0);
   const theme = useTheme({});
@@ -62,7 +62,6 @@ export default function Nav(props) {
                   <Tab key={index} label={page} />
                 ))}
               </Tabs>
-              <SearchBar search={search} setSearch={setSearch} />
 
                   {user_id ? (
                  <Link
