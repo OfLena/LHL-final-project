@@ -3,8 +3,6 @@ import "../styles/recipeHeader.scss";
 
 import React from "react";
 
-
-
 import {
   Container,
   Grid,
@@ -24,7 +22,7 @@ export default function RecipeForm(props) {
   const { user, recipes, state, setState, editForm, currentPage } = props;
   
 
-  const {editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit } = UseFormData(props)
+  const {editRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit } = UseFormData(props)
 
   // =========== STATES ========== //
 
@@ -64,6 +62,8 @@ export default function RecipeForm(props) {
             handleIngredientRemoveRow={handleIngredientRemoveRow} handleIngredientRowChange={handleIngredientRowChange}
             instructionRows={instructionRows}
             instructionsEdit={instructionsEdit}
+            ingredientsEdit={ingredientsEdit}
+            measurementsEdit={measurementsEdit}
             handleInstructionRemoveRow={handleInstructionRemoveRow} handleInstructionRowChange={handleInstructionRowChange}
             handleInstructionAddRow={handleInstructionAddRow}
              />

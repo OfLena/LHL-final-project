@@ -27,7 +27,7 @@
   // EDIT RECIPE STATE
   const [editRecipe, setEditRecipe] = useState('' || {});
   
- 
+ console.log("RECIPE", recipe)
 
   // ======== USE EFFECTS ===== //
 
@@ -106,10 +106,6 @@
   const measurementsEdit = editRecipePair.filter(item => (
     item[0].includes("measurement") ? item : false
   )) 
-
-  console.log("INGREDIENTS IN HOOKS", ingredientsEdit)
-  console.log("MEASUREMENTS IN HOOKS", measurementsEdit)
-  console.log("INSTRUCTIONS IN HOOKS", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
