@@ -35,6 +35,7 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeListItem(props) {
+  
   /* RECIPE CARD */
   const {
     title,

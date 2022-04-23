@@ -1,5 +1,5 @@
-import "./styles/recipeform.scss";
-import "./styles/recipeHeader.scss";
+import "../styles/recipeform.scss";
+import "../styles/recipeHeader.scss";
 
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -17,15 +17,14 @@ import {
   TextField,
   Box,
   InputAdornment,
-  InputLabel
 } from "@mui/material";
 import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
 import ScaleIcon from "@mui/icons-material/Scale";
 import DeleteIconTwoTone from "@mui/icons-material/DeleteTwoTone";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
-import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
-import Footer from "./Footer";
+
+import Footer from "../Footer";
 import AddPhotoAlternate from "@mui/icons-material/AddPhotoAlternate";
 
 export default function RecipeForm(props) {
@@ -47,7 +46,7 @@ export default function RecipeForm(props) {
   });
   // EDIT RECIPE STATE
   const [editRecipe, setEditRecipe] = useState('');
-  let incomingImage;
+  
  
 
   // ======== USE EFFECTS ===== //
@@ -120,10 +119,6 @@ export default function RecipeForm(props) {
 
   /* FILTERING OUT ONLY INGREDIENTS FROM EDITRECIPEPAIR */
   
-
-  // console.log("EDITRECIPE", editRecipe.image_url)
-  // console.log("EDITRECIPE PAIR", editRecipePair)
-  // console.log("INSTRUCTIONSEDIT", instructionsEdit)
 
   // ==================CHECKBOX HANDLERS =================//
 
