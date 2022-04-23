@@ -47,7 +47,13 @@ function App() {
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />
-          <Nav search={search} setSearch={setSearch} recipes={state.recipes} />
+              <Nav
+                 search={search}
+                 setSearch={setSearch}
+                 recipes={state.recipes}
+                 user_id={state.user.id}
+                 user_name={state.user.user_name}
+                  />
           <div>
             <Routes>
               <Route

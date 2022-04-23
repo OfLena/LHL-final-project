@@ -10,26 +10,28 @@ import {
   Button,
   useMediaQuery,
   useTheme,
+  Link
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link as RouterLink } from "react-router-dom";
 
 import SearchBar from "./SearchBar";
 import DrawerComp from "./DrawerComp";
 
+
 const Pages = [
-  <Button component={Link} to={"/"} sx={{ color: "black" }}>
+  <Button component={RouterLink} to={"/"} sx={{ color: "black" }}>
     Home
   </Button>,
-  <Button component={Link} to={"/recipe_form"} sx={{ color: "black" }}>
+  <Button component={RouterLink} to={"/recipe_form"} sx={{ color: "black" }}>
     Add Recipe
   </Button>,
-  <Button sx={{ color: "black" }} component={Link} to={"/profile"}>
+  <Button sx={{ color: "black" }} component={RouterLink} to={"/profile"}>
     Profile
   </Button>,
 ];
 
 export default function Nav(props) {
-  const { setSearch, search } = props;
+  const { setSearch, search, user_id, user_name} = props;
   const [value, setValue] = useState(0);
   const theme = useTheme({});
 
@@ -61,12 +63,37 @@ export default function Nav(props) {
                 ))}
               </Tabs>
               <SearchBar search={search} setSearch={setSearch} />
-              <Button sx={{ marginLeft: "auto", color: "black" }} variant="">
+
+                  {!!user_id ? (
+                 <Link
+                 href='/profile'
+                 sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  marginLeft: "auto",
+                 }}>
+                 
+                  <Typography 
+                  fontFamily={'Bungee Shade'}
+                  style={{color:'black', fontSize: "1.9rem"}}
+                  > 
+                     {user_name} 
+                   </Typography>
+                 </Link>
+              
+              ):
+              
+              <>
+              <Button sx={{ marginLeft: "auto", color: "black" }}>
                 Login
               </Button>
-              <Button sx={{ marginLeft: "10px", color: "black" }} variant="">
+              <Button sx={{ marginLeft: "10px", color: "black" }} >
                 Register
-              </Button>
+              </Button> 
+              </>
+              }
+
             </>
           )}
         </Toolbar>

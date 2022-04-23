@@ -41,13 +41,11 @@ export default function SearchBar(props) {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      transition: theme.transitions.create("width"),
+      
       width: "100%",
       [theme.breakpoints.up("sm")]: {
-        width: "12ch",
-        "&:focus": {
-          width: "20ch",
-        },
+        width: "25ch",
+     
       },
     },
   }));
@@ -57,7 +55,7 @@ export default function SearchBar(props) {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    
       <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
         <Toolbar>
           <IconButton
@@ -69,9 +67,10 @@ export default function SearchBar(props) {
           />
           <Search>
             <SearchIconWrapper>
-              <LocalDiningIcon />
+              <LocalDiningIcon color="black"/>
             </SearchIconWrapper>
             <StyledInputBase
+              placeholder="Search..."
               inputRef={(input) => input && input.focus()}
               onChange={handleSearch}
               value={search}
@@ -79,6 +78,6 @@ export default function SearchBar(props) {
           </Search>
         </Toolbar>
       </form>
-    </Box>
+    
   );
 }
