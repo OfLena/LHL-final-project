@@ -8,6 +8,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 
 // ------------COMPONENT IMPORT---------- //
 import Nav from "./components/Nav";
+import NavNoSearch from "./components/NavNoSearch";
 import Profile from "./components/Profile";
 import RecipeForm from "./components/form/RecipeForm";
 import Home from "./components/Home";
@@ -46,13 +47,21 @@ function App() {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
-        <ScrollToTop />
-          <Nav search={search} setSearch={setSearch} recipes={state.recipes} />
+          <ScrollToTop />
           <div>
             <Routes>
               <Route
                 path="/"
                 element={
+                  <>
+                  <Nav
+                  search={search}
+                  setSearch={setSearch}
+                  recipes={state.recipes}
+                  user_id={state.user.id}
+                  user_name={state.user.user_name}
+                   />
+
                   <Home
                     recipes={state.filtered_recipes}
                     user={state.user}
@@ -61,12 +70,23 @@ function App() {
                     setState={setState}
                     state={state}
                   />
+                  </>
                 }
               />
 
               <Route
                 path="/profile"
                 element={
+                 <>
+                  
+                  <NavNoSearch
+                  search={search}
+                  setSearch={setSearch}
+                  recipes={state.recipes}
+                  user_id={state.user.id}
+                  user_name={state.user.user_name}
+                   />
+
                   <Profile
                     user={state.user}
                     recipes={state.filtered_recipes}
@@ -75,11 +95,22 @@ function App() {
                     state={state}
                     setState={setState}
                   />
+                  </>
                 }
               />
               <Route
                 path="/recipes"
                 element={
+                  <>
+                  
+                  <NavNoSearch
+                  search={search}
+                  setSearch={setSearch}
+                  recipes={state.recipes}
+                  user_id={state.user.id}
+                  user_name={state.user.user_name}
+                   />
+
                   <RecipeCard
                     recipes={state.filtered_recipes}
                     currentPage={currentPage}
@@ -88,24 +119,45 @@ function App() {
                     state={state}
                     setState={setState}
                   />
+                </>
                 }
               />
 
               <Route
                 path="/recipe_form"
                 element={
+                  <>
+                  
+                  <NavNoSearch
+                  search={search}
+                  setSearch={setSearch}
+                  recipes={state.recipes}
+                  user_id={state.user.id}
+                  user_name={state.user.user_name}
+                   />
                   <RecipeForm
                     recipes={state.filtered_recipes}
                     user={state.user}
                     setState={setState}
                     state={state}
                   />
+                 </>
                 }
               />
 
               <Route
                 path="/edit_recipe_form"
                 element={
+                  <>
+                  
+                  <NavNoSearch
+                  search={search}
+                  setSearch={setSearch}
+                  recipes={state.recipes}
+                  user_id={state.user.id}
+                  user_name={state.user.user_name}
+                   />
+
                   <RecipeForm
                     recipes={state.filtered_recipes}
                     user={state.user}
@@ -114,6 +166,7 @@ function App() {
                     currentPage={currentPage}
                     editForm
                   />
+                </>
                 }
               />
 

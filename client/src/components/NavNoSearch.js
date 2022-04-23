@@ -30,7 +30,7 @@ const Pages = [
   </Button>,
 ];
 
-export default function Nav(props) {
+export default function NavNoSearch(props) {
   const { setSearch, search, user_id, user_name} = props;
   const [value, setValue] = useState(0);
   const theme = useTheme({});
@@ -43,10 +43,17 @@ export default function Nav(props) {
         <Toolbar>
           {isMatch ? (
             <>
+               <Link
+                 underline='none'
+                 href='/'
+                  sx={{'&:hover': {
+                    color: 'white',
+                  }
+                 }}>
               <Typography fontFamily={'Bungee Shade'} sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}>
                 POTLUCK
               </Typography>
-              <SearchBar search={search} setSearch={setSearch} />
+              </Link>
               <DrawerComp />
             </>
           ) : (
@@ -62,7 +69,6 @@ export default function Nav(props) {
                   <Tab key={index} label={page} />
                 ))}
               </Tabs>
-              <SearchBar search={search} setSearch={setSearch} />
 
                   {user_id ? (
                  <Link
