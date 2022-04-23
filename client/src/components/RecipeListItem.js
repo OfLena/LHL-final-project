@@ -50,10 +50,10 @@ export default function RecipeListItem(props) {
     alwaysRed,
     prep_time,
     serving_size,
-    avatar
+    avatar,
+    author
+    
   } = props;
-
-  console.log(avatar)
 
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
@@ -185,7 +185,7 @@ export default function RecipeListItem(props) {
               </IconButton>
             }
             title={props.title}
-            subheader={`Author: ${user_name}`}
+            subheader={`Author: ${author}`}
           />
           <CardMedia
             component="img"

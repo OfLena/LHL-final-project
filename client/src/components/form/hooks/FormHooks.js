@@ -27,7 +27,7 @@
   // EDIT RECIPE STATE
   const [editRecipe, setEditRecipe] = useState('' || {});
   
- console.log("RECIPE", recipe)
+
 
   // ======== USE EFFECTS ===== //
 
@@ -184,6 +184,8 @@
       axios.post("http://localhost:8080/recipes/images", formData)
     ])
       .then((all) => {
+        recipe.avatar = user.avatar
+        recipe.recipe_user_name = user.user_name
         setState((prev) => ({
           ...prev,
           filtered_recipes: [...recipes, recipe],

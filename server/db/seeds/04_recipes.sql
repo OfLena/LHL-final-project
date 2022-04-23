@@ -137,7 +137,7 @@
 TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE),
 
 (12, 1, '25 minutes', 2, 'savoryOats.jpg', 
- 'Savory Oatmean & Lentil Bowl',
+ 'Savory Oatmeal & Lentil Bowl',
  'In a medium saucepan, combine the oats, lentils, broth, garlic, and shallot. Bring the mixture to a low boil over medium-high heat, then reduce the heat to medium-low and summer, uncovered, for 8 to 12 minutes, or until thickened. Season with salt and pepper to taste.',
  'Spoon the oatmeal into a bowl, add your desired toppings, and enjoy!',
  'Store any leftovers in an airtight container. They will keep in the refrigerator for 2 to 3 days. To reheat, simply combine the oatmeal and a splash of vegetable broth in a small saucepan and heat over medium-low heat until warmed through.',
