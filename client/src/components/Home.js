@@ -37,6 +37,7 @@ export default function Home(props) {
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
         serving_size={recipe.serving_size}
+        avatar={recipe.avatar}
       />
     );
   });
