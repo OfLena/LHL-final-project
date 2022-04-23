@@ -178,7 +178,7 @@ export default function RecipeListItem(props) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, boxShadow: 20, border: '1px solid black' }}>
           <CardHeader
             avatar={
               <Avatar src={`http://localhost:8080/images/${avatar}`} 
@@ -199,11 +199,12 @@ export default function RecipeListItem(props) {
             height="194"
             image={"http://localhost:8080/images/" + image_url}
             alt={title}
+            sx={{border: '2px solid black'}}
           />
           <CardContent>
             <Typography variant="body2" color="text.secondary" />
           </CardContent>
-          <CardActions sx={{ paddingLeft: "17.5%", marginLeft: "auto" }}>
+          <CardActions sx={{ justifyContent: 'space-between' }}>
             <IconButton aria-label="add to favorites" onClick={handleOnClick}>
               {forProfileUser ? null : (
                 <FavoriteIcon
@@ -265,8 +266,6 @@ export default function RecipeListItem(props) {
             <CardContent>
               <Typography paragraph>Prep Time: {prep_time}</Typography>
               <Typography paragraph>Serves: {serving_size}</Typography>
-              <Typography paragraph />
-              <Typography paragraph />
             </CardContent>
           </Collapse>
         </Card>

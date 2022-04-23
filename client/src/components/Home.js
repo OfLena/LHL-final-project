@@ -18,7 +18,7 @@ const styles = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '100vh' },
+  height: '85vh' },
   overlay: {
     position: 'relative',
     top: '20px',
@@ -75,7 +75,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <Typography fontSize={'1.75rem'}>Just the Recipes</Typography>
     </Grid>
     </Grid>
-      <Grid container spacing={4} align='center'>
+      <Grid container spacing={4} align='center' sx={{marginTop:'2rem'}}>
         {recipes}
       </Grid>
       <Footer />

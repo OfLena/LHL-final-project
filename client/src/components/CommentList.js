@@ -83,12 +83,12 @@ export default function CommentList(props) {
         <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}>
           <Avatar
             src={`http://localhost:8080/images/${comment.author_avatar}`}
-            sx={{ bgcolor: "#CCA01D" }}
+            sx={{ bgcolor: "#CCA01D", margin: '1rem 0rem 0rem 1rem' }}
             
             aria-label="recipe"
           />
 
-          <Typography paragraph>{comment.comment}</Typography>
+          <Typography paragraph fontSize={'1.5rem'} sx={{margin: '0 0 2.5rem 0'}}>{comment.comment}</Typography>
           <Typography>Posted By {comment.author}</Typography>
           <Card />
 
@@ -118,6 +118,7 @@ export default function CommentList(props) {
                 padding: "0.5rem 4rem 2rem 4rem",
                 boxShadow: 20,
                 margin: "2rem 1rem 0rem 2rem",
+                borderRadius: '1rem'
               }}
             >
               <CardHeader
@@ -129,6 +130,7 @@ export default function CommentList(props) {
                 fullWidth
                 type="text"
                 name="Comments"
+                
                 // sx={{margin: '0.5rem'}}
                 onChange={(e) =>
                   setComment((prev) => ({ ...prev, comment: e.target.value }))
