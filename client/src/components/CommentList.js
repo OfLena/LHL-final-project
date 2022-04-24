@@ -4,6 +4,8 @@ import axios from "axios";
 
 import { v4 as uuidv4 } from "uuid";
 
+import SuccessSnackBar from "./SuccessSnackBar";
+
 import {
   Box,
   Grid,
@@ -13,6 +15,9 @@ import {
   Button,
   Avatar,
   Typography,
+  Alert,
+  Snackbar,
+  Slide,
 } from "@mui/material";
 
 export default function CommentList(props) {
@@ -25,6 +30,7 @@ export default function CommentList(props) {
     user_id: state.user.id,
     author_avatar: state.user.avatar,
     author: state.user.user_name,
+    date_created: Date.now(),
   });
 
   function handlePostComment() {
@@ -69,9 +75,32 @@ export default function CommentList(props) {
     return newCommentStateArray;
   };
 
+  const characterCounter = function (val) {
+    let counter = val.length;
+    const maxCount = 225;
+    if (maxCount - counter === 0) {
+      return (
+        <Alert variant="filled" severity="yellow">
+          Warning Max Characters Reached
+        </Alert>
+      );
+    }
+    return maxCount - counter;
+  };
+
   const reversedComments = [...comments].reverse();
 
   const findCommentByRecipeID = reversedComments.map((comment, index) => {
+    function getNumberOfDays(date1, date2) {
+      const oneDay = 1000 * 60 * 60 * 24;
+      const diffInTime = date1 - date2;
+      const diffInDays = Math.round(diffInTime / oneDay);
+      if (diffInDays === 0) {
+        return "Today";
+      }
+      return diffInDays + " Days Ago";
+    }
+
     if (comment.recipe_id === currentPage) {
       return (
         <Card
@@ -87,11 +116,18 @@ export default function CommentList(props) {
           <Typography
             paragraph
             fontSize={"1.5rem"}
-            sx={{ margin: "0 0 2.5rem 0" }}
-          >
-            {comment.comment}
+            sx={{
+              margin: "0 0 2.5rem 0",
+              wordWrap: "break-word",
+              padding: "1rem",
+            }}
+          > 
+            "{comment.comment}"
           </Typography>
-          <Typography>Posted By {comment.author}</Typography>
+          <Typography>
+            Posted By {comment.author}{" "}
+            {getNumberOfDays(Date.now(), comment.date_created)}
+          </Typography>
           <Card />
 
           {state.user.id === comment.user_id && (
@@ -100,9 +136,9 @@ export default function CommentList(props) {
               variant="contained"
               color="black"
               onClick={() => {
-                handleDeleteComment(comment.id);                
+                handleDeleteComment(comment.id);
               }}
-              sx={{ margin: "0.5rem" }}
+              sx={{ margin: "0.5rem", padding:'2 2rem 2 2rem' }}
             >
               Delete
             </Button>
@@ -132,28 +168,46 @@ export default function CommentList(props) {
                 }}
                 title="Post a Comment"
               />
+
               <TextField
                 id="filled-multiline-flexable"
                 multiline
                 fullWidth
+                borderRadius="1rem"
                 type="text"
                 name="Comments"
                 value={value}
-                // sx={{margin: '0.5rem'}}
+                inputProps={{ style: { fontSize: 25 }, maxLength: 225 }}
                 onChange={(e) => {
                   setValue(e.target.value);
                   setComment((prev) => ({ ...prev, comment: e.target.value }));
                 }}
               />
-              <Button
-                type="button"
-                variant="contained"
-                color="black"
-                onClick={handlePostComment}
-                sx={{ margin: "0.5rem" }}
-              >
-                Submit
-              </Button>
+              <Grid container justifyContent={'space-between'}>
+                <Button
+                  type="button"
+                  variant="contained"
+                  color="black"
+                  onClick={
+                    handlePostComment}
+                  sx={{ margin: "1rem", padding:'0 2rem 0 2rem' }}
+                >
+        
+        <SuccessSnackBar />
+                </Button>
+                <Grid
+                  item
+                  sx={{
+                    fontSize: "2rem",
+                    
+                  }}
+                >
+                  {characterCounter(value)}
+                </Grid>
+              </Grid>
+
+              
+
               <CardHeader
                 titleTypographyProps={{
                   fontSize: "2rem",

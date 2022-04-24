@@ -88,7 +88,8 @@ CREATE TABLE comments (
   user_id integer REFERENCES users(id) ON DELETE CASCADE NOT NULL,
   comment VARCHAR(225),
   author_avatar VARCHAR(225),
-  author VARCHAR(225) 
+  author VARCHAR(225),
+  date_created BIGINT
 );
 
 
