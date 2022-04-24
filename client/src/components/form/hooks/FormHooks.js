@@ -108,26 +108,23 @@
     item[0].includes("measurement") ? item : false
   )) 
 
+  console.log("RECIPE", recipe)
   // ==================CHECKBOX HANDLERS =================//
 
-  function handleCheckboxChange(evt) {
-    if (evt.target.checked === false) {
-      const checkboxVal = evt.target.value;
-      setRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
-    } else {
-      const checkboxVal = evt.target.value;
-      setRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
-    }
+  // function handleCheckboxChange(evt) {
+  //   if (evt.target.checked === false) {
+  //     const checkboxVal = evt.target.value;
+  //     setRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
+  //   } else {
+  //     const checkboxVal = evt.target.value;
+  //     setRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
+  //   }
+  // }
 
-    // if (editForm) {
-    //   if (evt.target.checked === false) {
-    //     const checkboxVal = evt.target.value;
-    //     setEditRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
-    //   } else {
-    //     const checkboxVal = evt.target.value;
-    //     setEditRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
-    //   }
-    // }
+  function handleCheckboxChange(state) {
+    console.log("STATE", state)
+    setRecipe((prev) => ({ ...prev, ...state }));
+    console.log("RECIPE", recipe)
   }
 
   // ================= INGREDIENT ROW HANDLERS =================//
@@ -229,7 +226,6 @@
   function updateRecipe() {
     // const formData = new FormData();
     // formData.append("img", image);
-    editRecipe.id = uuidv4();
     Promise.all([
       axios.post("http://localhost:8080/recipes/update", editRecipe),
       // axios.post("http://localhost:8080/recipes/images", formData)

@@ -21,6 +21,7 @@ module.exports = (db) => {
 
     const insertRecipes = `INSERT INTO recipes (${recipeKeys}) VALUES (${wrappedValues})`  
 
+    console.log("UPDATE ROUTE", req.body)
     db.query(insertRecipes).then(data => {
      
       res.json(data.rows);
@@ -42,16 +43,36 @@ module.exports = (db) => {
 
   router.post('/update', (req,res) => {
     
-    const recipeKey = Object.keys(req.body)
-    const recipeValue = Object.values(req.body)
-    const wrappedValues = recipeValue.map((elem) => `'${elem}'`)
-    const updateRecipe = `UPDATE recipes SET ${recipeKeys}WHERE recipe.id =${wrappedValues[0]} AND recipe.user_id =${wrappedValues[1]}`
+    const bodyParams = req.body
+    delete bodyParams.avatar;
+    delete bodyParams.recipe_user_name;
 
-    // console.log("REQ BODY", req.body)
+    const recipeKey = Object.keys(bodyParams)
+    const recipeValue = Object.values(bodyParams)
+    const wrappedValues = recipeValue.map((elem) => `'${elem}'`)
+
+    let updateValues = ''
+
+    let idx = 0;
+
+    for (let item in bodyParams) {
+      updateValues = updateValues + recipeKey[idx]
+      + '=' + "'"+ recipeValue[idx] + "'" + ','
+      idx++
+    }
+
+    updateValues = updateValues.slice(0, -1)
+
+    const updateRecipe = `UPDATE recipes SET ${updateValues} WHERE recipes.id =${wrappedValues[0]} AND recipes.user_id =${wrappedValues[1]};`
+
+
+    console.log("REQ BODY", req.body)
+    console.log("UPDATE RECIPE", updateRecipe)
     // console.log("UPDATE RECIPE ===> ", updateRecipe)
     db.query(updateRecipe).then(data => {
       res.json(data.rows);
     })
+    .catch((e) => console.log(e))
 
   })
 
