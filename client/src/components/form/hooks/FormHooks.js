@@ -220,7 +220,7 @@
       </Button>
     );
   };
-console.log('HEY', image.name)
+
   // EDIT FEATURE - UPDATE BUTTON
   function updateRecipe() {
     const formUpdateData = new FormData();
@@ -237,12 +237,24 @@ console.log('HEY', image.name)
           ...prev,
           filtered_recipes: [...recipes, editRecipe],
         }))
-      
         navigate(`/profile`);
       })
       .catch((err) => {
         console.log("ERR", err);
       });
+  }
+
+  console.log('RECIPES', recipes)
+  console.log('RECIPE.ID', recipe.id)
+  console.log('RECIPE', recipe)
+  // helper function to remove the non-updated recipe and add in the newly updated recipe 
+
+  const addUpdateFav = function () {
+
+    recipes.filter((item) => (
+      item.includes()
+    ))
+
   }
 
   const updateButton = function () {
@@ -258,8 +270,6 @@ console.log('HEY', image.name)
       </Button>
     );
   };
-
-
 
   return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit, };
 }

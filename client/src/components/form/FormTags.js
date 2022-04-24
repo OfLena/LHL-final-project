@@ -33,8 +33,6 @@ export default function FormTags(props) {
     }
   }, [editRecipe])
 
-  console.log("EF AND EL", editForm && editRecipe.lunch)
-
   return (
     <Paper elevation={3} align={"center"}>
       <span className="tags">
