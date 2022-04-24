@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
+import { Fade } from "@mui/material";
+
 // ------------COMPONENT IMPORT---------- //
 import Nav from "./components/Nav";
 import NavNoSearch from "./components/NavNoSearch";
@@ -40,15 +42,17 @@ const theme = createTheme({
 });
 
 function App() {
-  const { state, setState, currentPage, setCurrentPage, search, setSearch } =
+  const { state, setState, currentPage, setCurrentPage, search, setSearch, show} =
     useApplicationData();
+
 
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />
-          <div>
+          <Fade in={show} timeout={3000}>
+           <div>
             <Routes>
               <Route
                 path="/"
@@ -173,6 +177,7 @@ function App() {
               <Route path="/login" element={<Login />} />
             </Routes>
           </div>
+      </Fade>
         </Router>
       </ThemeProvider>
     </div>
