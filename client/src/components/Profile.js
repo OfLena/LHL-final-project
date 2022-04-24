@@ -88,7 +88,7 @@ export default function Profile(props) {
   const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
     
     return (
-    
+
       <RecipeListItem
         key={recipe.id}
         state={state}
@@ -109,7 +109,6 @@ export default function Profile(props) {
         // favourite
         alwaysRed
       />
-    
     );
   });
 
@@ -132,7 +131,7 @@ export default function Profile(props) {
       recipesFromUser={filteredSearchForUserRecipes}
       />
 
-      <Grid container spacing={1}>
+      <Grid container spacing={2}>
         <Grid item xs={12} align="center">
           <Button
             style={{ width: "20rem", padding: "16px" }}
@@ -166,13 +165,13 @@ export default function Profile(props) {
         :
         null
         }
-        
       </Grid>
 
-      <div className="recipe-card-container">
+      <Grid container spacing={4} align="center"> 
         {showFavs}
         {showUserRecipes}
-      </div>
+      </Grid>
+    
       <Footer />
     </Box>
   );
