@@ -1,4 +1,5 @@
  INSERT INTO recipes (id, user_id, prep_time, serving_size, image_url, title, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5, ingredient_6, ingredient_7, ingredient_8, ingredient_9, ingredient_10, ingredient_11, ingredient_12, ingredient_13, ingredient_14, ingredient_15, ingredient_16, ingredient_17, ingredient_18, ingredient_19, ingredient_20, measurement_1, measurement_2, measurement_3, measurement_4, measurement_5, measurement_6, measurement_7, measurement_8, measurement_9, measurement_10, measurement_11, measurement_12, measurement_13, measurement_14, measurement_15, measurement_16, measurement_17, measurement_18, measurement_19, measurement_20, vegan, vegetarian, keto, breakfast, lunch, dinner, gluten_free, dairy_free)
+ 
  VALUES (1, 2, '30 minutes', 4, 'potato-gratin.jpg', 
  'Potato Gratin with Chicken',
  'Finely slice 3 onions and place in an oven dish with 2 tblsp of olive oil and 100ml of chicken stock.',
@@ -164,13 +165,4 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE),
   '1/3 Cup', '1 Medium', '1 TBSP', '1/2 Cup', '1 Cup', '1 TSP', '1/4 TSP', 'Pinch', '1/2 TSP', '1 TBSP', '1 TBSP', '1 TBSP', 'Pinch', null, null, null, null, null, null, null,
 TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE);
 
--- (1, 2, '30 minutes', 4, '.jpg', 
---  'title',
---  'Step1',
---  null,
---  null,
---  null,
---  null,
---  'Potatoes', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
---   '1 TBSP', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
--- FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE);
+
