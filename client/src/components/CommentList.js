@@ -100,8 +100,7 @@ export default function CommentList(props) {
               variant="contained"
               color="black"
               onClick={() => {
-                handleDeleteComment(comment.id);
-                // deleteThisComment(comment.id)
+                handleDeleteComment(comment.id);                
               }}
               sx={{ margin: "0.5rem" }}
             >
