@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import axios from "axios";
 
@@ -18,8 +18,7 @@ import {
 export default function CommentList(props) {
   const { comments, currentPage, state, setState } = props;
 
-  const [ value, setValue ] = useState('')
-
+  const [value, setValue] = useState("");
 
   const [comment, setComment] = useState({
     recipe_id: currentPage,
@@ -36,72 +35,62 @@ export default function CommentList(props) {
         setState((prev) => ({ ...prev, comments: [...comments, comment] }));
       })
       .then(() => {
-        setValue('')
+        setValue("");
       })
       .catch((err) => {
         console.log("ERR", err);
       });
   }
 
-  function handleDeleteComment() {
+  function handleDeleteComment(param) {
+    let commentID = param;
     axios
       .post("/comments/delete", {
         [`recipe_id`]: `${currentPage}`,
         [`user_id`]: `${state.user.id}`,
       })
       .then((all) => {
-        setState((prev) => ({ ...prev, comments: removeComment() }));
+        setState((prev) => ({ ...prev, comments: removeComment(commentID) }));
       })
       .catch((err) => {
         console.log("ERR", err);
       });
   }
 
-  // useEffect
-
-  /////////// FILTERS FOR THE COMMENT BRING CLICKED //////////////
-
-  const getCommentToDelete = function () {
-    const newCommentArray = comments;
-    const test = newCommentArray.filter((val) =>
-      currentPage === val.recipe_id ? true : false
-    );
-    const removeCommentArray = test.filter((comment) =>
-      state.user.id === comment.user_id ? true : false
-    );
-    return removeCommentArray;
-  };
-
   //////////// PUSHES COMMENTS WE WANT TO KEEP TO NEW ARRAY FOR COMMENTS STATE //////////
 
-  const removeComment = function () {
+  const removeComment = function (param) {
     const newCommentStateArray = [];
-    const theCommentToDelete = getCommentToDelete();
     comments.map((comment) => {
-      if (comment.id !== theCommentToDelete[0].id) {
+      if (comment.id !== param) {
         newCommentStateArray.push(comment);
       }
     });
     return newCommentStateArray;
   };
 
-
-  // console.log('COMMENTS', comments)
-  const reversedComments = [...comments].reverse()
-  // console.log('REVERSED', reversedComments)
+  const reversedComments = [...comments].reverse();
 
   const findCommentByRecipeID = reversedComments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
-        <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}>
+        <Card
+          key={index}
+          sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}
+        >
           <Avatar
             src={`http://localhost:8080/images/${comment.author_avatar}`}
-            sx={{ bgcolor: "#CCA01D", margin: '1rem 0rem 0rem 1rem' }}
-            
+            sx={{ bgcolor: "#CCA01D", margin: "1rem 0rem 0rem 1rem" }}
             aria-label="recipe"
           />
 
-          <Typography paragraph fontSize={'1.5rem'} sx={{margin: '0 0 2.5rem 0'}}>{comment.comment}</Typography>
+          <Typography
+            paragraph
+            fontSize={"1.5rem"}
+            sx={{ margin: "0 0 2.5rem 0" }}
+          >
+            {comment.comment}
+          </Typography>
           <Typography>Posted By {comment.author}</Typography>
           <Card />
 
@@ -110,7 +99,10 @@ export default function CommentList(props) {
               type="button"
               variant="contained"
               color="black"
-              onClick={handleDeleteComment}
+              onClick={() => {
+                handleDeleteComment(comment.id);
+                // deleteThisComment(comment.id)
+              }}
               sx={{ margin: "0.5rem" }}
             >
               Delete
@@ -131,12 +123,16 @@ export default function CommentList(props) {
                 padding: "0.5rem 4rem 2rem 4rem",
                 boxShadow: 20,
                 margin: "2rem 1rem 0rem 2rem",
-                borderRadius: '1rem'
+                borderRadius: "1rem",
               }}
             >
               <CardHeader
-              titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
-              title="Post a Comment" />
+                titleTypographyProps={{
+                  fontSize: "2rem",
+                  fontFamily: "Signika Negative",
+                }}
+                title="Post a Comment"
+              />
               <TextField
                 id="filled-multiline-flexable"
                 multiline
@@ -146,10 +142,9 @@ export default function CommentList(props) {
                 value={value}
                 // sx={{margin: '0.5rem'}}
                 onChange={(e) => {
-                  setValue(e.target.value)
-                  setComment((prev) => ({ ...prev, comment: e.target.value }))
-                }
-                }
+                  setValue(e.target.value);
+                  setComment((prev) => ({ ...prev, comment: e.target.value }));
+                }}
               />
               <Button
                 type="button"
@@ -161,8 +156,12 @@ export default function CommentList(props) {
                 Submit
               </Button>
               <CardHeader
-              titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
-              title="Comments" />
+                titleTypographyProps={{
+                  fontSize: "2rem",
+                  fontFamily: "Signika Negative",
+                }}
+                title="Comments"
+              />
               {findCommentByRecipeID}
             </Card>
           </Grid>
