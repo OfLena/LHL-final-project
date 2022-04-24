@@ -37,7 +37,7 @@ export default function FormBody (props) {
               name="prep_time"
               placeholder="Cook Time"
               // FOR EDIT
-              value={editForm ? editRecipe.prep_time : ''}
+              value={editForm ? editRecipe.prep_time : null}
               onChange={(e) => editForm ?
                 setEditRecipe((prev) => ({...prev, prep_time: e.target.value,}))
                 :
@@ -55,7 +55,7 @@ export default function FormBody (props) {
               name="serves"
               placeholder="serving size"
               // FOR EDIT
-              value={editForm ? editRecipe.serving_size : ''}
+              value={editForm ? editRecipe.serving_size : null}
               onChange={(e) => editForm ?
                 setEditRecipe((prev) => ({...prev, serving_size: e.target.value,}))
                 :
