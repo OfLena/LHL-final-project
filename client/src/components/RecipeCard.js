@@ -116,7 +116,7 @@ export default function RecipeCard(props) {
             }}
           >
             <CardHeader
-           titleTypographyProps={{fontSize:'2rem' , fontFamily:'Signika Negative' }}
+           titleTypographyProps={{fontSize:'2rem' , fontFamily:'Bungee' }}
               title={"Preparation Time " + filteredRecipes.prep_time}
               subheaderTypographyProps={{fontSize:'1.5rem', fontFamily:'Signika Negative'}}
               subheader={"Serves " + filteredRecipes.serving_size}
@@ -132,14 +132,14 @@ export default function RecipeCard(props) {
                 }}
               >
                 <CardHeader
-                titleTypographyProps={{fontSize:'2.5rem' , fontFamily:'Signika Negative' }}
+                titleTypographyProps={{fontSize:'2rem' , fontFamily:'Bungee' }}
                 title="Measurements" />
                 {recipePairs.map((value, index) => {
                   let measurement;
                   if (value[0].includes("measurement")) {
                     measurement = value[1];
                     return (
-                      <Grid item key={index} alignSelf="left" fontSize={'2rem'}>
+                      <Grid item key={index} align="left" fontSize={'1.5rem'}>
                         <ScaleIcon /> {measurement}
                       </Grid>
                     );
@@ -156,14 +156,14 @@ export default function RecipeCard(props) {
                 }}
               >
                 <CardHeader
-                 titleTypographyProps={{fontSize:'2.5rem' , fontFamily:'Signika Negative' }}
+                 titleTypographyProps={{fontSize:'2rem' , fontFamily:'Bungee' }}
                  title="Ingredients" />
                 {recipePairs.map((value, index) => {
                   let ingredient;
                   if (value[0].includes("ingredient")) {
                     ingredient = value[1];
                     return (
-                      <Grid item key={index} fontSize={'2rem'}>
+                      <Grid item key={index} fontSize={'1.5rem'}>
                         <DinnerDiningIcon /> {ingredient}
                       </Grid>
                     );
@@ -182,7 +182,7 @@ export default function RecipeCard(props) {
                 }}
               >
                 <CardHeader
-                titleTypographyProps={{fontSize:'2.5rem' , fontFamily:'Signika Negative' }}
+                titleTypographyProps={{fontSize:'2rem' , fontFamily:'Bungee' }}
                 title="Instructions" />
                 <ol>
                 {recipePairs.map((value, index) => {
@@ -190,7 +190,7 @@ export default function RecipeCard(props) {
                   if (value[0].includes("instruction")) {
                     instruction = value[1];
                     return (
-                      <Grid item key={index} fontSize={'2rem'}>
+                      <Grid item key={index} fontSize={'1.5rem'}>
                         {/* <MenuBookIcon /> */} <li> {instruction} </li> 
                       </Grid>
                     );
