@@ -108,7 +108,7 @@
     item[0].includes("measurement") ? item : false
   )) 
 
-  console.log("RECIPE", recipe)
+
   // ==================CHECKBOX HANDLERS =================//
 
   // function handleCheckboxChange(evt) {
@@ -122,9 +122,9 @@
   // }
 
   function handleCheckboxChange(state) {
-    console.log("STATE", state)
+    
     setRecipe((prev) => ({ ...prev, ...state }));
-    console.log("RECIPE", recipe)
+   
   }
 
   // ================= INGREDIENT ROW HANDLERS =================//
@@ -133,7 +133,7 @@
     const newRow = [...ingredientRows];
     newRow[idx][name] = value;
     setIngredientRows(newRow);
-    console.log(ingredientRows);
+   
   };
 
   const handleIngredientAddRow = () => {
@@ -189,6 +189,7 @@
   function postRecipeAndTags() {
     const formData = new FormData();
     formData.append("img", image);
+    console.log('here', formData)
     recipe.id = uuidv4();
     Promise.all([
       axios.post("http://localhost:8080/recipes", recipe),
@@ -224,11 +225,11 @@
 
   // EDIT FEATURE - UPDATE BUTTON
   function updateRecipe() {
-    // const formData = new FormData();
-    // formData.append("img", image);
+    const formUpdateData = new FormData();
+    formUpdateData.append("img", image);
     Promise.all([
       axios.post("http://localhost:8080/recipes/update", editRecipe),
-      // axios.post("http://localhost:8080/recipes/images", formData)
+      axios.post("http://localhost:8080/recipes/images", formUpdateData)
     ])
       .then((all) => {
         editRecipe.avatar = user.avatar

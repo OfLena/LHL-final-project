@@ -21,7 +21,7 @@ const styles = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '100vh' },
+  height: '75vh' },
   overlay: {
     position: 'relative',
     top: '20px',
