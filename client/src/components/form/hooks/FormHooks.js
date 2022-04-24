@@ -220,7 +220,7 @@
       </Button>
     );
   };
-
+console.log('HEY', image.name)
   // EDIT FEATURE - UPDATE BUTTON
   function updateRecipe() {
     const formUpdateData = new FormData();
@@ -232,11 +232,12 @@
       .then((all) => {
         editRecipe.avatar = user.avatar
         editRecipe.recipe_user_name = user.user_name
+        editRecipe.image_url = image.name 
         setState((prev) => ({
           ...prev,
           filtered_recipes: [...recipes, editRecipe],
         }))
-        console.log('RECIPES IN FORM HOOKS', state.filtered_recipes)
+      
         navigate(`/profile`);
       })
       .catch((err) => {
