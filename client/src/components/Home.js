@@ -32,10 +32,14 @@ const styles = {
 export default function Home(props) {
   const { user, currentPage, setCurrentPage, state, setState } = props;
 
-  const theme = useTheme();
+
+const reversedRecipes = [...props.recipes].reverse()  
+
+
+const theme = useTheme();
 const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
-  const recipes = props.recipes.map((recipe) => {
+  const recipes = reversedRecipes.map((recipe) => {
     return (
       <RecipeListItem
         setState={setState}
@@ -75,7 +79,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <Typography fontSize={'1.75rem'}>Just the Recipes</Typography>
     </Grid>
     </Grid>
-      <Grid container spacing={4} align='center' sx={{marginTop:'2rem'}}>
+      <Grid container spacing={4} align={"center"} sx={{marginTop:'2rem'}}>
         {recipes}
       </Grid>
       <Footer />

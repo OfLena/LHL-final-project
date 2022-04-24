@@ -56,8 +56,9 @@ export default function FormTitleAndImage (props) {
      className ="upload-button"
      htmlFor="image_url">
         <Button component="span"
+          style={{ width: "100%", padding: "16px", marginBottom: '15px' }}
         startIcon={<AddPhotoAlternate />}
-        variant="outlined"
+        variant="contained"
         color="yellow" >
         Upload an Image
         </Button>

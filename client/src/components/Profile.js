@@ -3,8 +3,11 @@ import React, { useState, useEffect } from "react";
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
-import { Box, Grid, Button, TextField } from "@mui/material";
+import { Box, Grid, Button, TextField, InputAdornment} from "@mui/material";
 import ProfileCard from "./ProfileCard";
+
+
+import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
 export default function Profile(props) {
   const { user, state, setState, currentPage, setCurrentPage } = props;
@@ -134,17 +137,17 @@ export default function Profile(props) {
       <Grid container spacing={2}>
         <Grid item xs={12} align="center">
           <Button
-            style={{ width: "20rem", padding: "16px" }}
-            variant="outlined"
+            style={{ width: "20rem", padding: "16px", marginBottom: '15px' }}
+            variant="contained"
             color="yellow"
             onClick={getFavRecipes}
           >
             My Fav Recipes
           </Button>
           <Button
-            style={{ width: "20rem", padding: "16px" }}
+            style={{ width: "20rem", padding: "16px", marginBottom: '15px'}}
             
-            variant="outlined"
+            variant="contained"
             color="yellow"
             onClick={getUserRecipes}
           >
@@ -155,8 +158,15 @@ export default function Profile(props) {
         {showFavs || showUserRecipes ?
           <Grid item xs={12} align="center">
             <TextField
+              InputProps={{
+               startAdornment: (
+                <InputAdornment position="start">
+                    <LocalDiningIcon color="black"/>
+                </InputAdornment>
+               ),
+               }}
               type="text"
-              style={{ width: "20rem" }}
+              style={{ width: "30rem", marginBottom: '2rem'}}
               onChange={handleSearch}
               value={search}
               placeholder="Search..."

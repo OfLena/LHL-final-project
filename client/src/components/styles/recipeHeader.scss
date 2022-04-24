@@ -137,9 +137,9 @@ border-radius: 100em;
 
 
 .image-preview {
-  width: 75%;
+  width: 100%;
   min-height: 100px;
-  max-height: 75%;
+  max-height: 10%;
   border: 2px solid rgb(172, 172, 172);
   color: rgb(111, 111, 111);
   margin-top: 1em;
@@ -148,7 +148,7 @@ border-radius: 100em;
   justify-content: center;
   font-weight: bold;
   overflow: hidden;
-  margin-left: 8em;
+  
   border-radius: 2em;
   box-shadow: 2.5px 3px #888888;
 }

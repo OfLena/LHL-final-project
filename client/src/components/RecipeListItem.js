@@ -17,7 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-import { Button, Grid } from "@mui/material";
+import { Button, Grid, Link as MUILink } from "@mui/material";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -178,7 +178,7 @@ export default function RecipeListItem(props) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
-        <Card sx={{ maxWidth: 345, boxShadow: 20, border: '1px solid black' }}>
+        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '1px solid black' }}>
           <CardHeader
             avatar={
               <Avatar src={`http://localhost:8080/images/${avatar}`} 
@@ -194,17 +194,23 @@ export default function RecipeListItem(props) {
             title={props.title}
             subheader={`Author: ${author}`}
           />
+          <MUILink onClick={sendRecipeID} href='/recipes'>
           <CardMedia
-            component="img"
+            component='img'
+            to={"/recipes"}
             height="194"
             image={"http://localhost:8080/images/" + image_url}
             alt={title}
-            sx={{border: '2px solid black'}}
+            sx={{
+              borderTop: '2px solid black',
+              borderBottom: '2px solid black'  
+            }}
           />
+          </MUILink>
           <CardContent>
             <Typography variant="body2" color="text.secondary" />
           </CardContent>
-          <CardActions sx={{ justifyContent: 'space-between' }}>
+          <CardActions sx={{ justifyContent: 'center' }}>
             <IconButton aria-label="add to favorites" onClick={handleOnClick}>
               {forProfileUser ? null : (
                 <FavoriteIcon
@@ -221,7 +227,7 @@ export default function RecipeListItem(props) {
 
             {forProfileUser && (
               <Button
-                color="black"
+                color="yellow"
                 variant="outlined"
                 className="pull-right btn btn-default"
                 component={Link}
@@ -234,7 +240,7 @@ export default function RecipeListItem(props) {
             )}
             {forProfileUser && (
               <Button
-                color="black"
+                color="error"
                 variant="outlined"
                 className="pull-right btn btn-default"
                 onClick={handleClickDelete}
@@ -243,16 +249,22 @@ export default function RecipeListItem(props) {
                 Delete
               </Button>
             )}
-
+            {!forProfileUser && (
             <Button
-              variant="contained"
+              variant="outlined"
               component={Link}
               to={"/recipes"}
-              sx={{ bgcolor: "black" }}
+              sx={{borderRadius: '50%',
+              '&:hover': {
+                backgroundColor: 'black',
+                borderColor: 'yellow',
+                boxShadow: 'none',
+                }
+               }}
             >
               <MenuBookIcon onClick={sendRecipeID} />
             </Button>
-
+             )}
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}
