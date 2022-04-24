@@ -122,9 +122,7 @@
   // }
 
   function handleCheckboxChange(state) {
-    
     setRecipe((prev) => ({ ...prev, ...state }));
-   
   }
 
   // ================= INGREDIENT ROW HANDLERS =================//
@@ -237,7 +235,8 @@
         setState((prev) => ({
           ...prev,
           filtered_recipes: [...recipes, editRecipe],
-        }));
+        }))
+        console.log('RECIPES IN FORM HOOKS', state.filtered_recipes)
         navigate(`/profile`);
       })
       .catch((err) => {

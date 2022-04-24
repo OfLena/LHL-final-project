@@ -21,7 +21,6 @@ export default function FormTags(props) {
 
   useEffect(() => {
   if (editForm && editRecipe) {
-    console.log("EDIT RECIPE INSIDE OF UF", editRecipe)
     setDietaryState({
       vegan: editRecipe.vegan,
       gluten_free: editRecipe.gluten_free,
@@ -31,7 +30,6 @@ export default function FormTags(props) {
       breakfast: editRecipe.breakfast,
       lunch: editRecipe.lunch,
       dinner: editRecipe.dinner})
-      console.log("DIETARY STATE INSIDE UF", dietaryState)
     }
   }, [editRecipe])
 
