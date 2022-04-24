@@ -2,7 +2,7 @@
   import { useState, useEffect } from "react";
   import  axios from "axios";
   
-  import { Button, Alert } from "@mui/material";
+  import { Button } from "@mui/material";
   import { useNavigate } from "react-router-dom";
   import { v4 as uuidv4 } from "uuid";
 
@@ -204,6 +204,7 @@
           ...prev,
           filtered_recipes: [...recipes, recipe],
         }))
+        navigate('/')
       })
       .catch((err) => {
         console.log("ERR", err);

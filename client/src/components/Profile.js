@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
-import { Box, Typography, Grid, Button, TextField } from "@mui/material";
+import { Box, Grid, Button, TextField } from "@mui/material";
 import ProfileCard from "./ProfileCard";
 
 export default function Profile(props) {
@@ -19,7 +19,7 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
-    // console.log("STATE.FAVS", state.favs)
+
   }, [search, state]);
 
 
@@ -84,9 +84,8 @@ export default function Profile(props) {
       />
     );
   });
-
+  
   const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
-    
     
     return (
     
@@ -114,6 +113,8 @@ export default function Profile(props) {
     );
   });
 
+
+
   return (
     <Box
       component="form"
@@ -127,38 +128,47 @@ export default function Profile(props) {
       user_name={user.user_name}
       email={user.email}
       avatar={user.avatar}
+      userFavRecipes={filteredSearchForFavRecipes}
+      recipesFromUser={filteredSearchForUserRecipes}
       />
 
       <Grid container spacing={1}>
         <Grid item xs={12} align="center">
           <Button
             style={{ width: "20rem", padding: "16px" }}
-            variant="contained"
+            variant="outlined"
+            color="yellow"
             onClick={getFavRecipes}
           >
             My Fav Recipes
           </Button>
           <Button
             style={{ width: "20rem", padding: "16px" }}
-            variant="contained"
+            
+            variant="outlined"
+            color="yellow"
             onClick={getUserRecipes}
           >
             My Recipes
           </Button>
         </Grid>
 
-        <Grid item xs={12} align="center">
-          <TextField
-            type="text"
-            style={{ width: "20rem" }}
-            onChange={handleSearch}
-            value={search}
-            placeholder="Search..."
-          />
-        </Grid>
+        {showFavs || showUserRecipes ?
+          <Grid item xs={12} align="center">
+            <TextField
+              type="text"
+              style={{ width: "20rem" }}
+              onChange={handleSearch}
+              value={search}
+              placeholder="Search..."
+            />
+          </Grid>
+        :
+        null
+        }
+        
       </Grid>
 
-      
       <div className="recipe-card-container">
         {showFavs}
         {showUserRecipes}
