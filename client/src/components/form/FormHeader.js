@@ -1,6 +1,3 @@
-
-
-
 export default function FormHeader (props) {
 
   const { editForm } = props

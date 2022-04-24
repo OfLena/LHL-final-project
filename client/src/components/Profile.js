@@ -23,7 +23,7 @@ export default function Profile(props) {
       getUserRecipes();
     }
 
-  }, [search, state, showUserRecipes]);
+  }, [search, state]);
 
 
   function getFavRecipes() {
