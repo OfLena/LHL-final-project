@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import axios from "axios";
 
@@ -18,6 +18,9 @@ import {
 export default function CommentList(props) {
   const { comments, currentPage, state, setState } = props;
 
+  const [ value, setValue ] = useState('')
+
+
   const [comment, setComment] = useState({
     recipe_id: currentPage,
     user_id: state.user.id,
@@ -30,7 +33,10 @@ export default function CommentList(props) {
     axios
       .post("/comments", comment)
       .then((all) => {
-        setState((prev) => ({ ...prev, comments: [comment, ...comments] }));
+        setState((prev) => ({ ...prev, comments: [...comments, comment] }));
+      })
+      .then(() => {
+        setValue('')
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -50,6 +56,8 @@ export default function CommentList(props) {
         console.log("ERR", err);
       });
   }
+
+  // useEffect
 
   /////////// FILTERS FOR THE COMMENT BRING CLICKED //////////////
 
@@ -77,7 +85,12 @@ export default function CommentList(props) {
     return newCommentStateArray;
   };
 
-  const findCommentByRecipeID = comments.map((comment, index) => {
+
+  // console.log('COMMENTS', comments)
+  const reversedComments = [...comments].reverse()
+  // console.log('REVERSED', reversedComments)
+
+  const findCommentByRecipeID = reversedComments.map((comment, index) => {
     if (comment.recipe_id === currentPage) {
       return (
         <Card key={index} sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}>
@@ -130,10 +143,12 @@ export default function CommentList(props) {
                 fullWidth
                 type="text"
                 name="Comments"
-                
+                value={value}
                 // sx={{margin: '0.5rem'}}
-                onChange={(e) =>
+                onChange={(e) => {
+                  setValue(e.target.value)
                   setComment((prev) => ({ ...prev, comment: e.target.value }))
+                }
                 }
               />
               <Button
