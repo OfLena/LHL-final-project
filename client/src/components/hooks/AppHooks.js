@@ -1,4 +1,6 @@
 import { useState, useEffect, useRef } from "react";
+
+
 import axios from "axios";
 
 export default function useApplicationData() {
@@ -10,18 +12,23 @@ export default function useApplicationData() {
     comments: [],
   });
 
+
+  
+  const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
   const [comment, setComment] = useState("");
 
   const [currentPage, setCurrentPage] = useState(null);
 
   useEffect(() => {
+    setShow(true)
     const currentPage = JSON.parse(localStorage.getItem("currentPage"));
  
     if (currentPage) {
      
       setCurrentPage(currentPage);
     }
+    
   }, []);
 
   useEffect(() => {
@@ -69,5 +76,5 @@ export default function useApplicationData() {
 
 
 
-  return { state, setState, currentPage, setCurrentPage, search, setSearch };
+  return { state, setState, currentPage, setCurrentPage, search, setSearch, show };
 }
