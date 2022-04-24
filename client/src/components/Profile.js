@@ -75,10 +75,8 @@ export default function Profile(props) {
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         title={recipe.title}
-        // change user_name to avatar
         user_name={user.user_name}
         image_url={recipe.image_url}
-        // preptime and serving size to drawer
         prep_time={recipe.prep_time}
         serving_size={recipe.serving_size}
         author={recipe.recipe_user_name}
@@ -101,15 +99,12 @@ export default function Profile(props) {
         title={recipe.title}
         user_id={user.id}
         recipe_id={recipe.recipe_id}
-        // change user_name to avatar
         user_name={user.user_name}
         avatar={recipe.author_avatar}
         author={recipe.author}
         image_url={recipe.image_url}
         prep_time={recipe.prep_time}
-        // preptime and serving size to drawer
         serving_size={recipe.serving_size}
-        // favourite
         alwaysRed
       />
     );
