@@ -11,7 +11,7 @@ import { useEffect, useRef } from "react";
 import ArrowDownwardIcon from '@mui/icons-material/ArrowDownward';
 
 
-const bannerImage = require('./images/victoria-shes-UC0HZdUitWY-unsplash.jpg');
+const bannerImage = require('./images/egg.jpeg');
 
 const styles = {
   media: {
@@ -41,6 +41,7 @@ const reversedRecipes = [...props.recipes].reverse()
 
 
 const scrollDown = () => {
+  const yOffset = -10; 
   recipesStart.current.scrollIntoView({ behavior: "smooth" })
 }
 
@@ -74,7 +75,7 @@ useEffect(() => {
     appearOnScroll.observe(fader);
   });
       
-}, [state, scrollDown])
+}, [state])
 
 
 
@@ -114,26 +115,26 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <div className="fader-cards">
       <Grid container >
       <Grid item xs={12}
-        image={require("./images/victoria-shes-UC0HZdUitWY-unsplash.jpg")}
+        image={bannerImage}
         alt="Header Picture"
         style={styles.media}>
       <Grid item xs={12}
         sx={{
         position: 'absolute',
-        bottom: '35rem',
+        bottom: '45rem',
         left: 0,
         width: '100%',
-        bgcolor: 'rgba(0, 0, 0, 0.54)',
-        color: 'white',
+        // bgcolor: 'rgba(0, 0, 0, 0.54)',
+        color: 'black',
         padding: '10px'}}>
-      <Typography fontFamily={'Bungee Shade'} fontSize={'5rem'}>POTLUCK</Typography>
-      <Typography fontSize={'1.75rem'}>Just the Recipes</Typography>
+      <Typography style={{color: "black"}} fontFamily={'Bungee Shade'} fontSize={'5rem'}>POTLUCK</Typography>
+      <Typography style={{color: "black"}} fontSize={'1.75rem'}>... Just the Recipes</Typography>
     </Grid>
     <div className="bounce">
     <Grid item xs={12}
         sx={{
         position: 'absolute',
-        bottom: '0rem',
+        bottom: '1rem',
         left: 0,
         width: '100%',
         bgcolor: 'rgba(0, 0, 0, 0.0)',
@@ -141,7 +142,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
         padding: '1px'}}>
       
       <Typography onClick={scrollDown} fontSize={'4rem'}> 
-        <ArrowDownwardIcon fontSize="inherit" color="white"/>
+        <ArrowDownwardIcon fontSize="inherit" color="black"/>
       </Typography>
     </Grid>
     </div>
@@ -149,7 +150,8 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
         
       
         <Grid container spacing={4} align={"center"} sx={     {marginTop:'2rem'}}>
-           <div ref={recipesStart} />
+        <div ref={recipesStart} />
+          
           {recipes}
         </Grid>
       <Footer />
