@@ -22,6 +22,7 @@ export default function FormBody (props) {
   }
   const ingredientsRowsEdit = generateObjIng(ingredientsEdit,measurementsEdit)
 
+  console.log("EDIT RECIPE", editRecipe)
 
   return (
     

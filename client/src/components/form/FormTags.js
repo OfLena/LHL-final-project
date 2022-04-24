@@ -11,13 +11,31 @@ export default function FormTags(props) {
     vegetarian: false,
     keto: false,
     breakfast: false,
-    lunch: false,
-    dinner: false,
+    lunch: false || editRecipe.lunch,
+    dinner: false || editRecipe.dinner,
   });
 
   useEffect(() => {
     handleCheckboxChange(dietaryState)
   }, [dietaryState])
+
+  useEffect(() => {
+  if (editForm && editRecipe) {
+    console.log("EDIT RECIPE INSIDE OF UF", editRecipe)
+    setDietaryState({
+      vegan: editRecipe.vegan,
+      gluten_free: editRecipe.gluten_free,
+      dairy_free: editRecipe.dairy_free,
+      vegetarian: editRecipe.vegetarian,
+      keto: editRecipe.keto,
+      breakfast: editRecipe.breakfast,
+      lunch: editRecipe.lunch,
+      dinner: editRecipe.dinner})
+      console.log("DIETARY STATE INSIDE UF", dietaryState)
+    }
+  }, [editRecipe])
+
+  console.log("EF AND EL", editForm && editRecipe.lunch)
 
   return (
     <Paper elevation={3} align={"center"}>

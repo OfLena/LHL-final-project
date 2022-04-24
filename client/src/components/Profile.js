@@ -20,7 +20,7 @@ export default function Profile(props) {
       getUserRecipes();
     }
 
-  }, [search, state]);
+  }, [search, state, showUserRecipes]);
 
 
   function getFavRecipes() {

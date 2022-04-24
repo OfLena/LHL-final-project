@@ -226,7 +226,6 @@
   function updateRecipe() {
     // const formData = new FormData();
     // formData.append("img", image);
-    editRecipe.id = uuidv4();
     Promise.all([
       axios.post("http://localhost:8080/recipes/update", editRecipe),
       // axios.post("http://localhost:8080/recipes/images", formData)
