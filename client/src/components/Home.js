@@ -21,7 +21,7 @@ const styles = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '75vh' },
+  height: '100vh' },
   overlay: {
     position: 'relative',
     top: '20px',
@@ -40,9 +40,9 @@ export default function Home(props) {
 const reversedRecipes = [...props.recipes].reverse()  
 
 
-const scrollDown = () => {
-  const yOffset = -10; 
-  recipesStart.current.scrollIntoView({ behavior: "smooth" })
+const scrollDown = () => { 
+  recipesStart.current.scrollIntoView({ behavior: "smooth", block: "end" })
+  
 }
 
 

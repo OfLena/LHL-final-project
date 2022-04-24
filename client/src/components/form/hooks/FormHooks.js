@@ -220,7 +220,7 @@
       </Button>
     );
   };
-console.log('HEY', image.name)
+
   // EDIT FEATURE - UPDATE BUTTON
   function updateRecipe() {
     const formUpdateData = new FormData();
