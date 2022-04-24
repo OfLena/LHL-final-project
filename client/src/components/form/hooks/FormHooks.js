@@ -2,7 +2,7 @@
   import { useState, useEffect } from "react";
   import  axios from "axios";
   
-  import { Button } from "@mui/material";
+  import { Button, Alert } from "@mui/material";
   import { useNavigate } from "react-router-dom";
   import { v4 as uuidv4 } from "uuid";
 
@@ -13,19 +13,21 @@
   const navigate = useNavigate();
   
   const [recipe, setRecipe] = useState({ user_id: user.id });
+
   const [ingredientRows, setIngredientRows] = useState(
-    [{ ingredient: "", measurement: "" }] || ""
-  );
+    [{ ingredient: "", measurement: "" }] || "");
+
   const [instructionRows, setInstructionRows] = useState(
-    [{ instruction: "" }] || ""
-  );
+    [{ instruction: "" }] || "");
+
   const [image, setImage] = useState('' || {});
 
   const [previewImage, setPreviewImage] = useState({
-    isTextVisible: 'image-preview__image',
-  });
+    isTextVisible: 'image-preview__image', });
+
   // EDIT RECIPE STATE
   const [editRecipe, setEditRecipe] = useState('' || {});
+
   
 
   // ======== USE EFFECTS ===== //
@@ -179,6 +181,10 @@
       reader.readAsDataURL(file);
     }
   
+
+  //====================POST SUCCESS===============//
+
+ 
   
 
   // ==================AXIOS CALLS =================//
@@ -187,19 +193,17 @@
     const formData = new FormData();
     formData.append("img", image);
     recipe.id = uuidv4();
-    // console.log("RECIPE", recipe);
     Promise.all([
       axios.post("http://localhost:8080/recipes", recipe),
       axios.post("http://localhost:8080/recipes/images", formData)
     ])
-      .then((all) => {
+      .then((res) => {
         recipe.avatar = user.avatar
         recipe.recipe_user_name = user.user_name
         setState((prev) => ({
           ...prev,
           filtered_recipes: [...recipes, recipe],
-        }));
-        navigate(`/`);
+        }))
       })
       .catch((err) => {
         console.log("ERR", err);
@@ -259,5 +263,5 @@
 
 
 
-  return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit };
+  return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit, };
 }

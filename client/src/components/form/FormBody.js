@@ -1,17 +1,16 @@
-import { Grid, TextField, InputAdornment, Button, } from "@mui/material";
+import { Grid, TextField, InputAdornment, Button, Alert } from "@mui/material";
 
-import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
-import ScaleIcon from "@mui/icons-material/Scale";
+
 import DeleteIconTwoTone from "@mui/icons-material/DeleteTwoTone";
 import AddCircleTwoToneIcon from "@mui/icons-material/AddCircleTwoTone";
 
 import IngredientAndMeasurement from "./IngredientAndMeasurements";
-import FormTitleAndImage from "./FormTitleAndImage";
+
 
 
 export default function FormBody (props) {
 
-  const { editRecipe, setEditRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow } = props
+  const { editRecipe, setEditRecipe, editForm, setRecipe, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, handleInstructionRemoveRow, handleInstructionRowChange, handleInstructionAddRow, postSuccess, setPostSuccess, handlePostSuccess} = props
 
   // NEED TO MOVE THIS TO HOOKS
   function generateObjIng (ingredients, measurements) {
@@ -25,6 +24,7 @@ export default function FormBody (props) {
 
 
   return (
+    
     <div>
       <Grid container>
 
@@ -152,8 +152,6 @@ export default function FormBody (props) {
             </Grid>
           ))
         } 
-        {/* end of conditional for edit - instructions */}
-
         <Grid item xs={6}>
           <Button
             startIcon={<AddCircleTwoToneIcon />}
@@ -175,8 +173,9 @@ export default function FormBody (props) {
           </Button>
     </Grid>
 
-     
-</div>
+  
+    </div>
+
 
   )
 }
