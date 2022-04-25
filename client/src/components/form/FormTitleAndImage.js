@@ -55,7 +55,7 @@ export default function FormTitleAndImage (props) {
       name="title"
       placeholder="Video URL"
       // FOR EDIT
-      value={editForm ? editRecipe.title : null}
+      value={editForm ? editRecipe.video_link : null}
       onChange={(e) => parseYoutubeUrl(e.target.value)}
     />
     </Grid>
