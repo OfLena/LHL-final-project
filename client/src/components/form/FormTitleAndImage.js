@@ -3,12 +3,27 @@ import { Grid, TextField, Button } from "@mui/material";
 
 import AddPhotoAlternate from "@mui/icons-material/AddPhotoAlternate";
 
+// //video_link
 
 
 
 export default function FormTitleAndImage (props) {
 
-  const {editForm, imageSetter, previewImage, setRecipe, editRecipe, setEditRecipe} = props
+  
+    const {editForm, imageSetter, previewImage, setRecipe, editRecipe, setEditRecipe, recipe} = props
+
+
+  const parseYoutubeUrl = function (url) {
+    
+    const regex1 = /\=(.*)/
+    const embedCode = url.match(regex1)[1]
+    
+      editForm ?
+      setEditRecipe((prev) => ({...prev, video_link: embedCode }))
+      :
+      setRecipe((prev) => ({ ...prev, video_link: embedCode }))
+
+  }
 
   return (
     <div>
@@ -31,6 +46,20 @@ export default function FormTitleAndImage (props) {
       }
     />
     </Grid>
+
+    <Grid item xs={12} sm={12}>
+    <TextField
+      fullWidth
+      id="video_link"
+      label="Video URL"
+      name="title"
+      placeholder="Video URL"
+      // FOR EDIT
+      value={editForm ? editRecipe.title : null}
+      onChange={(e) => parseYoutubeUrl(e.target.value)}
+    />
+    </Grid>
+
 
     <Grid item xs={12} sm={12}>
     

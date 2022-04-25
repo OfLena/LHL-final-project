@@ -67,6 +67,7 @@ export default function RecipeForm(props) {
             setRecipe={setRecipe}
             imageSetter={imageSetter}
             previewImage={previewImage}
+            recipe={recipe}
               />
            </Grid>
            
