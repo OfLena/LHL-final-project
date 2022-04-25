@@ -128,6 +128,7 @@ export default function CommentList(props) {
           <CardHeader
             avatar={
               <Avatar
+                sx={{marginLeft: '1rem'}}
                 src={`http://localhost:8080/images/${comment.author_avatar}`}
               />
             }
