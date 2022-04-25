@@ -1,19 +1,20 @@
 .video-responsive {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   overflow: hidden;
-  padding-bottom: 56.25%;
+  padding-bottom: 45%;
   position: relative;
   height: 0;
-  align-items: center;
+  // margin-top: 2rem;
+  // margin-bottom: 2rem;
+  border-radius: 3%;
+  border-color: black;
+  margin-right: 7rem;
+  margin-left: 7rem;
 }
 
 .video-responsive iframe {
   left: 0;
   top: 0;
-  height: 70%;
-  width: 70%;
+  height: 100%;
+  width: 100%;
   position: absolute;
-  // justify-content: center;
 }
