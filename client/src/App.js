@@ -168,6 +168,7 @@ function App() {
                     setState={setState}
                     state={state}
                     currentPage={currentPage}
+                    setCurrentPage={setCurrentPage}
                     editForm
                   />
                 </>

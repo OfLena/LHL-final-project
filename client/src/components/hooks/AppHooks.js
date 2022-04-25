@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from "react";
 
 import axios from "axios";
 
-export default function useApplicationData() {
+export default function useApplicationData(props) {
   const [state, setState] = useState({
     user: [],
     recipes: [],
@@ -12,8 +12,6 @@ export default function useApplicationData() {
     comments: [],
   });
 
-
-  
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
   const [comment, setComment] = useState("");
@@ -25,7 +23,6 @@ export default function useApplicationData() {
     const currentPage = JSON.parse(localStorage.getItem("currentPage"));
  
     if (currentPage) {
-     
       setCurrentPage(currentPage);
     }
     
@@ -34,8 +31,8 @@ export default function useApplicationData() {
   useEffect(() => {
     if (currentPage) {
       localStorage.setItem("currentPage", JSON.stringify(currentPage));
-    
     }
+
   }, [currentPage]);
 
   const filterRecipes = function () {

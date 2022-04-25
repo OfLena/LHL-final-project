@@ -8,7 +8,7 @@
 
   export default function UseFormData (props) {
 
-    const { user, recipes, state, setState, editForm, currentPage} = props;
+    const { user, recipes, state, setState, editForm, currentPage, setCurrentPage} = props;
 
   const navigate = useNavigate();
   
@@ -68,20 +68,25 @@
     );
   }, [ingredientRows]);
 
-  // EDIT RECIPE - set edit recipe to recipe object
   useEffect(() => {
     if (editForm && editRecipe) {
-      const thisRecipeArr = state.filtered_recipes;
-
+      const currentPage = JSON.parse(localStorage.getItem("currentPage"));
+ 
+      if (currentPage) {
+        setCurrentPage(currentPage);
+      }
+      // EDIT RECIPE - set edit recipe to recipe object
+      let thisRecipeArr = state.filtered_recipes;
+    
       // find the specific recipe
-      const findThisRecipe = thisRecipeArr.filter((recipe) =>
+      let findThisRecipe = thisRecipeArr.filter((recipe) =>
       recipe.id === currentPage ? recipe : false
       );
-      
+
       // Filter Out All Key/Value Pairs where the Value is Falsey
-      const filteredRecipe = Object.fromEntries(
+      let filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
-      );
+      ) 
 
       Promise.all([
         setEditRecipe(filteredRecipe),
@@ -128,10 +133,8 @@
   // ================= INGREDIENT ROW HANDLERS =================//
   const handleIngredientRowChange = (idx) => (e) => {
     const { name, value } = e.target;
-    console.log("NAME and VALUE", name, value)
     const newRow = [...ingredientRows];
     newRow[idx][name] = value;
-    console.log("NEW ROW", newRow)
     setIngredientRows(newRow);
    
   };
@@ -246,11 +249,11 @@
       });
   }
 
-  console.log('RECIPES', recipes)
-  console.log('RECIPE.ID', recipe.id)
-  console.log('RECIPE', recipe)
-  console.log('EDIT RECIPE', editRecipe)
-  console.log('CURRENT PAGE', currentPage)
+  // console.log('RECIPES', recipes)
+  // console.log('RECIPE.ID', recipe.id)
+  // console.log('RECIPE', recipe)
+  // console.log('EDIT RECIPE', editRecipe)
+  // console.log('CURRENT PAGE', currentPage)
   // helper function to remove the non-updated recipe and add in the newly updated recipe 
 
   const addUpdateFav = function () {
@@ -259,7 +262,7 @@
     item.id !== currentPage 
     ))
 
-    console.log("NEWARRUPDATE", newArrUpdate)
+    // console.log("NEWARRUPDATE", newArrUpdate)
     return newArrUpdate = [...newArrUpdate, editRecipe]
 
 
