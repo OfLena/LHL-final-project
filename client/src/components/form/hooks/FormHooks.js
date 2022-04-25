@@ -116,16 +116,6 @@
 
   // ==================CHECKBOX HANDLERS =================//
 
-  // function handleCheckboxChange(evt) {
-  //   if (evt.target.checked === false) {
-  //     const checkboxVal = evt.target.value;
-  //     setRecipe((prev) => ({ ...prev, [checkboxVal]: false }));
-  //   } else {
-  //     const checkboxVal = evt.target.value;
-  //     setRecipe((prev) => ({ ...prev, [checkboxVal]: true }));
-  //   }
-  // }
-
   function handleCheckboxChange(state) {
     setRecipe((prev) => ({ ...prev, ...state }));
   }
@@ -215,6 +205,7 @@
   const postButton = function () {
     return (
       <Button
+        sx={{width: '100%', height: '4rem'}}
         type="button"
         variant="contained"
         color="black"

@@ -1,4 +1,4 @@
-import { Paper, Checkbox, FormControlLabel } from "@mui/material";
+import { Container, Checkbox, FormControlLabel } from "@mui/material";
 import { useState, useEffect } from "react";
 
 export default function FormTags(props) {
@@ -34,7 +34,7 @@ export default function FormTags(props) {
   }, [editRecipe])
 
   return (
-    <Paper elevation={3} align={"center"}>
+    <Container sx={{marginTop: "30px", borderRadius: '7%'}} align={"center"}>
       <span className="tags">
         <FormControlLabel
           className="checkbox-tag"
@@ -42,7 +42,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "black",
                 },
               }}
               // EDIT - VEGAN
@@ -69,7 +69,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "black",
                 },
               }}
               // EDIT - GF
@@ -94,7 +94,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "#black",
                 },
               }}
               // EDIT - DF
@@ -121,7 +121,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "#black",
                 },
               }}
               // EDIT - VEGETARIAN
@@ -147,7 +147,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "#black",
                 },
               }}
               // EDIT - KETO
@@ -173,7 +173,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "#black",
                 },
               }}
               // EDIT - BREAKFAST
@@ -200,7 +200,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "black",
                 },
               }}
               // EDIT - LUNCH
@@ -227,7 +227,7 @@ export default function FormTags(props) {
             <Checkbox
               sx={{
                 "&.Mui-checked": {
-                  color: "#CCA01D",
+                  color: "black",
                 },
               }}
               // EDIT - DINNER
@@ -247,6 +247,6 @@ export default function FormTags(props) {
           // onChange={handleCheckboxChange}
         />
       </span>
-    </Paper>
+    </Container>
   );
 }

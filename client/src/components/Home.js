@@ -120,7 +120,7 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <Grid item xs={12}
         sx={{
         position: 'absolute',
-        bottom: '20rem',
+        bottom: '25rem',
         left: 0,
         width: '100%',
         color: 'black',
