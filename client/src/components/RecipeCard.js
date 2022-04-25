@@ -1,5 +1,5 @@
 import "./styles/youtube.scss";
-import React, { useEffect } from "react";
+import React from "react";
 
 import {
   Container,
@@ -14,10 +14,7 @@ import {
   Tooltip
 } from "@mui/material";
 
-import DinnerDiningIcon from "@mui/icons-material/DinnerDining";
-import ScaleIcon from "@mui/icons-material/Scale";
-import MenuBookIcon from "@mui/icons-material/MenuBook";
-import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
+
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import YoutubeEmbed from "./YoutubeEmbed";
