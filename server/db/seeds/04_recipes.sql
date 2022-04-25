@@ -213,6 +213,18 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE),
   '2 Cups', '1 TBSP', '1', '2 Large', 'Fine Grain', '1', '1 Can', '2 Large Handfuls', '1 TBSP', '1 TSP', '1/2 TSP', '1/2 TSP', '5', null, null, null, null, null, null, null,
   TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE);
 
+ (17, 1, '55 minutes', 4, 'potatoCakes.jpg',
+ 'Yk5JTHVBqvc', 
+ 'Sweet Potato Cakes',
+ 'Steam the sweet potatoes until completely soft, then  leave in a colander to drain for at least an hour.',
+ 'To make the sauce. Whisk together all the sauce ingredients until smooth; set aside.',
+ 'Once the sweet potatoes have lost most of their liquid, place them in a mixing bowl and add teh rest of the ingredients (except the butter). Mix everything together, preferably by hand, until the mix is smooth and even; do not over-mix. The mixture should be sticky; if its runny add some mroe flour.',
+ 'Melt some butter ina  non stick frying pan. For each cake, use a TBSP to lift some mix into the pan and flatten with the back of the spoon to create a not too perfect disk that is roughly 2 inches in diameter and 3/8 inch thick.',
+ 'Fry the cakes on medium heat for about 6 minutes on each side, or until you get a nice brown crust. Plae in between two sheets of paper towels to soak up the excess butter. Serve hot or warm, with the sauce on the side.',
+ 'Peeled Chunked Sweet Potato', 'Greek Yogurt', 'Sour Cream', 'Olive Oil', 'Lemon Juice', 'Chopped Cilantro', 'Salt and Black Pepper', 'Soy Sauce', 'All Purpose Flour', 'Salt', 'Sugar', 'Green Onion', 'Chopped Fresh Red Chile', 'Butter', null, null, null, null, null, null,
+  '2 1/4 LBS', '3 TBSP', '3 TBSP', '2 TBSP', '1 TBSP', '1 TBSP', 'Pinch', '2 TSP', '3/4 Cup', '1 TSP', '1/2 TSP', '3 TBSP', '1/2 TSP', 'Plenty of', null, null, null, null, null, null,
+  FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE);
+
 --  (1, 1, '5 minutes', 1, 'overnightOats.jpg',
 --  'Yk5JTHVBqvc', 
 --  'title',
