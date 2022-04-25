@@ -201,7 +201,7 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE),
   '1 TBSP', '1', '2', '1 TBSP', '2 TBSP', '1.5 TSP', '1 TSP', '6 Cups', '1 Cup', '1 Medium', '1 Medium', '2 Large Handfuls', '3/4 TSP', 'Freshly Ground', 'Handful', null, null, null, null, null,
   TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE),
 
-  (16, 3, '55 minutes', 5, 'overnightOats.jpg',
+  (16, 3, '55 minutes', 5, 'enchiladas.jpg',
  'Yk5JTHVBqvc', 
  'Sweet Potato & Black Bean Enchiladas',
  'Preheat the over to 350F. Lightly grease a large rectangular baking dish.',
