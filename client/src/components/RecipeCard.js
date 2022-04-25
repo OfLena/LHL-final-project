@@ -18,6 +18,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
 import Footer from "./Footer";
 import CommentList from "./CommentList";
+import TextMessageButton from "./TextMessageButton";
 
 
 export default function RecipeCard(props) {
@@ -56,6 +57,7 @@ export default function RecipeCard(props) {
               }
             />
             <div style={{ display: "flex", justifyContent: "center" }}>
+              
               <CardMedia
                
                 component="img"
@@ -64,6 +66,7 @@ export default function RecipeCard(props) {
                 image={image}
                 alt={filteredRecipes.title}
               />
+              <TextMessageButton/>
             </div>
             <Card
               align={"center"}
