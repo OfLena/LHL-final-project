@@ -20,18 +20,20 @@ import {
   Slide,
 } from "@mui/material";
 
+import Backdrop from "@mui/material/Backdrop";
 
-import Backdrop from '@mui/material/Backdrop';
-
-import Modal from '@mui/material/Modal';
-import Fade from '@mui/material/Fade';
-
-
+import Modal from "@mui/material/Modal";
+import Fade from "@mui/material/Fade";
 
 export default function CommentList(props) {
   const { comments, currentPage, state, setState } = props;
 
   const [value, setValue] = useState("");
+  const [modalOpen, modalSetOpen] = useState(false);
+  
+  const modalHandleOpen = () => modalSetOpen(true);
+  const modalHandleClose = () => modalSetOpen(false);
+
 
   const [comment, setComment] = useState({
     recipe_id: currentPage,
@@ -40,6 +42,21 @@ export default function CommentList(props) {
     author: state.user.user_name,
     date_created: Date.now(),
   });
+
+
+  const style = {
+    position: "absolute",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    width: 400,
+    bgcolor: "background.paper",
+    border: "2px solid #000",
+    boxShadow: 24,
+    p: 4,
+  };
+
+
 
   function handlePostComment() {
     comment.id = uuidv4();
@@ -97,30 +114,6 @@ export default function CommentList(props) {
   };
 
 
-  
-
-  
-  const style = {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: 400,
-    bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: 24,
-    p: 4,
-  };
-  
-
-    const [open, setOpen] = React.useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-
-
-
-
 
   const reversedComments = [...comments].reverse();
 
@@ -142,15 +135,21 @@ export default function CommentList(props) {
           sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}
         >
           <CardHeader
-          avatar=
-          {<Avatar
-            src={`http://localhost:8080/images/${comment.author_avatar}`}/>}
+            avatar={
+              <Avatar
+                src={`http://localhost:8080/images/${comment.author_avatar}`}
+              />
+            }
             sx={{ bgcolor: "#CCA01D", margin: "0rem 0rem 0rem 0rem" }}
             aria-label="recipe"
             title={comment.author}
-            titleTypographyProps={{align:'center', fontFamily:'bungee', marginRight:'4rem', fontSize:'1.5rem'}}
+            titleTypographyProps={{
+              align: "center",
+              fontFamily: "bungee",
+              marginRight: "4rem",
+              fontSize: "1.5rem",
+            }}
           />
-          
 
           <Typography
             paragraph
@@ -163,50 +162,44 @@ export default function CommentList(props) {
           >
             "{comment.comment}"
           </Typography>
-          <Typography align="right" marginRight={'2rem'}>
-            Posted {" "}
-            {getNumberOfDays(Date.now(), comment.date_created)}
+          <Typography align="right" marginRight={"2rem"}>
+            Posted {getNumberOfDays(Date.now(), comment.date_created)}
           </Typography>
           <Card />
 
           {state.user.id === comment.user_id && (
-
-          
-              <div>
-      <Button onClick={handleOpen}>Open modal</Button>
-      <Modal
-        aria-labelledby="transition-modal-title"
-        
-        open={open}
-        onClose={handleClose}
-        closeAfterTransition
-        BackdropComponent={Backdrop}
-        BackdropProps={{
-          timeout: 500,
-        }}
-      >
-        <Fade in={open}>
-          <Box sx={style}>
-            <Typography id="transition-modal-title" variant="h6" component="h2" color='black'>
-              Are you sure you want to Delete this post?
-            </Typography>
-            <Button
-              type="button"
-              variant="contained"
-              color="black"
-              onClick={() => {
-                handleDeleteComment(comment.id);
-              }}
-              sx={{ margin: "0.5rem", padding: "2 2rem 2 2rem" }}
-            >
-              Delete
-            </Button>
-              
-          </Box>
-        </Fade>
-      </Modal>
-    </div>
-    )}
+            <div>
+              <Button onClick={modalHandleOpen}>Delete</Button>
+              <Modal
+                aria-labelledby="transition-modal-title"
+                open={modalOpen}
+                onClose={modalHandleClose}
+                closeAfterTransition
+                BackdropComponent={Backdrop}
+                align='center'
+                BackdropProps={{
+                  timeout: 500,
+                }}
+              >
+                <Fade in={modalOpen}>
+                  <Box sx={style}>
+                    <Button
+                      type="button"
+                      variant="contained"
+                      color="black"
+                      onClick={() => {
+                        handleDeleteComment(comment.id);
+                        modalHandleClose()
+                      }}
+                      sx={{ margin: "0.5rem", padding: "2 2rem 2 2rem" }}
+                    >
+                      Confirm Delete
+                    </Button>
+                  </Box>
+                </Fade>
+              </Modal>
+            </div>
+          )}
         </Card>
       );
     }
@@ -226,7 +219,11 @@ export default function CommentList(props) {
               }}
             >
               <CardHeader
-                sx={{  margin: "0rem 0rem 0rem 0rem", borderRadius:'1rem', marginBottom:'1rem' }}
+                sx={{
+                  margin: "0rem 0rem 0rem 0rem",
+                  borderRadius: "1rem",
+                  marginBottom: "1rem",
+                }}
                 titleTypographyProps={{
                   fontSize: "2rem",
                   fontFamily: "Bungee",
@@ -250,17 +247,22 @@ export default function CommentList(props) {
                 }}
               />
               <Grid container justifyContent={"space-between"}>
-              
-                <Grid item
+                <Grid
+                  item
                   type="button"
                   variant="contained"
                   color="black"
                   onClick={handlePostComment}
-                  sx={{ margin: "1rem", padding: "0 2rem 0 2rem", border: '1px solid black', background: 'black' }}
+                  sx={{
+                    margin: "1rem",
+                    padding: "0 2rem 0 2rem",
+                    border: "1px solid black",
+                    background: "black",
+                  }}
                 >
                   <SuccessSnackBar />
-                  </Grid>
-                
+                </Grid>
+
                 <Grid
                   item
                   sx={{

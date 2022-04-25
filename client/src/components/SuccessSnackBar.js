@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import Fade from '@mui/material/Fade';
@@ -11,21 +11,23 @@ function SlideTransition(props) {
 }
 
 export default function SuccessSnackBar() {
-  const [state, setState] = React.useState({
+  const [snackState, setSnackState] = useState({
     open: false,
     Transition: Fade,
   });
 
+  console.log('state', snackState)
+
   const handleClick = (Transition) => () => {
-    setState({
+    setSnackState({
       open: true,
       Transition,
     });
   };
 
   const handleClose = () => {
-    setState({
-      ...state,
+    setSnackState({
+      ...snackState,
       open: false,
     });
   };
@@ -35,11 +37,11 @@ export default function SuccessSnackBar() {
       <Button onClick={handleClick(SlideTransition)} color='yellow'>Submit</Button>
       <Snackbar
         autoHideDuration={6000}
-        open={state.open}
+        open={snackState.open}
         onClose={handleClose}
-        TransitionComponent={state.Transition}
+        TransitionComponent={snackState.Transition}
         message=""
-        key={state.Transition.name}
+        key={snackState.Transition.name}
       >
         <SnackbarContent style={{
       backgroundColor:'green',
