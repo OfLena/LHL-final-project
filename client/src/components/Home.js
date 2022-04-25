@@ -115,7 +115,6 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <div className="fader-cards">
       <Grid container >
       <Grid item xs={12}
-        image={bannerImage}
         alt="Header Picture"
         style={styles.media}>
       <Grid item xs={12}
