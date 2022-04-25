@@ -22,13 +22,13 @@ const styles = {
   backgroundRepeat: 'no-repeat',
   width: '100vw',
   height: '100vh' },
-  overlay: {
-    position: 'relative',
-    top: '20px',
-    left: '20px',
-    color: 'black',
-    backgroundColor: 'white'
- },
+//   overlay: {
+//     position: 'relative',
+//     top: '20px',
+//     left: '20px',
+//     color: 'black',
+//     backgroundColor: 'white'
+//  },
 };
 
 
@@ -120,10 +120,9 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <Grid item xs={12}
         sx={{
         position: 'absolute',
-        bottom: '45rem',
+        bottom: '20rem',
         left: 0,
         width: '100%',
-        // bgcolor: 'rgba(0, 0, 0, 0.54)',
         color: 'black',
         padding: '10px'}}>
       <Typography style={{color: "black"}} fontFamily={'Bungee Shade'} fontSize={'5rem'}>POTLUCK</Typography>

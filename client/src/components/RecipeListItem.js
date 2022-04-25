@@ -178,7 +178,7 @@ export default function RecipeListItem(props) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
-        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '3px solid black', borderRadius: '7%' }}>
+        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '3px solid black', borderRadius: '7%'}}>
           <CardHeader
             avatar={
               <Avatar src={`http://localhost:8080/images/${avatar}`} 
