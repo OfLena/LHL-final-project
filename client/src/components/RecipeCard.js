@@ -106,9 +106,6 @@ export default function RecipeCard(props) {
               }
             />
 
-            <div className="App">
-              <YoutubeEmbed embedId={filteredRecipes.video_link} />
-            </div>
             
             <div style={{ display: "flex", justifyContent: "center" }}>
               <CardMedia
@@ -184,6 +181,10 @@ export default function RecipeCard(props) {
               }}
               subheader={"Serves " + filteredRecipes.serving_size}
             />
+
+            <div className="App">
+              <YoutubeEmbed embedId={filteredRecipes.video_link} />
+            </div>
 
             <Grid container justifyContent={"center"}>
               <Card
