@@ -211,7 +211,7 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE),
  'Remove the skillet from the heat and stir in 1/4 CUP of the enchilada sauce, the lime juice, chili powder, cumin, and kosher salt.',
  'Sweet Potato', 'Olive Oil', 'Chopped Red Onion', 'Garlic Cloves', 'Sea Salt', 'Red Bell Pepper', 'Black Beans', 'Spinach', 'Lime Juice', 'Chili POwder', 'Ground Cumin', 'Kosher Salt', 'Tortilla Wraps', null, null, null, null, null, null, null,
   '2 Cups', '1 TBSP', '1', '2 Large', 'Fine Grain', '1', '1 Can', '2 Large Handfuls', '1 TBSP', '1 TSP', '1/2 TSP', '1/2 TSP', '5', null, null, null, null, null, null, null,
-  TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE);
+  TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE),
 
  (17, 1, '55 minutes', 4, 'potatoCakes.jpg',
  'Yk5JTHVBqvc', 
