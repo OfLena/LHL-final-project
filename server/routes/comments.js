@@ -24,7 +24,8 @@ module.exports = (db) => {
   router.post("/delete", (req, res) => {
     const deleteCommentValue = Object.values(req.body);
     const wrappedValues = deleteCommentValue.map((elem) => `'${elem}'`);
-    const deleteComment = `DELETE FROM comments WHERE recipe_id = (${wrappedValues[0]}) AND user_id = (${wrappedValues[1]})`
+    console.log('here', wrappedValues)
+    const deleteComment = `DELETE FROM comments WHERE id = (${wrappedValues[0]})`
   
     db.query(deleteComment).then(data => {
       res.json(data.rows);
