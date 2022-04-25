@@ -6,9 +6,12 @@ const authToken = process.env.TWILIO_AUTH_TOKEN
 const client = require('twilio')(accountSid, authToken);
 
 
+
 module.exports = () => {
   
   router.post('/', (req, res) => {
+    
+    console.log('HERER', accountSid, authToken);
     
     client.messages
     .create({

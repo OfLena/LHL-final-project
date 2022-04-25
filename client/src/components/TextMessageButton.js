@@ -1,9 +1,9 @@
 import * as React from "react";
 
-
-import SendIcon from '@mui/icons-material/Send';
+import PhoneIphone from "@mui/icons-material/PhoneIphone";
 
 import { Button } from "@mui/material";
+
 import axios from "axios";
 
 
@@ -28,7 +28,7 @@ export default function TextMessageButton(props) {
       <Button 
       sx={{color: 'black'}}
       onClick={sendShoppingList}
-      ><SendIcon/></Button>
+      ><PhoneIphone sx={{fontSize:'4rem', marginTop:'1rem'}} aria-label="settings"/></Button>
     
   );
 }

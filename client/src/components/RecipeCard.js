@@ -92,12 +92,8 @@ export default function RecipeCard(props) {
                 />
               }
               action={
-                <Tooltip arrow title={<h1 style={{ color: "yellow" }}>Text the Recipe</h1>}>
-                <Button>
-                <PhoneIphoneIcon sx={{fontSize:'4rem', marginTop:'1rem'}} aria-label="settings"
-                onClick={<TextMessageButton/>}
-                />
-                </Button>
+                <Tooltip title="Text me!">
+                <TextMessageButton/> 
                 </Tooltip>
               }
             />
