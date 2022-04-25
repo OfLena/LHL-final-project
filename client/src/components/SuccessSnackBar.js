@@ -16,8 +16,6 @@ export default function SuccessSnackBar() {
     Transition: Fade,
   });
 
-  console.log('state', snackState)
-
   const handleClick = (Transition) => () => {
     setSnackState({
       open: true,

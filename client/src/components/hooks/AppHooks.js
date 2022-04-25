@@ -58,7 +58,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/users/3"),
+      axios.get("/users/2"),
       axios.get("/recipes"),
       axios.get("/favs"),
       axios.get("/comments"),
