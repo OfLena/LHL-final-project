@@ -223,7 +223,19 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE),
  'Fry the cakes on medium heat for about 6 minutes on each side, or until you get a nice brown crust. Plae in between two sheets of paper towels to soak up the excess butter. Serve hot or warm, with the sauce on the side.',
  'Peeled Chunked Sweet Potato', 'Greek Yogurt', 'Sour Cream', 'Olive Oil', 'Lemon Juice', 'Chopped Cilantro', 'Salt and Black Pepper', 'Soy Sauce', 'All Purpose Flour', 'Salt', 'Sugar', 'Green Onion', 'Chopped Fresh Red Chile', 'Butter', null, null, null, null, null, null,
   '2 1/4 LBS', '3 TBSP', '3 TBSP', '2 TBSP', '1 TBSP', '1 TBSP', 'Pinch', '2 TSP', '3/4 Cup', '1 TSP', '1/2 TSP', '3 TBSP', '1/2 TSP', 'Plenty of', null, null, null, null, null, null,
-  FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE);
+  FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, FALSE),
+
+   (18, 2, '35 minutes', 4, 'BlackPepperTofu.jpg',
+ 'Yk5JTHVBqvc', 
+ 'Black Pepper Tofu',
+ 'Start with the tofu. Pour enough oil into a large frying pan or wok to come 1/4 inch ip the sides and heat. Cut the tofu into large cubes, about 1 x 1 inch. Toss them in some cornstarch and shake off the excess, then add to the hot oil. (Youll need to fry the tofu pieces in a few batches so they dont stew in the pan.) Fry, turning them around as you go, until they are golden all over and have a thin crust. As they are cooked, transfer them onto paper towels.',
+ 'Remove the oil and any sediment from the pan, then put the butter inside and melt it. Add the shallots, chiles, garlic, and ginger. Saute until the ingredients have turned shiny and are totally soft. Next, add the soy sauces and sugar and stir, then add the crushed black pepper.',
+ 'Add the tofu to warm it up in the sauce for about a minute. Finally, stir in the green onions. Serve hot, with steamed rice.',
+ null,
+ null,
+ 'Firm Tofu', 'Vegetable Oil', 'Cornstarch', 'Butter', 'Shallots', 'Red Chiles', 'Garlic Cloves', 'Chopped Fresh Ginger', ' Sweet Soy Sauce', 'Light Soy Sauce', 'Dark Soy Sauce', 'Sugar', 'Coarsely Crush Black PepperCorns', 'Thin Green Onions', null, null, null, null, null, null,
+  '1 3/4 Cup', '2 TBSP', '2 TBSP', '11 TBSP', '12 Small', '8 Fresh', '12', '3 TBSP', '3 TBSP', '3 TBSP', '4 TSP', '2 TBSP', '5 TBSP', '16 Small', null, null, null, null, null, null,
+  FALSE, TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE);
 
 --  (1, 1, '5 minutes', 1, 'overnightOats.jpg',
 --  'Yk5JTHVBqvc', 
