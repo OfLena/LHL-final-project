@@ -12,7 +12,7 @@
 
   const navigate = useNavigate();
   
-  const [recipe, setRecipe] = useState({ user_id: user.id });
+  const [recipe, setRecipe] = useState({ user_id: user.id, id: uuidv4()});
 
   const [ingredientRows, setIngredientRows] = useState(
     [{ ingredient: "", measurement: "" }] || "");
@@ -188,7 +188,7 @@
     const formData = new FormData();
     formData.append("img", image);
     console.log('here', formData)
-    recipe.id = uuidv4();
+    // recipe.id = uuidv4();
     Promise.all([
       axios.post("http://localhost:8080/recipes", recipe),
       axios.post("http://localhost:8080/recipes/images", formData)
@@ -235,7 +235,7 @@
         editRecipe.image_url = image.name 
         setState((prev) => ({
           ...prev,
-          filtered_recipes: [...recipes, editRecipe],
+          filtered_recipes: addUpdateFav(),
         }))
         navigate(`/profile`);
       })
@@ -247,15 +247,24 @@
   console.log('RECIPES', recipes)
   console.log('RECIPE.ID', recipe.id)
   console.log('RECIPE', recipe)
+  console.log('EDIT RECIPE', editRecipe)
+  console.log('CURRENT PAGE', currentPage)
   // helper function to remove the non-updated recipe and add in the newly updated recipe 
 
   const addUpdateFav = function () {
 
-    recipes.filter((item) => (
-      item.includes()
+    let newArrUpdate= recipes.filter((item) => (
+    item.id !== currentPage 
     ))
 
+    console.log("NEWARRUPDATE", newArrUpdate)
+    return newArrUpdate = [...newArrUpdate, editRecipe]
+
+
   }
+
+
+
 
   const updateButton = function () {
     return (
