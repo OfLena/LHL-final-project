@@ -37,11 +37,27 @@ export default function RecipeForm(props) {
       noValidate
       autoComplete="off"
     >
-      <Container>
+      <Container
+         sx={{
+          p: 2,
+          paddingTop: '15px',
+          border: "1px solid black",
+          background: "#CCA01D",
+          borderRadius: "1rem",
+        }}
+      >
        <FormHeader
        editForm={editForm}
        />
-        <Grid container spacing={0}>
+        <Grid container spacing={0}
+          sx={{
+            p: 2,
+            paddingTop: '10px',
+            border: "1px solid black",
+            background: "white",
+            borderRadius: "1rem",
+          }}
+        >
 
            <Grid item xs={12} sm={12}>
             <FormTitleAndImage
