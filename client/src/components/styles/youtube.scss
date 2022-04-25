@@ -1,10 +1,12 @@
 .video-responsive {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   overflow: hidden;
   padding-bottom: 56.25%;
   position: relative;
   height: 0;
-  margin-left: 17em;
-  // justify-content: center;
+  align-items: center;
 }
 
 .video-responsive iframe {
