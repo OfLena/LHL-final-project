@@ -178,14 +178,18 @@ export default function RecipeListItem(props) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
-        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '1px solid black' }}>
+        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '3px solid black', borderRadius: '7%' }}>
           <CardHeader
             avatar={
               <Avatar src={`http://localhost:8080/images/${avatar}`} 
-              aria-label="recipe"/>
-              
+
+              aria-label="recipe"
+              sx={{padding: '.6rem', 
+            bgcolor: '#FFAD10'}}
+              />
               
             }
+            
             action={
               <IconButton aria-label="settings">
                 <MoreVertIcon />
@@ -202,18 +206,19 @@ export default function RecipeListItem(props) {
             image={"http://localhost:8080/images/" + image_url}
             alt={title}
             sx={{
-              borderTop: '2px solid black',
-              borderBottom: '2px solid black'  
+              borderTop: '3px solid black',
+              borderBottom: '3px solid black'  
             }}
           />
           </MUILink>
-          <CardContent>
+          <CardContent sx={{padding: '0'}}>
             <Typography variant="body2" color="text.secondary" />
           </CardContent>
           <CardActions sx={{ justifyContent: 'center' }}>
             <IconButton aria-label="add to favorites" onClick={handleOnClick}>
               {forProfileUser ? null : (
                 <FavoriteIcon
+                  fontSize="large"
                   color={
                     favourite === true
                     ? "error"
@@ -226,8 +231,8 @@ export default function RecipeListItem(props) {
             </IconButton>
 
             {forProfileUser && (
-              <Button
-
+              <Button   
+                fontSize="large"
                 color="yellow"
                 variant="outlined"
                 className="pull-right btn btn-default"
@@ -241,6 +246,7 @@ export default function RecipeListItem(props) {
             )}
             {forProfileUser && (
               <Button
+                fontSize="large"
                 color="error"
                 variant="outlined"
                 className="pull-right btn btn-default"
@@ -252,6 +258,7 @@ export default function RecipeListItem(props) {
             )}
             {!forProfileUser && (
             <Button
+              fontSize="large"
               variant="outlined"
               component={Link}
               to={"/recipes"}
