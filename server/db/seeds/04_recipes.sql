@@ -199,7 +199,19 @@ TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, TRUE),
  'Ladle the soup into bowls and top with cilantro, if desired.',
  'Coconut Oil', 'Yellow Onion', 'Garlic Cloves', 'Fresh Peeled Minced Ginger', 'Curry Powder', 'Ground Coriander', 'Ground Cumin', 'Vegetable Broth', 'Uncooked Red Lentils', 'Cauliflower Chopped', 'Sweet Potato', 'Baby Spinach', 'Sea Salt', 'Black Pepper', 'Chopped Cilantro', null, null, null, null, null,
   '1 TBSP', '1', '2', '1 TBSP', '2 TBSP', '1.5 TSP', '1 TSP', '6 Cups', '1 Cup', '1 Medium', '1 Medium', '2 Large Handfuls', '3/4 TSP', 'Freshly Ground', 'Handful', null, null, null, null, null,
-  TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE);
+  TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE),
+
+  (16, 3, '55 minutes', 5, 'overnightOats.jpg',
+ 'Yk5JTHVBqvc', 
+ 'Sweet Potato & Black Bean Enchiladas',
+ 'Preheat the over to 350F. Lightly grease a large rectangular baking dish.',
+ 'Make the Enchiladas: Place the sweet potato in a medium saucepan and add enough water to cover. Bring the water to a boil, then reduce the heat to medium-high and simmer for 5 to 7 minutes, or until fork tender. Drain and set aside.',
+ 'In a large skillet, heat the oil over medium heat. Add the onion and garlic and saute for about 5 minutes, until the onion is translucent. Season with sea salt and black pepper.',
+ 'Add the bell pepper, cooked sweet potato, black beans, and spinach. Raise the heat to medium high and cook for a few minutes more, or until the spinach is wilted.',
+ 'Remove the skillet from the heat and stir in 1/4 CUP of the enchilada sauce, the lime juice, chili powder, cumin, and kosher salt.',
+ 'Sweet Potato', 'Olive Oil', 'Chopped Red Onion', 'Garlic Cloves', 'Sea Salt', 'Red Bell Pepper', 'Black Beans', 'Spinach', 'Lime Juice', 'Chili POwder', 'Ground Cumin', 'Kosher Salt', 'Tortilla Wraps', null, null, null, null, null, null, null,
+  '2 Cups', '1 TBSP', '1', '2 Large', 'Fine Grain', '1', '1 Can', '2 Large Handfuls', '1 TBSP', '1 TSP', '1/2 TSP', '1/2 TSP', '5', null, null, null, null, null, null, null,
+  TRUE, TRUE, FALSE, FALSE, FALSE, TRUE, FALSE, TRUE);
 
 --  (1, 1, '5 minutes', 1, 'overnightOats.jpg',
 --  'Yk5JTHVBqvc', 
