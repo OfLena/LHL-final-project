@@ -16,26 +16,18 @@ import {
   Avatar,
   Typography,
   Alert,
-  Snackbar,
-  Slide,
+  Backdrop,
+  Modal,
+  Fade,
 } from "@mui/material";
-
-import Backdrop from "@mui/material/Backdrop";
-
-import Modal from "@mui/material/Modal";
-import Fade from "@mui/material/Fade";
+import { margin } from "@mui/system";
 
 export default function CommentList(props) {
   const { comments, currentPage, state, setState } = props;
 
   const [value, setValue] = useState("");
   const [modalOpen, modalSetOpen] = useState(false);
-  
-  const modalHandleOpen = () => modalSetOpen(true);
-  const modalHandleClose = () => modalSetOpen(false);
-
-  const [modalID, setModalID] = useState('')
-
+  const [modalID, setModalID] = useState("");
 
   const [comment, setComment] = useState({
     recipe_id: currentPage,
@@ -45,7 +37,6 @@ export default function CommentList(props) {
     date_created: Date.now(),
   });
 
-
   const style = {
     position: "absolute",
     top: "50%",
@@ -54,11 +45,12 @@ export default function CommentList(props) {
     width: 400,
     bgcolor: "background.paper",
     border: "2px solid #000",
-    boxShadow: 24,
+    boxShadow: 10,
     p: 4,
   };
 
-
+  const modalHandleOpen = () => modalSetOpen(true);
+  const modalHandleClose = () => modalSetOpen(false);
 
   function handlePostComment() {
     comment.id = uuidv4();
@@ -91,15 +83,13 @@ export default function CommentList(props) {
   //////////// PUSHES COMMENTS WE WANT TO KEEP TO NEW ARRAY FOR COMMENTS STATE //////////
 
   const removeComment = function (param) {
-    
     const newCommentStateArray = [];
     comments.map((comment) => {
-      
       if (comment.id !== param) {
         newCommentStateArray.push(comment);
       }
     });
-    console.log('MORNING STEF', newCommentStateArray)
+
     return newCommentStateArray;
   };
 
@@ -116,14 +106,9 @@ export default function CommentList(props) {
     return maxCount - counter;
   };
 
-
-
   const reversedComments = [...comments].reverse();
 
   const findCommentByRecipeID = reversedComments.map((comment, index) => {
-   
-    // console.log('NOAH', comment)
-
     function getNumberOfDays(date1, date2) {
       const oneDay = 1000 * 60 * 60 * 24;
       const diffInTime = date1 - date2;
@@ -138,7 +123,7 @@ export default function CommentList(props) {
       return (
         <Card
           key={index}
-          sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 20 }}
+          sx={{ border: "dotted 1px black", margin: "1rem", boxShadow: 10 }}
         >
           <CardHeader
             avatar={
@@ -150,9 +135,9 @@ export default function CommentList(props) {
             aria-label="recipe"
             title={comment.author}
             titleTypographyProps={{
-              align: "center",
+              align: "right",
               fontFamily: "bungee",
-              marginRight: "4rem",
+              marginRight: "2rem",
               fontSize: "1.5rem",
             }}
           />
@@ -165,6 +150,7 @@ export default function CommentList(props) {
               wordWrap: "break-word",
               padding: "1rem",
             }}
+            align="left"
           >
             "{comment.comment}"
           </Typography>
@@ -176,20 +162,24 @@ export default function CommentList(props) {
           {state.user.id === comment.user_id && (
             <div>
               <Button
-                    type="button"
-                    variant="contained"
-                    color="black"
-              onClick={() => {
-                setModalID(comment.id)
-                modalHandleOpen()}}>Delete</Button>
+                type="button"
+                variant="contained"
+                color="black"
+                onClick={() => {
+                  setModalID(comment.id);
+                  modalHandleOpen();
+                }}
+                sx={{ margin: "0.5rem", padding: "3 3rem 3 3rem" }}
+              >
+                Delete
+              </Button>
               <Modal
                 aria-labelledby="transition-modal-title"
                 open={modalOpen}
-                
                 onClose={modalHandleClose}
                 closeAfterTransition
                 BackdropComponent={Backdrop}
-                align='center'
+                align="center"
                 BackdropProps={{
                   timeout: 500,
                 }}
@@ -202,7 +192,7 @@ export default function CommentList(props) {
                       color="black"
                       onClick={() => {
                         handleDeleteComment(modalID);
-                        modalHandleClose()
+                        modalHandleClose();
                       }}
                       sx={{ margin: "0.5rem", padding: "2 2rem 2 2rem" }}
                     >
@@ -226,7 +216,7 @@ export default function CommentList(props) {
             <Card
               sx={{
                 padding: "0.5rem 4rem 2rem 4rem",
-                boxShadow: 20,
+                boxShadow: 10,
                 margin: "2rem 1rem 0rem 2rem",
                 borderRadius: "1rem",
               }}
@@ -249,7 +239,7 @@ export default function CommentList(props) {
                 multiline={true}
                 rows={3}
                 fullWidth
-                borderRadius="1rem"
+                borderradius="1rem"
                 type="text"
                 name="Comments"
                 value={value}
