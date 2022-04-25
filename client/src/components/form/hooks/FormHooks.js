@@ -70,14 +70,14 @@
 
   // EDIT RECIPE - set edit recipe to recipe object
   useEffect(() => {
-    if (editForm) {
+    if (editForm && editRecipe) {
       const thisRecipeArr = state.filtered_recipes;
 
       // find the specific recipe
       const findThisRecipe = thisRecipeArr.filter((recipe) =>
-        recipe.id === currentPage ? recipe : false
+      recipe.id === currentPage ? recipe : false
       );
-
+      
       // Filter Out All Key/Value Pairs where the Value is Falsey
       const filteredRecipe = Object.fromEntries(
         Object.entries(findThisRecipe[0]).filter(([_, v]) => v)
