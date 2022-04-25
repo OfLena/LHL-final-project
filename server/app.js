@@ -7,6 +7,7 @@ const morgan = require('morgan');
 const fileUpload = require('express-fileupload')
 const app = express();
 
+
 // db connection
 const db = require('./configs/db.config');
 app.use(cors())
@@ -32,6 +33,7 @@ const recipeTagsRouter = require('./routes/recipe_tags');
 const categoriesRouter = require('./routes/categories');
 const tagsRouter = require('./routes/tags')
 const loginRouter = require('./routes/login')
+const smsRouter = require('./routes/sms')
 
 
 
@@ -47,5 +49,8 @@ app.use('/comments', commentsRouter(db));
 app.use('/categories', categoriesRouter(db));
 app.use('/tags', tagsRouter(db));
 app.use('/login', loginRouter(db));
+app.use('/sms', smsRouter());
+
+
 
 module.exports = app;
