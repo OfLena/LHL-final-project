@@ -1,3 +1,4 @@
+import "./styles/youtube.scss";
 import React, { useEffect } from "react";
 
 import {
@@ -19,6 +20,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
+import YoutubeEmbed from "./YoutubeEmbed";
 import Footer from "./Footer";
 import CommentList from "./CommentList";
 import TextMessageButton from "./TextMessageButton";
@@ -177,6 +179,12 @@ export default function RecipeCard(props) {
               }}
               subheader={"Serves " + filteredRecipes.serving_size}
             />
+
+
+            <div className="App">
+              <YoutubeEmbed embedId={filteredRecipes.video_link} />
+            </div>
+
 
             <Grid container justifyContent={"center"}>
               <Card
