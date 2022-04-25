@@ -128,8 +128,10 @@
   // ================= INGREDIENT ROW HANDLERS =================//
   const handleIngredientRowChange = (idx) => (e) => {
     const { name, value } = e.target;
+    console.log("NAME and VALUE", name, value)
     const newRow = [...ingredientRows];
     newRow[idx][name] = value;
+    console.log("NEW ROW", newRow)
     setIngredientRows(newRow);
    
   };
