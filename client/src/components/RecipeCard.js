@@ -1,3 +1,4 @@
+import "./styles/youtube.scss";
 import React, { useEffect } from "react";
 
 import {
@@ -19,6 +20,7 @@ import MenuBookIcon from "@mui/icons-material/MenuBook";
 import PhoneIphoneIcon from '@mui/icons-material/PhoneIphone';
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
+import YoutubeEmbed from "./YoutubeEmbed";
 import Footer from "./Footer";
 import CommentList from "./CommentList";
 import TextMessageButton from "./TextMessageButton";
@@ -32,6 +34,8 @@ export default function RecipeCard(props) {
     const filteredRecipes = Object.fromEntries(
       Object.entries(recipe).filter(([_, v]) => v)
     );
+
+    console.log("FILTERED RECIPES", filteredRecipes)
 
     //Return Array of All filteredRecipes
     const recipePairs = Object.entries(filteredRecipes);
@@ -101,6 +105,10 @@ export default function RecipeCard(props) {
                 </Tooltip>
               }
             />
+
+            <div className="App">
+              <YoutubeEmbed embedId={filteredRecipes.video_link} />
+            </div>
             
             <div style={{ display: "flex", justifyContent: "center" }}>
               <CardMedia

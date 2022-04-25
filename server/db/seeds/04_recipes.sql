@@ -1,7 +1,8 @@
- INSERT INTO recipes (id, user_id, prep_time, serving_size, image_url, title, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5, ingredient_6, ingredient_7, ingredient_8, ingredient_9, ingredient_10, ingredient_11, ingredient_12, ingredient_13, ingredient_14, ingredient_15, ingredient_16, ingredient_17, ingredient_18, ingredient_19, ingredient_20, measurement_1, measurement_2, measurement_3, measurement_4, measurement_5, measurement_6, measurement_7, measurement_8, measurement_9, measurement_10, measurement_11, measurement_12, measurement_13, measurement_14, measurement_15, measurement_16, measurement_17, measurement_18, measurement_19, measurement_20, vegan, vegetarian, keto, breakfast, lunch, dinner, gluten_free, dairy_free)
+ INSERT INTO recipes (id, user_id, prep_time, serving_size, image_url, video_link, title, instruction_1, instruction_2, instruction_3, instruction_4, instruction_5, ingredient_1, ingredient_2, ingredient_3, ingredient_4, ingredient_5, ingredient_6, ingredient_7, ingredient_8, ingredient_9, ingredient_10, ingredient_11, ingredient_12, ingredient_13, ingredient_14, ingredient_15, ingredient_16, ingredient_17, ingredient_18, ingredient_19, ingredient_20, measurement_1, measurement_2, measurement_3, measurement_4, measurement_5, measurement_6, measurement_7, measurement_8, measurement_9, measurement_10, measurement_11, measurement_12, measurement_13, measurement_14, measurement_15, measurement_16, measurement_17, measurement_18, measurement_19, measurement_20, vegan, vegetarian, keto, breakfast, lunch, dinner, gluten_free, dairy_free)
  
- VALUES (1, 2, '30 minutes', 4, 'potato-gratin.jpg', 
- 'Potato Gratin with Chicken',
+ VALUES (1, 2, '30 minutes', 4, 'potato-gratin.jpg',
+ 'AJoNX-xg6e8', 
+ 'Potato Gratin with Chicken', 
  'Finely slice 3 onions and place in an oven dish with 2 tblsp of olive oil and 100ml of chicken stock.',
  'Cook till the onions are soft then drain the potatoes and pour onto the onions.',
  'Season and spoon over cream or creme fraiche till all is covered but not swimming.',
@@ -12,7 +13,7 @@
    FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE),
  
 
- (2, 2, '30 minutes', 4, 'vegan-lasagna.jpg', 
+ (2, 2, '30 minutes', 4, 'vegan-lasagna.jpg', 'M6eVRYX2h1E', 
  'Vegan Lasagna',
  'Preheat oven to 180 degrees celcius.',
  'Boil vegetables for 5-7 minutes, until soft. Add lentils and bring to a gentle simmer, adding a stock cube if desired.
@@ -28,6 +29,7 @@
  
 
  (3, 3,'45 minutes', 2, 'burrito.jpg', 
+ 'Yk5JTHVBqvc',
  'Vegan Burritos',
  'Cube a sweet potato and place on baking sheet with cinnamom and olive oil at 350F for 40mins. Flip once at 20mins.',
  'Chop a medium yellow onion and 3 gloves of garlic and place in hot brazier at medium heat. Cook until onions are translucent. Start your desired amount of rice.',
@@ -40,6 +42,7 @@
 
 
 (4, 1, '30 minutes', 3, 'cajun-fish.jpg', 
+'Yk5JTHVBqvc',
  'Cajun spiced fish tacos',
  'On a large plate, mix the cajun spice and cayenne pepper with a little seasoning and use to coat the fish all over.',
  'Heat a little oil in a frying pan, add in the fish and cook over a medium heat until golden.',
@@ -52,6 +55,7 @@
  
 
  (5, 2, '30 min', 4, 'nanaimo-bar.jpg', 
+ 'Yk5JTHVBqvc',
  'Nanaimo Bars',
  'Start by making the biscuit base.
 In a bowl, over a pan of simmering water, melt the butter with the sugar and cocoa powder, stirring occasionally until smooth.
@@ -68,7 +72,8 @@ Take the mixture out of the tin and slice into squares to serve.',
    FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, FALSE),
  
 
- (6, 3, '45 minutes', 6, 'mulligatawny-soup.jpg', 
+ (6, 3, '45 minutes', 6, 'mulligatawny-soup.jpg',
+ 'Yk5JTHVBqvc', 
  'Vegan and Dairy Free Mulligatawny Soup',
  'Add the onion and carrot to a large pot with ¼ cup water or vegetable broth over medium heat, then sauté for 4 to 5 minutes, or until the onions have softened. Add the potatoes, garlic, ginger, apples, and diced tomatoes to the pot. Sauté for another 3 minutes, then add all of the spices and toss to coat.',
  'Add the lentils and broth and let the contents come to a boil. Turn the heat down to medium-low and simmer uncovered for 30 minutes. Add more water or broth if it gets too thick.',
@@ -80,6 +85,7 @@ Take the mixture out of the tin and slice into squares to serve.',
    TRUE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE),
 
 (7, 1, '45 minutes', 6, 'wontons.jpg', 
+'Yk5JTHVBqvc',
  'Pork Wontons',
  'Combine pork, garlic, ginger, soy sauce, sesame oil, and vegetables in a bowl.
 Separate wonton skins.',
@@ -94,7 +100,8 @@ Drain and serve with sauce.',
    FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE, FALSE),
  
 
- (8, 2, '20 minutes', 2, 'salmon-salad.jpg', 
+ (8, 2, '20 minutes', 2, 'salmon-salad.jpg',
+ 'Yk5JTHVBqvc', 
  'Salmon Avocado Salad',
  'Season the salmon, then rub with oil.
 Mix the dressing ingredients together.',
@@ -109,7 +116,8 @@ Serve warm.',
   '400g', '3', '1', '400g', '4 tbsp', 'Zest and juice of 1', '2 tsp', '3 tbsp', null, null, null, null, null, null, null, null, null, null, null, null,
    FALSE, FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE),
  
- (9, 3, '5 minutes', 1, 'overnightOats.jpg', 
+ (9, 3, '5 minutes', 1, 'overnightOats.jpg',
+ 'Yk5JTHVBqvc', 
  'Vegan Overnight Oats',
  'In a small bowl, whish together the oats, almond milk, chia seeds, banana and cinnamon. Cover and refrigerate overnight to thicken.',
  'In the morning, stir the oat mixture to combine. Serve the oats in a jar, alternating layers of fresh fruit, granola, hemp seeds, and a drizzle of sweetener, if desired.',
@@ -121,7 +129,8 @@ Serve warm.',
   TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE),
  
 
- (10, 3,'30 minutes', 4, 'kung-pao.jpg', 
+ (10, 3,'30 minutes', 4, 'kung-pao.jpg',
+ 'Yk5JTHVBqvc', 
  'Kung Pao Chicken',
  'Place the oil in a shallow pan over a medium heat. Add in the garlic, chilli, ginger and chicken.',
  'Saute for 5 minutes. Add in the spring onions and peanuts.',
@@ -133,6 +142,7 @@ Serve warm.',
    FALSE, FALSE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE),
 
   (11, 2, '10 minutes', 2, 'muesli.jpg', 
+  'Yk5JTHVBqvc',
  'Spa Day Muesli',
  'Dice one apple and grate the other on a box grater. Place the apples in a large bowl and add the oats, yogurt, pepita seeds, raisins, and cranberries. Stir to combine.',
  'Cover the bowl and refrigerate the muesli overnight or for at least 2 hours, until the oats soften.',
@@ -144,6 +154,7 @@ Serve warm.',
 TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE),
 
 (12, 1, '25 minutes', 2, 'savoryOats.jpg', 
+'Yk5JTHVBqvc',
  'Savory Oatmeal & Lentil Bowl',
  'In a medium saucepan, combine the oats, lentils, broth, garlic, and shallot. Bring the mixture to a low boil over medium-high heat, then reduce the heat to medium-low and summer, uncovered, for 8 to 12 minutes, or until thickened. Season with salt and pepper to taste.',
  'Spoon the oatmeal into a bowl, add your desired toppings, and enjoy!',
@@ -154,7 +165,8 @@ TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, TRUE),
   '1/3 Cup', '1/4 Cup', '1.5 Cup', '1 Small', '1 Small', 'to Taste', 'to Taste', null, null, null, null, null, null, null, null, null, null, null, null, null,
 TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, FALSE, TRUE),
 
-(13, 3, '30 minutes', 1, 'applePieOatmeal.jpg', 
+(13, 3, '30 minutes', 1, 'applePieOatmeal.jpg',
+'Yk5JTHVBqvc', 
  'Apple Pie Oatmeal',
  'In a medium saucepan, over medium heat, combine the oats, apple, chia seeds, applesauce, almond milk, cinnamon, ginger, and salt. Whisk well to combine. Bring the mixture to a low boil over medium heat. Simmer for 8 to 10 minutes, stirring often.',
  'When the mixture has thickened and the liquid has been absorbed, remove the pan from the heat and stir in the vanialla and maple syrup to taste.',

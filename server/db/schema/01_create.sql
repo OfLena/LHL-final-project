@@ -25,6 +25,7 @@ CREATE TABLE recipes (
   prep_time VARCHAR(225), 
   serving_size VARCHAR(225), 
   image_url VARCHAR(225), 
+  video_link VARCHAR(225) DEFAULT NULL, 
   title VARCHAR(225) NOT NULL,
   instruction_1 VARCHAR(500) DEFAULT NULL,
   instruction_2 VARCHAR(500) DEFAULT NULL,
