@@ -29,9 +29,6 @@ const usersRouter = require('./routes/users');
 const recipesRouter = require('./routes/recipes');
 const favsRouter = require('./routes/favs');
 const commentsRouter = require('./routes/comments');
-const recipeTagsRouter = require('./routes/recipe_tags');
-const categoriesRouter = require('./routes/categories');
-const tagsRouter = require('./routes/tags')
 const loginRouter = require('./routes/login')
 const smsRouter = require('./routes/sms')
 
@@ -43,11 +40,8 @@ const smsRouter = require('./routes/sms')
 app.use('/', indexRouter);
 app.use('/users', usersRouter(db));
 app.use('/recipes', recipesRouter(db));
-app.use('/recipe_tags', recipeTagsRouter(db));
 app.use('/favs', favsRouter(db));
 app.use('/comments', commentsRouter(db));
-app.use('/categories', categoriesRouter(db));
-app.use('/tags', tagsRouter(db));
 app.use('/login', loginRouter(db));
 app.use('/sms', smsRouter());
 

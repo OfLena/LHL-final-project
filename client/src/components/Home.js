@@ -21,14 +21,7 @@ const styles = {
   backgroundSize: 'cover',
   backgroundRepeat: 'no-repeat',
   width: '100vw',
-  height: '100vh' },
-//   overlay: {
-//     position: 'relative',
-//     top: '20px',
-//     left: '20px',
-//     color: 'black',
-//     backgroundColor: 'white'
-//  },
+  height: '100vh' }
 };
 
 
@@ -120,13 +113,13 @@ const matches = useMediaQuery(theme.breakpoints.up('sm'));
       <Grid item xs={12}
         sx={{
         position: 'absolute',
-        bottom: '25rem',
+        bottom: '30rem',
         left: 0,
         width: '100%',
         color: 'black',
         padding: '10px'}}>
-      <Typography style={{color: "black"}} fontFamily={'Bungee Shade'} fontSize={'5rem'}>POTLUCK</Typography>
-      <Typography style={{color: "black"}} fontSize={'1.75rem'}>... Just the Recipes</Typography>
+      <Typography style={{color: "black"}} fontFamily={'Bungee Shade'} fontSize={'8rem'}>POTLUCK</Typography>
+      <Typography style={{color: "black"}} fontSize={'3rem'}>... Just the Recipes</Typography>
     </Grid>
     <div className="bounce">
     <Grid item xs={12}

@@ -17,7 +17,7 @@ import Home from "./components/Home";
 import Login from "./components/Login";
 import RecipeCard from "./components/RecipeCard";
 import useApplicationData from "./components/hooks/AppHooks";
-import ScrollToTop from "./components/ScrollToTop";
+import ScrollToTop from "./components/helperComponents/ScrollToTop";
 
 const theme = createTheme({
   palette: {

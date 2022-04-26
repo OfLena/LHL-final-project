@@ -17,10 +17,10 @@ import {
 
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
-import YoutubeEmbed from "./YoutubeEmbed";
+import YoutubeEmbed from "./helperComponents/YoutubeEmbed";
 import Footer from "./Footer";
 import CommentList from "./CommentList";
-import TextMessageButton from "./TextMessageButton";
+import TextMessageButton from "./helperComponents/TextMessageButton";
 
 export default function RecipeCard(props) {
   const { recipes, currentPage, comments, state, setState } = props;

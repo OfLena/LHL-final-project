@@ -171,19 +171,13 @@
       reader.readAsDataURL(file);
     }
   
-
-  //====================POST SUCCESS===============//
-
- 
   
-
   // ==================AXIOS CALLS =================//
 
   function postRecipeAndTags() {
     const formData = new FormData();
     formData.append("img", image);
-    console.log('here', formData)
-    // recipe.id = uuidv4();
+
     Promise.all([
       axios.post("http://localhost:8080/recipes", recipe),
       axios.post("http://localhost:8080/recipes/images", formData)
@@ -240,11 +234,7 @@
       });
   }
 
-  // console.log('RECIPES', recipes)
-  // console.log('RECIPE.ID', recipe.id)
-  // console.log('RECIPE', recipe)
-  // console.log('EDIT RECIPE', editRecipe)
-  // console.log('CURRENT PAGE', currentPage)
+ 
   // helper function to remove the non-updated recipe and add in the newly updated recipe 
 
   const addUpdateFav = function () {
@@ -253,7 +243,6 @@
     item.id !== currentPage 
     ))
 
-    // console.log("NEWARRUPDATE", newArrUpdate)
     return newArrUpdate = [...newArrUpdate, editRecipe]
 
 
@@ -276,5 +265,5 @@
     );
   };
 
-  return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit, };
+  return { editRecipe, setEditRecipe, setRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, instructionRows, instructionsEdit, handleIngredientRowChange, ingredientsEdit, measurementsEdit, image };
 }

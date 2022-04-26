@@ -14,8 +14,8 @@ import {
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
-import SearchBar from "./SearchBar";
-import DrawerComp from "./DrawerComp";
+
+import DrawerComp from "./helperComponents/DrawerComp";
 
 
 const Pages = [

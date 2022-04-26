@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { v4 as uuidv4 } from "uuid";
 
-import SuccessSnackBar from "./SuccessSnackBar";
+import SuccessSnackBar from "./helperComponents/SuccessSnackBar";
 
 import {
   Box,
