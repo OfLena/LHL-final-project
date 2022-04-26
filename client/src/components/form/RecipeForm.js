@@ -3,12 +3,7 @@ import "../styles/recipeHeader.scss";
 
 import React from "react";
 
-import {
-  Container,
-  Grid,
-  Box,
-} from "@mui/material";
-
+import { Container, Grid, Box } from "@mui/material";
 
 import Footer from "../Footer";
 
@@ -19,15 +14,30 @@ import FormTags from "./FormTags";
 import UseFormData from "./hooks/FormHooks";
 
 export default function RecipeForm(props) {
-  const { user, recipes, state, setState, editForm, currentPage } = props;
-  
+  const { editForm } = props;
 
-  const {editRecipe, setRecipe, setEditRecipe, imageSetter, previewImage, ingredientRows, handleIngredientAddRow, handleIngredientRemoveRow, updateButton, postButton, recipe, handleCheckboxChange, handleInstructionAddRow, handleInstructionRemoveRow, handleInstructionRowChange, handleIngredientRowChange, instructionRows, instructionsEdit, ingredientsEdit, measurementsEdit, image} = UseFormData(props)
-
-
-  // =========== STATES ========== //
-
-  /* STARTING RETURN */
+  const {
+    editRecipe,
+    setRecipe,
+    setEditRecipe,
+    imageSetter,
+    previewImage,
+    ingredientRows,
+    handleIngredientAddRow,
+    handleIngredientRemoveRow,
+    updateButton,
+    postButton,
+    recipe,
+    handleCheckboxChange,
+    handleInstructionAddRow,
+    handleInstructionRemoveRow,
+    handleInstructionRowChange,
+    handleIngredientRowChange,
+    instructionRows,
+    instructionsEdit,
+    ingredientsEdit,
+    measurementsEdit,
+  } = UseFormData(props);
 
   return (
     <Box
@@ -37,67 +47,65 @@ export default function RecipeForm(props) {
       autoComplete="off"
     >
       <Container
-         sx={{
+        sx={{
           p: 2,
-          paddingTop: '15px',
+          paddingTop: "15px",
           border: "1px solid black",
           background: "#CCA01D",
           borderRadius: "1rem",
         }}
       >
-       <FormHeader
-       editForm={editForm}
-       />
-        <Grid container spacing={0}
+        <FormHeader editForm={editForm} />
+        <Grid
+          container
+          spacing={0}
           sx={{
             p: 2,
-            paddingTop: '10px',
+            paddingTop: "10px",
             border: "1px solid black",
             background: "white",
             borderRadius: "1rem",
           }}
         >
-
-           <Grid item xs={12} sm={12}>
+          <Grid item xs={12} sm={12}>
             <FormTitleAndImage
-            editForm={editForm}
-            setEditRecipe={setEditRecipe}
-            editRecipe={editRecipe}
-            setRecipe={setRecipe}
-            imageSetter={imageSetter}
-            previewImage={previewImage}
-            recipe={recipe}
-              />
-           </Grid>
-           
-           <Grid item xs={12} sm={12}>
-             <FormBody
-             editRecipe={editRecipe}
-             setEditRecipe={setEditRecipe}
-             setRecipe={setRecipe}
-             imageSetter={imageSetter}
-             previewImage={previewImage}
-             editForm={editForm}
-             ingredientRows={ingredientRows}
-             handleIngredientAddRow={handleIngredientAddRow}
-            handleIngredientRemoveRow={handleIngredientRemoveRow} handleIngredientRowChange={handleIngredientRowChange}
-            instructionRows={instructionRows}
-            instructionsEdit={instructionsEdit}
-            ingredientsEdit={ingredientsEdit}
-            measurementsEdit={measurementsEdit}
-            // ingredientRowsEdit={ingredientRowsEdit}
-            handleInstructionRemoveRow={handleInstructionRemoveRow} handleInstructionRowChange={handleInstructionRowChange}
-            handleInstructionAddRow={handleInstructionAddRow}
-             />
-            </Grid>
-          
-            
-          </Grid>
-            <FormTags
               editForm={editForm}
+              setEditRecipe={setEditRecipe}
               editRecipe={editRecipe}
-              handleCheckboxChange={handleCheckboxChange}
+              setRecipe={setRecipe}
+              imageSetter={imageSetter}
+              previewImage={previewImage}
+              recipe={recipe}
             />
+          </Grid>
+
+          <Grid item xs={12} sm={12}>
+            <FormBody
+              editRecipe={editRecipe}
+              setEditRecipe={setEditRecipe}
+              setRecipe={setRecipe}
+              imageSetter={imageSetter}
+              previewImage={previewImage}
+              editForm={editForm}
+              ingredientRows={ingredientRows}
+              handleIngredientAddRow={handleIngredientAddRow}
+              handleIngredientRemoveRow={handleIngredientRemoveRow}
+              handleIngredientRowChange={handleIngredientRowChange}
+              instructionRows={instructionRows}
+              instructionsEdit={instructionsEdit}
+              ingredientsEdit={ingredientsEdit}
+              measurementsEdit={measurementsEdit}
+              handleInstructionRemoveRow={handleInstructionRemoveRow}
+              handleInstructionRowChange={handleInstructionRowChange}
+              handleInstructionAddRow={handleInstructionAddRow}
+            />
+          </Grid>
+        </Grid>
+        <FormTags
+          editForm={editForm}
+          editRecipe={editRecipe}
+          handleCheckboxChange={handleCheckboxChange}
+        />
         <br />
         <br />
         {!recipe.title ? null : postButton()}

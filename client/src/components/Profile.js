@@ -3,9 +3,8 @@ import React, { useState, useEffect } from "react";
 import RecipeListItem from "./RecipeListItem";
 import Footer from "./Footer";
 
-import { Box, Grid, Button, TextField, InputAdornment} from "@mui/material";
+import { Box, Grid, Button, TextField, InputAdornment } from "@mui/material";
 import ProfileCard from "./ProfileCard";
-
 
 import LocalDiningIcon from "@mui/icons-material/LocalDining";
 
@@ -22,9 +21,7 @@ export default function Profile(props) {
     } else if (showUserRecipes) {
       getUserRecipes();
     }
-
   }, [search, state]);
-
 
   function getFavRecipes() {
     setShowUserRecipes("");
@@ -63,9 +60,7 @@ export default function Profile(props) {
   });
 
   const recipesFromUser = filteredSearchForUserRecipes.map((recipe) => {
-    
     return (
-    
       <RecipeListItem
         key={recipe.id}
         recipe_id={recipe.id}
@@ -85,11 +80,9 @@ export default function Profile(props) {
       />
     );
   });
-  
-  const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
-    
-    return (
 
+  const userFavRecipes = filteredSearchForFavRecipes.map((recipe) => {
+    return (
       <RecipeListItem
         key={recipe.id}
         state={state}
@@ -110,8 +103,6 @@ export default function Profile(props) {
     );
   });
 
-
-
   return (
     <Box
       component="form"
@@ -119,20 +110,20 @@ export default function Profile(props) {
       noValidate
       autoComplete="off"
     >
-      <ProfileCard 
-      user_first={user.first_name}
-      user_last={user.last_name}
-      user_name={user.user_name}
-      email={user.email}
-      avatar={user.avatar}
-      userFavRecipes={state.favs}
-      recipesFromUser={userFilteredRecipes}
+      <ProfileCard
+        user_first={user.first_name}
+        user_last={user.last_name}
+        user_name={user.user_name}
+        email={user.email}
+        avatar={user.avatar}
+        userFavRecipes={state.favs}
+        recipesFromUser={userFilteredRecipes}
       />
 
       <Grid container spacing={2}>
         <Grid item xs={12} align="center">
           <Button
-            style={{ width: "20rem", padding: "16px", marginBottom: '15px' }}
+            style={{ width: "20rem", padding: "16px", marginBottom: "15px" }}
             variant="contained"
             color="yellow"
             onClick={getFavRecipes}
@@ -140,8 +131,7 @@ export default function Profile(props) {
             My Fav Recipes
           </Button>
           <Button
-            style={{ width: "20rem", padding: "16px", marginBottom: '15px'}}
-            
+            style={{ width: "20rem", padding: "16px", marginBottom: "15px" }}
             variant="contained"
             color="yellow"
             onClick={getUserRecipes}
@@ -150,33 +140,31 @@ export default function Profile(props) {
           </Button>
         </Grid>
 
-        {showFavs || showUserRecipes ?
+        {showFavs || showUserRecipes ? (
           <Grid item xs={12} align="center">
             <TextField
               InputProps={{
-               startAdornment: (
-                <InputAdornment position="start">
-                    <LocalDiningIcon color="black"/>
-                </InputAdornment>
-               ),
-               }}
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalDiningIcon color="black" />
+                  </InputAdornment>
+                ),
+              }}
               type="text"
-              style={{ width: "30rem", marginBottom: '2rem'}}
+              style={{ width: "30rem", marginBottom: "2rem" }}
               onChange={handleSearch}
               value={search}
               placeholder="Search..."
             />
           </Grid>
-        :
-        null
-        }
+        ) : null}
       </Grid>
 
-      <Grid container spacing={4} align="center"> 
+      <Grid container spacing={4} align="center">
         {showFavs}
         {showUserRecipes}
       </Grid>
-    
+
       <Footer />
     </Box>
   );

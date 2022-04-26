@@ -10,10 +10,8 @@ import {
   CardHeader,
   Card,
   FormControlLabel,
-  Button,
-  Tooltip
+  Tooltip,
 } from "@mui/material";
-
 
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 
@@ -25,8 +23,8 @@ import TextMessageButton from "./helperComponents/TextMessageButton";
 export default function RecipeCard(props) {
   const { recipes, currentPage, comments, state, setState } = props;
 
-    // Map Over All Recipes in Database
-    const findRecipe = recipes.map((recipe, index) => {
+  // Map Over All Recipes in Database
+  const findRecipe = recipes.map((recipe, index) => {
     // Filter Out All Key/Value Pairs where the Value is Falsey
     const filteredRecipes = Object.fromEntries(
       Object.entries(recipe).filter(([_, v]) => v)
@@ -90,18 +88,15 @@ export default function RecipeCard(props) {
                   aria-label="recipe"
                 />
               }
-              // TEST
               action={
-                <Tooltip
-                arrow
-                title={<h1>Text me The Shopping List!</h1>}>
-                 <div>
-                  <TextMessageButton/> 
-                 </div>
+                <Tooltip arrow title={<h1>Text me The Shopping List!</h1>}>
+                  <div>
+                    <TextMessageButton />
+                  </div>
                 </Tooltip>
               }
             />
-            
+
             <div style={{ display: "flex", justifyContent: "center" }}>
               <CardMedia
                 component="img"
@@ -115,7 +110,6 @@ export default function RecipeCard(props) {
                 image={image}
                 alt={filteredRecipes.title}
               />
-            
             </div>
             <Card
               align={"center"}
@@ -177,11 +171,9 @@ export default function RecipeCard(props) {
               subheader={"Serves " + filteredRecipes.serving_size}
             />
 
-
             <div className="App">
               <YoutubeEmbed embedId={filteredRecipes.video_link} />
             </div>
-
 
             <Grid container justifyContent={"center"}>
               <Card
@@ -201,11 +193,17 @@ export default function RecipeCard(props) {
                 />
                 {combinedIngMeasObj.map((value, index) => {
                   return (
-                    
-                    <Grid item key={index} xs={12} align="left" fontSize={"1.5rem"}>
-                    <li>{value.measurement} of {value.ingredient}</li>
+                    <Grid
+                      item
+                      key={index}
+                      xs={12}
+                      align="left"
+                      fontSize={"1.5rem"}
+                    >
+                      <li>
+                        {value.measurement} of {value.ingredient}
+                      </li>
                     </Grid>
-                    
                   );
                 })}
               </Card>
@@ -234,7 +232,7 @@ export default function RecipeCard(props) {
                       instruction = value[1];
                       return (
                         <Grid item key={index} fontSize={"1.5rem"}>
-                          {/* <MenuBookIcon /> */} <li> {instruction} </li>
+                          <li> {instruction} </li>
                         </Grid>
                       );
                     }

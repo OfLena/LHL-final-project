@@ -1,7 +1,6 @@
 const router = require("express").Router();
 
 module.exports = (db) => {
-  // all routes will go here
   router.get("/", (req, res) => {
     const comments = "SELECT * FROM comments";
 
@@ -24,12 +23,12 @@ module.exports = (db) => {
   router.post("/delete", (req, res) => {
     const deleteCommentValue = Object.values(req.body);
     const wrappedValues = deleteCommentValue.map((elem) => `'${elem}'`);
-    console.log('here', wrappedValues)
-    const deleteComment = `DELETE FROM comments WHERE id = (${wrappedValues[0]})`
-  
-    db.query(deleteComment).then(data => {
+    console.log("here", wrappedValues);
+    const deleteComment = `DELETE FROM comments WHERE id = (${wrappedValues[0]})`;
+
+    db.query(deleteComment).then((data) => {
       res.json(data.rows);
-    })
+    });
   });
 
   return router;

@@ -10,13 +10,12 @@ import {
   Button,
   useMediaQuery,
   useTheme,
-  Link
+  Link,
 } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom";
 
 import SearchBar from "./helperComponents/SearchBar";
 import DrawerComp from "./helperComponents/DrawerComp";
-
 
 const Pages = [
   <Button component={RouterLink} to={"/"} sx={{ color: "black" }}>
@@ -31,7 +30,7 @@ const Pages = [
 ];
 
 export default function Nav(props) {
-  const { setSearch, search, user_id, user_name} = props;
+  const { setSearch, search, user_id, user_name } = props;
   const [value, setValue] = useState(0);
   const theme = useTheme({});
 
@@ -43,7 +42,10 @@ export default function Nav(props) {
         <Toolbar>
           {isMatch ? (
             <>
-              <Typography fontFamily={'Bungee Shade'} sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}>
+              <Typography
+                fontFamily={"Bungee Shade"}
+                sx={{ fontSize: "1.5rem", paddingLeft: "7.5%" }}
+              >
                 POTLUCK
               </Typography>
               <SearchBar search={search} setSearch={setSearch} />
@@ -64,42 +66,39 @@ export default function Nav(props) {
               </Tabs>
               <SearchBar search={search} setSearch={setSearch} />
 
-                  {user_id ? (
-                 <Link
-                 underline='none'
-                 href='/profile'
-                 sx={{
-                  display: 'flex',
-                  alignItems: 'center',
-                  flexWrap: 'wrap',
-                  marginLeft: "auto",
-                  '&:hover': {
-                    color: 'white',
-                  }
-                 }}>
-                 
-                  <Typography 
-                  fontFamily={'Bungee Shade'}
-                  style={{
-                    fontSize: "1.8rem",
+              {user_id ? (
+                <Link
+                  underline="none"
+                  href="/profile"
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    flexWrap: "wrap",
+                    marginLeft: "auto",
+                    "&:hover": {
+                      color: "white",
+                    },
                   }}
-                  > 
-                     {user_name} 
-                   </Typography>
-                 </Link>
-              
-              ):
-              
-              <>
-              <Button sx={{ marginLeft: "auto", color: "black" }}>
-                Login
-              </Button>
-              <Button sx={{ marginLeft: "10px", color: "black" }} >
-                Register
-              </Button> 
-              </>
-              }
-
+                >
+                  <Typography
+                    fontFamily={"Bungee Shade"}
+                    style={{
+                      fontSize: "1.8rem",
+                    }}
+                  >
+                    {user_name}
+                  </Typography>
+                </Link>
+              ) : (
+                <>
+                  <Button sx={{ marginLeft: "auto", color: "black" }}>
+                    Login
+                  </Button>
+                  <Button sx={{ marginLeft: "10px", color: "black" }}>
+                    Register
+                  </Button>
+                </>
+              )}
             </>
           )}
         </Toolbar>

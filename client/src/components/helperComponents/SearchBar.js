@@ -39,13 +39,12 @@ export default function SearchBar(props) {
     color: "inherit",
     "& .MuiInputBase-input": {
       padding: theme.spacing(1, 1, 1, 0),
-      // vertical padding + font size from searchIcon
+
       paddingLeft: `calc(1em + ${theme.spacing(4)})`,
-      
+
       width: "100%",
       [theme.breakpoints.up("sm")]: {
         width: "25ch",
-     
       },
     },
   }));
@@ -55,29 +54,27 @@ export default function SearchBar(props) {
   }
 
   return (
-    
-      <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
-        <Toolbar>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="open drawer"
-            sx={{ mr: 2 }}
-          />
-          <Search>
-            <SearchIconWrapper>
-              <LocalDiningIcon color="black"/>
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search..."
-              inputRef={(input) => input && input.focus()}
-              onChange={handleSearch}
-              value={search}
-            ></StyledInputBase>
-          </Search>
-        </Toolbar>
-      </form>
-    
+    <form onSubmit={(e) => e.preventDefault()} autoComplete="off">
+      <Toolbar>
+        <IconButton
+          size="large"
+          edge="start"
+          color="inherit"
+          aria-label="open drawer"
+          sx={{ mr: 2 }}
+        />
+        <Search>
+          <SearchIconWrapper>
+            <LocalDiningIcon color="black" />
+          </SearchIconWrapper>
+          <StyledInputBase
+            placeholder="Search..."
+            inputRef={(input) => input && input.focus()}
+            onChange={handleSearch}
+            value={search}
+          ></StyledInputBase>
+        </Search>
+      </Toolbar>
+    </form>
   );
 }

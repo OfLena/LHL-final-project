@@ -34,17 +34,20 @@ const theme = createTheme({
     },
   },
   typography: {
-      fontFamily: [
-        'Bungee Shade',
-        'Signika Negative'
-      ],
-    },
+    fontFamily: ["Bungee Shade", "Signika Negative"],
+  },
 });
 
 function App() {
-  const { state, setState, currentPage, setCurrentPage, search, setSearch, show} =
-    useApplicationData();
-
+  const {
+    state,
+    setState,
+    currentPage,
+    setCurrentPage,
+    search,
+    setSearch,
+    show,
+  } = useApplicationData();
 
   return (
     <div className="App">
@@ -52,133 +55,129 @@ function App() {
         <Router>
           <ScrollToTop />
           <Fade in={show} timeout={3000}>
-           <div>
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  <>
-                  <Nav
-                  search={search}
-                  setSearch={setSearch}
-                  recipes={state.recipes}
-                  user_id={state.user.id}
-                  user_name={state.user.user_name}
-                   />
+            <div>
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    <>
+                      <Nav
+                        search={search}
+                        setSearch={setSearch}
+                        recipes={state.recipes}
+                        user_id={state.user.id}
+                        user_name={state.user.user_name}
+                      />
 
-                  <Home
-                    recipes={state.filtered_recipes}
-                    user={state.user}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    setState={setState}
-                    state={state}
-                  />
-                  </>
-                }
-              />
+                      <Home
+                        recipes={state.filtered_recipes}
+                        user={state.user}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        setState={setState}
+                        state={state}
+                      />
+                    </>
+                  }
+                />
 
-              <Route
-                path="/profile"
-                element={
-                 <>
-                  
-                  <NavNoSearch
-                  search={search}
-                  setSearch={setSearch}
-                  recipes={state.recipes}
-                  user_id={state.user.id}
-                  user_name={state.user.user_name}
-                   />
+                <Route
+                  path="/profile"
+                  element={
+                    <>
+                      <NavNoSearch
+                        search={search}
+                        setSearch={setSearch}
+                        recipes={state.recipes}
+                        user_id={state.user.id}
+                        user_name={state.user.user_name}
+                      />
 
-                  <Profile
-                    user={state.user}
-                    recipes={state.filtered_recipes}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    state={state}
-                    setState={setState}
-                  />
-                  </>
-                }
-              />
-              <Route
-                path="/recipes"
-                element={
-                  <>
-                  
-                  <NavNoSearch
-                  search={search}
-                  setSearch={setSearch}
-                  recipes={state.recipes}
-                  user_id={state.user.id}
-                  user_name={state.user.user_name}
-                   />
+                      <Profile
+                        user={state.user}
+                        recipes={state.filtered_recipes}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        state={state}
+                        setState={setState}
+                      />
+                    </>
+                  }
+                />
+                <Route
+                  path="/recipes"
+                  element={
+                    <>
+                      <NavNoSearch
+                        search={search}
+                        setSearch={setSearch}
+                        recipes={state.recipes}
+                        user_id={state.user.id}
+                        user_name={state.user.user_name}
+                      />
 
-                  <RecipeCard
-                    recipes={state.filtered_recipes}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    comments={state.comments}
-                    state={state}
-                    setState={setState}
-                  />
-                </>
-                }
-              />
+                      <RecipeCard
+                        recipes={state.filtered_recipes}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        comments={state.comments}
+                        state={state}
+                        setState={setState}
+                      />
+                    </>
+                  }
+                />
 
-              <Route
-                path="/recipe_form"
-                element={
-                  <>
-                  
-                  <NavNoSearch
-                  search={search}
-                  setSearch={setSearch}
-                  recipes={state.recipes}
-                  user_id={state.user.id}
-                  user_name={state.user.user_name}
-                   />
-                  <RecipeForm
-                    recipes={state.filtered_recipes}
-                    user={state.user}
-                    setState={setState}
-                    state={state}
-                  />
-                 </>
-                }
-              />
+                <Route
+                  path="/recipe_form"
+                  element={
+                    <>
+                      <NavNoSearch
+                        search={search}
+                        setSearch={setSearch}
+                        recipes={state.recipes}
+                        user_id={state.user.id}
+                        user_name={state.user.user_name}
+                      />
+                      <RecipeForm
+                        recipes={state.filtered_recipes}
+                        user={state.user}
+                        setState={setState}
+                        state={state}
+                      />
+                    </>
+                  }
+                />
 
-              <Route
-                path="/edit_recipe_form"
-                element={
-                  <>
-                  
-                  <NavNoSearch
-                  search={search}
-                  setSearch={setSearch}
-                  recipes={state.recipes}
-                  user_id={state.user.id}
-                  user_name={state.user.user_name}
-                   />
+                <Route
+                  path="/edit_recipe_form"
+                  element={
+                    <>
+                      <NavNoSearch
+                        search={search}
+                        setSearch={setSearch}
+                        recipes={state.recipes}
+                        user_id={state.user.id}
+                        user_name={state.user.user_name}
+                      />
 
-                  <RecipeForm
-                    recipes={state.filtered_recipes}
-                    user={state.user}
-                    setState={setState}
-                    state={state}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
-                    editForm
-                  />
-                </>
-                }
-              />
+                      <RecipeForm
+                        recipes={state.filtered_recipes}
+                        user={state.user}
+                        setState={setState}
+                        state={state}
+                        currentPage={currentPage}
+                        setCurrentPage={setCurrentPage}
+                        editForm
+                      />
+                    </>
+                  }
+                />
 
-              <Route path="/login" element={<Login />} />
-            </Routes>
-          </div>
-      </Fade>
+                <Route path="/login" element={<Login />} />
+              </Routes>
+            </div>
+          </Fade>
         </Router>
       </ThemeProvider>
     </div>

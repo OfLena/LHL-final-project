@@ -1,5 +1,4 @@
-import { useState, useEffect, useRef } from "react";
-
+import { useState, useEffect } from "react";
 
 import axios from "axios";
 
@@ -14,25 +13,22 @@ export default function useApplicationData(props) {
 
   const [show, setShow] = useState(false);
   const [search, setSearch] = useState("");
-  const [comment, setComment] = useState("");
 
   const [currentPage, setCurrentPage] = useState(null);
 
   useEffect(() => {
-    setShow(true)
+    setShow(true);
     const currentPage = JSON.parse(localStorage.getItem("currentPage"));
- 
+
     if (currentPage) {
       setCurrentPage(currentPage);
     }
-    
   }, []);
 
   useEffect(() => {
     if (currentPage) {
       localStorage.setItem("currentPage", JSON.stringify(currentPage));
     }
-
   }, [currentPage]);
 
   const filterRecipes = function () {
@@ -71,7 +67,13 @@ export default function useApplicationData(props) {
     });
   }, []);
 
-
-
-  return { state, setState, currentPage, setCurrentPage, search, setSearch, show };
+  return {
+    state,
+    setState,
+    currentPage,
+    setCurrentPage,
+    search,
+    setSearch,
+    show,
+  };
 }

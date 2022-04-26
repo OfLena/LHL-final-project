@@ -2,22 +2,26 @@ import * as React from "react";
 
 import { styled } from "@mui/material/styles";
 
-import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardMedia from "@mui/material/CardMedia";
-import CardContent from "@mui/material/CardContent";
-import CardActions from "@mui/material/CardActions";
-import Collapse from "@mui/material/Collapse";
-import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
-
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import IconButton from "@mui/material/IconButton";
+
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MenuBookIcon from "@mui/icons-material/MenuBook";
 
-import { Button, Grid, Link as MUILink } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Link as MUILink,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  Avatar,
+  Typography,
+  Collapse,
+  IconButton,
+} from "@mui/material";
 
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -35,7 +39,6 @@ const ExpandMore = styled((props) => {
 }));
 
 export default function RecipeListItem(props) {
-  
   /* RECIPE CARD */
   const {
     title,
@@ -50,12 +53,8 @@ export default function RecipeListItem(props) {
     prep_time,
     serving_size,
     avatar,
-    author
-    
+    author,
   } = props;
-  
-  // console.log('inside', avatar, author);
-  
 
   const [expanded, setExpanded] = useState(false);
   const [favourite, setFavourite] = useState();
@@ -82,9 +81,7 @@ export default function RecipeListItem(props) {
   const removeFav = function () {
     const newFavsARR = state.favs;
     const removeFavRecipe = newFavsARR.filter((fav) => {
-      // console.log("FAV INSIDE REMOVE", fav)
-      // console.log("RECIPE_ID", recipe_id)
-      return fav.recipe_id !== recipe_id.toString() 
+      return fav.recipe_id !== recipe_id.toString();
     });
 
     return removeFavRecipe;
@@ -92,23 +89,22 @@ export default function RecipeListItem(props) {
 
   // helper function of heart on click
   function handleOnClick() {
-    // console.log("fav", state)
     // changes state of fav for rendering checked heart
 
-    // use fav id instead 
     if (!favourite) {
       setFavourite(true);
-      // return Promise.all([
-        axios.post("/favs", {
+
+      axios
+        .post("/favs", {
           [`recipe_id`]: recipe_id,
           [`user_id`]: user_id,
           [`author_avatar`]: avatar,
           [`author`]: author,
         })
-      // ])
-      .then((all) => {
-        setState((prev) => ({
-        ...prev,
+
+        .then((all) => {
+          setState((prev) => ({
+            ...prev,
             favs: [
               ...state.favs,
               {
@@ -118,7 +114,6 @@ export default function RecipeListItem(props) {
                 [`image_url`]: image_url,
                 [`author_avatar`]: avatar,
                 [`author`]: author,
-            
               },
             ],
           }));
@@ -127,15 +122,14 @@ export default function RecipeListItem(props) {
           console.log("ERR", err);
         });
     } else {
-      //axios post to delete
       setFavourite(false);
-        axios.post("/favs/delete", {
+      axios
+        .post("/favs/delete", {
           recipe_id: `${recipe_id}`,
           user_id: `${user_id}`,
         })
-      .then(() => {
+        .then(() => {
           setState((prev) => ({ ...prev, favs: removeFav() }));
-          console.log('REMOVEFAV', removeFav())
         })
         .catch((err) => {
           console.log("ERR", err);
@@ -153,7 +147,6 @@ export default function RecipeListItem(props) {
     return removeRecipeArr;
   };
 
-  // onclick for delete button
   function handleClickDelete() {
     return Promise.all([
       axios.post("/recipes/delete", {
@@ -178,18 +171,22 @@ export default function RecipeListItem(props) {
   return (
     <Grid item xs={12} sm={6} md={4} lg={3}>
       <div className="recipe-card">
-        <Card sx={{ maxWidth: 345, boxShadow: 10, border: '3px solid black', borderRadius: '7%'}}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            boxShadow: 10,
+            border: "3px solid black",
+            borderRadius: "7%",
+          }}
+        >
           <CardHeader
             avatar={
-              <Avatar src={`http://localhost:8080/images/${avatar}`} 
-
-              aria-label="recipe"
-              sx={{padding: '.6rem', 
-            bgcolor: '#FFAD10'}}
+              <Avatar
+                src={`http://localhost:8080/images/${avatar}`}
+                aria-label="recipe"
+                sx={{ padding: ".6rem", bgcolor: "#FFAD10" }}
               />
-              
             }
-            
             action={
               <IconButton aria-label="settings">
                 <MoreVertIcon />
@@ -198,40 +195,40 @@ export default function RecipeListItem(props) {
             title={props.title}
             subheader={`Author: ${author}`}
           />
-          <MUILink onClick={sendRecipeID} href='/recipes'>
-          <CardMedia
-            component='img'
-            to={"/recipes"}
-            height="194"
-            image={"http://localhost:8080/images/" + image_url}
-            alt={title}
-            sx={{
-              borderTop: '3px solid black',
-              borderBottom: '3px solid black'  
-            }}
-          />
+          <MUILink onClick={sendRecipeID} href="/recipes">
+            <CardMedia
+              component="img"
+              to={"/recipes"}
+              height="194"
+              image={"http://localhost:8080/images/" + image_url}
+              alt={title}
+              sx={{
+                borderTop: "3px solid black",
+                borderBottom: "3px solid black",
+              }}
+            />
           </MUILink>
-          <CardContent sx={{padding: '0'}}>
+          <CardContent sx={{ padding: "0" }}>
             <Typography variant="body2" color="text.secondary" />
           </CardContent>
-          <CardActions sx={{ justifyContent: 'center' }}>
+          <CardActions sx={{ justifyContent: "center" }}>
             <IconButton aria-label="add to favorites" onClick={handleOnClick}>
               {forProfileUser ? null : (
                 <FavoriteIcon
                   fontSize="large"
                   color={
                     favourite === true
-                    ? "error"
-                    : "grey0" && alwaysRed
-                    ? "error"
-                    : "grey0"
+                      ? "error"
+                      : "grey0" && alwaysRed
+                      ? "error"
+                      : "grey0"
                   }
                 />
               )}
             </IconButton>
 
             {forProfileUser && (
-              <Button   
+              <Button
                 fontSize="large"
                 color="yellow"
                 variant="outlined"
@@ -257,22 +254,23 @@ export default function RecipeListItem(props) {
               </Button>
             )}
             {!forProfileUser && (
-            <Button
-              fontSize="large"
-              variant="outlined"
-              component={Link}
-              to={"/recipes"}
-              sx={{borderRadius: '50%',
-              '&:hover': {
-                backgroundColor: 'black',
-                borderColor: 'yellow',
-                boxShadow: 'none',
-                }
-               }}
-            >
-              <MenuBookIcon onClick={sendRecipeID} />
-            </Button>
-             )}
+              <Button
+                fontSize="large"
+                variant="outlined"
+                component={Link}
+                to={"/recipes"}
+                sx={{
+                  borderRadius: "50%",
+                  "&:hover": {
+                    backgroundColor: "black",
+                    borderColor: "yellow",
+                    boxShadow: "none",
+                  },
+                }}
+              >
+                <MenuBookIcon onClick={sendRecipeID} />
+              </Button>
+            )}
             <ExpandMore
               expand={expanded}
               onClick={handleExpandClick}

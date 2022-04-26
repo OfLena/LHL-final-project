@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
-import Fade from '@mui/material/Fade';
-import Slide from '@mui/material/Slide';
-import { SnackbarContent } from '@mui/material';
-
+import React, { useState } from "react";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import Fade from "@mui/material/Fade";
+import Slide from "@mui/material/Slide";
+import { SnackbarContent } from "@mui/material";
 
 function SlideTransition(props) {
   return <Slide {...props} direction="up" />;
@@ -32,7 +31,9 @@ export default function SuccessSnackBar() {
 
   return (
     <div>
-      <Button onClick={handleClick(SlideTransition)} color='yellow'>Submit</Button>
+      <Button onClick={handleClick(SlideTransition)} color="yellow">
+        Submit
+      </Button>
       <Snackbar
         autoHideDuration={6000}
         open={snackState.open}
@@ -41,13 +42,16 @@ export default function SuccessSnackBar() {
         message=""
         key={snackState.Transition.name}
       >
-        <SnackbarContent style={{
-      backgroundColor:'green',
-      justifyContent:'center'
-    }}
-    message={<span id="client-snackbar">Comment Posted Successfully</span>}
-  />
-  </Snackbar>
+        <SnackbarContent
+          style={{
+            backgroundColor: "green",
+            justifyContent: "center",
+          }}
+          message={
+            <span id="client-snackbar">Comment Posted Successfully</span>
+          }
+        />
+      </Snackbar>
     </div>
   );
 }
