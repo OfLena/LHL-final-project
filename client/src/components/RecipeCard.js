@@ -201,7 +201,7 @@ export default function RecipeCard(props) {
                       fontSize={"1.5rem"}
                     >
                       <li>
-                        {value.measurement} of {value.ingredient}
+                        {value.measurement}  {value.ingredient}
                       </li>
                     </Grid>
                   );
@@ -253,9 +253,11 @@ export default function RecipeCard(props) {
   });
 
   return (
-    <Container>
-      {findRecipe}
-      <Footer />
-    </Container>
+    <div>
+      <Container>
+        {findRecipe}
+      </Container>
+        <Footer />
+    </div>
   );
 }

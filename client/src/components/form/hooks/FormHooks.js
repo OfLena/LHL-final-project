@@ -223,6 +223,7 @@ export default function UseFormData(props) {
   function updateRecipe() {
     const formUpdateData = new FormData();
     formUpdateData.append("img", image);
+    editRecipe.image_url = image.name;
     Promise.all([
       axios.post("http://localhost:8080/recipes/update", editRecipe),
       axios.post("http://localhost:8080/recipes/images", formUpdateData),
@@ -230,7 +231,6 @@ export default function UseFormData(props) {
       .then((all) => {
         editRecipe.avatar = user.avatar;
         editRecipe.recipe_user_name = user.user_name;
-        editRecipe.image_url = image.name;
         setState((prev) => ({
           ...prev,
           filtered_recipes: addUpdateFav(),

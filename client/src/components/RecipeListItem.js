@@ -180,6 +180,7 @@ export default function RecipeListItem(props) {
           }}
         >
           <CardHeader
+            
             avatar={
               <Avatar
                 src={`http://localhost:8080/images/${avatar}`}
@@ -192,7 +193,8 @@ export default function RecipeListItem(props) {
                 <MoreVertIcon />
               </IconButton>
             }
-            title={props.title}
+
+            title={<b>{props.title}</b>}
             subheader={`Author: ${author}`}
           />
           <MUILink onClick={sendRecipeID} href="/recipes">
