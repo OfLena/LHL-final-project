@@ -125,8 +125,8 @@ export default function Profile(props) {
       user_name={user.user_name}
       email={user.email}
       avatar={user.avatar}
-      userFavRecipes={filteredSearchForFavRecipes}
-      recipesFromUser={filteredSearchForUserRecipes}
+      userFavRecipes={state.favs}
+      recipesFromUser={userFilteredRecipes}
       />
 
       <Grid container spacing={2}>
