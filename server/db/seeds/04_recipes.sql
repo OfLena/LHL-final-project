@@ -129,9 +129,9 @@ Serve warm.',
   TRUE, TRUE, FALSE, TRUE, FALSE, FALSE, FALSE, FALSE),
  
 
- (10, 3,'30 minutes', 4, 'kung-pao.jpg',
+ (10, 2,'30 minutes', 4, 'kung-pao-salad.jpg',
  'wVSfiKFxsjw', 
- 'Kung Pao Chicken',
+ 'Kung Pao Chiken',
  'Place the oil in a shallow pan over a medium heat. Add in the garlic, chilli, ginger and chicken.',
  'Saute for 5 minutes. Add in the spring onions and peanuts.',
  'Stir fry for 5 minutes.',
