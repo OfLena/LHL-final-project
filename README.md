@@ -15,8 +15,9 @@ Potluck is a collaborative recipe sharing app. A user can make a profile, create
 ---
 
 ## Features
-***Choose the Weekday you wish to schedule your interview***
-!['DAYS GIF']()
+
+***Clean and Easy to use UI***
+!['HomePage'](https://github.com/OfLena/LHL-final-project/blob/main/client/Docs/HomePage.png?raw=true)
 
 ***View your Profile and access your Favourites & Contributions***
 !["Profile"](https://github.com/OfLena/LHL-final-project/blob/main/client/Docs/Profile.gif?raw=true)
@@ -24,8 +25,8 @@ Potluck is a collaborative recipe sharing app. A user can make a profile, create
 ***View Available Recipes***
 !["FORM"](https://github.com/OfLena/LHL-final-project/blob/main/client/Docs/RecipeCard.gif?raw=true)
 
-***Delete your appointment***
-!["DELETE"]()
+***Create Your Own Recipes***
+!["Create"](https://github.com/OfLena/LHL-final-project/blob/main/client/Docs/BeansForm.gif?raw=true)
 ---
 
 ## Getting Started
