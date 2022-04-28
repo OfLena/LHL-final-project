@@ -32,12 +32,12 @@ Potluck is a collaborative recipe sharing app. A user can make a profile, create
 ## Getting Started
 You will need two terminals open for this.
 
-1. In the first terminal, <mark style="background-color: grey">cd into server.</mark>
-2. Run <mark style=`background-color: grey`>npm install</mark>
-3. Run <mark style=`background-color: grey`>npm start.</mark>
-4. In the second terminal, <mark style=`background-color: grey`> cd into client. </mark>
-5. Run <mark style=`background-color: grey`> npm install. </mark>
-6. Run <mark style=`background-color: grey`> npm start. </mark>
+1. In the first terminal, `cd` into `server`.
+2. Run `npm install`.
+3. Run `npm start`.
+4. In the second terminal, `cd` into `client`.
+5. Run `npm install`. 
+6. Run `npm start`. 
 
 ---
 
